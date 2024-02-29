@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>AiSDF</title>
+
+
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image" content="https://vision3d-lab.github.io/AiSDF/img/teaser.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="9764">
+    <meta property="og:image:height" content="4567">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vision3d-lab.github.io/AiSDF">
+    <meta property="og:title" content="AiSDF: Structure-aware Neural Signed Distance Fields in Indoor Scenes">
+    <meta property="og:description" content="we propose a structure-aware online signed distance fields (SDF) reconstruction framework in indoor scenes, especially under the Atlanta world (AW) assumption">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AiSDF: Structure-aware Neural Signed Distance Fields in Indoor Scenes">
+    <meta name="twitter:description" content="we propose a structure-aware online signed distance fields (SDF) reconstruction framework in indoor scenes, especially under the Atlanta world (AW) assumption">
+    <meta name="twitter:image" content="https://vision3d-lab.github.io/AiSDF/img/teaser.png">
+
+
+    <!-- mirror: F0%9F%AA%9E&lt -->
+    <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;%E2%9C%A8&lt;/text&gt;&lt;/svg&gt;">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/codemirror.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/video_comparison.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="header" style="text-align: center; margin: auto;">
+        <div class="row" id="title-row" style="margin: 0 auto;">
+            <div class="col-12 text-center">
+                <h2 id="title">
+                    <b>AiSDF</b>: Structure-aware Neural Signed Distance Fields in Indoor Scenes<br>
+                    <small>IEEE Robotics and Automation Letters (RA-L)</small>
+                </h2>
+            </div>
+        </div>
+        
+        <div class="row text-center mt-3">
+            <!-- Adjust col-md-* to manage the spacing as needed, ensuring they sum to 12 -->
+            <div class="col-md-3">
+                <a href="https://jjhooon.github.io">Jaehoon Jang</a><sup>1, *</sup>
+            </div>
+            <div class="col-md-3">
+                <a href="https://github.com/Epsilon8854">Inha Lee</a><sup>1, *</sup>
+            </div>
+            <div class="col-md-3">
+                <a href="https://github.com/minje-KIM">Minje Kim</a><sup>1</sup>
+            </div>
+            <div class="col-md-3">
+                <a href="https://unist.info">Kyungdon Joo</a><sup>1</sup>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 text-center">
+                <span><sup>1</sup> Ulsan National Institute of Science & Technology &nbsp;&nbsp;</span>
+            </div>
+            <div class="col-12 text-center">
+                <span><sup>*</sup> Equal contribution (alphabet order) &nbsp;&nbsp;</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('author-row').style.maxWidth = document.getElementById("title-row").clientWidth + 'px';
+    </script>
+    <div class="container" id="main">
+    <div class="row vertical-center" style="align-items: text-center;">
+        <div class="text-center" style="align-items: text-center;">
+            <ul class="list-unstyled" style="display: inline-block; text-align: left;">
+                <li style="display: inline-block; margin-right: 60px; margin-left: 60px;">
+                    <a href="https://github.com/AiSDF/AiSDF.github.io/raw/main/AiSDF_paper.pdf">
+                        <img src="./img/paper_image.png" height="60px">
+                        <h4><strong>Paper</strong></h4>
+                    </a>
+                </li>              
+                <li style="display: inline-block;">
+                    <a href="https://github.com/AiSDF/AiSDF" target="_blank">
+                        <img src="img/github.png" height="60px">
+                        <h4><strong>Code (coming soon)</strong></h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+
+
+	<div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                
+                <div class="text-center">
+                    
+                        <img src="./img/teasure.png" width="100%">
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                    Indoor scenes we are living in are visually homogenous or textureless, while they inherently have structural forms and provide enough structural priors for 3D scene reconstruction. Motivated by this fact, we propose a structure-aware online signed distance fields (SDF) reconstruction framework in indoor scenes, especially under the Atlanta world (AW) assumption. Thus, we dub this incremental SDF reconstruction for AW as AiSDF. Within the online framework, we infer the underlying Atlanta structure of a given scene and then estimate planar surfel regions supporting the Atlanta structure. This Atlanta-aware surfel representation provides an explicit planar map for a given scene. In addition, based on these Atlanta planar surfel regions, we adaptively sample and constrain the structural regularity in the SDF reconstruction, which enables us to improve the reconstruction quality by maintaining a high-level structure while enhancing the details of a given scene. We evaluate the proposed AiSDF on the ScanNet and ReplicaCAD datasets, where we demonstrate that the proposed framework is capable of reconstructing fine details of objects implicitly, as well as structures explicitly in room-scale scenes.
+                </p>
+            </div>
+        </div>
+	
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Method
+                </h3>
+		<br>
+                <div class="text-center">
+                    <img src="./img/overview.png" width="100%">
+                </div>
+                <br>
+                <div class="text-justify">
+                    Given a stream of posed depth images, AiSDF first selects the keyframe and adds it to the keyframe set for continual learning. We update the global Atlanta frame (AF) by extracting the dominant directions from a new keyframe and then generate surfels that represent the planar regions supported by the updated global AF. From a set of keyframes with Atlanta-aware surfels, we sample the 3D points considering the structure of the scene. Finally, sampled point x is queried to MLP that outputs signed distance value s, and we optimize the network in a self-supervised manner by measuring the loss between s and bound b. Note that we intentionally present intermediate steps of continual learning to show the process of extracting the new Atlanta direction and surfels supported by updated global AF. In Atlanta-aware sampling (blue box), we use the ground truth mesh to visualize the sampling effectively. The final mesh result indicates the reconstructed mesh by AiSDF using all keyframes.
+                      
+                </div>
+                
+            </div>
+        </div>
+
+    <div class="row">
+	<div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Results
+                </h3>
+		<div class="text-justify">
+                  Comparison:
+                    
+                </div>
+                <table>
+                    <tr >
+                        <td>
+                            <video class="video" id="reg1"  width="100%"  loop playsinline autoPlay muted src="video/31_vid.mp4" onplay="resizeAndPlay(this)"></video>
+                   	   <canvas height=0 class="videoMerge" id="reg1Merge"></canvas>
+				
+                          
+		       </td>
+			<td>
+			   <video class="video" id="reg2"  width="100%"  loop playsinline autoPlay muted src="video/apt_3_nav.mp4" onplay="resizeAndPlay(this)"></video>
+                   	   <canvas height=0 class="videoMerge" id="reg2Merge"></canvas>
+			   
+
+		       </td>
+			<!-- <td>
+			   <video class="video" id="reg3"  width="100%"  loop playsinline autoPlay muted src="video/jar.mp4" onplay="resizeAndPlay(this)"></video>
+               <canvas height=0 class="videoMerge" id="reg3Merge"></canvas>
+			   
+		       </td> -->
+		     
+		    </tr >
+		    
+		</table>
+		<table width="100%" style="table-layout:fixed"><tr><td style="text-align:center" width="50%">scannet_0031</td><td style="text-align:center" width="50%">apt_3_nav</td></tr></table>
+        
+        <div class="text-justify">
+            Qualitative result on Atlanta sequence:            
+        </div>
+               
+        <div class="text-center">
+            <img src="./img/explicit.png" width="100%">
+        </div>
+        
+            
+        <p class="text-justify">
+            AiSDF can also reconstruct a more general indoor scene using the atlanta assumption. The right image presents the explicit planar map composed of surfels, where green color denotes the surfels supported by the vertical Atlanta direction, and the other colors represent the surfels by the other horizontal Atlanta directions.
+        </p>
+
+		<!-- <div class="text-justify">
+                   Ablation Study:
+                    
+                </div>
+                <br>
+		<div class="text-center">
+                    <video id="refdir" width="100%" playsinline autoplay loop muted>
+                        <source src="video/ablations.mp4" type="video/mp4" />
+                    </video>
+                </div>	
+            </div>
+        </div>	 -->
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Supplemetary Video
+                </h3>
+                <div class="text-center">
+                    <video id="refdir" width="100%" playsinline autoplay loop muted>
+                        <source src="video/RA-L_AiSDF_supplementary_video.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+        </div>    
+       
+            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+
+  title= AiSDF: Structure-aware Neural Signed Distance Fields in Indoor Scenes
+  author= Jaehoon, Jang and Inha, Lee and Minje, Kim and Kyungdon, Joo
+  journal= IEEE Robotics and Automation Letters, 2024
+  year={2024}
+</textarea>
+                </div>
+            </div>
+        </div>
+	
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                    <br>
+                The website template was borrowed from <a href="https://dorverbin.github.io/refnerf/">Dor Verbin</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>
