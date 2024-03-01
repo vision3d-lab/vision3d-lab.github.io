@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>DITTO</title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../main/basic_style.css">
+  <script src="../main/basic_script.js"></script>
+
+  <!-- TODO -->
+  <meta property="og:image" content="https://kitsunetic.github.io/sdf-diffusion/teasure.png"> 
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1296">
+  <meta property="og:image:height" content="840">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kitsunetic.github.io/sdf-diffusion" />
+  <meta property="og:title" content="[CVPR 2023] SDF-Diffusion" />
+  <meta property="og:description" content="Diffusion-Based Signed Distance Fields for 3D Shape Generation" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="[CVPR 2023] SDF-Diffusion" />
+  <meta name="twitter:description" content="Diffusion-Based Signed Distance Fields for 3D Shape Generation" />
+  <!-- TODO -->
+  <meta name="twitter:image" content="https://kitsunetic.github.io/sdf-diffusion/teasure.png" />
+
+  <!-- BootStrap4 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="container" id="main">
+
+    <!-- Top padding -->
+    <div class="row mt-md-5"></div>
+
+    <div class="row">
+      <h2 class="col text-center">
+        <b><ii>DITTO</ii>: <br><ii>D</ii>ual and <ii>I</ii>ntegrated La<ii>t</ii>ent <ii>To</ii>pologies for Implicit 3D Reconstruction</b>
+        <br><br>
+        <span class="realistic-marker-highlight"><ib>CVPR 2024</ib></span>
+
+        <svg xmlns="//www.w3.org/2000/svg" version="1.1" class="svg-filters" style="display:none;">
+          <defs>
+            <filter id="marker-shape">
+              <feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp" />
+              <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic"
+                in2="warp" />
+            </filter>
+          </defs>
+        </svg>
+      </h2>
+    </div>
+
+
+    <div class="row mt-3 strong">
+      <div class="col-md-1"></div>
+      <div class="col text-center">
+        <div class="row">
+          <div class="col text-center">
+            <a href="https://kitsunetic.github.io">Jaehyeok Shim</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <a href="https://kitsunetic.github.io">Homepage</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="mailto:jh.shim.gg@gmail.com">Email</a>
+          </div>
+        </div>
+      </div>
+      <div class="col text-center">
+        <div class="row">
+          <div class="col text-center">
+            <a href="https://unist.info">Kyungdon Joo (Corresponding Author)</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <a href="https://unist.info">Homepage</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="mailto:kyungdon@unist.ac.kr">Email</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <div class="row text-center mt-2 strong">
+      <div class="col-12">
+        <a href="https://unist.ac.kr">UNIST</a>
+      </div>
+    </div>
+
+    <div class="row justify-content-center align-items-center mt-5 strong">
+      <div class="col-md-2"></div>
+      <div class="col text-center">
+        <a href="#">
+          <h4>
+            <img src="https://static.arxiv.org/static/browse/0.3.4/images/icons/favicon-32x32.png" style="width: 48px; height: 48px;"><br>
+            Paper (arxiv)
+          </h4>
+        </a>
+      </div>
+      <div class="col text-center">
+        <a href="#">
+          <h4>
+            <span class="material-icons" style="font-size: 48px">description</span><br>
+            Paper
+          </h4>
+        </a>
+      </div>
+      <div class="col text-center">
+        <a href="https://github.com/vision3d-lab/ditto">
+          <h4>
+            <span class="material-icons" style="font-size: 48px">code</span><br>
+            Code
+          </h4>
+        </a>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <br><hr>
+
+    <!-- TODO: similar to poster, shorter text / much image and videos -->
+    
+    <div class="row mt-5">
+      <div class="col">
+        <div class="wider-element">
+          <img src="./img/qualitative_video_for_github.gif" width="100%">
+        </div>
+      </div>
+    </div>
+    
+    <br><hr>
+    <div class="row mt-5">
+      <div class="col">
+        <p class="text-justify">
+          DITTO addresses a crucial task in 3D computer vision: the implicit 3D reconstruction from noisy and sparse point clouds. This network architecture significantly enhances 3D understanding ability by leveraging latent features in two modalities: grid and point latents. The core innovation lies in exploiting the synergy between these two types of latents. Grid latents, such as voxels or triplanes, are inherently robust to noise and useful for representing implicit fields, though they are somewhat detail-limited due to resolution constraints. Conversely, point latents, despite their inherent ambiguities, have the potential to capture much finer details due to fewer resolution limitations. Our contribution is in effectively integrating these two latent types within a network architecture, markedly improving 3D reconstruction performance both qualitatively and quantitatively. Our research holds significant potential for various applications involving implicit fields.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- TODO youtube + bilibili -->
+    <!-- <div class="row mt-5">
+      <div class="col embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/96DqsvY09X4" title="CVPR Video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+    </div> -->
+
+
+    <!-- Methodologies -->
+    <!-- <div class="row mt-5">
+      <div class="col-md-2"></div>
+      <div class="col text-center">
+        <img src="./img/method.png" width="100%">
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3><i>Methodology</i></h3>
+        <div class="text-center">
+          <p class="text-justify">
+            An overview of our method.
+            Our method can generate high-resolution 3D shapes in the form of SDF voxels based on the
+            denoising diffusion model (DDM).
+            Our method has two stages: low-resolution coarse shape generation (top of the figure) and shape
+            super-resolution for high-resolution fine shape on the voxel-shaped SDF (bottom of the figure).
+            In the first stage, a diffusion-based 3d generative model learns to create realistic
+            low-resolution 3D shapes.
+            In the second stage, a diffusion-based super-resolution model is trained to upsample the 3D
+            shapes.
+            To alleviate cubic memory issue to handle high-resolution voxel, the second stage model is
+            trained to super-resolve 3D shapes from corresponding high- and low-resolution patches.
+          </p>
+        </div>
+      </div>
+    </div> -->
+
+
+    <!-- Generation Results -->
+    <!-- <div class="row mt-5">
+      <div class="col">
+        <h3><i>Generation Results</i></h3>
+        <p class="text-justify">
+          Generated 3D shapes from our method trained on ShapeNet dataset.
+          32, 64, 128 means resolution of voxel-shaped SDF of generated samples.
+        </p>
+      </div>
+    </div> -->
+
+
+    <!-- <div class="row mt-2">
+      <div class="col-md-2"></div>
+      <div class="col">
+        <img src="./img/1.png" width="100%">
+      </div>
+      <div class="col-md-2"></div>
+    </div> -->
+    <!-- <div class="row mt-2">
+      <div class="col-md-2"></div>
+      <div class="col">
+        <img src="./img/2.png" width="100%">
+      </div>
+      <div class="col-md-2"></div>
+    </div> -->
+    <!-- <div class="row mt-2">
+      <div class="col-md-2"></div>
+      <div class="col">
+        <img src="./img/3.png" width="100%">
+      </div>
+      <div class="col-md-2"></div>
+    </div> -->
+
+
+
+
+
+    <!-- TODO acknowledgements -->
+    <!-- <div class="row mt-5">
+      <div class="col col-md-offset-2">
+        <h3><i>Acknowledgements</i></h3>
+        <p class="text-justify">
+          This work was supported by Institute of Information & communications Technology Planning &
+          Evaluation (IITP) grant funded by the Korea government (MSIT) (No. 2022-0-00612, Geometric and
+          Physical Commonsense Reasoning based Behavior Intelligence for Embodied AI, No.2022-0-00907,
+          Development of AI Bots Collaboration Platform and Self-organizing AI and No.2020-0-01336, Artificial
+          Intelligence Graduate School Program (UNIST)) and Artificial intelligence industrial convergence
+          cluster development project funded by the Ministry of Science and ICT (MSIT, Korea) & Gwangju
+          Metropolitan City.
+        </p>
+      </div>
+    </div> -->
+  </div>
+
+
+
+  <footer class="text-center text-lg-start bg-light text-muted mt-4">
+    <!-- Section: Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2024 Created by <strong><a href="https://github.com/Kitsunetic">Kitsunetic</a></strong> using <a
+        class="text-reset fw-bold" href="https://getbootstrap.com/">Bootstrap 4</a>
+    </div>
+  </footer>
+</body>
+
+</html>
