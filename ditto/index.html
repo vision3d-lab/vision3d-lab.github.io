@@ -9,24 +9,22 @@
 
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../main/basic_style.css">
-  <script src="../main/basic_script.js"></script>
 
   <!-- TODO -->
-  <meta property="og:image" content="https://kitsunetic.github.io/sdf-diffusion/teasure.png"> 
+  <meta property="og:image" content="https://vision3d-lab.github.io/ditto/img/ditto_teaser.png"> 
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1296">
   <meta property="og:image:height" content="840">
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://kitsunetic.github.io/sdf-diffusion" />
-  <meta property="og:title" content="[CVPR 2023] SDF-Diffusion" />
+  <meta property="og:url" content="https://vision3d-lab.github.io/ditto" />
+  <meta property="og:title" content="[CVPR 2024] DITTO" />
   <meta property="og:description" content="Diffusion-Based Signed Distance Fields for 3D Shape Generation" />
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="[CVPR 2023] SDF-Diffusion" />
+  <meta name="twitter:title" content="[CVPR 2024] DITTO" />
   <meta name="twitter:description" content="Diffusion-Based Signed Distance Fields for 3D Shape Generation" />
   <!-- TODO -->
-  <meta name="twitter:image" content="https://kitsunetic.github.io/sdf-diffusion/teasure.png" />
+  <meta name="twitter:image" content="https://vision3d-lab.github.io/ditto/img/ditto_teaser.png" />
 
   <!-- BootStrap4 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -45,7 +43,19 @@
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <!-- JQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- zero-md: Markdown client'side render -->
+  <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
+  
+  <!-- MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <!-- custom script & style -->
+  <link rel="stylesheet" href="./basic_style.css">
+  <script src="./basic_script.js"></script>
 </head>
 
 <body>
@@ -85,6 +95,8 @@
           <div class="col text-center">
             <a href="https://kitsunetic.github.io">Homepage</a>
             &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="https://github.com/Kitsunetic">Github</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
             <a href="mailto:jh.shim.gg@gmail.com">Email</a>
           </div>
         </div>
@@ -99,6 +111,8 @@
           <div class="col text-center">
             <a href="https://unist.info">Homepage</a>
             &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="https://github.com/vision3d-lab">Github</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
             <a href="mailto:kyungdon@unist.ac.kr">Email</a>
           </div>
         </div>
@@ -107,7 +121,10 @@
     </div>
     <div class="row text-center mt-2 strong">
       <div class="col-12">
-        <a href="https://unist.ac.kr">UNIST</a>
+        <a href="https://unist.ac.kr">
+          <img src="./img/unist_logo.png" width="48" height="48"><br>
+          UNIST
+        </a>
       </div>
     </div>
 
@@ -124,7 +141,8 @@
       <div class="col text-center">
         <a href="#">
           <h4>
-            <span class="material-icons" style="font-size: 48px">description</span><br>
+            <!-- <span class="material-icons" style="font-size: 48px">description</span><br> -->
+            <img src="./img/paper_thumbnail.png" width="48" height="48"><br>
             Paper
           </h4>
         </a>
@@ -132,7 +150,10 @@
       <div class="col text-center">
         <a href="https://github.com/vision3d-lab/ditto">
           <h4>
-            <span class="material-icons" style="font-size: 48px">code</span><br>
+            <!-- <span class="material-icons" style="font-size: 48px">code</span><br> -->
+            <svg height="48" width="48" aria-hidden="true" viewBox="0 0 16 16" version="1.1" data-view-component="true" class="octicon octicon-mark-github v-align-middle color-fg-default">
+              <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+            </svg><br>
             Code
           </h4>
         </a>
@@ -155,13 +176,69 @@
     <br><hr>
     <div class="row mt-5">
       <div class="col">
+        <h3>Summary</h3>
         <p class="text-justify">
           DITTO addresses a crucial task in 3D computer vision: the implicit 3D reconstruction from noisy and sparse point clouds. This network architecture significantly enhances 3D understanding ability by leveraging latent features in two modalities: grid and point latents. The core innovation lies in exploiting the synergy between these two types of latents. Grid latents, such as voxels or triplanes, are inherently robust to noise and useful for representing implicit fields, though they are somewhat detail-limited due to resolution constraints. Conversely, point latents, despite their inherent ambiguities, have the potential to capture much finer details due to fewer resolution limitations. Our contribution is in effectively integrating these two latent types within a network architecture, markedly improving 3D reconstruction performance both qualitatively and quantitatively. Our research holds significant potential for various applications involving implicit fields.
         </p>
       </div>
     </div>
-
-
+    
+    <br><hr>
+    <div class="row mt-5">
+      <div class="col">
+        <h3>Methods</h3>
+        
+        <img src="./img/ditto_overview.png" width="100%">
+        <p class="text-center">
+          <b>[Figure] Overview of DITTO</b>
+        </p>
+        <p class="text-justify">
+          DITTO is an implicit 3D reconstruction network.
+          Given a point cloud input, DITTO estimates latents representations of an implicit fields, in its Dual Latent Encoder.
+          In the Integrated Implicit Decoder (IID), DITTO estimates the implicit fields for a given query positions.
+          By densely calculating occupancy values in 3D space, DITTO facilitates the reconstruction of a mesh by applying Marching Cubes algorithm.
+        </p>
+        <br>
+        
+        <img src="./img/comparison_with_baseline.png" class="responsive-img">
+        <p class="text-center">
+          <b>[Figure] Comparison with the previous methods.</b>
+        </p>
+        <p class="text-justify">
+          <h5>Encoder</h5>
+          <img src="./img/fig_dll2.png" width="100%">
+          <p class="text-center">
+            <b>[Figure] Comparison of main feature extraction module of ours (DLL) and ALTO's.</b>
+          </p>
+          In the encoder, DITTO utilizes synergy from grid (<b>T</b>) and point (<i>C</i>) latents similar to previous work, ALTO.
+          The difference is that DITTO emphasizes the feature extraction of point latent by employing our proposed more powerful point encoder, named dynamic sparse point transformer (DSPT).
+          Based on the difference, DITTO can preserve model detailed geometrical features in its latents by leveraging the resolution-efficiency of point latent.
+          And we stabilize ambiguity embedded in point latent by utilizing grid latent, which is stable due to its regular grid structure.
+          <br><br>
+          <h5>Implicit Decoder</h5>
+          <img src="./img/fig_dll.png" class="responsive-img">
+          <p class="text-center">
+            <b>[Figure] Illustration of DLL architecture.</b>
+          </p>
+          In the decoder, unlike the previous methods, DITTO considers both grid latent and point latent at once by integrating them.
+          This integration facilitates the generation of more detailed decision boundaries in continuous implicit fields.
+        </p>
+      </div>
+    </div>
+    
+    <!-- Generation Results -->
+    <div class="row mt-5">
+      <div class="col">
+        <h3>Generation Results</h3>
+        <div class="mt-2">
+          <video width="100%" height="auto" autoplay muted controls class="lazy-video">
+            <source data-src="https://github.com/vision3d-lab/vision3d-lab.github.io/releases/download/assets/qualitative_video.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    
+    
     <!-- TODO youtube + bilibili -->
     <!-- <div class="row mt-5">
       <div class="col embed-responsive embed-responsive-16by9">
@@ -173,48 +250,10 @@
     </div> -->
 
 
-    <!-- Methodologies -->
-    <!-- <div class="row mt-5">
-      <div class="col-md-2"></div>
-      <div class="col text-center">
-        <img src="./img/method.png" width="100%">
-      </div>
-      <div class="col-md-2"></div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h3><i>Methodology</i></h3>
-        <div class="text-center">
-          <p class="text-justify">
-            An overview of our method.
-            Our method can generate high-resolution 3D shapes in the form of SDF voxels based on the
-            denoising diffusion model (DDM).
-            Our method has two stages: low-resolution coarse shape generation (top of the figure) and shape
-            super-resolution for high-resolution fine shape on the voxel-shaped SDF (bottom of the figure).
-            In the first stage, a diffusion-based 3d generative model learns to create realistic
-            low-resolution 3D shapes.
-            In the second stage, a diffusion-based super-resolution model is trained to upsample the 3D
-            shapes.
-            To alleviate cubic memory issue to handle high-resolution voxel, the second stage model is
-            trained to super-resolve 3D shapes from corresponding high- and low-resolution patches.
-          </p>
-        </div>
-      </div>
-    </div> -->
 
 
-    <!-- Generation Results -->
-    <!-- <div class="row mt-5">
-      <div class="col">
-        <h3><i>Generation Results</i></h3>
-        <p class="text-justify">
-          Generated 3D shapes from our method trained on ShapeNet dataset.
-          32, 64, 128 means resolution of voxel-shaped SDF of generated samples.
-        </p>
-      </div>
-    </div> -->
-
-
+    
+    
     <!-- <div class="row mt-2">
       <div class="col-md-2"></div>
       <div class="col">
@@ -237,25 +276,11 @@
       <div class="col-md-2"></div>
     </div> -->
 
+    
+    
 
-
-
-
-    <!-- TODO acknowledgements -->
-    <!-- <div class="row mt-5">
-      <div class="col col-md-offset-2">
-        <h3><i>Acknowledgements</i></h3>
-        <p class="text-justify">
-          This work was supported by Institute of Information & communications Technology Planning &
-          Evaluation (IITP) grant funded by the Korea government (MSIT) (No. 2022-0-00612, Geometric and
-          Physical Commonsense Reasoning based Behavior Intelligence for Embodied AI, No.2022-0-00907,
-          Development of AI Bots Collaboration Platform and Self-organizing AI and No.2020-0-01336, Artificial
-          Intelligence Graduate School Program (UNIST)) and Artificial intelligence industrial convergence
-          cluster development project funded by the Ministry of Science and ICT (MSIT, Korea) & Gwangju
-          Metropolitan City.
-        </p>
-      </div>
-    </div> -->
+    <!-- TODO Citation -->
+    <!-- bibtex -->
   </div>
 
 
