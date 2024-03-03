@@ -69,3 +69,84 @@ img.responsive-img {
         max-width: none;
     }
 }
+
+
+/* buttons */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 120px; */
+    height: 40px;
+    /* background-color: #333; */
+    background-color: #115;
+    color: #fff;
+    text-decoration: none;
+    padding: 0;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 18px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.button-small {
+    font-size: 12px;
+}
+
+.button:hover, .button a, .button a:hover, .button a:visited, .button a:hover:visited {
+    /* background-color: #555; */
+    background-color: #228;
+    color: #fff;
+    text-decoration: none;
+}
+
+.icon {
+    display: inline-block;
+    margin-top: -8px;
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.svg-icon {
+    fill: #fff;
+    aria-hidden:"true";
+    focusable:"false";
+    data-prefix:"fab";
+    data-icon:"github";
+    role:"img" 
+}
+
+@font-face {
+    font-family: 'Academicons';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/fonts/academicons.eot');
+    src: url('https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/fonts/academicons.eot') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/fonts/academicons.ttf') format('truetype'),
+         url('https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/fonts/academicons.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/fonts/academicons.svg') format('svg');
+}
+
+.arxiv-icon {
+    font-family: 'Academicons';
+    font-weight: 400;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-display: swap;
+}
+
+.arxiv-icon:before {
+    content: "\e974";
+}
+  
