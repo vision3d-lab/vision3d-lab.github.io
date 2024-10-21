@@ -149,13 +149,14 @@
             <div class="col">
                 <h3><i>Abstract</i></h3>
                 <p class="text-justify">
-                    Among various interactions between humans, such as eye contact and gestures, physical interactions by contact can act as an essential moment in understanding human behaviors.
-                    Inspired by this fact, given a 3D partner human with the desired interaction label, we introduce a new task of 3D human generation in terms of physical contact.
-                    Unlike previous works of interacting with static objects or scenes, a given partner human can have diverse poses and different contact regions according to the type of interaction.
-                    To handle this challenge, we propose a novel method of generating interactive 3D humans for a given partner human based on a guided diffusion framework.
-                    Specifically, we newly present a contact prediction module that adaptively estimates potential contact regions between two input humans according to the interaction label.
-                    Using the estimated potential contact regions as complementary guidances, we dynamically enforce ContactGen to generate interactive 3D humans for a given partner human within a guided diffusion model.
-                    We demonstrate ContactGen on the CHI3D dataset, where our method generates physically plausible and diverse poses compared to comparison methods.
+                    Among various interactions between humans, such as eye contact and gestures, physical interactions by contact can act as an essential moment in understanding behaviors.
+                    Inspired by this fact, we introduce a new task of 3D human generation in terms of physical contact, given a 3D partner human with the desired interaction label.
+                    Unlike previous works of interacting with static objects or scenes, a given partner human can have diverse poses and contact regions according to the interaction type.
+                    To handle this challenge, we propose a novel method of generating interactive 3D humans for a given partner human based on a guided diffusion framework (ContactGen++, in short). 
+                    Concretely, we present a contact prediction module to adaptively estimate potential contact regions between two input humans based on the interaction label and a collision detection module to identify collision regions. 
+                    These physical interaction guides enable ContactGen++ to dynamically generate realistic 3D humans interacting with a partner within the diffusion model. 
+                    Evaluated on a modified CHI3D dataset, ContactGen++ demonstrates its effectiveness for creating detailed, dynamic interactions. 
+                    As an application, we present a two-person motion generation method that uses generated interactive humans and partner humans as anchor poses, generating natural motions with physical contact without extra training.
                 </p>
             </div>
         </div>
@@ -167,7 +168,7 @@
                 <h3><i>Methodology</i></h3>
                 <div class="text-center">
                     <p class="text-justify">
-                        An overview of our method, ContactGen. ContactGen inlcudes 3 stages
+                        An overview of our method, ContactGen++. ContactGen++ inlcudes 3 stages
                     </p>
                 </div>
             </div>
