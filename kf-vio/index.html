@@ -2,131 +2,122 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Your website description here.">
-  <meta name="keywords" content="your, keywords, here">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kalman Filter-Inspired Visual-Inertial Odometry with Motion Priors</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
-  </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <title>VPOcc: Exploiting Vanishing Point for 3D Semantic Occupancy Prediction</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
 <body>
 
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://threedv.github.io/">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">More</a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="#section1">Section 1</a>
-          <a class="navbar-item" href="#section2">Section 2</a>
-          <a class="navbar-item" href="#section3">Section 3</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav> -->
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1">Kalman Filter-Inspired Visual-Inertial Odometry with Motion Priors</h1>
-          <div class="is-size-5">
-            <span class="author-block">
-              <a href="https://unist.info/">Minje Kim</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://github.com/Kang-ChangWoo">Changwoo Kang</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://rml.unist.ac.kr/">Jeonghwan Jeon</a><sup>1</sup>,</span>
-            </span>
-            <span class="author-block">
-              <a href="https://unist.info/">Kyungdon Joo</a><sup>1</sup>
-            </span>
-          </div>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">VPOcc: Exploiting Vanishing Point for <br> 3D Semantic Occupancy Prediction</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Junsu Kim</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Junhee Lee</a><sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Ukcheol Shin</a><sup>2</sup>,</span>
+                      <span class="author-block">
+                        <a href="FORTH AUTHOR PERSONAL LINK" target="_blank">Jean Oh</a><sup>2</sup>,</span>
+                          <span class="author-block">
+                            <a href="FIFTH AUTHOR PERSONAL LINK" target="_blank">Kyungdon Joo</a><sup>1✝</sup>
+                  </span>
+                  </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>UNIST,</span>
-            <span class="author-block"><sup>2</sup>DGIST</span>
-          </div>
-<!-- 
-            <span>Minje Kim 1</span><br>
-            <span>Changwoo Kang 1</span><br>
-            <span>Jeonghwan Jeon 2</span><br>
-            <span>Kyungdon Joo 1</span>
-          </div>
-          <div class="is-size-5">
-            <span>UNIST</span>
-          </div> -->
-          <div class="publication-links">
-            <span class="link-block">
-              <a href="https://drive.google.com/file/d/1X8p2_3FJHKQGSKhpVTmTI7_Cx6UKM69F/view?usp=sharing" class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>UNIST,<sup>2</sup>CMU<br>Under Review</span>
+                    <span class="eql-cntrb"><small><br><sup>✝</sup>Corresponding Author</small></span>
+                  </div>
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link -->
+                    <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span>
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
                 </span>
-                <span>Paper</span>
-              </a>
-            </span>
-<!--             <span class="link-block">
-              <a href="https://yourlink.com" class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
                     <i class="ai ai-arxiv"></i>
-                </span>
-                <span>arXiv</span>
-              </a>
-            </span> -->
-            <span class="link-block">
-              <a href="https://drive.google.com/file/d/1Nh0t78usBeoX7UcOKU18FZ3-pQ0ZECjq/view?usp=sharing" class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                    <i class="fab fa-youtube"></i>
-                </span>
-                <span>Video</span>
-              </a>
-            </span>
-<!--             <span class="link-block">
-              <a href="https://yourlink.com" class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                    <i class="fab fa-github"></i>
-                </span>
-                <span>Code</span>
-              </a>
-            </span> -->
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -134,181 +125,30 @@
   </div>
 </section>
 
-<section class="hero teaser">
+  
+<!-- Teaser video-->
+<section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="./img/teaser.png"/>
-<!--       <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4" type="video/mp4">
-      </video> -->
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">DogRecon</span> creates an animatable 3D dog from a single image without relying on extra training data.
-      </h2>
-    </div>
-  </div>
-</section>
-
-<!-- <section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item">
-          <video poster="" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/video1.mp4" type="video/mp4">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Supplementary video</h2>
+          <video poster="" id="tree" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/videos/iros_supplementary_video.mp4"
+            type="video/mp4">
           </video>
-        </div>
-        <div class="item">
-          <video poster="" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/video2.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
     </div>
   </div>
 </section>
- -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We tackle animatable 3D dog reconstruction from a single image, noting the overlooked potential of animals. Particularly, we focus on dogs, emphasizing their intrinsic characteristics that complicate 3D observation. The nature of quadruped leads to frequent joint occlusions compared to humans when we capture them in the 2D image. The challenge makes 3D reconstruction from 2D observations difficult, and it becomes dramatically harder when constrained to a single image. To this end, our framework consists of two key components: Canine-centric novel view synthesis with canine prior for dog's multi-view generation and a reliable sampling weight strategy with Gaussian Splatting for animatable 3D dog reconstruction. Extensive experiments on GART, DFA, and internet-sourced datasets confirm our framework's state-of-the-art performance in image-to-3D generation. Additionally, we demonstrate novel pose animation and text-to-3D dog reconstruction as applications.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/14nylh8cQ38" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- End teaser video -->
+  
+  
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
+    <!-- End of Statcounter Code -->
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Method Overview</h2>
-          <div class="container is-max-desktop">
-            
-      <img src="./img/method.png"/>
-         <div class="content"> 
-            <div class="content has-text-justified">
-          Overview of <span class="dnerf">DogRecon</span>,  Given a single dog image, we first predict the canine prior by BITE. Based on the canine prior, we infer D-SMAL and the corresponding silhouette mask in the desired views, which guides the canine-centric NVS to generate canine-centric multi-view images. Finally, we create animatable 3D Gaussian dog with the Reliable Sampling Weight.
-         </div>
-         </div>
-         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-  <section class="section">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      
-      <h2 class="title is-3">Application: Animation With Gaussian Scene</h2>
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./img/app1.mp4" type="video/mp4">
-      </video>
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./img/app2.mp4" type="video/mp4">
-      </video>
-      <div class="hero-body">
-      <h2 class="title is-3">Application: Text-to-Animatable 3D Generation</h2>
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./img/app3.mp4" type="video/mp4">
-      </video>
-    </div>
-    </div>
-  </div>
-<!-- </section>
-  <section class="section">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      
-      <h2 class="title is-3">Application: Text-to-Animatable 3D Generation</h2>
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./img/app3.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section> -->
-
-
-  <section class="section">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      
-      <h2 class="title is-3">Additional Results</h2>
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./img/additional.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column">
-        <h2 class="title is-3">Section Title 1</h2>
-        <div class="content">
-          <p>
-            Description and details about this section.
-          </p>
-          <video id="video1" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/video3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="column">
-        <h2 class="title is-3">Section Title 2</h2>
-        <div class="content">
-          <p>
-            Description and details about this section.
-          </p>
-          <video id="video2" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/video4.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-        <div class="content has-text-justified">
-          <p>
-            List related links and references here.
-          </p>
-          <p>
-            <a href="https://yourlink.com">Related Work 1</a>
-          </p>
-          <p>
-            <a href="https://yourlink.com">Related Work 2</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
- -->
-<!-- <section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</ -->
+  </body>
+  </html>
