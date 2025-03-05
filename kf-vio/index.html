@@ -117,7 +117,7 @@
                 </a>
               </span>
             </div>
-              <p>
+              <p style="text-align: justify;">
               Visual-inertial odometry (VIO) is a critical component in robotics applications, enabling accurate motion estimation. However, recent VIO methods rely on short time interval sensor readings without contextual understanding, limiting their ability to capture proper motion dynamics. Inspired by the estimation process of the Kalman filter, we propose a novel Kalman filter-inspired VIO framework consisting of multiple transition models to capture actual motion dynamics. Specifically, we present a movement classifier that categorizes the movement of the agent from IMU readings for adaptively fusing multiple motion priors. We decouple the given IMU readings into angular velocity and acceleration to input them into encoders tailored for rotational and translational characteristics by eliminating unnecessary interference. Furthermore, we introduce a regularization loss that induces the proposed learnable transition model to align with the properties of the Kalman system equations. Experimental results on the KITTI and nuScenes datasets show that our method significantly improves rotation estimation accuracy and maintains competitive translation estimation performance.
              </p>
           </div>
@@ -131,6 +131,10 @@
     <div class="col">
       <div class="wider-element">
         <img src="./static/images/fig1.png" width="500px">
+        <p class="text-justify">
+          <b>Schematic illustration of motion-adaptive transition model</b>. The classical transition model infers a single pose uncertainty along the trajectory (dotted ellipsoids). In contrast, our model predicts multiple pose uncertainties (each colored ellipsoid) based on motion priors. Individual pose uncertainties are fused into a single, combined uncertainty based on movement probabilities~(e.g., left turn, straight movement, right turn).
+
+        <\p>
       </div>
     </div>
   </div>
@@ -148,55 +152,57 @@
   <br><hr>
   <div class="row mt-5">
     <div class="col">
-      <h3>Methods</h3>
+      <h2 class="title is-3">Methods</h2>
       
-      <img src="./static/images/fig2.png" width="500px" >
+      <img src="./static/images/fig2.png" width="1000px" >
       <p class="text-center">
-        <b>[Figure] Overview of Kalman Filter-Inspried Architecture</b>
+        <b>Overview of Kalman Filter-Inspried Architecture</b> 
       </p>
       <p class="text-justify">
         Description about fig2.
       </p>
       <br>
       
-      <img src="./static/images/fig3.png" width="500px">
+      <img src="./static/images/fig3.png" width="1000px">
       <p class="text-center">
         <b>[Figure] Datailed Arachitecture.</b>
       </p>
+
+      <h2 class="title is-3">Experimental Results</h2>
       <p class="text-justify">
         <h5>Encoder</h5>
-        <img src="./static/images/qual1.png" width="500px">
+        <img src="./static/images/qual1.png" width="1000px">
         <p class="text-center">
-          <b>[Figure] Comparison of main feature extraction module of ours (DLL) and ALTO's.</b>
+          <b>Comparison of main feature extraction module of ours (DLL) and ALTO's.</b>
         </p>
       
         Desciption
       <br><br>
         <h5>Implicit Decoder</h5>
-        <img src="./static/images/qual2.png" class="responsive-img" width="500px">
+        <img src="./static/images/qual2.png" class="responsive-img" width="1000px">
         <p class="text-center">
-          <b>[Figure] Illustration of DLL architecture.</b>
+          <b>Illustration of DLL architecture.</b>
         </p>
         Description
       
         <h5>Implicit Decoder</h5>
-        <img src="./static/images/qual3.png" class="responsive-img" width="500px">
+        <img src="./static/images/qual3.png" class="responsive-img" width="1000px">
         <p class="text-center">
-          <b>[Figure] Illustration of DLL architecture.</b>
+          <b>Illustration of DLL architecture.</b>
         </p>
         Description
 
       
         <h5>Implicit Decoder</h5>
-        <img src="./static/images/quan1.png" class="responsive-img" width="500px">
+        <img src="./static/images/quan1.png" class="responsive-img" width="1000px">
         <p class="text-center">
-          <b>[Figure] Illustration of DLL architecture.</b>
+          <b>Illustration of DLL architecture.</b>
         </p>
         Description
         </p>
 
         <h5>Implicit Decoder</h5>
-        <img src="./static/images/quan2.png" class="responsive-img" width="500px">
+        <img src="./static/images/quan2.png" class="responsive-img" width="1000px">
         <p class="text-center">
           <b>[Figure] Illustration of DLL architecture.</b>
         </p>
