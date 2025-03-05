@@ -176,21 +176,18 @@
     <div class="has-text-centered">
     <div class="col">
       <h2 class="title is-3">Methods</h2>
-      <br> <br> <br>
-      <h4 class="title is-4">  Illustration of the proposed Kalman filter-inspired architecture. </h4> 
+      <br> 
+      <h4 class="title is-4">  Illustration Kalman filter-inspired architecture. </h4> 
       <p style="text-align: justify;">
-      <br>
       </p>
-      <br>
       <img src="./static/images/fig2.png" width="900px" >
       <br>
       <p style="text-align: justify;">
       The observation model (top box) processes images $\{{\mathbf{I}_{t-1}, \mathbf{I}_{t}}\}$ and IMU data $\mathbf{M}_{t-1\rightarrow t}$ to estimate the observation state $\mathbf{z}_t$, and the transition model (bottom box) incorporates both angular velocity $\omega_{t-1 \rightarrow t}$ and acceleration $a_{t-1 \rightarrow t}$ to predict the predicted state $\hat{\mathbf{x}}_t^{\prime}$. 
         The Kalman update step (right box) fuses each state using a Kalman gain $\mathbf{K}_t$, resulting in the updated state $\hat{\mathbf{x}}_t$.
       </p>
-      <br><br><br>
+      <br><br><br><br>
       <h4 class="title is-4">  Architecture of transition model</h4>
-      <br>
       <img src="./static/images/fig3.png" width="600px">
       <br>
       <p style="text-align: justify;">
@@ -202,12 +199,10 @@
 
       <hr>
       <br>
-      <h2 class="title is-2"> Experim2al Results</h2> 
-      <br> <br> <br>
+      <h2 class="title is-2"> Experimental Results</h2> 
       <p class="text-justify">
         <br>
          <h4 class="title is-4"> Qualitative comparisons on the KITTI dataset</h4>
-        <br>
         <img src="./static/images/qual1.png" width="700px">
         <br>
         <p class="text-center">
@@ -216,38 +211,34 @@
           Our proposed method (red line) exhibits a tendency to stay close to the ground truth (black dotted line).
         </p>
       
-      <br><br><br>
-        <h4 class="title is-4"> Results of the movement classifier on the KITTI dataset</h4>
-        <br>  
+      <br><br><br><br>
+        <h4 class="title is-4"> Results of the movement classifier on the KITTI dataset</h4> 
         <img src="./static/images/qual2.png" class="responsive-img" width="700px">
         <br>
         <p class="text-center">
           We color the highest logit of the classifier at each pose: red for left turns, green for straight movement, and blue for right turns. Trajectories are projected onto the XZ plane. We conduct a study on the KITTI dataset.
         </p>
-        <br><br><br>
+        <br><br><br><br>
       
         <!-- <h5>Implicit Decoder</h5>  -->
-        <h4 class="title is-4"> Qualitative comparison on the nuScenes dataset</h4> 
-        <br>  
+        <h4 class="title is-4"> Qualitative comparison on the nuScenes dataset</h4>  
         <img src="./static/images/qual3.png" class="responsive-img" width="700px">
         <br>
         <p class="text-center">
           We present the trajectories projected onto the XY plane, representing the poses of agent on the ground at each time step. Our proposed method (red line) exhibits a tendency to stay close to the ground truth (black dotted line).
         </p>
-        <br><br><br>
+        <br><br><br><br>
 
       
         <!-- <h5>Implicit Decoder</h5> -->
         <h4 class="title is-4"> Quantitative comparison on the KITTI dataset</h4>
-        <br>  
         <img src="./static/images/quan1.png" class="responsive-img" width="850px">
-        <br><br>
+        <br><br><br><br>
       
         <!-- <h5>Implicit Decoder</h5> -->
         <h4 class="title is-4"> Quantitative comparison on the nuScenes dataset</h4>
-        <br>
         <img src="./static/images/quan2.png" class="responsive-img" width="850px">
-        <br><br>
+        <br><br><br><br>
        </div>
      </div>
     </div>
