@@ -147,7 +147,23 @@
   </div>
 </section>
 <!-- End teaser video -->
-  
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Understanding 3D scenes semantically and spatially is crucial for the safe navigation of robots and autonomous vehicles, aiding obstacle avoidance and trajectory planning. Camera-based 3D semantic occupancy prediction, which infers dense voxel grids from 2D images, is gaining importance in robot vision for its resource efficiency over 3D sensors. However, this task inherently suffers from a 2D-3D discrepancy problem, meaning that even for the same-sized objects in 3D space, an object closer to the camera looks larger than the other in a 2D image due to the camera perspective geometry. To tackle this issue, we propose a novel framework called VPOcc that leverages vanishing point (VP) to mitigate the 2D-3D discrepancy from pixel-level and feature-level perspectives. As a pixel-level solution, we introduce a VPZoomer module, which warps images by counteracting the perspective effect through a VP-based homography transform. In addition, as a feature-level solution, we propose a VP-guided cross-attention (VPCA) module that performs perspective-aware feature aggregation, utilizing 2D image features that are more suitable for 3D space. Lastly, we integrate two feature volumes extracted from original and warped images to compensate for each other through a spatial volume fusion (SVF) module. By effectively incorporating VP into the network, our framework achieves improved performance in both IoU and mIoU metrics on SemanticKITTI and SSCBench-KITTI360.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
   
 <!-- Statcounter tracking code -->
   
