@@ -127,20 +127,19 @@
   </div>
 </section>
 
-<div class="row mt-5" style="text-align: center;">
+<div class="row mt-5" style="text-align: justify;">
     <div class="col">
       <div class="wider-element">
-        <img src="./static/images/fig1.png" width="500px">
-        <p class="text-justify">
-          <b>Schematic illustration of motion-adaptive transition model</b>. The classical transition model infers a single pose uncertainty along the trajectory (dotted ellipsoids). In contrast, our model predicts multiple pose uncertainties (each colored ellipsoid) based on motion priors. Individual pose uncertainties are fused into a single, combined uncertainty based on movement probabilities~(e.g., left turn, straight movement, right turn).
-
-        <\p>
+        <img src="./static/images/fig1.png" width="750px">
+        <p style="text-align: justify;">
+          <b>Schematic illustration of motion-adaptive transition model.</b> The classical transition model infers a single pose uncertainty along the trajectory (dotted ellipsoids). In contrast, our model predicts multiple pose uncertainties (each colored ellipsoid) based on motion priors. Individual pose uncertainties are fused into a single, combined uncertainty based on movement probabilities~(e.g., left turn, straight movement, right turn).
+        </p>
       </div>
     </div>
   </div>
   
   <br><hr>
-  <div class="row mt-5" style="text-align: center;">
+  <div class="row mt-5" style="text-align: justify;">
     <div class="col">
       <h3>Summary</h3>
       <p class="text-justify">
@@ -154,16 +153,14 @@
     <div class="col">
       <h2 class="title is-3">Methods</h2>
       
-      <img src="./static/images/fig2.png" width="1000px" >
-      <p class="text-center">
-        <b>Overview of Kalman Filter-Inspried Architecture</b> 
-      </p>
+      <img src="./static/images/fig2.png" width="800px" >
       <p class="text-justify">
-        Description about fig2.
+      <b>Illustration of the proposed Kalman filter-inspired architecture. </b> 
+      The observation model~(top box) processes images $\{{\mathbf{I}_{t-1}, \mathbf{I}_{t}}\}$ and IMU data $\mathbf{M}_{t-1\rightarrow t}$ to estimate the observation state $\mathbf{z}_t$, and the transition model~(bottom box) incorporates both angular velocity $\omega_{t-1 \rightarrow t}$ and acceleration $a_{t-1 \rightarrow t}$ to predict the predicted state $\hat{\mathbf{x}}_t^{\prime}$. The Kalman update step~(right box) fuses each state using a Kalman gain $\mathbf{K}_t$, resulting in the updated state $\hat{\mathbf{x}}_t$.
       </p>
       <br>
       
-      <img src="./static/images/fig3.png" width="1000px">
+      <img src="./static/images/fig3.png" width="800px">
       <p class="text-center">
         <b>[Figure] Datailed Arachitecture.</b>
       </p>
@@ -171,7 +168,7 @@
       <h2 class="title is-3">Experimental Results</h2>
       <p class="text-justify">
         <h5>Encoder</h5>
-        <img src="./static/images/qual1.png" width="1000px">
+        <img src="./static/images/qual1.png" width="800px">
         <p class="text-center">
           <b>Comparison of main feature extraction module of ours (DLL) and ALTO's.</b>
         </p>
@@ -179,14 +176,14 @@
         Desciption
       <br><br>
         <h5>Implicit Decoder</h5>
-        <img src="./static/images/qual2.png" class="responsive-img" width="1000px">
+        <img src="./static/images/qual2.png" class="responsive-img" width="800px">
         <p class="text-center">
           <b>Illustration of DLL architecture.</b>
         </p>
         Description
       
         <h5>Implicit Decoder</h5>
-        <img src="./static/images/qual3.png" class="responsive-img" width="1000px">
+        <img src="./static/images/qual3.png" class="responsive-img" width="800px">
         <p class="text-center">
           <b>Illustration of DLL architecture.</b>
         </p>
@@ -194,7 +191,7 @@
 
       
         <h5>Implicit Decoder</h5>
-        <img src="./static/images/quan1.png" class="responsive-img" width="1000px">
+        <img src="./static/images/quan1.png" class="responsive-img" width="800px">
         <p class="text-center">
           <b>Illustration of DLL architecture.</b>
         </p>
@@ -202,7 +199,7 @@
         </p>
 
         <h5>Implicit Decoder</h5>
-        <img src="./static/images/quan2.png" class="responsive-img" width="1000px">
+        <img src="./static/images/quan2.png" class="responsive-img" width="800px">
         <p class="text-center">
           <b>[Figure] Illustration of DLL architecture.</b>
         </p>
