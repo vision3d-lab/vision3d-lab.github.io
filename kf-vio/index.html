@@ -117,6 +117,9 @@
                 </a>
               </span>
             </div>
+              <p>
+              Visual-inertial odometry (VIO) is a critical component in robotics applications, enabling accurate motion estimation. However, recent VIO methods rely on short time interval sensor readings without contextual understanding, limiting their ability to capture proper motion dynamics. Inspired by the estimation process of the Kalman filter, we propose a novel Kalman filter-inspired VIO framework consisting of multiple transition models to capture actual motion dynamics. Specifically, we present a movement classifier that categorizes the movement of the agent from IMU readings for adaptively fusing multiple motion priors. We decouple the given IMU readings into angular velocity and acceleration to input them into encoders tailored for rotational and translational characteristics by eliminating unnecessary interference. Furthermore, we introduce a regularization loss that induces the proposed learnable transition model to align with the properties of the Kalman system equations. Experimental results on the KITTI and nuScenes datasets show that our method significantly improves rotation estimation accuracy and maintains competitive translation estimation performance.
+             </p>
           </div>
         </div>
       </div>
@@ -127,9 +130,6 @@
 <div class="row mt-5" style="text-align: center;">
     <div class="col">
       <div class="wider-element">
-         <p>
-            We tackle animatable 3D dog reconstruction from a single image, noting the overlooked potential of animals. Particularly, we focus on dogs, emphasizing their intrinsic characteristics that complicate 3D observation. The nature of quadruped leads to frequent joint occlusions compared to humans when we capture them in the 2D image. The challenge makes 3D reconstruction from 2D observations difficult, and it becomes dramatically harder when constrained to a single image. To this end, our framework consists of two key components: Canine-centric novel view synthesis with canine prior for dog's multi-view generation and a reliable sampling weight strategy with Gaussian Splatting for animatable 3D dog reconstruction. Extensive experiments on GART, DFA, and internet-sourced datasets confirm our framework's state-of-the-art performance in image-to-3D generation. Additionally, we demonstrate novel pose animation and text-to-3D dog reconstruction as applications.
-          </p>
         <img src="./static/images/fig1.png" width="500px">
       </div>
     </div>
