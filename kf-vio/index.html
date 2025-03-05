@@ -43,6 +43,12 @@
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
   <!--<h3 style="font-size: 1.5rem; font-weight: bold; color: black; margin-top: 20px;">Methods</h3>-->
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
 </head>
 
 <!-- Paper authors -->
@@ -117,10 +123,10 @@
                 </a>
               </span>
             </div>
+              <br> 
               <p style="text-align: justify;">
               Visual-inertial odometry (VIO) is a critical component in robotics applications, enabling accurate motion estimation. However, recent VIO methods rely on short time interval sensor readings without contextual understanding, limiting their ability to capture proper motion dynamics. Inspired by the estimation process of the Kalman filter, we propose a novel Kalman filter-inspired VIO framework consisting of multiple transition models to capture actual motion dynamics. Specifically, we present a movement classifier that categorizes the movement of the agent from IMU readings for adaptively fusing multiple motion priors. We decouple the given IMU readings into angular velocity and acceleration to input them into encoders tailored for rotational and translational characteristics by eliminating unnecessary interference. Furthermore, we introduce a regularization loss that induces the proposed learnable transition model to align with the properties of the Kalman system equations. Experimental results on the KITTI and nuScenes datasets show that our method significantly improves rotation estimation accuracy and maintains competitive translation estimation performance.
              </p>
-              <hr>
           </div>
         </div>
       </div>
@@ -142,8 +148,10 @@
       </div>
     </div>
   </div>
+  <hr>
 
-  <br>
+  
+  <br> <br>
   <!--<br><hr>-->
   <div class="row mt-5">
     <div class="container is-max-desktop">
@@ -164,7 +172,9 @@
       <br><br>
 
       <hr>
+      <br>
       <h2 class="title is-3">Experimental Results</h2>
+      <br>
       <p class="text-justify">
         <h5>Encoder</h5>
         <img src="./static/images/qual1.png" width="800px">
@@ -178,13 +188,14 @@
         <p class="text-center">
           <b>Results of the movement classifier on the KITTI dataset.</b> We color the highest logit of the classifier at each pose: red for left turns, green for straight movement, and blue for right turns. Trajectories are projected onto the XZ plane. We conduct a study on the KITTI dataset~\cite{geiger2013vision}.
         </p>
+        <br><br>
       
         <!-- <h5>Implicit Decoder</h5>  -->
         <img src="./static/images/qual3.png" class="responsive-img" width="800px">
         <p class="text-center">
           <b>Qualitative comparison on the nuScenes dataset.</b> We present the trajectories projected onto the XY plane, representing the poses of agent on the ground at each time step. Our proposed method (red line) exhibits a tendency to stay close to the ground truth (black dotted line).
         </p>
-        Description
+        <br><br>
 
       
         <!-- <h5>Implicit Decoder</h5> -->
@@ -192,19 +203,21 @@
           <b>Quantitative comparison on the KITTI dataset.</b>
         </p>
         <img src="./static/images/quan1.png" class="responsive-img" width="800px">
-        <p>The best performance results are highlighted in bold, while the second-best results are underlined.</p>
-
+        <br><br>
+      
         <!-- <h5>Implicit Decoder</h5> -->
         <p class="text-center">
           <b>Quantitative comparison on the nuScenes dataset.</b>
         </p>
         <img src="./static/images/quan2.png" class="responsive-img" width="800px">
         <p>The best performance results are highlighted in bold, while the second-best results are underlined.</p>
+        <br><br>
        </div>
      </div>
     </div>
   </div>
-  
+
+<hr>
 <!-- Teaser video-->
 <section class="section hero is-light">
   <div class="container is-max-desktop" style="text-align: center;">
