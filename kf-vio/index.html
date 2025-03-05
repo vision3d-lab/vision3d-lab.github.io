@@ -129,13 +129,15 @@
 </section>
 
 <div class="row mt-5" style="text-align: center;">
+  <div class="container is-max-desktop">
     <div class="has-text-centered">
       <div class="col">
         <div class="wider-element">
           <img src="./static/images/fig1.png" width="750px">
           <p style="text-align: justify;">
             <b>Schematic illustration of motion-adaptive transition model (teaser).</b> The classical transition model infers a single pose uncertainty along the trajectory (dotted ellipsoids). In contrast, our model predicts multiple pose uncertainties (each colored ellipsoid) based on motion priors. Individual pose uncertainties are fused into a single, combined uncertainty based on movement probabilities~(e.g., left turn, straight movement, right turn).
-          </p>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -144,6 +146,8 @@
   <br>
   <!--<br><hr>-->
   <div class="row mt-5">
+    <div class="container is-max-desktop">
+    <div class="has-text-centered">
     <div class="col">
       <h2 class="title is-3">Methods</h2>
       <img src="./static/images/fig2.png" width="600px" >
@@ -165,41 +169,39 @@
         <h5>Encoder</h5>
         <img src="./static/images/qual1.png" width="800px">
         <p class="text-center">
-          <b>Comparison of main feature extraction module of ours (DLL) and ALTO's.</b>
+          <b>Qualitative comparisons on the KITTI dataset.</b> We present the trajectories projected onto the XZ plane, representing the poses of agent on the ground at each time step~(top). We also illustrate the vertical displacement over time~(bottom). Our proposed method (red line) exhibits a tendency to stay close to the ground truth (black dotted line).
         </p>
       
-        Desciption
       <br><br>
-        <h5>Implicit Decoder</h5>
+        <!-- <h5>Implicit Decoder</h5> -->
         <img src="./static/images/qual2.png" class="responsive-img" width="800px">
         <p class="text-center">
-          <b>Illustration of DLL architecture.</b>
+          <b>Results of the movement classifier on the KITTI dataset.</b> We color the highest logit of the classifier at each pose: red for left turns, green for straight movement, and blue for right turns. Trajectories are projected onto the XZ plane. We conduct a study on the KITTI dataset~\cite{geiger2013vision}.
         </p>
-        Description
       
-        <h5>Implicit Decoder</h5>
+        <!-- <h5>Implicit Decoder</h5>  -->
         <img src="./static/images/qual3.png" class="responsive-img" width="800px">
         <p class="text-center">
-          <b>Illustration of DLL architecture.</b>
+          <b>Qualitative comparison on the nuScenes dataset.</b> We present the trajectories projected onto the XY plane, representing the poses of agent on the ground at each time step. Our proposed method (red line) exhibits a tendency to stay close to the ground truth (black dotted line).
         </p>
         Description
 
       
-        <h5>Implicit Decoder</h5>
+        <!-- <h5>Implicit Decoder</h5> -->
+        <p class="text-center">
+          <b>Quantitative comparison on the KITTI dataset.</b>
+        </p>
         <img src="./static/images/quan1.png" class="responsive-img" width="800px">
-        <p class="text-center">
-          <b>Illustration of DLL architecture.</b>
-        </p>
-        Description
-        </p>
+        <p>The best performance results are highlighted in bold, while the second-best results are underlined.</p>
 
-        <h5>Implicit Decoder</h5>
-        <img src="./static/images/quan2.png" class="responsive-img" width="800px">
+        <!-- <h5>Implicit Decoder</h5> -->
         <p class="text-center">
-          <b>[Figure] Illustration of DLL architecture.</b>
+          <b>Quantitative comparison on the nuScenes dataset.</b>
         </p>
-        Description
-        </p>
+        <img src="./static/images/quan2.png" class="responsive-img" width="800px">
+        <p>The best performance results are highlighted in bold, while the second-best results are underlined.</p>
+       </div>
+     </div>
     </div>
   </div>
   
