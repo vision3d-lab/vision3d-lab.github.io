@@ -156,24 +156,15 @@
     <div class="container is-max-desktop">
     <div class="has-text-centered">
     <div class="col">
-      <h2 class="title is-3">Methods</h2>
+      <h2 class="title is-3">Abstract</h2>
       <br> 
-      <h4 class="title is-4">  Illustration Kalman filter-inspired architecture </h4> 
-      <p style="text-align: justify;">
-      </p>
-      <img src="./static/images/fig2.png" width="900px" >
-      <br>
-      <p style="text-align: justify;">
-      The observation model (top box) processes images $\{{\mathbf{I}_{t-1}, \mathbf{I}_{t}}\}$ and IMU data $\mathbf{M}_{t-1\rightarrow t}$ to estimate the observation state $\mathbf{z}_t$, and the transition model (bottom box) incorporates both angular velocity $\omega_{t-1 \rightarrow t}$ and acceleration $a_{t-1 \rightarrow t}$ to predict the predicted state $\hat{\mathbf{x}}_t^{\prime}$. 
-        The Kalman update step (right box) fuses each state using a Kalman gain $\mathbf{K}_t$, resulting in the updated state $\hat{\mathbf{x}}_t$.
-      </p>
-      <br><br><br><br>
-      <h4 class="title is-4">  Architecture of transition model</h4>
-      <img src="./static/images/fig3.png" width="600px">
-      <br>
-      <p style="text-align: justify;">
-        Our transition model separately processes angular velocity $\omega$ and acceleration $a$ through each LSTM and incorporates the previous state information into the MLP. 
-        The fused vectors are then split and passed through separate MLPs to predict the rotation $\phi$, translation $\mathbf{v}$, and the associated uncertainty matrices $\mathbf{A}$ and $\mathbf{Q}$.    
+      Motivated by the efficiency of spherical harmonics (SH) in representing various physical phenomena, we propose a Holistic panoramic 3D scene Understanding framework using Spherical Harmonics, dubbed as <strong>HUSH</strong>.
+      Our approach focuses on a unified framework adaptable to various 3D scene understanding tasks via SH bases.
+      To achieve this, we first estimate SH coefficients, allowing for the adaptive configuration of the SH bases specific to each scene.
+      <strong>HUSH</strong> then employs a hierarchical attention module that uses SH bases as queries to generate comprehensive scene features by integrating these scene-adaptive SH bases with image features.
+      Additionally, we introduce an SH basis index module that adaptively emphasizes relevant SH bases to produce task-relevant features, enhancing the versatility of <strong>HUSH</strong> across different scene understanding tasks.
+      Finally, by combining the scene features with task-relevant features in the task-specific heads, we perform various scene understanding tasks, including depth, surface normal and room layout estimation.
+      Experiments demonstrate that <strong>HUSH</strong> achieves state-of-the-art performance on depth estimation benchmarks, highlighting the robustness and scalability of using SH in panoramic 3D scene understanding. 
       </p>
       
       <br><br><br>
