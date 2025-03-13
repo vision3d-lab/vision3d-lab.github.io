@@ -172,12 +172,14 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Overall Architecture</h2>
         <div class="content has-text-justified">
-          <img src="static/images/2_architecture.png" alt="MY ALT TEXT" width="500"/>
+          <img src="static/images/2_architecture.png" alt="MY ALT TEXT"/>
+          <p>
         In the feature extraction step, a zoomed-in image is generated using VPZoomer, and multi-scale feature maps 
         \( \mathcal{F}^{2D}_o \) and \( \mathcal{F}^{2D}_z \) are extracted from \( I_o \) and \( I_z \). During the feature lifting, the depth proposed voxel query \( \mathcal{Q}_p \) is employed with VP-guided cross-attention (VPCA) 
         on \( \mathcal{F}^{2D}_o \) and deformable cross-attention on \( \mathcal{F}^{2D}_z \) to construct the voxel feature volumes 
         \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \), respectively. In the feature volume fusion stage, both \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \) are fused using a spatial volume 
         fusion (SVF) module and refined via the 3D UNet-based decoder. Finally, the prediction head estimates the 3D semantic voxel map of the entire scene.
+          </p>
         </div>
       </div>
     </div>
@@ -192,9 +194,9 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">VPZoomer</h2>
         <div class="content has-text-justified">
-          <img src="static/images/3_vpzoomer.png" alt="MY ALT TEXT"/>
-        <p><em>Left:</em> The original image \( I_o \) with source areas (\( \mathcal{S}_L \), \( \mathcal{S}_R \)) outlined in blue trapezoids.</p>
-        <p><em>Right:</em> The zoomed-in image \( I_z \) with target areas (\( \mathcal{T}_L \), \( \mathcal{T}_R \)) outlined in red rectangles.</p>
+          <img src="static/images/3_vpzoomer.png" alt="MY ALT TEXT"  width="600"/>
+        <p><em>Left:</em> The original image \( I_o \) with source areas (\( \mathcal{S}_L \), \( \mathcal{S}_R \)) outlined in blue trapezoids.
+        <em>Right:</em> The zoomed-in image \( I_z \) with target areas (\( \mathcal{T}_L \), \( \mathcal{T}_R \)) outlined in red rectangles.</p>
         </div>
       </div>
     </div>
@@ -209,12 +211,12 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">VP-guided Cross-Attention (VPCA)</h2>
         <div class="content has-text-justified">
-          <img src="static/images/4_vp_sampling.png" alt="MY ALT TEXT"/>
-        Following the sampling order, centered on the reference point \( \mathbf{r} \), we first generate the initial grid 
+          <img src="static/images/4_vp_sampling.png" alt="MY ALT TEXT"   width="600"/>
+        <p>Following the sampling order, centered on the reference point \( \mathbf{r} \), we first generate the initial grid 
         \( \mathcal{O} \) with the offset \( d \) and rotate it by an angle \( \theta \) to obtain \( \tilde{\mathcal{O}} \). 
         Next, we identify the intersection grid \( \hat{\mathcal{O}} \) at the cross-point of lines from \( \tilde{\mathcal{O}} \) 
         and VP \( \mathbf{v} \). As a result, a set of sampling points \( \mathcal{P} \) is composed of 
-        \( \{ \tilde{\mathcal{O}}, \hat{\mathcal{O}}, \mathbf{r} \} \).
+        \( \{ \tilde{\mathcal{O}}, \hat{\mathcal{O}}, \mathbf{r} \} \).</p>
         </div>
       </div>
     </div>
