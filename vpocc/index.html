@@ -173,22 +173,11 @@
         <h2 class="title is-3">Overall Architecture</h2>
         <div class="content has-text-justified">
           <img src="static/images/2_architecture.png" alt="MY ALT TEXT"/>
-          <p>
         In the feature extraction step, a zoomed-in image is generated using VPZoomer, and multi-scale feature maps 
-        \( \mathcal{F}^{2D}_o \) and \( \mathcal{F}^{2D}_z \) are extracted from \( I_o \) and \( I_z \).
-    </p>
-    <p>
-        During the feature lifting, the depth proposed voxel query \( \mathcal{Q}_p \) is employed with VP-guided cross-attention (VPCA) 
+        \( \mathcal{F}^{2D}_o \) and \( \mathcal{F}^{2D}_z \) are extracted from \( I_o \) and \( I_z \). During the feature lifting, the depth proposed voxel query \( \mathcal{Q}_p \) is employed with VP-guided cross-attention (VPCA) 
         on \( \mathcal{F}^{2D}_o \) and deformable cross-attention on \( \mathcal{F}^{2D}_z \) to construct the voxel feature volumes 
-        \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \), respectively.
-    </p>
-    <p>
-        In the feature volume fusion stage, both \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \) are fused using a spatial volume 
-        fusion (SVF) module and refined via the 3D UNet-based decoder.
-    </p>
-    <p>
-        Finally, the prediction head estimates the 3D semantic voxel map of the entire scene.
-          </p>
+        \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \), respectively. In the feature volume fusion stage, both \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \) are fused using a spatial volume 
+        fusion (SVF) module and refined via the 3D UNet-based decoder. Finally, the prediction head estimates the 3D semantic voxel map of the entire scene.
         </div>
       </div>
     </div>
