@@ -157,19 +157,10 @@
              <div class="col">
                 <h2 class="title is-3">Methods</h2>
                 <br> 
-                <h4 class="title is-4">  Illustration Kalman filter-inspired architecture </h4> 
                 <p style="text-align: justify;">
-                </p>
-                <p style="text-align: justify;">
-                  The observation model (top box) processes images $\{{\mathbf{I}_{t-1}, \mathbf{I}_{t}}\}$ and IMU data $\mathbf{M}_{t-1\rightarrow t}$ to estimate the observation state $\mathbf{z}_t$, and the transition model (bottom box) incorporates both angular velocity $\omega_{t-1 \rightarrow t}$ and acceleration $a_{t-1 \rightarrow t}$ to predict the predicted state $\hat{\mathbf{x}}_t^{\prime}$. 
-                  The Kalman update step (right box) fuses each state using a Kalman gain $\mathbf{K}_t$, resulting in the updated state $\hat{\mathbf{x}}_t$.
-                </p>
-                <br><br><br><br>
-                <h4 class="title is-4">  Architecture of transition model</h4>
-                <br>
-                <p style="text-align: justify;">
-                  Our transition model separately processes angular velocity $\omega$ and acceleration $a$ through each LSTM and incorporates the previous state information into the MLP. 
-                  The fused vectors are then split and passed through separate MLPs to predict the rotation $\phi$, translation $\mathbf{v}$, and the associated uncertainty matrices $\mathbf{A}$ and $\mathbf{Q}$.    
+                  HUSH first extracts multi-scale image features {f}_{i} and scene-wise SH bases via feature extractor and SH coefficient network.
+                  These image features and the scene-wise SH bases are then fed into the SH-based hierarchical attention module and the SH basis index module to estimate comprehensive scene feature {f}_{s} and task-relevant features ({f}_{D}, {f}_{N}, {f}_{L}).
+                  Finally, various scene-understanding tasks are performed as these features pass through task-specific heads.
                 </p>
                 <br><br><br>
           </div>
