@@ -142,8 +142,8 @@
               </p>
               <br>
               <br>
-              <hr>
               <h2 class="title is-3">Abstract</h2>
+              <hr>
               <p style="text-align: justify;">
               Motivated by the efficiency of spherical harmonics (SH) in representing various physical phenomena, we propose a Holistic panoramic 3D scene Understanding framework using Spherical Harmonics, dubbed as <strong>HUSH</strong>.
               Our approach focuses on a unified framework adaptable to various 3D scene understanding tasks via SH bases.
@@ -160,8 +160,8 @@
              <div class="container is-max-desktop">
              <div class="has-text-centered">
              <div class="col">
-                <hr>
                 <h2 class="title is-3">Methods</h2>
+                <hr>
                 <img src="./static/imgs/Fig_framework.jpg" width="1000px" >
                 <p style="text-align: justify;">
                   HUSH first extracts multi-scale image features $f_i$ and scene-wise SH bases via feature extractor and SH coefficient network.
@@ -176,11 +176,13 @@
              <div class="container is-max-desktop">
              <div class="has-text-centered">
              <div class="col">
-                <hr>
                 <h2 class="title is-3">Task-relevant SH bases</h2>
+                <hr>
                 <br> 
                 <p style="text-align: justify;">
-                  tmp.
+                  To validate the effectiveness of using SH basis functions as queries, we compare the results from conventional learnable (LR) queries and our SH queries.
+                  We visualize the frequently referred queries both on 2D and 3D domains w.r.t target task (depth/normal estimation).
+                  As we can see below, using the SH basis function as a query can keep better geometric consistency of the scene than the LR query.
                 </p>
                 <br>
                 <h5 class="title is-4"> 2D </h5>
@@ -196,8 +198,8 @@
             <div class="container is-max-desktop">
             <div class="has-text-centered">
             <div class="col">
-                <hr>
                 <h2 class="title is-3">Results</h2>
+                <hr>
                 <br>
                 <h5 class="title is-4"> Depth estimation </h5>
                 <img src="./static/imgs/Fig_depth_comparison.jpg" width="900px" >
