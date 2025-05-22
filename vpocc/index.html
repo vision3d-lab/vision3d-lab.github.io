@@ -101,8 +101,8 @@
 </section>
 <!-- End teaser video -->
 
-<!-- Paper abstract -->
-<!-- <section class="section hero">
+<!-- Paper overview -->
+<section class="section hero">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -115,9 +115,33 @@
       </div>
     </div>
   </div>
-</section> -->
+</section>
 <!-- End paper abstract -->
 
+<!-- Paper architecture -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/1_overview.png" alt="MY ALT TEXT"/>
+          <p></p>
+          
+        <p>Problem (left): (a) 3D objects of similar size (e.g., green and red boxes) appear differently in
+          (b) 2D images depending on their distance from the camera, due to perspective projection. Solution (right): We propose a framework that
+          leverages Vanishing Points (VP) to incorporate this into the network and thereby utilize 2D image features in a 3D-aware manner. (c) Given
+          an input image and VP, we perform (d) VP-based image synthesis with zoom-in and (e) VP-guided point sampling for perspective-aware
+          feature aggregation. These strategies address the imbalance caused by perspective projection, operating on both the pixel and feature levels
+          to accurately estimate (f) the complete 3D semantic voxels of the scene.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper architecture -->
+      
 <!-- Paper architecture -->
 <section class="section hero">
   <div class="container is-max-desktop">
@@ -133,7 +157,7 @@
         on \( \mathcal{F}^{2D}_o \) and deformable cross-attention on \( \mathcal{F}^{2D}_z \) to construct the voxel feature volumes 
         \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \), respectively. In the feature volume fusion stage, both \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \) are fused using a spatial volume 
         fusion (SVF) module and refined via the 3D UNet-based decoder. Finally, the prediction head estimates the 3D semantic voxel map of the entire scene.
-          </p>https://vision3d-lab.github.io/vpocc/
+          </p>
         </div>
       </div>
     </div>
