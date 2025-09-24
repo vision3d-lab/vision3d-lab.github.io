@@ -183,8 +183,8 @@
                   <!-- HUSH first extracts multi-scale image features $f_i$ and scene-wise SH bases via feature extractor and SH coefficient network.
                   These image features and the scene-wise SH bases are then fed into the <strong>SH-based hierarchical attention module</strong> and the <strong>SH basis index module</strong> to estimate comprehensive scene feature $f_S$ and task-relevant features ($f_D$, $f_N$, $f_L$).
                   Finally, various scene-understanding tasks are performed as these features pass through task-specific heads. -->
-                  <strong>DeformSplat</strong> first establishes  Gaussian-to-Pixel Matching that connects the 3D Gaussian representation with the 2D target image to guide deformation. Then, Rigid Part Segmentation explicitly identifies rigid regions. By combining two methods, our approach reconstructs the deformed Gaussian, which can be rendered from novel views.
-                  Rigid Part Segmentation method, which preserves the original geometry by detecting rigid regions and constraining their deformation.
+                  <strong>DeformSplat</strong> first establishes  Gaussian-to-Pixel Matching that connects the 3D Gaussian representation with the 2D target image to guide deformation. 
+                  On the other hand, Rigid Part Segmentation method preserves the original geometry by detecting rigid regions and constraining their deformation.
                   By combining two methods, our approach reconstructs the deformed Gaussian, which can be rendered from novel views.
                   
                 </p>
