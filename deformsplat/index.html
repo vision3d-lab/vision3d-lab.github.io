@@ -36,6 +36,22 @@
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
+  <style>
+    .carousel .item {
+      text-align: center;
+    }
+    
+    .carousel .item video {
+      max-width: 1000px;
+      width: 100%;
+      height: auto;
+    }
+    
+    .results-carousel {
+      margin-top: -20px;
+    }
+  </style>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
@@ -55,6 +71,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$', right: '$', display: false}, {left: '$$', right: '$$', display: true}]});"></script>
 
+
+  
   
 </head>
 
@@ -99,27 +117,6 @@
 
                   <div class="column has-text-centered">
                     <div class="publication-links">
-                         <!-- Arxiv PDF link -->
-                      <span class="link-block">
-                        <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Lee_HUSH_Holistic_Panoramic_3D_Scene_Understanding_using_Spherical_Harmonics_CVPR_2025_paper.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- Supplementary PDF link -->
-                    <span class="link-block">
-                      <a href="https://openaccess.thecvf.com/content/CVPR2025/supplemental/Lee_HUSH_Holistic_Panoramic_CVPR_2025_supplemental.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
 
                   <!-- Github link -->
                   <span class="link-block">
@@ -132,9 +129,19 @@
                   </a>
                 </span>
 
+                <!-- Video Link -->
+                <span class="link-block">
+                  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  <a href="http://arxiv.org/abs/2509.22222" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
@@ -142,6 +149,7 @@
                   <span>arXiv</span>
                 </a>
               </span>
+
             </div>
               <br>
               <p style="text-align: justify;">
@@ -188,52 +196,85 @@
                   By combining two methods, our approach reconstructs the deformed Gaussian, which can be rendered from novel views.
                   
                 </p>
-                <br><br><br>
+                <br><br>
 
-             <br> 
-             <!--<br><hr>-->
-             <!-- <div class="row mt-5">
+             <div class="row mt-5">
              <div class="container is-max-desktop">
              <div class="has-text-centered">
              <div class="col">
-                <h2 class="title is-3">Task-relevant SH bases</h2>
-                <hr>
-                <br> 
-                <p style="text-align: justify;">
-                  To validate the effectiveness of using SH basis functions as queries, we compare the results from conventional learnable (LR) queries and our SH queries.
-                  We visualize the frequently referred queries both on 2D and 3D domains w.r.t target task (depth/normal estimation).
-                  As we can see below, using the SH basis function as a query can keep better geometric consistency of the scene than the LR query.
-                </p>
-                <br>
-                <h5 class="title is-4"> Visualization on 2D </h5>
-                <img src="./static/imgs/Fig_SHQ.jpg" width="900px" >
-                <br><br><br>
-                <h5 class="title is-4"> Visualization on 3D </h5>
-                <img src="./static/imgs/Fig_SHQ_3D.jpg" width="900px" >
-                <br><br><br>
+                <h2 class="title is-3" style="margin-bottom: 0px;">Comparison</h2>
+                
+                <!-- Video Carousel -->
+                <div class="carousel results-carousel">
+                  <div class="item">
+                    <video poster="" autoplay controls muted loop width="1000px">
+                      <source src="./static/imgs/comparison_1.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="item">
+                    <video poster="" autoplay controls muted loop width="1000px">
+                      <source src="./static/imgs/comparison_2.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="item">
+                    <video poster="" autoplay controls muted loop width="1000px">
+                      <source src="./static/imgs/comparison_3.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="item">
+                    <video poster="" autoplay controls muted loop width="1000px">
+                      <source src="./static/imgs/comparison_4.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
 
-            <br> 
-            <div class="row mt-5">
-            <div class="container is-max-desktop">
-            <div class="has-text-centered">
-            <div class="col">
-                <h2 class="title is-3">Results</h2>
+             <br> 
+
+
+             <div class="row mt-5">
+             <div class="container is-max-desktop">
+             <div class="has-text-centered">
+             <div class="col">
+                <h2 class="title is-3">Rigid Part Segmentation</h2>
                 <hr>
-                <br>
-                <h5 class="title is-4"> Depth estimation </h5>
-                <img src="./static/imgs/Fig_depth_comparison.jpg" width="900px" >
-                <br><br><br>
-                <h5 class="title is-4"> Surface normal estimation </h5>
-                <img src="./static/imgs/Fig_normal_comparison.jpg" width="600px" >
-                <br><br><br>
-                <h5 class="title is-4"> Layout estimation </h5>
-                <img src="./static/imgs/Fig_layout.jpg" width="900px" >
-                <br><br><br>
-                <h5 class="title is-4"> Comparison on 3D </h5>
-                <img src="./static/imgs/Fig_3D.jpg" width="900px" >
-                <br><br><br>
-          </div>
-        </div> -->
+                <img src="./static/imgs/full_pipe.jpg" width="1000px" >
+
+             <br> 
+
+
+             <div class="row mt-5">
+             <div class="container is-max-desktop">
+             <div class="has-text-centered">
+             <div class="col">
+                <h2 class="title is-3">Motion Interpolation</h2>
+                <hr>
+                <img src="./static/imgs/full_pipe.jpg" width="1000px" >
+
+             <br> 
+
+
+
+             <div class="row mt-5">
+             <div class="container is-max-desktop">
+             <div class="has-text-centered">
+             <div class="col">
+                <h2 class="title is-3">Multi-frame Interpolation</h2>
+                <hr>
+                <img src="./static/imgs/full_pipe.jpg" width="1000px" >
+
+             <br> 
+
+
+             <div class="row mt-5">
+             <div class="container is-max-desktop">
+             <div class="has-text-centered">
+             <div class="col">
+                <h2 class="title is-3">Interactive Manipulation</h2>
+                <hr>
+                <img src="./static/imgs/full_pipe.jpg" width="1000px" >
+
+             <br> 
+
       </div>
     </div>
   </div>
