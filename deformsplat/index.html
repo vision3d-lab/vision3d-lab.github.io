@@ -278,17 +278,17 @@
                 <div class="carousel results-carousel">
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px">
-                      <source src="./static/imgs/inter_1.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <div class="item">
-                    <video poster="" autoplay controls muted loop width="1000px">
                       <source src="./static/imgs/inter_2.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px">
                       <source src="./static/imgs/inter_3.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="item">
+                    <video poster="" autoplay controls muted loop width="1000px">
+                      <source src="./static/imgs/inter_1.mp4" type="video/mp4">
                     </video>
                   </div>
                 </div>
@@ -366,5 +366,24 @@
   </pre>
   <hr>
 
+  <script>
+    // 비디오 캐러셀 자동 재생 비활성화
+    document.addEventListener('DOMContentLoaded', function() {
+      // 모든 캐러셀 요소에 대해 자동 재생 비활성화
+      const carousels = document.querySelectorAll('.carousel');
+      carousels.forEach(carousel => {
+        // Bulma 캐러셀 설정에서 자동 재생 비활성화
+        if (typeof bulmaCarousel !== 'undefined') {
+          bulmaCarousel.attach(carousel, {
+            autoplay: false,
+            autoplaySpeed: 0,
+            infinite: true,
+            slidesToScroll: 1,
+            slidesToShow: 1
+          });
+        }
+      });
+    });
+  </script>
   </body>
   </html>
