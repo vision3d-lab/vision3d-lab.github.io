@@ -36,6 +36,14 @@
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
+  <!-- 비디오 우선순위 설정 -->
+  <link rel="preload" href="./static/imgs/deformsplat_overview.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="./static/imgs/comparison_1.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="./static/imgs/rigid_1.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="./static/imgs/inter_2.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="./static/imgs/manipulation.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="./static/imgs/multi_frame_inter_1.mp4" as="video" type="video/mp4">
+
   <style>
     .carousel .item {
       text-align: center;
@@ -158,7 +166,7 @@
               <!-- 🌟 <strong>Key insight</strong>: SH basis functions seem geometrically aligned with the signals (<i>e.g.,</i> depth/normal) on the unit sphere! -->
               </p>
               <br>
-              <video poster="" id="tree" autoplay controls muted loop height="100%">
+              <video poster="" id="tree" autoplay controls muted loop height="100%" preload="auto">
               <source src="./static/imgs/deformsplat_overview.mp4"type="video/mp4">
               </video>
               <br>
