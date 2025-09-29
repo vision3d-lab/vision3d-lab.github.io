@@ -36,13 +36,13 @@
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
-  <!-- 비디오 우선순위 설정 -->
-  <link rel="preload" href="./static/imgs/deformsplat_overview.mp4" as="video" type="video/mp4">
-  <link rel="preload" href="./static/imgs/comparison_1.mp4" as="video" type="video/mp4">
-  <link rel="preload" href="./static/imgs/rigid_1.mp4" as="video" type="video/mp4">
-  <link rel="preload" href="./static/imgs/inter_2.mp4" as="video" type="video/mp4">
-  <link rel="preload" href="./static/imgs/manipulation.mp4" as="video" type="video/mp4">
-  <link rel="preload" href="./static/imgs/multi_frame_inter_1.mp4" as="video" type="video/mp4">
+  <!-- 비디오 우선순위 설정 - fetchpriority로 최고 우선순위 설정 -->
+  <link rel="preload" href="./static/imgs/deformsplat_overview_compressed.mp4" as="video" type="video/mp4" fetchpriority="high">
+  <link rel="preload" href="./static/imgs/comparison_1.mp4" as="video" type="video/mp4" fetchpriority="low">
+  <link rel="preload" href="./static/imgs/rigid_1.mp4" as="video" type="video/mp4" fetchpriority="low">
+  <link rel="preload" href="./static/imgs/inter_2.mp4" as="video" type="video/mp4" fetchpriority="low">
+  <link rel="preload" href="./static/imgs/manipulation.mp4" as="video" type="video/mp4" fetchpriority="low">
+  <link rel="preload" href="./static/imgs/multi_frame_inter_1.mp4" as="video" type="video/mp4" fetchpriority="low">
 
   <style>
     .carousel .item {
@@ -166,8 +166,8 @@
               <!-- 🌟 <strong>Key insight</strong>: SH basis functions seem geometrically aligned with the signals (<i>e.g.,</i> depth/normal) on the unit sphere! -->
               </p>
               <br>
-              <video poster="" id="tree" autoplay controls muted loop height="100%" preload="auto">
-              <source src="./static/imgs/deformsplat_overview.mp4"type="video/mp4">
+              <video poster="" id="tree" autoplay controls muted loop height="100%" preload="auto" fetchpriority="high">
+              <source src="./static/imgs/deformsplat_overview_compressed.mp4"type="video/mp4">
               </video>
               <br>
               <br>
@@ -215,22 +215,22 @@
                 <div class="carousel results-carousel">
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="auto">
-                      <source src="./static/imgs/comparison_1.mp4" type="video/mp4">
+                      <source src="./static/imgs/comparison_1_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                      <source src="./static/imgs/comparison_2.mp4" type="video/mp4">
+                      <source src="./static/imgs/comparison_2_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                      <source src="./static/imgs/comparison_3.mp4" type="video/mp4">
+                      <source src="./static/imgs/comparison_3_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                      <source src="./static/imgs/comparison_4.mp4" type="video/mp4">
+                      <source src="./static/imgs/comparison_4_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                 </div>
@@ -248,27 +248,27 @@
                 <div class="carousel results-carousel">
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="auto">
-                      <source src="./static/imgs/rigid_1.mp4" type="video/mp4">
+                      <source src="./static/imgs/rigid_1_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                      <source src="./static/imgs/rigid_2.mp4" type="video/mp4">
+                      <source src="./static/imgs/rigid_2_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                      <source src="./static/imgs/rigid_4.mp4" type="video/mp4">
+                      <source src="./static/imgs/rigid_4_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                      <source src="./static/imgs/rigid_5.mp4" type="video/mp4">
+                      <source src="./static/imgs/rigid_5_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                      <source src="./static/imgs/rigid_6.mp4" type="video/mp4">
+                      <source src="./static/imgs/rigid_6_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                 </div>
@@ -286,17 +286,17 @@
                 <div class="carousel results-carousel">
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="auto">
-                      <source src="./static/imgs/inter_2.mp4" type="video/mp4">
+                      <source src="./static/imgs/inter_2_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                      <source src="./static/imgs/inter_3.mp4" type="video/mp4">
+                      <source src="./static/imgs/inter_3_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="item">
                     <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                      <source src="./static/imgs/inter_1.mp4" type="video/mp4">
+                      <source src="./static/imgs/inter_1_compressed.mp4" type="video/mp4">
                     </video>
                   </div>
                 </div>
@@ -312,7 +312,7 @@
             <h2 class="title is-3" style="margin-bottom: 0px;"><strong style="color: #ff8c00;">Application</strong>: Interactive Manipulation</h2>
             <div class="item">
               <video poster="" autoplay controls muted loop width="1000px" preload="auto">
-                <source src="./static/imgs/manipulation.mp4" type="video/mp4">
+                <source src="./static/imgs/manipulation_compressed.mp4" type="video/mp4">
               </video>
             </div>
 
@@ -323,32 +323,32 @@
             <div class="carousel results-carousel">
               <div class="item">
                 <video poster="" autoplay controls muted loop width="1000px" preload="auto">
-                  <source src="./static/imgs/multi_frame_inter_1.mp4" type="video/mp4">
+                  <source src="./static/imgs/multi_frame_inter_1_compressed.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item">
                 <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                  <source src="./static/imgs/multi_frame_inter_2.mp4" type="video/mp4">
+                  <source src="./static/imgs/multi_frame_inter_2_compressed.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item">
                 <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                  <source src="./static/imgs/multi_frame_inter_3.mp4" type="video/mp4">
+                  <source src="./static/imgs/multi_frame_inter_3_compressed.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item">
                 <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                  <source src="./static/imgs/multi_frame_inter_4.mp4" type="video/mp4">
+                  <source src="./static/imgs/multi_frame_inter_4_compressed.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item">
                 <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                  <source src="./static/imgs/multi_frame_inter_5.mp4" type="video/mp4">
+                  <source src="./static/imgs/multi_frame_inter_5_compressed.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item">
                 <video poster="" autoplay controls muted loop width="1000px" preload="none">
-                  <source src="./static/imgs/multi_frame_inter_6.mp4" type="video/mp4">
+                  <source src="./static/imgs/multi_frame_inter_6_compressed.mp4" type="video/mp4">
                 </video>
               </div>
             </div>
@@ -375,8 +375,14 @@
   <hr>
 
   <script>
-    // 비디오 캐러셀 자동 재생 비활성화
+    // 비디오 캐러셀 자동 재생 비활성화 및 로딩 최적화
     document.addEventListener('DOMContentLoaded', function() {
+      // 첫 번째 비디오 즉시 로딩 시작
+      const firstVideo = document.getElementById('tree');
+      if (firstVideo) {
+        firstVideo.load();
+      }
+      
       // 모든 캐러셀 요소에 대해 자동 재생 비활성화
       const carousels = document.querySelectorAll('.carousel');
       carousels.forEach(carousel => {
@@ -390,6 +396,17 @@
             slidesToShow: 1
           });
         }
+      });
+      
+      // 캐러셀 변경 시 해당 비디오 로딩
+      carousels.forEach(carousel => {
+        carousel.addEventListener('slide:change', function() {
+          const activeVideo = carousel.querySelector('.is-active video');
+          if (activeVideo && activeVideo.preload === 'none') {
+            activeVideo.preload = 'auto';
+            activeVideo.load();
+          }
+        });
       });
     });
   </script>
