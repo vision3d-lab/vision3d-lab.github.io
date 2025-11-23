@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnyBald: Toward Realistic Diffusion-Based Hair Removal In-the-Wild</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>AnyBald: Toward Realistic Diffusion-Based Hair Removal In-the-Wild</h1>
+            
+            <!-- Authors -->
+            <div class="authors">
+                <span><a href="https://beautifulchoi.github.io/">Yongjun Choi</a><sup>1*‡</sup></span>
+                <span>Seungoh Han<sup>1*‡</sup></span>
+                <span>Soomin Kim<sup>2‡</sup></span>
+                <span>Sumin Son<sup>2‡</sup></span>
+                <span>Mohsen Rohani<sup>3</sup></span>
+                <span>Edgar Maucourant<sup>3</sup></span>
+                <span>Dongbo Min<a href="https://cse.ewha.ac.kr/cse/intro/faculty.do?mode=view&articleNo=635930&title=%EB%AF%BC%EB%8F%99%EB%B3%B4+%EB%B6%80%EA%B5%90%EC%88%98++%28%EC%A0%84%EA%B3%B5%EC%A3%BC%EC%9E%84%EA%B5%90%EC%88%98%29"></a><sup>2</sup></span>
+                <span><a href="https://unist.info/?page_id=194">Kyungdon Joo</a><sup>1✝</sup></span>
+            </div>
+            
+            <!-- Affiliations -->
+            <div class="affiliations">
+                <span><sup>1</sup>3D Vision & Robotics Lab, UNIST</span>
+                <span><sup>2</sup>Ewha Womans University</span>
+                <span><sup>3</sup>Modiface</span>
+            </div>
+            
+            <div class="note">
+                <sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>✝</sup>Corresponding Author<br>
+                <sup>‡</sup>Work done while visiting the Department of Mechanical and Industrial Engineering (MIE), University of Toronto.
+            </div>
+            
+            <!-- Conference -->
+            <div class="conference">
+                WACV 2026
+            </div>
+            
+            <!-- Links -->
+            <div class="links">
+                <a href="#" class="btn">Paper</a>
+                <a href="#" class="btn">Supplementary</a>
+                <a href="#" class="btn">Code</a>
+                <a href="#" class="btn">arXiv</a>
+            </div>
+            
+            <!-- Teaser Image -->
+            <div class="teaser">
+                <img src="images/teaser.jpg" alt="AnyBald Teaser">
+            </div>
+            
+            <!-- TL;DR -->
+            <div class="tldr">
+                <strong>🌟 TL;DR:</strong> AnyBald is a mask-free diffusion-based framework for realistic hair removal in the wild, 
+                achieving natural bald manipulation while preserving facial identity across diverse real-world scenarios.
+            </div>
+        </header>
+        
+        <!-- Abstract -->
+        <section id="abstract">
+            <h2>Abstract</h2>
+            <p>
+                We present AnyBald, a novel framework for realistic hair removal from portrait images captured under diverse in-the-wild conditions. 
+                One of the key challenges in this task is the lack of high-quality paired data, as existing datasets are often low-quality, with limited viewpoint variation and overall diversity, making it difficult to handle real-world cases. 
+                To address this, we construct a scalable data augmentation pipeline that synthesizes high-quality hair and non-hair image pairs capturing diverse real-world scenarios, enabling effective generalization with the added benefit of scalable supervision. 
+                With this enriched dataset, we present a new hair removal framework that reformulates pretrained latent diffusion inpainting using learnable text prompts, removing the need for explicit masking at inference. 
+                In doing so, our model achieves natural hair removal with semantic preservation via implicit localization. 
+                To further improve spatial precision, we introduce a regularization loss that guides the model to focus attention specifically on hair regions. 
+                Extensive experiments demonstrate that AnyBald outperforms in removing hairstyles while preserving identity and background semantics across various in-the-wild domains.
+            </p>
+        </section>
+        
+        <!-- Method -->
+        <section id="method">
+            <h2>Method</h2>
+            <div class="method-image">
+                <img src="images/framework.jpg" alt="AnyBald Framework">
+            </div>
+            <p>
+                To achieve robust hair removal in the wild, AnyBald integrates three core components:
+                <br><br>
+                <strong>1. Paired Bald Augmentation Pipeline:</strong> We synthesize high-quality paired training data covering diverse poses and backgrounds to overcome the lack of real-world paired datasets.
+                <br>
+                <strong>2. Dual-Branch based Mask-free Diffusion Model:</strong> Our architecture employs a dual-branch design with learnable text prompts, enabling the model to selectively remove hair while preserving facial identity and semantic details.
+                <br>
+                <strong>3. Text Localization Loss:</strong> To enhance spatial precision without explicit masks, we introduce a regularization loss that guides the learnable prompts to attend specifically to hair regions.
+            </p>
+        </section>
+        
+        <!-- Results -->
+        <section id="results">
+            <h2>Results</h2>
+            
+            <h3>Qualitative Results on CelebA In-the-Wild</h3>
+            <div class="results-image">
+                <img src="images/comparison_celeba.jpg" alt="Results on CelebA In-the-Wild">
+            </div>
+            <p>
+                We compare AnyBald with state-of-the-art methods on CelebA in-the-wild dataset. 
+                Our approach demonstrates superior performance in completely removing hair while maintaining realistic skin textures and head shapes across diverse facial expressions and poses.
+            </p>
+
+            <h3>Qualitative Results on DeepFashion2</h3>
+            <div class="results-image">
+                <img src="images/comparison_deepfashion.jpg" alt="Results on DeepFashion2">
+            </div>
+            <p>
+                Results on DeepFashion2 dataset show that AnyBald effectively handles complex real-world scenarios with various backgrounds, lighting conditions, and full-body compositions, while preserving facial identity and background consistency.
+            </p>
+        </section>
+
+        <!-- Applications -->
+        <section id="applications">
+            <h2>Applications</h2>
+
+            <h3>Multi-Human Baldification</h3>
+            <div class="results-image">
+                <img src="images/app_multi_human.jpg" alt="Multi-Human Baldification">
+            </div>
+            <p>
+                AnyBald can simultaneously process multiple individuals in a single image, consistently removing hair for all subjects.
+            </p>
+
+            <h3>3D Face Reconstruction</h3>
+            <div class="results-image">
+                <img src="images/app_face_recon.jpg" alt="3D Face Reconstruction">
+            </div>
+            <p>
+                The bald images generated by our method facilitate more accurate 3D face reconstruction by revealing the full head structure.
+            </p>
+
+            <h3>Hair Transfer</h3>
+            <div class="results-image">
+                <img src="images/app_hair_transfer.jpg" alt="Hair Transfer">
+            </div>
+            <p>
+                Our high-quality bald results serve as an excellent foundation for virtual hair try-on and transfer applications.
+            </p>
+        </section>
+        
+        <!-- Citation -->
+        <section id="citation">
+            <h2>Citation</h2>
+            <div class="bibtex">
+                <pre><code>@InProceedings{Choi_2026_WACV,
+    author    = {Choi, Yongjun and Han, Seungoh and Kim, Soomin and Son, Sumin and 
+                 Rohani, Mohsen and Maucourant, Edgar and Min, Dongbo and Joo, Kyungdon},
+    title     = {AnyBald: Toward Realistic Diffusion-Based Hair Removal In-the-Wild},
+    booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+    month     = {February},
+    year      = {2026}
+}</code></pre>
+            </div>
+        </section>
+        
+        <!-- Acknowledgements -->
+        <section id="acknowledgements">
+            <h2>Acknowledgements</h2>
+            <p>
+                This work was supported by Institute of Information & communications Technology Planning & Evaluation (IITP) 
+                grant funded by the Korea government(MSIT) (RS-2022-00143911, AI Excellence Global Innovative Leader Education Program).
+            </p>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 3D Vision & Robotics Lab, UNIST. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
