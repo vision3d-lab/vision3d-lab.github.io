@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="3D Gaussian Splatting for novel view synthesis from panorama-style captures.">
+  <meta name="keywords" content="LighthouseGS, Panorama-style motion">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LighthouseGS: Indoor Structure-aware 3D Gaussian Splatting for Panorama-Style Mobile Captures</title>
+
+    <!-- Bootstrap -->
+  <link rel="stylesheet" href="static/css/bootstrap-4.4.1.css">
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <script src="./static/js/dics.original.js"></script>
+  <script src="./static/js/event_handler.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://unist.info/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">LighthouseGS: Indoor Structure-aware 3D Gaussian Splatting for Panorama-Style Mobile Captures</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://seung0h.github.io/">Seungoh Han</a><sup>1</sup><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://jjhooon.github.io/">Jaehoon Jang</a><sup>1</sup><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://blandocs.github.io/">Hyunsu Kim</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.co.kr/citations?hl=ko&user=MLDwvFkAAAAJ&view_op=list_works&sortby=pubdate">Jaeheung Surh</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="#">Junhyung Kwak</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=ko&user=odlwb08AAAAJ">Hyowon Ha</a><sup>2</sup><sup>&dagger;</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=ko&user=hNxIPzMAAAAJ">Kyungdon Joo</a><sup>2</sup><sup>&dagger;</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Artificial Intelligence Graduate School, UNIST,</span>
+            <span class="author-block"><sup>2</sup>Bucketplace</span>
+          </div>
+
+          <div class="is-size-6 has-text-centered co-authors">
+            <span class="author-block">(<sup>*</sup> Equal contribution, <sup>&dagger;</sup> Co-corresponding authors)</span>
+          </div>
+          
+          <strong style="color: #000000;">WACV 2026</strong><br>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- arxiv Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <img src="./static/images/lighthouseGS_teaser.png"
+        class="Overall framework"/>
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video> -->
+      <h2 class="subtitle has-text-centered">
+        LighthouseGS synthesizes photorealistic novel views from panorama-style captures using a single mobile device, providing a practical framework for indoor scenes.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce LighthouseGS, a practical novel view synthesis framework based on 3D Gaussian Splatting that utilizes simple panorama-style captures from a single mobile device.
+            While convenient, this rotation-dominant motion and narrow baseline make accurate camera pose and 3D point estimation challenging, especially in textureless indoor scenes. 
+            To address these challenges, LighthouseGS leverages rough geometric priors, such as mobile device camera poses and monocular depth estimation, and utilizes indoor planar structures.
+            Specifically, we propose a new initialization method called plane scaffold assembly to generate consistent 3D points on these structures, followed by a stable pruning strategy to enhance geometry and optimization stability.
+            Additionally, we present geometric and photometric corrections to resolve inconsistencies from motion drift and auto-exposure in mobile devices. 
+            Tested on real and synthetic indoor scenes, LighthouseGS delivers photorealistic rendering, outperforming state-of-the-art methods and enabling applications like panoramic view synthesis and object placement.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-centered">
+          <img src="./static/images/lighthouseGS_pipeline.png"
+                class="Overall framework"/>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            <strong>Overview of LighthouseGS.</strong> Given consecutive images captured by panorama-style motion with the corresponding rough geometric priors, we construct the plane scaffold that ensures global and local consistency.
+            Then, we initialize 3D Gaussians to be aligned to scene geometry and optimize LighthouseGS with plane-aware stable optimization.
+            To address motion drift and auto-exposure by the use of mobile devices, we additionally correct camera poses and view-dependent colors.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparisons (Real world)</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="row">
+    <div class="container is-max-desktop">
+            <div class="container">
+              <ul class="nav nav-tabs nav-fill nav-justified" id="real-scene">
+                    <li class="nav-item">
+                        <a class="nav-link active" onclick="RealSceneEvent(0, 0, 'real-scene')">Meeting room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="RealSceneEvent(1, 0, 'real-scene')">Dressing room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="RealSceneEvent(2, 0, 'real-scene')">Pantry</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="RealSceneEvent(3, 0, 'real-scene')">Lounge</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="RealSceneEvent(4, 0, 'real-scene')">Conference room</a>
+                    </li>
+                </ul>
+                <div class="b-dics" style="width: 2600px; font-weight: 800;">
+                  <img src="./static/images/comparisons/meeting/ours.png" alt="LighthouseGS (Ours)">
+                  <img src="./static/images/comparisons/meeting/3dgs.png" alt="3DGS">
+                  <img src="./static/images/comparisons/meeting/dngaussian.png" alt="DNGaussian">
+                  <img src="./static/images/comparisons/meeting/scaffoldgs.png" alt="Scaffold-GS">
+                  <img src="./static/images/comparisons/meeting/geogaussian.png" alt="GeoGaussian">
+              </div>
+        </div>        
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparisons (Synthetic)</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="row">
+    <div class="container is-max-desktop">
+            <div class="container">
+              <ul class="nav nav-tabs nav-fill nav-justified" id="synthetic-scene">
+                    <li class="nav-item">
+                        <a class="nav-link active" onclick="SyntheticSceneEvent(0, 1, 'synthetic-scene')">Playroom</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="SyntheticSceneEvent(1, 1, 'synthetic-scene')">Bedroom</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="SyntheticSceneEvent(2, 1, 'synthetic-scene')">Primary bedroom</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="SyntheticSceneEvent(3, 1, 'synthetic-scene')">Living room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="SyntheticSceneEvent(4, 1, 'synthetic-scene')">Studio</a>
+                    </li>
+                </ul>
+                <div class="b-dics" style="width: 2600px; font-weight: 800;">
+                  <img src="./static/images/comparisons/playroom/ours.png" alt="LighthouseGS (Ours)">
+                  <img src="./static/images/comparisons/playroom/3dgs.png" alt="3DGS">
+                  <img src="./static/images/comparisons/playroom/dngaussian.png" alt="DNGaussian">
+                  <img src="./static/images/comparisons/playroom/scaffoldgs.png" alt="Scaffold-GS">
+                  <img src="./static/images/comparisons/playroom/geogaussian.png" alt="GeoGaussian">
+              </div>
+        </div>        
+    </div>
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{han2025lighthousegs,
+  author    = {Han, Seungoh and Jang, Jaehoon and Kim, Hyunsu and Surh, Jaeheung and Kwak, Junhyung and Ha, Hyowon and Joo, Kyungdon},
+  title     = {LighthouseGS: Indoor Structure-aware 3D Gaussian Splatting for Panorama-Style Mobile Captures},
+  journal   = {ACM MM},
+  year      = {2025},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This webpage template is from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            The image comparision slider is from <a
+              href="https://research.nvidia.com/labs/dir/neuralangelo/">Neuralangelo</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
