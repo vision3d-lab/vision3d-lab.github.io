@@ -155,18 +155,3 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
-
-.comparison-slider {
-  display: flex;
-  gap: 12px;
-  padding: 8px 0;
-  max-width: 100%;
-  overflow-x: auto;  
-  overflow-y: hidden;
-}
-
-.comparison-slider .comparison-img {
-  max-width: 380px;
-  height: auto;      
-  flex-shrink: 0;   
-}
