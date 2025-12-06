@@ -124,7 +124,11 @@ h1 {
     border: none;
 }
 
-.method-image,
+.method-image {
+    margin: 30px auto;
+    max-width: 95%;
+}
+
 .results-image {
     margin: 30px auto;
     max-width: 80%;
