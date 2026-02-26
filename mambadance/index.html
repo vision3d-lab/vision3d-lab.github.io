@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content=" A Mamba-based diffusion model for 3D dance generation with an explicit Gaussian-based beat representation.">
+  <meta name="keywords" content="3D Dance Generation, Music-to-Dance Generation, Beat Representation, MambaDance">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Not Like Transformers: Drop the Beat Representation for Dance Generation with Mamba-Based Diffusion Model</title>
+
+    <!-- Bootstrap -->
+  <link rel="stylesheet" href="static/css/bootstrap-4.4.1.css">
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="stylesheet" href="./static/css/dics.original.css">
+  <script src="./static/js/dics.original.js"></script>
+  <script src="./static/js/event_handler.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://unist.info/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Not Like Transformers: Drop the Beat Representation for Dance Generation with Mamba-Based Diffusion Model</h1>
+          <div class="is-size-5 publication-authors">
+            <!-- <span class="author-block">
+              <a href="">Example</a><sup>1</sup><sup>*</sup>,</span> -->
+            <span class="author-block">
+              <a href="">Sangjune Park</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="">Inhyeok Choi</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="">Donghyeon Soon</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="">Youngwoo Jeon</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=ko&user=hNxIPzMAAAAJ">Kyungdon Joo</a><sup>1</sup><sup>&dagger;</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Artificial Intelligence Graduate School, UNIST,</span>
+            <span class="author-block"><sup>2</sup>Department of Computer Science, DGIST</span>
+          </div>
+          
+          <strong style="color: #000000; font-size: 24px;">WACV 2026</strong><br>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- arxiv Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/T5UbvFEpOm0"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <!-- <img src="./static/images/lighthouseGS_teaser.png"
+        class="Overall framework"/> -->
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video> -->
+      <h2 class="subtitle has-text-centered">
+        MambaDance generates 3D dance given music '' by .
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Dance is a form of human motion characterized by emotional expression and communication, playing a role in various fields such as music, virtual reality, and content creation.
+            Existing methods for dance generation often fail to adequately capture the inherently sequential, rhythmical, and music-synchronized characteristics of dance.
+            In this paper, we propose a new dance generation approach that leverages a Mamba-based diffusion model.
+            Mamba, specialized for handling long and autoregressive sequences, is integrated into our diffusion model as an alternative to the off-the-shelf Transformer.
+            Additionally, considering the critical role of musical beats in dance choreography, we propose a Gaussian-based beat representation to explicitly guide the decoding of dance sequences.
+            Experiments on AIST++ dataset show that our proposed method effectively reflects essential dance characteristics and advances performance compared to the state-of-the-art methods.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-centered">
+          <img src="./static/images/1_overall_architecture.png"
+                class="Overall framework"/>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            <strong>Overall architecture of MambaDance.</strong>
+            We extract music feature $m$, and a novel beat representation $b$ from the binary mask of beat of the feature (blue box).
+            Two-stage diffusion architecture makes our approach enable length-agnostic generation in a single inference (green box).
+            Decoder of the diffusion consists of the proposed Mamba-based modules, e.g., Single-Modal Mamba (SMM), Cross-Modal Mamba (CMM), and Adaptive Linear Modulation (ADaLM) (gray box).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparisons on FineDance Dataset</h2>
+        
+        <div class="content has-text-centered mt-5">
+          <video id="finedance-comparison" controls playsinline width="100%">
+            <source src="./static/videos/Qualitative_Comparison_FineDance.mp4" type="video/mp4">
+          </video>
+          
+          <p class="has-text-centered is-size-6 mt-3" style="color: #555;">
+            Qualitative comparison of <strong>MambaDance</strong> against state-of-the-art methods on FineDance dataset. 
+            <em>Please unmute the video to evaluate the dance generation synchronized to the music beats.</em>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparisons on AIST++ Dataset</h2>
+        
+        <div class="content has-text-centered mt-5">
+          <video id="aistpp-comparison" controls playsinline width="100%">
+            <source src="./static/videos/Qualitative_Comparison_AISTpp.mp4" type="video/mp4">
+          </video>
+          
+          <p class="has-text-centered is-size-6 mt-3" style="color: #555;">
+            Qualitative comparison of <strong>MambaDance</strong> against state-of-the-art methods on AIST++ dataset. 
+            <em>Please unmute the video to evaluate the dance generation synchronized to the music beats.</em>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+    @article{park2026mambadance,
+      title={Not Like Transformers: Drop the Beat Representation for Dance Generation with Mamba-Based Diffusion Model},
+      author={Sangjune Park and Inhyeok Choi and Donghyeon Soon and Youngwoo Jeon and Kyungdon Joo},
+      journal={arXiv preprint arXiv:},
+      year={2026}
+    }
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This webpage template is from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
