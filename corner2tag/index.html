@@ -79,14 +79,14 @@
                   </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block"><sup>1</sup>3D Vision & Robotics Lab, UNIST</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="author-block"><sup>1</sup>Artificial Intelligence Graduate School, UNIST</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span class="eql-cntrb"><small><br> <sup>✝</sup>Corresponding Author</small></span>
                   </div>
 
               <!-- Conference -->
-              <img src="./static/imgs/checkerboard.png" style="height: 1.1em; width: auto; vertical-aligh: middle; color: #3b7ccb;">
-              <strong style="color: #3b7ccb;">CVPR 2026</strong><br>
-            
+              <img src="./static/imgs/mountain.png" style="height: 1.1em; width: auto; vertical-align: middle; color: #1E567E;">
+              <strong style="color: #1E567E; vertical-align: middle; font-size: 22px;">CVPR 2026</strong><br>
+
                   <div class="column has-text-centered">
                     <div class="publication-links">
                       <!-- Paper PDF link -->
@@ -141,14 +141,12 @@
             </div>
               <br>
               <p style="text-align: justify;">
-              <strong>TL;DR:</strong> We first present a novel calibration framework for event cameras that directly detects checkerboard corners and extends detection to fiducial markers like AprilTags!
+              <strong>TL;DR:</strong> We first present a novel calibration framework for event cameras that directly detects checkerboard corners and extends detection to fiducial tags like AprilTags!
               <br><br>
-              🌟 <strong>Key insight</strong>: At a checkerboard corner, event rate (ER) theoretically becomes zero, providing a precise and physically grounded anchor for calibration in event-based vision!
+              🔍 <strong>Key insight</strong>: Checkerboard corners induce a vanishing event rate (ER). We mathematically analyze this phenomenon and utilize it as a reliable cue for event camera calibration.
               </p>
               <br>
-              <!-- <video poster="" id="tree" autoplay controls muted loop height="100%">
-              <source src="./static/imgs/HUSH_motivation.mp4"type="video/mp4">
-              </video> -->
+              <img src="./static/imgs/insight.png" height="100%" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
               <br>
               <br>
               <h2 class="title is-3">Abstract</h2>
@@ -167,63 +165,47 @@
 
              <br> 
              <!--<br><hr>-->
+             <!-- TODO: add method description -->
              <div class="row mt-5">
              <div class="container is-max-desktop">
              <div class="has-text-centered">
-             <!-- <div class="col">
-                <h2 class="title is-3">Methods</h2>
-                <hr>
-                <img src="./static/imgs/Fig_framework.jpg" width="1000px" >
-                <p style="text-align: justify;">
-                  HUSH first extracts multi-scale image features $f_i$ and scene-wise SH bases via feature extractor and SH coefficient network.
-                  These image features and the scene-wise SH bases are then fed into the <strong>SH-based hierarchical attention module</strong> and the <strong>SH basis index module</strong> to estimate comprehensive scene feature $f_S$ and task-relevant features ($f_D$, $f_N$, $f_L$).
-                  Finally, various scene-understanding tasks are performed as these features pass through task-specific heads.
-                </p>
-                <br><br><br> -->
-
-             <br> 
-             <!--<br><hr>-->
-             <!-- <div class="row mt-5">
-             <div class="container is-max-desktop">
-             <div class="has-text-centered">
              <div class="col">
-                <h2 class="title is-3">Task-relevant SH bases</h2>
+                <h2 class="title is-3">Method</h2>
                 <hr>
-                <br> 
+                <img src="./static/imgs/method.png" width="900px" >
                 <p style="text-align: justify;">
-                  To validate the effectiveness of using SH basis functions as queries, we compare the results from conventional learnable (LR) queries and our SH queries.
-                  We visualize the frequently referred queries both on 2D and 3D domains w.r.t target task (depth/normal estimation).
-                  As we can see below, using the SH basis function as a query can keep better geometric consistency of the scene than the LR query.
+                  We first convert raw event steam into an IWE (Image of Warped Events) by warping events along motion vector.
+                  Given IWE, we initialize checkerboard corners by leveraging reliable edge cues, and then refine them toward the local minimum of event density to obtain sub-pixel accuracy.
+                  The refined corners are fed into the batch optimization process to estimate the camera parameters.
+                  Moreover, we show that our framework generalizes to other fiducial markers, such as AprilTags, allowing for robust tag identification even under partial occlusion
                 </p>
-                <br>
-                <h5 class="title is-4"> Visualization on 2D </h5>
-                <img src="./static/imgs/Fig_SHQ.jpg" width="900px" >
                 <br><br><br>
-                <h5 class="title is-4"> Visualization on 3D </h5>
-                <img src="./static/imgs/Fig_SHQ_3D.jpg" width="900px" >
-                <br><br><br> -->
 
             <br> 
             <!--<br><hr>-->
-            <!-- <div class="row mt-5">
+            <div class="row mt-5">
             <div class="container is-max-desktop">
             <div class="has-text-centered">
             <div class="col">
                 <h2 class="title is-3">Results</h2>
                 <hr>
                 <br>
-                <h5 class="title is-4"> Depth estimation </h5>
-                <img src="./static/imgs/Fig_depth_comparison.jpg" width="900px" >
+                <h5 class="title is-4"> Checkerboard corner detection </h5>
+                <img src="./static/imgs/checker_qual.png" width="800px" >
                 <br><br><br>
-                <h5 class="title is-4"> Surface normal estimation </h5>
-                <img src="./static/imgs/Fig_normal_comparison.jpg" width="600px" >
+                <h5 class="title is-4"> AprilTag detection </h5>
+                <img src="./static/imgs/april_qual.png" width="800px" >
                 <br><br><br>
-                <h5 class="title is-4"> Layout estimation </h5>
-                <img src="./static/imgs/Fig_layout.jpg" width="900px" >
+                <h5 class="title is-4"> Real-world data results </h5>
+                <img src="./static/imgs/real_quan.png" width="800px" >
+                <p style="text-align: center;" width="800px">
+                  Calibration RMSE denotes the root-mean-square reprojection error (in pixels) evaluated using the mean estimated parameters.
+                  <strong>Frame-based calibration is used as a pseudo ground-truth reference</strong>.
+                </p>
                 <br><br><br>
-                <h5 class="title is-4"> Comparison on 3D </h5>
-                <img src="./static/imgs/Fig_3D.jpg" width="900px" >
-                <br><br><br> -->
+                <h5 class="title is-4"> Synthetic data results </h5>
+                <img src="./static/imgs/simul_quan.png" width="800px" >
+                <br><br><br>
           </div>
         </div>
       </div>
@@ -234,7 +216,7 @@
   <hr style="margin-top: 0px">
   <pre style="background-color: #e9eeef; padding: 1.5em 1.5em; border-radius: 20px">
     <code>
-      @InProceedings{Ryu_corner2tag,
+      @InProceedings{ryu2024corner2tag,
         author    = {Taehun Ryu and Changwoo Kang and Kyungdon Joo},
         title     = {From Corners to Fiducial Tags: Revisiting Checkerboard Calibration for Event Cameras},
         booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
