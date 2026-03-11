@@ -98,7 +98,7 @@
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
                         </span>
-                        <span>Paper</span>
+                        <span>Paper (TBU)</span>
                       </a>
                     </span>
 
@@ -111,7 +111,7 @@
                       <span class="icon">
                         <i class="fas fa-file-pdf"></i>
                       </span>
-                      <span>Supplementary</span>
+                      <span>Supplementary (TBU)</span>
                     </a>
                   </span>
 
@@ -135,18 +135,18 @@
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv</span>
+                  <span>arXiv (TBU)</span>
                 </a>
               </span>
             </div>
               <br>
               <p style="text-align: justify;">
-              <strong>TL;DR:</strong> We first present a novel calibration framework for event cameras that directly detects checkerboard corners and extends detection to fiducial tags like AprilTags!
+              <strong>TL;DR:</strong> We first present a novel calibration framework for event cameras that directly detects checkerboard corners and extends detection to fiducial tags such as AprilTags!
               <br><br>
               🔍 <strong>Key insight</strong>: Checkerboard corners induce a vanishing event rate (ER). We mathematically analyze this phenomenon and utilize it as a reliable cue for event camera calibration.
               </p>
               <br>
-              <img src="./static/imgs/insight.png" height="100%" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <img src="./static/imgs/insight.png" width="800px" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
               <br>
               <br>
               <h2 class="title is-3">Abstract</h2>
@@ -156,23 +156,23 @@
               Specifically, this stems from two challenges: (i) Events are triggered asynchronously at different timestamps along motion trajectories.
               If we accumulate them directly on the image plane, it causes temporal misalignment and produces blurred edges. Directly accumulating them on the image plane causes temporal misalignment and produces blurred edges.
               (ii) Checkerboard corners on event cameras show near-zero event occurrence at the corner itself.
-              This hinders reliable corner localization and makes calibration difficult. To address these issues, we present a novel calibration framework that directly detects checkerboard corners from a raw event stream.
+              This hinders reliable corner localization and makes calibration difficult. To address these issues, we present a novel calibration framework that directly detects checkerboard corners from event data. 
               We first mathematically analyze the absence of events at corner points. Based on this fact, we then leverage edge-driven event cues to initialize corner positions.
               Using the near-zero event occurrence at checkerboard corners, we gradually refine the estimated corner toward low event-density regions, achieving sub-pixel accuracy.
               Furthermore, we extend the corner detection to fiducial markers such as AprilTags, resulting in reliable detection even under partial visibility or occlusion.
               Evaluations on self-collected and public data demonstrate reliable checkerboard corner detection and stable camera calibration.
              </p>
 
-             <br> 
+             <br>
              <!--<br><hr>-->
-             <!-- TODO: add method description -->
              <div class="row mt-5">
              <div class="container is-max-desktop">
              <div class="has-text-centered">
              <div class="col">
                 <h2 class="title is-3">Method</h2>
                 <hr>
-                <img src="./static/imgs/method.png" width="900px" >
+                <img src="./static/imgs/method.png" width="800px" >
+                <br><br>
                 <p style="text-align: justify;">
                   We first convert raw event steam into an IWE (Image of Warped Events) by warping events along motion vector.
                   Given IWE, we initialize checkerboard corners by leveraging reliable edge cues, and then refine them toward the local minimum of event density to obtain sub-pixel accuracy.
@@ -181,30 +181,44 @@
                 </p>
                 <br><br><br>
 
-            <br> 
+            <br>
             <!--<br><hr>-->
             <div class="row mt-5">
             <div class="container is-max-desktop">
             <div class="has-text-centered">
             <div class="col">
-                <h2 class="title is-3">Results</h2>
+                <h2 class="title is-3">Qualitative Results</h2>
                 <hr>
                 <br>
                 <h5 class="title is-4"> Checkerboard corner detection </h5>
                 <img src="./static/imgs/checker_qual.png" width="800px" >
+                <br><br>
+                <p style="text-align: justify;">
+                  We show that our method can reliably detect checkerboard corners under various grid sizes, board poses, and cluttered backgrounds. The detected corners are refined toward low event-density regions, achieving sub-pixel accuracy.
+                </p>
                 <br><br><br>
                 <h5 class="title is-4"> AprilTag detection </h5>
                 <img src="./static/imgs/april_qual.png" width="800px" >
-                <br><br><br>
-                <h5 class="title is-4"> Real-world data results </h5>
-                <img src="./static/imgs/real_quan.png" width="800px" >
-                <p style="text-align: center;" width="800px">
-                  Calibration RMSE denotes the root-mean-square reprojection error (in pixels) evaluated using the mean estimated parameters.
-                  <strong>Frame-based calibration is used as a pseudo ground-truth reference</strong>.
+                <br><br>
+                <p style="text-align: justify;">
+                  We demonstrate that our method reliably detects AprilTags across various tag sizes, IDs, and poses. Using these results, we can index corners and perform camera calibration even under partial observation, which is not possible with checkerboard.
                 </p>
                 <br><br><br>
-                <h5 class="title is-4"> Synthetic data results </h5>
+                <h2 class="title is-3">Quantitative Results</h2>
+                <hr>
+                <h5 class="title is-4"> Evaluation on real-world data </h5>
+                <img src="./static/imgs/real_quan.png" width="800px" >
+                <br>
+                <p style="text-align: justify;">
+                  We evaluate our method on self-collected real-world data. Since there are no ground truth camera parameters in real-world scenarios, we evaluate calibration stability by measuring the standard deviation of the estimated camera parameters across multiple trials. Our method demonstrates higher calibration stability than E2Calib, which reconstructs grayscale images using E2VID and detects corners using OpenCV. Notably, our method achieves performance comparable to frame-based calibration, which we use as pseudo ground truth.
+                </p>
+                <br><br><br>
+                <h5 class="title is-4"> Evaluation on synthetic data </h5>
                 <img src="./static/imgs/simul_quan.png" width="800px" >
+                <br><br>
+                <p style="text-align: justify;">
+                  We evaluate our method on synthetic datasets generated using Blender and ESIM. Synthetic data enables a direct comparison with circular pattern-based calibration, which is one of the most widely used calibration approaches for event cameras. Our method achieves significantly higher accuracy than the circular pattern-based calibration method, which suffers from unreliable circle center detection. Furthermore, our method outperforms calibration approaches based on E2VID and HyperE2VID, which reconstruct grayscale images from event streams and subsequently detect corners using OpenCV. The performance gap arises because our method detects corners directly from event data, whereas reconstruction-based methods are inherently affected by reconstruction errors that degrade corner localization accuracy.
+                </p>
                 <br><br><br>
           </div>
         </div>
@@ -217,11 +231,13 @@
   <pre style="background-color: #e9eeef; padding: 1.5em 1.5em; border-radius: 20px">
     <code>
       @InProceedings{ryu2026corner2tag,
-        author    = {Taehun Ryu and Changwoo Kang and Kyungdon Joo},
-        title     = {From Corners to Fiducial Tags: Revisiting Checkerboard Calibration for Event Cameras},
-        booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-        year      = {2026},
-       }
+          author    = {Taehun Ryu and Changwoo Kang and Kyungdon Joo},
+          title     = {From Corners to Fiducial Tags: Revisiting Checkerboard Calibration for Event Cameras},
+          booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+          month     = {},
+          year      = {2026},
+          pages     = {}
+      }
     </code>
   </pre>
   <hr>
