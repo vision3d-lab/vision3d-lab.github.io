@@ -327,5 +327,26 @@
   </div>
 </footer>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var carousels = bulmaCarousel.attach('.carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: true,
+      pagination: true,
+      navigation: true
+    });
+
+    for (var i = 0; i < carousels.length; i++) {
+      carousels[i].on('before:show', state => {
+        var videos = document.querySelectorAll('.carousel video');
+        videos.forEach(function(video) {
+          video.pause();
+        });
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
