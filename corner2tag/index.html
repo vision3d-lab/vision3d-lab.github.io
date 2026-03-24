@@ -70,16 +70,16 @@
               
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="https://taehun-ryu.github.io/" target="_blank">Taehun Ryu</a><sup>1</sup>,</span>&nbsp;&nbsp;&nbsp;
+                <a href="https://taehun-ryu.github.io/" target="_blank">Taehun Ryu</a></span>&nbsp;&nbsp;&nbsp;
                 <span class="author-block">
-                  <a href="https://kang-changwoo.github.io/" target="_blank">Changwoo Kang</a><sup>1</sup>,</span>&nbsp;&nbsp;&nbsp;
+                  <a href="https://kang-changwoo.github.io/" target="_blank">Changwoo Kang</a></span>&nbsp;&nbsp;&nbsp;
                   <span class="author-block">
-                            <a href="https://unist.info/" target="_blank">Kyungdon Joo</a><sup>1✝</sup>
+                            <a href="https://unist.info/" target="_blank">Kyungdon Joo</a><sup>✝</sup>
                   </span>&nbsp;
                   </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block"><sup>1</sup>Artificial Intelligence Graduate School, UNIST</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="author-block"></sup>Graduate School of Artificial Intelligence, UNIST</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span class="eql-cntrb"><small><br> <sup>✝</sup>Corresponding Author</small></span>
                   </div>
 
@@ -122,7 +122,7 @@
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code</span>
+                    <span>Code (TBU)</span>
                   </a>
                 </span>
 
@@ -141,9 +141,9 @@
             </div>
               <br>
               <p style="text-align: justify;">
-              <strong>TL;DR:</strong> We first present a novel calibration framework for event cameras that directly detects checkerboard corners and extends detection to fiducial tags such as AprilTags!
+              <strong>TL;DR:</strong> First event-camera calibration that directly detects checkerboard corners from events without reconstruction and extends to AprilTag.
               <br><br>
-              🔍 <strong>Key insight</strong>: Checkerboard corners induce a vanishing event rate (ER). We mathematically analyze this phenomenon and utilize it as a reliable cue for event camera calibration.
+              🔍 <strong>Key insight</strong>: Under a first-order local motion model, Event Rate (ER) at checkerboard corners is theoretically zero. We mathematically analyze this phenomenon and utilize it as a reliable cue for event camera calibration.
               </p>
               <br>
               <img src="./static/imgs/insight.png" width="800px" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
@@ -159,7 +159,7 @@
               This hinders reliable corner localization and makes calibration difficult. To address these issues, we present a novel calibration framework that directly detects checkerboard corners from event data. 
               We first mathematically analyze the absence of events at corner points. Based on this fact, we then leverage edge-driven event cues to initialize corner positions.
               Using the near-zero event occurrence at checkerboard corners, we gradually refine the estimated corner toward low event-density regions, achieving sub-pixel accuracy.
-              Furthermore, we extend the corner detection to fiducial markers such as AprilTags, resulting in reliable detection even under partial visibility or occlusion.
+              Furthermore, we extend the corner detection to fiducial markers such as AprilTag, resulting in reliable detection even under partial visibility or occlusion.
               Evaluations on self-collected and public data demonstrate reliable checkerboard corner detection and stable camera calibration.
              </p>
 
@@ -226,7 +226,6 @@
     </div>
   </div>
 </section>
-<!-- TODO: update month and pages -->
   <hr style="margin-top: 0px">
   <pre style="background-color: #e9eeef; padding: 1.5em 1.5em; border-radius: 20px">
     <code>
@@ -234,9 +233,7 @@
           author    = {Taehun Ryu and Changwoo Kang and Kyungdon Joo},
           title     = {From Corners to Fiducial Tags: Revisiting Checkerboard Calibration for Event Cameras},
           booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-          month     = {},
-          year      = {2026},
-          pages     = {}
+          year      = {2026}
       }
     </code>
   </pre>
