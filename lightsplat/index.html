@@ -21,21 +21,18 @@
       --muted: #5B6878;
       --line: #DCE4EF;
       --panel: #FFFFFF;
-      --panel-soft: #F5F8FC;
-      --bg: #EEF3F9;
+      --panel-soft: #FAFAFA;
+      --bg: #FFFFFF;
     }
 
     body {
       font-family: 'Noto Sans', sans-serif;
       color: var(--ink);
-      background: linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+      background: #FFFFFF;
     }
 
     .hero {
-      background:
-        radial-gradient(circle at top left, rgba(27, 66, 125, 0.16), transparent 34%),
-        radial-gradient(circle at top right, rgba(198, 40, 40, 0.08), transparent 24%),
-        linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+      background: #FFFFFF;
       border-bottom: 1px solid rgba(27, 66, 125, 0.10);
     }
 
@@ -56,12 +53,12 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.62rem 1.2rem;
+      padding: 0.56rem 1.1rem;
       border-radius: 999px;
       background: rgba(198, 40, 40, 0.10);
       border: 1px solid rgba(198, 40, 40, 0.18);
       color: var(--accent-red);
-      font-size: 1.18rem;
+      font-size: 1.06rem;
       font-weight: 800;
       margin-bottom: 1.1rem;
     }
@@ -97,7 +94,7 @@
 
     .hero-summary {
       max-width: 880px;
-      margin: 1.6rem auto 0;
+      margin: 1.35rem auto 0;
       padding: 1.4rem 1.6rem;
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.78);
@@ -112,7 +109,7 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1rem;
-      margin-top: 1.2rem;
+      margin-top: 1rem;
     }
 
     .metric-card,
@@ -156,11 +153,11 @@
     }
 
     .section {
-      padding: 4rem 1.5rem;
+      padding: 3.35rem 1.5rem;
     }
 
     .section-soft {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(245, 248, 252, 0.95) 100%);
+      background: #FCFCFC;
       border-top: 1px solid rgba(27, 66, 125, 0.06);
       border-bottom: 1px solid rgba(27, 66, 125, 0.06);
     }
@@ -199,10 +196,6 @@
     }
 
     .story-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .result-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
@@ -270,7 +263,21 @@
     }
 
     .figure-panel {
-      padding: 1.15rem;
+      padding: 1rem;
+    }
+
+    .teaser-panel {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .method-columns {
+      align-items: flex-start;
+    }
+
+    .qual-stack {
+      display: grid;
+      gap: 1.15rem;
     }
 
     .figure-panel img {
@@ -290,48 +297,20 @@
       text-align: justify;
     }
 
-    .result-dataset {
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
-
-    .result-number {
-      margin-top: 0.55rem;
-      margin-bottom: 0.4rem;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-      line-height: 1.1;
-    }
-
-    .result-number span {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .result-sub {
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
     .table-panel {
-      padding: 0.5rem;
+      padding: 0.65rem;
       overflow-x: auto;
     }
 
     .table-panel table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 520px;
+      min-width: 980px;
     }
 
     .table-panel th,
     .table-panel td {
-      padding: 0.95rem 1rem;
+      padding: 1rem 1rem;
       border-bottom: 1px solid var(--line);
       text-align: left;
       vertical-align: top;
@@ -346,6 +325,70 @@
 
     .table-panel tr:last-child td {
       border-bottom: none;
+    }
+
+    .results-table thead th {
+      white-space: nowrap;
+    }
+
+    .results-table tbody tr:hover {
+      background: rgba(27, 66, 125, 0.025);
+    }
+
+    .dataset-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.34rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(27, 66, 125, 0.08);
+      color: var(--navy-deep);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .metric-main {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      line-height: 1.15;
+    }
+
+    .metric-inline {
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .metric-stack {
+      display: grid;
+      gap: 0.18rem;
+    }
+
+    .metric-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .speed-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.28rem 0.62rem;
+      border-radius: 999px;
+      background: rgba(198, 40, 40, 0.08);
+      color: var(--accent-red);
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-top: 0.4rem;
+    }
+
+    .table-note {
+      margin-top: 0.95rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.65;
     }
 
     .bibtex-section {
@@ -374,7 +417,6 @@
     @media screen and (max-width: 1023px) {
       .hero-metrics,
       .story-grid,
-      .result-grid,
       .qual-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -387,7 +429,6 @@
 
       .hero-metrics,
       .story-grid,
-      .result-grid,
       .qual-grid {
         grid-template-columns: 1fr;
       }
@@ -505,10 +546,10 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="figure-panel">
+    <div class="figure-panel teaser-panel">
       <img src="./images/paper_figures/fig1.png" alt="LightSplat teaser figure comparing speed, accuracy, and memory overhead">
       <p class="figure-caption">
-        <strong>Figure 1.</strong> LightSplat sits in the part of the tradeoff curve that matters most for deployment: <strong>faster distillation</strong>, <strong>lower memory overhead</strong>, and <strong>stronger 3D understanding performance</strong>. Instead of paying the usual cost of dense feature storage and long optimization loops, the method directly connects 2D mask semantics to 3D structure through compact indices.
+        <strong>Figure 1.</strong> The main claim of the paper is visible in one figure: <strong>LightSplat is not only faster</strong>, but reaches a better <strong>speed-accuracy-memory tradeoff</strong> than recent open-vocabulary 3D scene understanding methods. By replacing dense per-Gaussian language features with <strong>compact semantic indices</strong> and object-level clustering, the method moves the Pareto frontier in the direction that practical deployment actually needs.
       </p>
     </div>
   </div>
@@ -571,15 +612,15 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">How LightSplat Works</h2>
     <p class="section-lead">
-      LightSplat removes the heavy parts of the conventional pipeline and keeps only the operations that directly improve 2D-to-3D semantic transfer. The key design choice is to store <strong>indices</strong> instead of full language features, then reason over <strong>clusters</strong> rather than individual Gaussians.
+      LightSplat is designed around a direct response to the three bottlenecks above. Rather than optimizing dense semantic features on every Gaussian, it first injects only the <strong>mask identities that matter</strong>, then consolidates them into coherent <strong>3D object clusters</strong>. This is the mechanism behind the paper's central claim: <strong>efficient 3D understanding without giving up object-level reasoning</strong>.
     </p>
 
-    <div class="columns is-variable is-6 is-vcentered">
+    <div class="columns is-variable is-6 method-columns">
       <div class="column is-7">
         <div class="figure-panel">
           <img src="./images/paper_figures/fig2.png" alt="Overall framework of LightSplat">
           <p class="figure-caption">
-            <strong>Figure 2.</strong> The full pipeline connects <strong>SAM masks</strong> and <strong>CLIP features</strong> to 3D Gaussians through indexed feature injection, removes unstable masks with <strong>3D-aware filtering</strong>, and builds object-level semantics through <strong>context-aware clustering</strong>.
+            <strong>Figure 2.</strong> The pipeline is deliberately compact: extract <strong>SAM masks</strong> and <strong>CLIP features</strong>, inject only lightweight indices into 3D Gaussians, filter unreliable masks with 3D support, and build coherent object-level semantics through <strong>context-aware clustering</strong>.
           </p>
         </div>
       </div>
@@ -617,7 +658,7 @@
       </div>
     </div>
 
-    <div class="columns is-variable is-6 is-vcentered mt-5">
+    <div class="columns is-variable is-6 method-columns mt-5">
       <div class="column is-5">
         <h3 class="minor-title">Fast Inference by Design</h3>
         <div class="content">
@@ -625,7 +666,7 @@
             Once cluster-level features are formed, inference becomes much simpler. The text query is compared with a <strong>compact set of cluster features</strong> instead of every Gaussian or every rendered pixel.
           </p>
           <p>
-            This is the core reason LightSplat is not just faster at distillation, but also faster at retrieval time. The paper reports that the number of similarity comparisons can drop to <strong>below 0.1%</strong> of naive Gaussian-level inference depending on scene complexity.
+            This is why LightSplat is not just faster at distillation, but also faster at query time. The expensive part of reasoning is moved away from Gaussian-level comparisons and into a much smaller object-level representation, reducing similarity computations to <strong>below 0.1%</strong> of naive Gaussian-level inference depending on scene complexity.
           </p>
         </div>
       </div>
@@ -645,34 +686,89 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">Benchmark Results</h2>
     <p class="section-lead">
-      We evaluate LightSplat on three complementary benchmarks: <strong>LERF-OVS</strong> for 3D object selection, <strong>DL3DV-OVS</strong> for large indoor-outdoor scenes, and <strong>ScanNet</strong> for semantic segmentation. Across all of them, the method stays both efficient and competitive.
+      The empirical claim is straightforward: <strong>compact indexing is not merely efficient, it also preserves strong 3D semantics</strong>. Across <strong>LERF-OVS</strong>, <strong>DL3DV-OVS</strong>, and <strong>ScanNet</strong>, LightSplat consistently combines low cost with competitive or state-of-the-art quality.
     </p>
 
-    <div class="result-grid">
-      <div class="result-card">
-        <div class="result-dataset">LERF-OVS</div>
-        <div class="card-title">3D Object Selection</div>
-        <div class="result-number">47.58 <span>mIoU</span></div>
-        <p class="result-sub">
-          68.32 mAcc@0.25 with <strong>4.2 s</strong> feature distillation. LightSplat reaches the best overall balance of speed and object-level quality on the benchmark.
-        </p>
-      </div>
-      <div class="result-card">
-        <div class="result-dataset">DL3DV-OVS</div>
-        <div class="card-title">Large Indoor-Outdoor Scenes</div>
-        <div class="result-number">44.98 <span>mIoU</span></div>
-        <p class="result-sub">
-          60.82 mAcc@0.25 with <strong>4.8 s</strong> feature distillation, showing strong robustness in scenes with multiple distant or repeated objects.
-        </p>
-      </div>
-      <div class="result-card">
-        <div class="result-dataset">ScanNet</div>
-        <div class="card-title">3D Semantic Segmentation</div>
-        <div class="result-number">37.11 <span>mIoU / 58.66 mAcc</span></div>
-        <p class="result-sub">
-          On 19 classes, LightSplat distills features in <strong>4.1 s</strong>, runs in <strong>2 ms</strong> per query on average, and stores semantics with only <strong>2 bytes</strong> per Gaussian.
-        </p>
-      </div>
+    <div class="table-panel">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Task</th>
+            <th>Primary Result</th>
+            <th>Secondary Result</th>
+            <th>Feature Distillation</th>
+            <th>Runtime</th>
+            <th>Memory</th>
+            <th>What It Shows</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="dataset-badge">LERF-OVS</span></td>
+            <td>3D Object Selection</td>
+            <td>
+              <div class="metric-stack">
+                <div class="metric-main">47.58 <span class="metric-inline">mIoU</span></div>
+                <div class="metric-sub">Best overall balance of speed and object-level quality.</div>
+              </div>
+            </td>
+            <td>
+              <div class="metric-stack">
+                <div class="metric-main">68.32 <span class="metric-inline">mAcc@0.25</span></div>
+                <div class="speed-pill">4.2 s distillation</div>
+              </div>
+            </td>
+            <td>4.2 s</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Precise 3D object selection with strong boundary quality on fine-grained tabletop scenes.</td>
+          </tr>
+          <tr>
+            <td><span class="dataset-badge">DL3DV-OVS</span></td>
+            <td>Large Indoor-Outdoor Scene Understanding</td>
+            <td>
+              <div class="metric-stack">
+                <div class="metric-main">44.98 <span class="metric-inline">mIoU</span></div>
+                <div class="metric-sub">Remains stable on larger scenes with repeated or distant objects.</div>
+              </div>
+            </td>
+            <td>
+              <div class="metric-stack">
+                <div class="metric-main">60.82 <span class="metric-inline">mAcc@0.25</span></div>
+                <div class="speed-pill">4.8 s distillation</div>
+              </div>
+            </td>
+            <td>4.8 s</td>
+            <td>-</td>
+            <td>-</td>
+            <td>Strong robustness when scene scale, object count, and background complexity increase.</td>
+          </tr>
+          <tr>
+            <td><span class="dataset-badge">ScanNet</span></td>
+            <td>3D Semantic Segmentation</td>
+            <td>
+              <div class="metric-stack">
+                <div class="metric-main">37.11 <span class="metric-inline">mIoU</span></div>
+                <div class="metric-sub">19-class setting; also reaches 39.78 / 47.78 mIoU on 15 / 10 classes.</div>
+              </div>
+            </td>
+            <td>
+              <div class="metric-stack">
+                <div class="metric-main">58.66 <span class="metric-inline">mAcc</span></div>
+                <div class="metric-sub">19-class setting; 60.91 / 68.21 mAcc on 15 / 10 classes.</div>
+              </div>
+            </td>
+            <td>4.1 s</td>
+            <td>0.002 s/query</td>
+            <td>2 bytes/Gaussian</td>
+            <td>Shows that compact indexing scales to dense scene segmentation without giving up semantic coverage.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="table-note">
+        The table reflects the paper's main point more directly than isolated score cards: <strong>LightSplat is efficient across all benchmarks</strong>, but the efficiency does not come from simplifying the task. It keeps competitive or state-of-the-art 3D semantics while cutting distillation time and memory cost to a level that makes deployment realistic.
+      </p>
     </div>
   </div>
 </section>
@@ -681,10 +777,10 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">Qualitative Results</h2>
     <p class="section-lead">
-      The qualitative results mirror the numerical story. LightSplat forms cleaner object-level structure in 3D, which helps both with precise object selection and with broader semantic segmentation over large regions.
+      The qualitative results complete the story told by the benchmark numbers. Because semantics are organized at the object-cluster level rather than blurred across many Gaussians, LightSplat produces <strong>cleaner boundaries</strong>, <strong>more stable object identity</strong>, and <strong>broader scene coverage</strong>.
     </p>
 
-    <div class="qual-grid">
+    <div class="qual-stack">
       <div class="figure-panel">
         <div class="minor-title">LERF-OVS: Detailed 3D Object Selection</div>
         <img src="./images/paper_figures/fig4.png" alt="Qualitative comparison on LERF-OVS">
@@ -699,14 +795,13 @@
           <strong>Figure 5.</strong> On DL3DV-OVS, the method remains reliable in large indoor-outdoor environments, handling distant objects, repeated instances, and cluttered layouts without collapsing into noisy selections.
         </p>
       </div>
-    </div>
-
-    <div class="figure-panel mt-5">
-      <div class="minor-title">ScanNet: Cleaner Semantic Segmentation</div>
-      <img src="./images/paper_figures/fig6.png" alt="Qualitative comparison on ScanNet">
-      <p class="figure-caption">
-        <strong>Figure 6.</strong> On ScanNet, LightSplat captures both object-level semantics such as doors and cabinets and broader scene-level regions such as floors and walls, with more complete coverage and cleaner boundaries than prior methods.
-      </p>
+      <div class="figure-panel">
+        <div class="minor-title">ScanNet: Cleaner Semantic Segmentation</div>
+        <img src="./images/paper_figures/fig6.png" alt="Qualitative comparison on ScanNet">
+        <p class="figure-caption">
+          <strong>Figure 6.</strong> On ScanNet, LightSplat captures both object-level semantics such as doors and cabinets and broader scene-level regions such as floors and walls, with more complete coverage and cleaner boundaries than prior methods.
+        </p>
+      </div>
     </div>
   </div>
 </section>
