@@ -122,21 +122,22 @@
       font-size: 1.04em;
       letter-spacing: -0.055em;
       line-height: 0.92;
-      color: #d7a119;
+      color: #efc64d;
       text-shadow:
-        0 0 1px rgba(255, 252, 232, 0.86),
-        0 0 6px rgba(242, 180, 30, 0.28),
-        0 0 16px rgba(242, 180, 30, 0.18);
+        0 0 1px rgba(255, 252, 232, 0.9),
+        0 0 8px rgba(255, 196, 52, 0.32),
+        0 0 18px rgba(242, 180, 30, 0.2);
       transform: skewX(-9deg) translateY(0.02em);
       animation: titleSurge 2.9s ease-in-out infinite;
+      filter: saturate(1.08) brightness(1.02);
       will-change: background-position, text-shadow, filter;
     }
 
     @supports ((-webkit-background-clip: text) and (-webkit-text-fill-color: transparent)) {
       .title-accent {
-        background: linear-gradient(180deg, #fffde7 0%, #ffe68c 22%, #ffcf47 48%, #f0ab22 72%, #b16b08 100%);
-        background-size: 100% 185%;
-        background-position: 50% 0%;
+        background: linear-gradient(180deg, #fffde7 0%, #fff2b9 14%, #ffd967 34%, #ffc53b 54%, #f0ab22 78%, #ac6708 100%);
+        background-size: 100% 165%;
+        background-position: 50% 12%;
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -701,6 +702,15 @@
       opacity: 1;
     }
 
+    .global-spark-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 120;
+    }
+
     .eyebrow:hover,
     .eyebrow:focus-visible {
       transform: translateY(-1px);
@@ -826,12 +836,12 @@
 
     @keyframes titleSurge {
       0%, 100% {
-        background-position: 50% 0%;
+        background-position: 50% 12%;
         text-shadow:
-          0 0 1px rgba(255, 252, 232, 0.82),
-          0 0 6px rgba(242, 180, 30, 0.22),
-          0 0 14px rgba(242, 180, 30, 0.14);
-        filter: drop-shadow(0 0 2px rgba(255, 228, 141, 0.10));
+          0 0 1px rgba(255, 252, 232, 0.92),
+          0 0 9px rgba(255, 203, 64, 0.34),
+          0 0 18px rgba(242, 180, 30, 0.2);
+        filter: saturate(1.08) brightness(1.03) drop-shadow(0 0 3px rgba(255, 228, 141, 0.14));
       }
       18% {
         background-position: 50% 20%;
@@ -847,7 +857,7 @@
           0 0 1px rgba(255, 252, 232, 0.76),
           0 0 5px rgba(242, 180, 30, 0.18),
           0 0 12px rgba(242, 180, 30, 0.12);
-        filter: drop-shadow(0 0 1px rgba(255, 219, 98, 0.08));
+        filter: saturate(1.02) brightness(0.99) drop-shadow(0 0 1px rgba(255, 219, 98, 0.08));
       }
       44% {
         background-position: 50% 62%;
@@ -855,7 +865,7 @@
           0 0 1px rgba(255, 252, 232, 0.92),
           0 0 11px rgba(255, 203, 64, 0.36),
           0 0 24px rgba(242, 180, 30, 0.22);
-        filter: drop-shadow(0 0 5px rgba(255, 219, 98, 0.18));
+        filter: saturate(1.1) brightness(1.04) drop-shadow(0 0 5px rgba(255, 219, 98, 0.18));
       }
       58% {
         background-position: 50% 78%;
@@ -863,7 +873,7 @@
           0 0 1px rgba(255, 252, 232, 0.78),
           0 0 6px rgba(242, 180, 30, 0.22),
           0 0 14px rgba(242, 180, 30, 0.14);
-        filter: drop-shadow(0 0 2px rgba(255, 219, 98, 0.10));
+        filter: saturate(1.03) brightness(1.01) drop-shadow(0 0 2px rgba(255, 219, 98, 0.10));
       }
       76% {
         background-position: 50% 26%;
@@ -871,7 +881,7 @@
           0 0 1px rgba(255, 252, 232, 0.94),
           0 0 10px rgba(255, 203, 64, 0.34),
           0 0 20px rgba(242, 180, 30, 0.2);
-        filter: drop-shadow(0 0 4px rgba(255, 219, 98, 0.16));
+        filter: saturate(1.08) brightness(1.03) drop-shadow(0 0 4px rgba(255, 219, 98, 0.16));
       }
     }
 
@@ -2209,6 +2219,232 @@
         })
       : null;
 
+    const clickSparkState = {
+      canvas: null,
+      ctx: null,
+      width: 0,
+      height: 0,
+      dpr: 1,
+      bursts: [],
+      rafId: 0,
+      lastTime: 0,
+    };
+
+    const ensureGlobalSparkCanvas = () => {
+      if (clickSparkState.canvas && clickSparkState.ctx) return clickSparkState;
+
+      const canvas = document.createElement("canvas");
+      canvas.className = "global-spark-canvas";
+      canvas.setAttribute("aria-hidden", "true");
+      document.body.appendChild(canvas);
+
+      clickSparkState.canvas = canvas;
+      clickSparkState.ctx = canvas.getContext("2d");
+      return clickSparkState;
+    };
+
+    const resizeGlobalSparkCanvas = () => {
+      const state = ensureGlobalSparkCanvas();
+      if (!state.ctx) return;
+
+      const width = Math.max(1, Math.round(window.innerWidth));
+      const height = Math.max(1, Math.round(window.innerHeight));
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      state.width = width;
+      state.height = height;
+      state.dpr = dpr;
+      state.canvas.width = Math.max(1, Math.round(width * dpr));
+      state.canvas.height = Math.max(1, Math.round(height * dpr));
+      state.canvas.style.width = `${width}px`;
+      state.canvas.style.height = `${height}px`;
+      state.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      state.ctx.clearRect(0, 0, width, height);
+    };
+
+    const buildClickSparkArc = (x, y) => {
+      const angle = randomBetween(0, Math.PI * 2);
+      const length = randomBetween(16, 34);
+      const segments = randomInt(3, 5);
+      const points = [{ x, y }];
+      const perpX = -Math.sin(angle);
+      const perpY = Math.cos(angle);
+
+      for (let i = 1; i <= segments; i += 1) {
+        const progress = i / segments;
+        const radial = length * progress + randomBetween(-1.4, 1.4);
+        const spread = randomBetween(-2.8, 2.8) * (1 - progress * 0.55);
+
+        points.push({
+          x: x + Math.cos(angle) * radial + perpX * spread,
+          y: y + Math.sin(angle) * radial + perpY * spread,
+        });
+      }
+
+      const branchIndex = points.length > 2 ? randomInt(1, points.length - 2) : 1;
+      const branchStart = points[branchIndex];
+      const branchAngle = angle + randomBetween(-0.9, 0.9);
+      const branchLength = randomBetween(5, 11);
+
+      return {
+        points,
+        tip: points[points.length - 1],
+        branch: Math.random() < 0.72 ? [
+          branchStart,
+          {
+            x: branchStart.x + Math.cos(branchAngle) * branchLength,
+            y: branchStart.y + Math.sin(branchAngle) * branchLength,
+          },
+        ] : null,
+      };
+    };
+
+    const spawnClickSparkBurst = (x, y) => {
+      const state = ensureGlobalSparkCanvas();
+      resizeGlobalSparkCanvas();
+
+      const arcs = Array.from({ length: randomInt(6, 9) }, () => buildClickSparkArc(x, y));
+      const particles = Array.from({ length: randomInt(12, 18) }, () => {
+        const angle = randomBetween(0, Math.PI * 2);
+        const velocity = randomBetween(1.2, 3.6);
+        return {
+          x,
+          y,
+          vx: Math.cos(angle) * velocity,
+          vy: Math.sin(angle) * velocity,
+          age: 0,
+          life: randomBetween(120, 220),
+          size: randomBetween(0.9, 1.9),
+        };
+      });
+
+      state.bursts.push({
+        x,
+        y,
+        age: 0,
+        life: randomBetween(150, 240),
+        flashRadius: randomBetween(14, 24),
+        arcs,
+        particles,
+      });
+
+      if (!state.rafId) {
+        state.lastTime = 0;
+        state.rafId = requestAnimationFrame((timestamp) => renderGlobalSparkFrame(timestamp));
+      }
+    };
+
+    const drawClickSparkArc = (ctx, arc, alpha) => {
+      ctx.save();
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      ctx.strokeStyle = `rgba(255, 212, 103, ${0.18 + alpha * 0.16})`;
+      ctx.lineWidth = 6;
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = `rgba(255, 210, 108, ${alpha * 0.24})`;
+      traceSmoothPath(ctx, arc.points);
+      ctx.stroke();
+
+      ctx.strokeStyle = `rgba(255, 191, 57, ${alpha * 0.72})`;
+      ctx.lineWidth = 2.6;
+      ctx.shadowBlur = 0;
+      traceSmoothPath(ctx, arc.points);
+      ctx.stroke();
+
+      ctx.strokeStyle = `rgba(255, 252, 239, ${alpha * 0.96})`;
+      ctx.lineWidth = 1.05;
+      traceSmoothPath(ctx, arc.points);
+      ctx.stroke();
+
+      if (arc.branch) {
+        ctx.strokeStyle = `rgba(255, 232, 150, ${alpha * 0.62})`;
+        ctx.lineWidth = 0.9;
+        ctx.beginPath();
+        ctx.moveTo(arc.branch[0].x, arc.branch[0].y);
+        ctx.lineTo(arc.branch[1].x, arc.branch[1].y);
+        ctx.stroke();
+      }
+
+      const flash = ctx.createRadialGradient(arc.tip.x, arc.tip.y, 0, arc.tip.x, arc.tip.y, 6);
+      flash.addColorStop(0, `rgba(255, 252, 238, ${alpha * 0.96})`);
+      flash.addColorStop(0.55, `rgba(255, 218, 106, ${alpha * 0.36})`);
+      flash.addColorStop(1, "rgba(255, 218, 106, 0)");
+      ctx.fillStyle = flash;
+      ctx.beginPath();
+      ctx.arc(arc.tip.x, arc.tip.y, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    };
+
+    const drawGlobalSparkParticle = (ctx, particle) => {
+      const life = Math.max(0, 1 - (particle.age / particle.life));
+      const alpha = Math.pow(life, 0.75);
+
+      ctx.save();
+      ctx.fillStyle = `rgba(255, 232, 156, ${alpha * 0.78})`;
+      ctx.shadowBlur = 7;
+      ctx.shadowColor = `rgba(255, 214, 112, ${alpha * 0.32})`;
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size * (0.72 + life * 0.38), 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    };
+
+    const renderGlobalSparkFrame = (now) => {
+      const state = ensureGlobalSparkCanvas();
+      if (!state.ctx || !state.canvas) return;
+
+      if (!state.lastTime) state.lastTime = now;
+      const dt = Math.min(32, now - state.lastTime || 16);
+      state.lastTime = now;
+
+      state.ctx.clearRect(0, 0, state.width, state.height);
+
+      for (let i = state.bursts.length - 1; i >= 0; i -= 1) {
+        const burst = state.bursts[i];
+        burst.age += dt;
+
+        const life = Math.max(0, 1 - (burst.age / burst.life));
+        const alpha = burst.age < 18 ? (burst.age / 18) : Math.pow(life, 0.62);
+
+        if (burst.age >= burst.life && burst.particles.every((particle) => particle.age >= particle.life)) {
+          state.bursts.splice(i, 1);
+          continue;
+        }
+
+        const centerFlash = state.ctx.createRadialGradient(burst.x, burst.y, 0, burst.x, burst.y, burst.flashRadius);
+        centerFlash.addColorStop(0, `rgba(255, 252, 239, ${alpha * 0.95})`);
+        centerFlash.addColorStop(0.42, `rgba(255, 222, 124, ${alpha * 0.32})`);
+        centerFlash.addColorStop(1, "rgba(255, 222, 124, 0)");
+        state.ctx.fillStyle = centerFlash;
+        state.ctx.beginPath();
+        state.ctx.arc(burst.x, burst.y, burst.flashRadius, 0, Math.PI * 2);
+        state.ctx.fill();
+
+        burst.arcs.forEach((arc) => drawClickSparkArc(state.ctx, arc, alpha));
+
+        burst.particles.forEach((particle) => {
+          particle.age += dt;
+          if (particle.age < particle.life) {
+            particle.x += particle.vx * (dt / 16);
+            particle.y += particle.vy * (dt / 16);
+            particle.vx *= 0.954;
+            particle.vy *= 0.954;
+            drawGlobalSparkParticle(state.ctx, particle);
+          }
+        });
+      }
+
+      if (state.bursts.length) {
+        state.rafId = requestAnimationFrame((timestamp) => renderGlobalSparkFrame(timestamp));
+      } else {
+        state.rafId = 0;
+        state.ctx.clearRect(0, 0, state.width, state.height);
+      }
+    };
+
     sparkTargets.forEach((element) => {
       element.classList.add("spark-target");
       ensureSparkCanvas(element);
@@ -2228,8 +2464,17 @@
       });
     });
 
+    ensureGlobalSparkCanvas();
+    resizeGlobalSparkCanvas();
+
+    document.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      spawnClickSparkBurst(event.clientX, event.clientY);
+    }, { passive: true });
+
     window.addEventListener("resize", () => {
       sparkTargets.forEach((element) => resizeSparkCanvas(element));
+      resizeGlobalSparkCanvas();
     });
 
     const handleMotionChange = (event) => {
