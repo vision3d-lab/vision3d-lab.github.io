@@ -18,7 +18,7 @@
     body { font-family: 'Noto Sans', sans-serif; }
     .title.is-1 { font-family: 'Google Sans', sans-serif; font-weight: 700; }
     .section-title { font-family: 'Google Sans', sans-serif; font-weight: 600; font-size: 2rem; margin-bottom: 1.5rem; text-align: left; border-bottom: 2px solid #dbdbdb; padding-bottom: 5px;}
-    .publication-venue { font-size: 1.2rem; font-weight: bold; color: #006400; margin-top: 10px; }
+    .publication-venue { font-size: 1.2rem; font-weight: bold; color: #1B427D; margin-top: 10px; }
     
     /* Highlight Colors */
     .highlight-text { color: #d63031; font-weight: bold; } /* Red for Salient */
@@ -60,7 +60,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Beyond the Highlights: Video Retrieval with <br> Salient and Surrounding Contexts</h1>
-          <div class="publication-venue">WACV 2026</div>
+          <div class="publication-venue">CVPR 2026</div>
           
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -68,9 +68,9 @@
             <span class="author-block">
               <a href="mailto:jh4011@postech.ac.kr">Jinhyeok Kim</a><sup>2</sup>,</span>
             <span class="author-block">
-              <a href="mailto:mzkim@unist.ac.kr">Minji Kim</a><sup>3*</sup>,</span>
+              <a href="mailto:mzkim@unist.ac.kr">Minji Kim</a><sup>1*</sup>,</span>
             <span class="author-block">
-              <a href="mailto:sypsss@unist.ac.kr">Seungheon Jeong</a><sup>3*</sup>,</span>
+              <a href="mailto:sypsss@unist.ac.kr">Seungheon Jeong</a><sup>1*</sup>,</span>
             <span class="author-block">
               <a href="mailto:kyungdon@unist.ac.kr">Kyungdon Joo</a><sup>1*</sup>
             </span>
@@ -78,8 +78,7 @@
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>UNIST,</span>
-            <span class="author-block"><sup>2</sup>POSTECH,</span>
-            <span class="author-block"><sup>3</sup>KAIST</span>
+            <span class="author-block"><sup>2</sup>POSTECH</span>
           </div>
 
           <div class="column has-text-centered">
@@ -100,12 +99,6 @@
                 <a href="#" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="far fa-images"></i></span>
-                  <span>SS Datasets</span>
                 </a>
               </span>
             </div>
@@ -135,10 +128,16 @@
         <h2 class="section-title">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            When searching for videos, users often rely on <b>surrounding context</b> such as background elements or <b>temporal details</b> beyond salient content. However, existing video models struggle with fine-grained spatio-temporal understanding, particularly surrounding contexts, and there are no datasets that effectively evaluate their performance.
+            Open-vocabulary 3D scene understanding enables users to segment novel objects in complex 3D environments through natural language. However, existing approaches remain slow, memory-intensive, and overly complex due to iterative optimization and dense per-Gaussian feature assignments.
           </p>
           <p>
-            We introduce <strong>SS Datasets</strong>, three video retrieval datasets with detailed salient and surrounding captions. To capture rich, temporally localized contexts aligned with <b>meaningful scene changes</b>, we segment videos by scene transitions and generate captions with a vision-language model. Analyzing current models reveals difficulties in handling surrounding queries and temporally complex videos. To address this, we propose simple yet effective baselines that improve retrieval across diverse query types, enabling more <b>robust generalization to real-world scenarios</b>.
+            To address this, we propose <code>LightSplat</code>, a fast and memory-efficient training-free framework that injects compact 2-byte semantic indices into 3D representations from multi-view images. By assigning semantic indices only to salient regions and managing them with a lightweight index-feature mapping, <code>LightSplat</code> eliminates costly feature optimization and storage overhead.
+          </p>
+          <p>
+            We further ensure semantic consistency and efficient inference via single-step clustering that links geometrically and semantically related masks in 3D. We evaluate our method on LERF-OVS, ScanNet, and DL3DV-OVS across complex indoor-outdoor scenes.
+          </p>
+          <p>
+            As a result, <code>LightSplat</code> achieves state-of-the-art performance with up to 50-400&times; speedup and 64&times; lower memory, enabling scalable language-driven 3D understanding. For more details, visit our project page <a href="https://vision3d-lab.github.io/lightsplat/">https://vision3d-lab.github.io/lightsplat/</a>.
           </p>
         </div>
       </div>
@@ -280,11 +279,14 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="section-title">BibTeX</h2>
-    <pre class="bibtex-section"><code>@inproceedings{bang2026beyond,
-  title={Beyond the Highlights: Video Retrieval with Salient and Surrounding Contexts},
-  author={Bang, Jaehun and Moon, Ye-Bin and Oh, Tae-Hyun and Joo, Kyungdon},
-  booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
-  year={2026}
+    <pre class="bibtex-section"><code>@misc{bang2026lightsplatfastmemoryefficientopenvocabulary,
+  title={LightSplat: Fast and Memory-Efficient Open-Vocabulary 3D Scene Understanding in Five Seconds},
+  author={Jaehun Bang and Jinhyeok Kim and Minji Kim and Seungheon Jeong and Kyungdon Joo},
+  year={2026},
+  eprint={2603.24146},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2603.24146}
 }</code></pre>
   </div>
 </section>
