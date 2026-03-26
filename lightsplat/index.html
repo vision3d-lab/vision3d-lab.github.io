@@ -1061,6 +1061,9 @@
       white-space: nowrap;
       font-variant-numeric: tabular-nums;
       letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
     }
 
     .score-mark.best {
@@ -1073,6 +1076,14 @@
       background: rgba(193, 132, 38, 0.12);
       color: #9d671d;
       box-shadow: inset 0 0 0 1px rgba(157, 103, 29, 0.10);
+    }
+
+    .table-panel:hover .score-mark.best,
+    .table-panel:focus-within .score-mark.best {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow:
+        0 10px 24px rgba(167, 59, 42, 0.16),
+        inset 0 0 0 1px rgba(167, 59, 42, 0.10);
     }
 
     .bibtex-section {
