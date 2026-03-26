@@ -620,7 +620,7 @@
     }
 
     .teaser-panel {
-      max-width: 860px;
+      max-width: 820px;
       margin: 0 auto;
     }
 
@@ -666,29 +666,48 @@
       overflow-x: auto;
     }
 
-    .hero-summary::after,
-    .metric-card::after,
-    .story-card::after,
-    .step-card::after,
-    .result-card::after,
-    .figure-panel::after,
-    .publication-links .button::after,
-    .eyebrow::after {
-      content: "";
+    .spark-target {
+      isolation: isolate;
+    }
+
+    .spark-target > .border-spark {
       position: absolute;
-      top: 0.55rem;
-      left: 0.65rem;
-      width: 3.35rem;
-      height: 0.66rem;
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 247, 210, 0.98) 26%, rgba(214, 166, 46, 0.98) 58%, rgba(255, 255, 255, 0.94) 74%, transparent 100%);
-      clip-path: polygon(0 70%, 10% 46%, 22% 62%, 36% 26%, 48% 58%, 62% 34%, 78% 68%, 90% 44%, 100% 56%, 100% 74%, 88% 86%, 76% 58%, 62% 80%, 48% 48%, 36% 72%, 22% 42%, 10% 80%, 0 92%);
-      border-radius: 999px;
-      transform: translateX(-150%) rotate(0deg) scale(0.94);
-      transform-origin: center center;
+      top: 0;
+      left: 0;
+      width: var(--spark-size, 20px);
+      height: var(--spark-size, 20px);
       opacity: 0;
       pointer-events: none;
-      filter: blur(0.28px) drop-shadow(0 0 4px rgba(214, 166, 46, 0.34)) drop-shadow(0 0 10px rgba(214, 166, 46, 0.16));
-      mix-blend-mode: normal;
+      z-index: 4;
+      will-change: transform, opacity;
+    }
+
+    .spark-target > .border-spark::before,
+    .spark-target > .border-spark::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .spark-target > .border-spark::before {
+      top: 12%;
+      left: 4%;
+      right: 4%;
+      height: 26%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 249, 219, 0.98) 16%, rgba(255, 210, 77, 0.98) 48%, rgba(214, 140, 25, 0.94) 84%, transparent 100%);
+      clip-path: polygon(0 70%, 10% 46%, 22% 62%, 36% 26%, 48% 58%, 62% 34%, 78% 68%, 90% 44%, 100% 56%, 100% 74%, 88% 86%, 76% 58%, 62% 80%, 48% 48%, 36% 72%, 22% 42%, 10% 80%, 0 92%);
+      filter: drop-shadow(0 0 5px rgba(255, 214, 90, 0.44)) drop-shadow(0 0 12px rgba(214, 140, 25, 0.22));
+    }
+
+    .spark-target > .border-spark::after {
+      width: 28%;
+      height: 28%;
+      top: 7%;
+      right: 8%;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 250, 228, 1) 0%, rgba(255, 214, 90, 0.9) 45%, rgba(255, 214, 90, 0) 100%);
+      filter: blur(0.25px) drop-shadow(0 0 6px rgba(255, 214, 90, 0.36));
     }
 
     .eyebrow:hover,
@@ -749,24 +768,9 @@
       box-shadow: 0 8px 18px rgba(17, 40, 70, 0.10);
     }
 
-    .hero-summary:hover::after,
-    .hero-summary:focus-within::after,
-    .metric-card:hover::after,
-    .metric-card:focus-within::after,
-    .story-card:hover::after,
-    .story-card:focus-within::after,
-    .step-card:hover::after,
-    .step-card:focus-within::after,
-    .result-card:hover::after,
-    .result-card:focus-within::after,
-    .figure-panel:hover::after,
-    .figure-panel:focus-within::after,
-    .publication-links .button:hover::after,
-    .publication-links .button:focus-visible::after,
-    .eyebrow:hover::after,
-    .eyebrow:focus-visible::after {
+    .spark-target.is-sparking > .border-spark {
       opacity: 1;
-      animation: electricFlow 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      animation: borderSparkOrbit 1.02s linear infinite;
     }
 
     @keyframes heroStreak {
@@ -913,43 +917,47 @@
       }
     }
 
-    @keyframes electricFlow {
+    @keyframes borderSparkOrbit {
       0% {
-        top: 0.55rem;
-        left: 0.65rem;
-        transform: translateX(-150%) rotate(0deg) scale(0.94);
+        transform: translate(var(--spark-top-x-start), var(--spark-top-y)) rotate(0deg) scale(0.82);
         opacity: 0;
       }
-      9% {
+      8% {
         opacity: 0.22;
       }
       18% {
-        top: 0.55rem;
-        left: calc(100% - 4.1rem);
-        transform: rotate(0deg) scale(1);
-        opacity: 0.82;
+        transform: translate(var(--spark-top-x-end), var(--spark-top-y)) rotate(0deg) scale(1);
+        opacity: 0.92;
       }
-      24% {
-        top: 0.95rem;
-        left: calc(100% - 1rem);
-        transform: rotate(90deg) scale(0.94);
-        opacity: 0.32;
+      23% {
+        transform: translate(var(--spark-right-x), var(--spark-right-y-start)) rotate(90deg) scale(0.86);
+        opacity: 0.30;
       }
-      34% {
-        top: calc(100% - 3.6rem);
-        left: calc(100% - 1rem);
-        transform: rotate(90deg) scale(1.02);
-        opacity: 0.9;
+      36% {
+        transform: translate(var(--spark-right-x), var(--spark-right-y-end)) rotate(90deg) scale(1.02);
+        opacity: 0.88;
       }
       41% {
-        top: calc(100% - 0.95rem);
-        left: calc(100% - 4.1rem);
-        transform: rotate(180deg) scale(0.95);
+        transform: translate(var(--spark-bottom-x-start), var(--spark-bottom-y)) rotate(180deg) scale(0.88);
         opacity: 0.34;
       }
-      55% {
-        top: calc(100% - 0.95rem);
-        left: 0.75rem;
+      56% {
+        transform: translate(var(--spark-bottom-x-end), var(--spark-bottom-y)) rotate(180deg) scale(1);
+        opacity: 0.84;
+      }
+      62% {
+        transform: translate(var(--spark-left-x), var(--spark-left-y-end)) rotate(270deg) scale(0.86);
+        opacity: 0.28;
+      }
+      77% {
+        transform: translate(var(--spark-left-x), var(--spark-left-y-start)) rotate(270deg) scale(0.98);
+        opacity: 0.82;
+      }
+      100% {
+        transform: translate(var(--spark-top-x-start), var(--spark-top-y)) rotate(360deg) scale(0.8);
+        opacity: 0;
+      }
+    }
         transform: rotate(180deg) scale(1.01);
         opacity: 0.78;
       }
@@ -1292,15 +1300,12 @@
       .title-accent,
       .title-accent::before,
       .title-accent::after,
-      .hero-summary::after,
-      .metric-card::after,
-      .story-card::after,
-      .step-card::after,
-      .result-card::after,
-      .figure-panel::after,
-      .publication-links .button::after,
-      .eyebrow::after {
+      .spark-target > .border-spark {
         animation: none !important;
+      }
+
+      .spark-target > .border-spark {
+        opacity: 0 !important;
       }
 
       .eyebrow,
@@ -1945,6 +1950,95 @@
         });
       }
     });
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sparkTargets = [
+      ...document.querySelectorAll(".hero-summary, .metric-card, .story-card, .step-card, .result-card, .figure-panel, .publication-links .button, .eyebrow")
+    ];
+
+    const syncSparkTrack = (element) => {
+      const width = element.clientWidth;
+      const height = element.clientHeight;
+      const minSide = Math.max(16, Math.min(width, height));
+      const sparkSize = Math.max(16, Math.min(22, Math.round(minSide * 0.12)));
+      const inset = Math.max(1, Math.min(3, Math.round(minSide * 0.02)));
+      const xStart = inset;
+      const xEnd = Math.max(inset, width - sparkSize - inset);
+      const yStart = inset;
+      const yEnd = Math.max(inset, height - sparkSize - inset);
+
+      element.style.setProperty("--spark-size", `${sparkSize}px`);
+      element.style.setProperty("--spark-top-x-start", `${xStart}px`);
+      element.style.setProperty("--spark-top-x-end", `${xEnd}px`);
+      element.style.setProperty("--spark-top-y", `${yStart}px`);
+      element.style.setProperty("--spark-right-x", `${xEnd}px`);
+      element.style.setProperty("--spark-right-y-start", `${yStart}px`);
+      element.style.setProperty("--spark-right-y-end", `${yEnd}px`);
+      element.style.setProperty("--spark-bottom-x-start", `${xEnd}px`);
+      element.style.setProperty("--spark-bottom-x-end", `${xStart}px`);
+      element.style.setProperty("--spark-bottom-y", `${yEnd}px`);
+      element.style.setProperty("--spark-left-x", `${xStart}px`);
+      element.style.setProperty("--spark-left-y-start", `${yStart}px`);
+      element.style.setProperty("--spark-left-y-end", `${yEnd}px`);
+    };
+
+    const activateSpark = (element) => {
+      if (prefersReducedMotion.matches) return;
+      syncSparkTrack(element);
+      element.classList.add("is-sparking");
+    };
+
+    const deactivateSpark = (element) => {
+      if (element.matches(":hover") || element.contains(document.activeElement)) return;
+      element.classList.remove("is-sparking");
+    };
+
+    const resizeObserver = typeof ResizeObserver === "function"
+      ? new ResizeObserver((entries) => {
+          entries.forEach(({ target }) => {
+            syncSparkTrack(target);
+          });
+        })
+      : null;
+
+    sparkTargets.forEach((element) => {
+      element.classList.add("spark-target");
+
+      const spark = document.createElement("span");
+      spark.className = "border-spark";
+      spark.setAttribute("aria-hidden", "true");
+      element.appendChild(spark);
+
+      syncSparkTrack(element);
+
+      if (resizeObserver) {
+        resizeObserver.observe(element);
+      }
+
+      element.addEventListener("mouseenter", () => activateSpark(element));
+      element.addEventListener("mouseleave", () => {
+        requestAnimationFrame(() => deactivateSpark(element));
+      });
+      element.addEventListener("focusin", () => activateSpark(element));
+      element.addEventListener("focusout", () => {
+        requestAnimationFrame(() => deactivateSpark(element));
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      sparkTargets.forEach((element) => syncSparkTrack(element));
+    });
+
+    const handleMotionChange = (event) => {
+      if (!event.matches) return;
+      sparkTargets.forEach((element) => element.classList.remove("is-sparking"));
+    };
+
+    if (typeof prefersReducedMotion.addEventListener === "function") {
+      prefersReducedMotion.addEventListener("change", handleMotionChange);
+    } else if (typeof prefersReducedMotion.addListener === "function") {
+      prefersReducedMotion.addListener(handleMotionChange);
+    }
   })();
 </script>
 
