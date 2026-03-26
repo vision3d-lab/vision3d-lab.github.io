@@ -8,6 +8,7 @@
   <title>LightSplat: Fast and Memory-Efficient Open-Vocabulary 3D Scene Understanding in Five Seconds</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -113,10 +114,26 @@
     .title-accent {
       position: relative;
       display: inline-block;
-      padding: 0 0.04em 0.02em;
+      padding: 0 0.05em 0.03em 0.02em;
       isolation: isolate;
-      color: #1a1f27;
       z-index: 0;
+      font-family: 'Oxanium', 'Google Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.04em;
+      letter-spacing: -0.055em;
+      line-height: 0.92;
+      color: #d7a119;
+      background: linear-gradient(180deg, #fffde7 0%, #ffe68c 22%, #ffcf47 48%, #f0ab22 72%, #b16b08 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 1.2px rgba(176, 106, 9, 0.92);
+      paint-order: stroke fill;
+      text-shadow:
+        0 0 1px rgba(255, 252, 232, 0.86),
+        0 0 6px rgba(242, 180, 30, 0.28),
+        0 0 16px rgba(242, 180, 30, 0.18);
+      transform: skewX(-9deg) translateY(0.02em);
     }
 
     .title-accent::before,
@@ -125,26 +142,26 @@
       position: absolute;
       pointer-events: none;
       z-index: -1;
-      background: linear-gradient(90deg, transparent 0%, rgba(214, 166, 46, 0.90) 10%, rgba(255, 247, 210, 0.98) 50%, rgba(214, 166, 46, 0.92) 90%, transparent 100%);
-      filter: drop-shadow(0 0 4px rgba(214, 166, 46, 0.20));
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 250, 219, 0.98) 14%, rgba(255, 213, 94, 0.98) 46%, rgba(214, 140, 25, 0.94) 82%, transparent 100%);
+      filter: drop-shadow(0 0 4px rgba(214, 155, 26, 0.26));
       mix-blend-mode: normal;
     }
 
     .title-accent::before {
-      left: -0.02em;
-      bottom: 0.06em;
-      width: 42%;
-      height: 0.34em;
-      clip-path: polygon(0 66%, 14% 44%, 23% 62%, 37% 20%, 49% 54%, 62% 30%, 75% 68%, 89% 42%, 100% 58%, 100% 70%, 88% 84%, 75% 58%, 62% 80%, 49% 46%, 37% 74%, 23% 42%, 14% 78%, 0 90%);
+      left: -0.03em;
+      bottom: 0.09em;
+      width: 38%;
+      height: 0.28em;
+      clip-path: polygon(0 70%, 13% 46%, 24% 60%, 37% 22%, 49% 52%, 63% 30%, 78% 66%, 91% 42%, 100% 56%, 100% 70%, 89% 82%, 77% 58%, 63% 76%, 49% 44%, 37% 68%, 24% 40%, 13% 74%, 0 88%);
       animation: titleCrackleTop 3.2s steps(1, end) infinite;
     }
 
     .title-accent::after {
-      right: -0.04em;
-      top: 0.04em;
-      width: 28%;
-      height: 0.3em;
-      clip-path: polygon(0 60%, 15% 34%, 29% 58%, 46% 16%, 61% 48%, 76% 26%, 91% 62%, 100% 44%, 100% 56%, 90% 78%, 76% 50%, 61% 72%, 46% 36%, 29% 74%, 15% 48%, 0 82%);
+      right: -0.02em;
+      top: 0.07em;
+      width: 24%;
+      height: 0.24em;
+      clip-path: polygon(0 62%, 15% 36%, 29% 58%, 46% 18%, 61% 46%, 77% 26%, 92% 62%, 100% 46%, 100% 56%, 90% 74%, 77% 48%, 61% 68%, 46% 34%, 29% 70%, 15% 46%, 0 80%);
       animation: titleCrackleBottom 2.8s steps(1, end) infinite;
     }
 
@@ -655,36 +672,19 @@
     .eyebrow::after {
       content: "";
       position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      padding: 1.25px;
-      background:
-        conic-gradient(from 132deg,
-          transparent 0deg,
-          transparent 34deg,
-          rgba(214, 166, 46, 0.00) 46deg,
-          rgba(255, 247, 210, 0.98) 58deg,
-          rgba(214, 166, 46, 0.98) 70deg,
-          rgba(255, 255, 255, 0.94) 78deg,
-          rgba(214, 166, 46, 0.00) 92deg,
-          transparent 134deg,
-          transparent 206deg,
-          rgba(214, 166, 46, 0.00) 222deg,
-          rgba(255, 247, 210, 0.78) 232deg,
-          rgba(214, 166, 46, 0.92) 242deg,
-          rgba(255, 255, 255, 0.84) 248deg,
-          rgba(214, 166, 46, 0.00) 258deg,
-          transparent 360deg);
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      transform: rotate(-26deg) scale(0.992);
+      top: 0.55rem;
+      left: 0.65rem;
+      width: 3.35rem;
+      height: 0.66rem;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 247, 210, 0.98) 26%, rgba(214, 166, 46, 0.98) 58%, rgba(255, 255, 255, 0.94) 74%, transparent 100%);
+      clip-path: polygon(0 70%, 10% 46%, 22% 62%, 36% 26%, 48% 58%, 62% 34%, 78% 68%, 90% 44%, 100% 56%, 100% 74%, 88% 86%, 76% 58%, 62% 80%, 48% 48%, 36% 72%, 22% 42%, 10% 80%, 0 92%);
+      border-radius: 999px;
+      transform: translateX(-150%) rotate(0deg) scale(0.94);
+      transform-origin: center center;
       opacity: 0;
       pointer-events: none;
-      filter: blur(0.4px) drop-shadow(0 0 6px rgba(214, 166, 46, 0.24)) drop-shadow(0 0 12px rgba(214, 166, 46, 0.12));
-      mix-blend-mode: screen;
+      filter: blur(0.28px) drop-shadow(0 0 4px rgba(214, 166, 46, 0.34)) drop-shadow(0 0 10px rgba(214, 166, 46, 0.16));
+      mix-blend-mode: normal;
     }
 
     .eyebrow:hover,
@@ -860,35 +860,60 @@
 
     @keyframes electricFlow {
       0% {
-        transform: rotate(-28deg) scale(0.988);
+        top: 0.55rem;
+        left: 0.65rem;
+        transform: translateX(-150%) rotate(0deg) scale(0.94);
         opacity: 0;
       }
-      10% {
+      9% {
         opacity: 0.22;
       }
       18% {
-        opacity: 0.76;
-      }
-      24% {
-        opacity: 0.28;
-      }
-      34% {
-        opacity: 0.92;
-      }
-      41% {
-        opacity: 0.38;
-      }
-      55% {
+        top: 0.55rem;
+        left: calc(100% - 4.1rem);
+        transform: rotate(0deg) scale(1);
         opacity: 0.82;
       }
+      24% {
+        top: 0.95rem;
+        left: calc(100% - 1rem);
+        transform: rotate(90deg) scale(0.94);
+        opacity: 0.32;
+      }
+      34% {
+        top: calc(100% - 3.6rem);
+        left: calc(100% - 1rem);
+        transform: rotate(90deg) scale(1.02);
+        opacity: 0.9;
+      }
+      41% {
+        top: calc(100% - 0.95rem);
+        left: calc(100% - 4.1rem);
+        transform: rotate(180deg) scale(0.95);
+        opacity: 0.34;
+      }
+      55% {
+        top: calc(100% - 0.95rem);
+        left: 0.75rem;
+        transform: rotate(180deg) scale(1.01);
+        opacity: 0.78;
+      }
       62% {
-        opacity: 0.30;
+        top: calc(100% - 3.5rem);
+        left: 0.35rem;
+        transform: rotate(270deg) scale(0.94);
+        opacity: 0.28;
       }
       76% {
-        opacity: 0.68;
+        top: 0.95rem;
+        left: 0.35rem;
+        transform: rotate(270deg) scale(1);
+        opacity: 0.7;
       }
       100% {
-        transform: rotate(332deg) scale(1.01);
+        top: 0.55rem;
+        left: 0.65rem;
+        transform: translateX(-120%) rotate(360deg) scale(0.9);
         opacity: 0;
       }
     }
@@ -1189,6 +1214,10 @@
       .publication-title,
       .title.is-1 {
         font-size: 2rem;
+      }
+
+      .title-accent {
+        -webkit-text-stroke: 0.95px rgba(176, 106, 9, 0.9);
       }
 
       .title-line-bottom {
