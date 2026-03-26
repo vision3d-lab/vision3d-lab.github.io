@@ -480,6 +480,17 @@
       text-align: justify;
     }
 
+    .caption-label {
+      font-weight: 700;
+      color: var(--navy-deep);
+    }
+
+    .caption-title {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--navy-deep);
+    }
+
     .table-panel {
       padding: 0.65rem;
       overflow-x: auto;
@@ -586,7 +597,7 @@
     .paper-table-title {
       font-family: 'Google Sans', sans-serif;
       font-size: 1.08rem;
-      font-weight: 700;
+      font-weight: 500;
       color: var(--navy-deep);
       margin-bottom: 0.2rem;
     }
@@ -886,7 +897,7 @@
     <div class="figure-panel teaser-panel">
       <img src="./images/paper_figures/fig1.png" alt="LightSplat teaser figure comparing speed, accuracy, and memory overhead">
       <p class="figure-caption">
-        <strong>Figure 1.</strong> <strong>Comprehensive comparison of speed, performance, and memory overhead.</strong> We evaluate recent open-vocabulary 3D scene understanding models in terms of <strong>distillation time</strong> (x-axis), <strong>segmentation performance</strong> (y-axis), and <strong>memory overhead</strong> (circle size). <strong>LightSplat</strong> achieves <strong>50&times; faster</strong> feature distillation, higher accuracy, and <strong>64&times; lower memory usage</strong>. <strong>LUDVIG</strong>'s circle is shown at half size because it is too large to display at full scale.
+        <span class="caption-label">Figure 1.</span> <span class="caption-title">Comprehensive comparison of speed, performance, and memory overhead.</span> We evaluate recent open-vocabulary 3D scene understanding models in terms of <strong>distillation time</strong> (x-axis), <strong>segmentation performance</strong> (y-axis), and <strong>memory overhead</strong> (circle size). <strong>LightSplat</strong> achieves <strong>50&times; faster</strong> feature distillation, higher accuracy, and <strong>64&times; lower memory usage</strong>. <strong>LUDVIG</strong>'s circle is shown at half size because it is too large to display at full scale.
       </p>
     </div>
   </div>
@@ -965,7 +976,7 @@
       <div class="minor-title">Overall Framework of LightSplat</div>
       <img src="./images/paper_figures/fig2.png" alt="Overall framework of LightSplat">
       <p class="figure-caption">
-        <strong>Figure 2. Overall framework of LightSplat.</strong> From multi-view images, we extract <strong>SAM masks</strong> and their corresponding <strong>CLIP features</strong>, then align them to the 3D scene through <strong>indexed feature injection</strong>. <strong>3D-aware mask filtering</strong> removes unreliable masks, while <strong>index-feature mapping</strong> and <strong>context-aware 3D clustering</strong> build compact object-level representations for efficient, training-free open-vocabulary 3D scene understanding.
+        <span class="caption-label">Figure 2.</span> <span class="caption-title">Overall framework of LightSplat.</span> From multi-view images, we extract <strong>SAM masks</strong> and their corresponding <strong>CLIP features</strong>, then align them to the 3D scene through <strong>indexed feature injection</strong>. <strong>3D-aware mask filtering</strong> removes unreliable masks, while <strong>index-feature mapping</strong> and <strong>context-aware 3D clustering</strong> build compact object-level representations for efficient, training-free open-vocabulary 3D scene understanding.
       </p>
     </div>
 
@@ -1008,7 +1019,7 @@
       <div class="minor-title">Fast Inference via Cluster-Feature Mapping</div>
       <img src="./images/paper_figures/fig3.png" alt="Fast inference via cluster-feature mapping">
       <p class="figure-caption">
-        <strong>Figure 3. Fast inference via cluster-feature mapping.</strong> During inference, the text query is compared with a compact set of <strong>cluster features</strong> instead of all Gaussians or pixels, enabling fast retrieval with compact object-level representations.
+        <span class="caption-label">Figure 3.</span> <span class="caption-title">Fast inference via cluster-feature mapping.</span> During inference, the text query is compared with a compact set of <strong>cluster features</strong> instead of all Gaussians or pixels, enabling fast retrieval with compact object-level representations.
       </p>
     </div>
   </div>
@@ -1023,7 +1034,7 @@
 
     <div class="table-stack">
       <div class="table-panel paper-table-panel">
-        <div class="paper-table-title">Table 1. Quantitative Comparison for 3D Object Selection on LERF-OVS</div>
+        <div class="paper-table-title"><span class="caption-label">Table 1.</span> <span class="caption-title">Quantitative Comparison for 3D Object Selection on LERF-OVS</span></div>
         <div class="paper-table-subhead">
           Best and second-best results in each column are highlighted. <strong>FD Time</strong> denotes feature distillation time; values over 20 minutes are rounded to the ones place.
         </div>
@@ -1090,7 +1101,7 @@
       </div>
 
       <div class="table-panel paper-table-panel">
-        <div class="paper-table-title">Table 2. Quantitative Comparison for 3D Object Selection on DL3DV-OVS</div>
+        <div class="paper-table-title"><span class="caption-label">Table 2.</span> <span class="caption-title">Quantitative Comparison for 3D Object Selection on DL3DV-OVS</span></div>
         <div class="paper-table-subhead">
           Best and second-best results in each column are highlighted. <strong>FD Time</strong> denotes feature distillation time; values over 20 minutes are rounded to the ones place.
         </div>
@@ -1151,7 +1162,7 @@
       </div>
 
       <div class="table-panel paper-table-panel">
-        <div class="paper-table-title">Table 3. Quantitative Comparison for 3D Semantic Segmentation on ScanNet</div>
+        <div class="paper-table-title"><span class="caption-label">Table 3.</span> <span class="caption-title">Quantitative Comparison for 3D Semantic Segmentation on ScanNet</span></div>
         <div class="paper-table-subhead">
           Best and second-best results in each column are highlighted. <strong>FD Time</strong>, <strong>Runtime</strong>, and <strong>Memory</strong> denote feature distillation time, average inference time per text query, and feature size per Gaussian, respectively.
         </div>
@@ -1225,21 +1236,21 @@
         <div class="minor-title">LERF-OVS: Detailed 3D Object Selection</div>
         <img src="./images/paper_figures/fig4.png" alt="Qualitative comparison on LERF-OVS">
         <p class="figure-caption">
-          <strong>Figure 4.</strong> Qualitative comparison on <strong>LERF-OVS</strong>. Across different scenes and text queries, LightSplat produces detailed object boundaries while remaining substantially faster than prior methods.
+          <span class="caption-label">Figure 4.</span> <span class="caption-title">Qualitative comparison on LERF-OVS.</span> Across different scenes and text queries, LightSplat produces detailed object boundaries while remaining substantially faster than prior methods.
         </p>
       </div>
       <div class="figure-panel">
         <div class="minor-title">DL3DV-OVS: Robustness in Larger Scenes</div>
         <img src="./images/paper_figures/fig5.png" alt="Qualitative comparison on DL3DV-OVS">
         <p class="figure-caption">
-          <strong>Figure 5.</strong> Qualitative comparison on <strong>DL3DV-OVS</strong>. In large and complex indoor-outdoor scenes, LightSplat provides reliable selections and clear object boundaries, even when many similar objects appear in the same scene.
+          <span class="caption-label">Figure 5.</span> <span class="caption-title">Qualitative comparison on DL3DV-OVS.</span> In large and complex indoor-outdoor scenes, LightSplat provides reliable selections and clear object boundaries, even when many similar objects appear in the same scene.
         </p>
       </div>
       <div class="figure-panel">
         <div class="minor-title">ScanNet: Cleaner Semantic Segmentation</div>
         <img src="./images/paper_figures/fig6.png" alt="Qualitative comparison on ScanNet">
         <p class="figure-caption">
-          <strong>Figure 6.</strong> Qualitative comparison on <strong>ScanNet</strong>. LightSplat more effectively captures both object-level semantics and large-area regions, showing robust performance across diverse real-world scenes and text queries.
+          <span class="caption-label">Figure 6.</span> <span class="caption-title">Qualitative comparison on ScanNet.</span> LightSplat more effectively captures both object-level semantics and large-area regions, showing robust performance across diverse real-world scenes and text queries.
         </p>
       </div>
     </div>
@@ -1254,7 +1265,7 @@
     </p>
 
     <div class="table-panel">
-      <div class="paper-table-title">Table 4. Ablation Study on LERF-OVS</div>
+      <div class="paper-table-title"><span class="caption-label">Table 4.</span> <span class="caption-title">Ablation Study on LERF-OVS</span></div>
       <div class="paper-table-subhead">
         Each component improves performance and also contributes to the fast <strong>FD Time</strong> of the full model. FD Time denotes feature distillation time.
       </div>
