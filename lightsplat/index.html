@@ -675,117 +675,70 @@
       isolation: isolate;
     }
 
-    .spark-target > .border-spark {
+    .spark-target > .spark-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 34px;
-      height: 18px;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       opacity: 0;
       pointer-events: none;
       z-index: 4;
-      transform-origin: center center;
       transition: opacity 0.14s ease;
-      will-change: transform, opacity;
-    }
-
-    .spark-target > .border-spark svg {
-      display: block;
-      width: 100%;
-      height: 100%;
       overflow: visible;
-      animation: sparkFlicker 0.42s steps(2, end) infinite;
     }
 
-    .spark-target > .border-spark .spark-glow {
+    .spark-target.is-sparking > .spark-overlay {
+      opacity: 1;
+    }
+
+    .spark-target > .spark-overlay .spark-arc {
+      animation: electricArcLife 0.22s cubic-bezier(0.18, 0.84, 0.34, 1) forwards;
+      transform-origin: center center;
+      will-change: opacity;
+    }
+
+    .spark-target > .spark-overlay .spark-arc-glow {
       fill: none;
-      stroke: rgba(255, 216, 101, 0.38);
-      stroke-width: 5.3;
+      stroke: rgba(255, 220, 126, 0.24);
+      stroke-width: 5.8;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: blur(0.4px);
+      filter: blur(0.75px);
     }
 
-    .spark-target > .border-spark .spark-mid {
+    .spark-target > .spark-overlay .spark-arc-mid {
       fill: none;
-      stroke: rgba(255, 197, 58, 0.92);
-      stroke-width: 2.7;
+      stroke: rgba(255, 200, 69, 0.84);
+      stroke-width: 2.3;
       stroke-linecap: round;
       stroke-linejoin: round;
-      filter: drop-shadow(0 0 4px rgba(255, 202, 70, 0.32));
+      filter: drop-shadow(0 0 4px rgba(255, 204, 82, 0.18));
     }
 
-    .spark-target > .border-spark .spark-core {
+    .spark-target > .spark-overlay .spark-arc-core {
       fill: none;
       stroke: rgba(255, 251, 229, 0.98);
-      stroke-width: 1.35;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .spark-target > .border-spark .spark-branch {
-      fill: none;
-      stroke: rgba(255, 235, 159, 0.86);
       stroke-width: 1.1;
       stroke-linecap: round;
       stroke-linejoin: round;
-      opacity: 0.9;
     }
 
-    .spark-target > .border-spark .spark-tip {
+    .spark-target > .spark-overlay .spark-arc-branch {
+      fill: none;
+      stroke: rgba(255, 231, 156, 0.78);
+      stroke-width: 0.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.82;
+    }
+
+    .spark-target > .spark-overlay .spark-arc-tip {
       fill: rgba(255, 252, 236, 0.98);
-      filter: drop-shadow(0 0 4px rgba(255, 225, 118, 0.38));
+      filter: drop-shadow(0 0 4px rgba(255, 223, 124, 0.24));
     }
 
-    .spark-target > .border-spark .spark-trace {
-      fill: rgba(255, 216, 101, 0.74);
-    }
-
-    .spark-target > .click-spark-burst {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 56px;
-      height: 56px;
-      pointer-events: none;
-      z-index: 5;
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.38);
-      will-change: transform, opacity;
-      animation: clickSparkBurst 0.56s cubic-bezier(0.16, 0.84, 0.32, 1) forwards;
-    }
-
-    .spark-target > .click-spark-burst svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-      animation: clickSparkFlicker 0.22s steps(2, end) 2;
-    }
-
-    .spark-target > .click-spark-burst .burst-glow {
-      fill: none;
-      stroke: rgba(255, 218, 115, 0.34);
-      stroke-width: 7;
-      stroke-linecap: round;
-      filter: blur(1px);
-    }
-
-    .spark-target > .click-spark-burst .burst-ray {
-      fill: none;
-      stroke: rgba(255, 198, 58, 0.96);
-      stroke-width: 2.3;
-      stroke-linecap: round;
-      filter: drop-shadow(0 0 5px rgba(255, 203, 73, 0.3));
-    }
-
-    .spark-target > .click-spark-burst .burst-core {
-      fill: rgba(255, 251, 233, 0.98);
-      filter: drop-shadow(0 0 6px rgba(255, 219, 120, 0.32));
-    }
-
-    .spark-target > .click-spark-burst .burst-dot {
-      fill: rgba(255, 220, 118, 0.88);
+    .spark-target > .spark-overlay .spark-arc-trace {
+      fill: rgba(255, 216, 101, 0.58);
     }
 
     .eyebrow:hover,
@@ -994,52 +947,18 @@
       }
     }
 
-    @keyframes sparkFlicker {
-      0%, 100% {
-        opacity: 0.74;
-      }
-      16% {
-        opacity: 1;
-      }
-      34% {
-        opacity: 0.58;
-      }
-      48% {
-        opacity: 0.94;
-      }
-      72% {
-        opacity: 0.66;
-      }
-    }
-
-    @keyframes clickSparkBurst {
+    @keyframes electricArcLife {
       0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.36);
       }
-      16% {
+      12% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(0.9);
       }
-      42% {
-        opacity: 0.96;
-        transform: translate(-50%, -50%) scale(1.08);
+      36% {
+        opacity: 0.88;
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1.45);
-      }
-    }
-
-    @keyframes clickSparkFlicker {
-      0%, 100% {
-        opacity: 0.82;
-      }
-      45% {
-        opacity: 1;
-      }
-      70% {
-        opacity: 0.56;
       }
     }
 
@@ -1362,18 +1281,12 @@
       .title-accent,
       .title-accent::before,
       .title-accent::after,
-      .spark-target > .border-spark,
-      .spark-target > .border-spark svg,
-      .spark-target > .click-spark-burst,
-      .spark-target > .click-spark-burst svg {
+      .spark-target > .spark-overlay,
+      .spark-target > .spark-overlay .spark-arc {
         animation: none !important;
       }
 
-      .spark-target > .border-spark {
-        opacity: 0 !important;
-      }
-
-      .spark-target > .click-spark-burst {
+      .spark-target > .spark-overlay {
         opacity: 0 !important;
       }
 
