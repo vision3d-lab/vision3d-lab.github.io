@@ -2264,7 +2264,7 @@
 
     const buildClickSparkArc = (x, y) => {
       const angle = randomBetween(0, Math.PI * 2);
-      const length = randomBetween(12, 26);
+      const length = randomBetween(9, 20);
       const segments = randomInt(3, 4);
       const points = [{ x, y }];
       const dirX = Math.cos(angle);
@@ -2305,18 +2305,18 @@
       const state = ensureGlobalSparkCanvas();
       resizeGlobalSparkCanvas();
 
-      const arcs = Array.from({ length: randomInt(3, 5) }, () => buildClickSparkArc(x, y));
-      const particles = Array.from({ length: randomInt(18, 28) }, () => {
+      const arcs = Array.from({ length: randomInt(3, 4) }, () => buildClickSparkArc(x, y));
+      const particles = Array.from({ length: randomInt(14, 22) }, () => {
         const angle = randomBetween(0, Math.PI * 2);
-        const velocity = randomBetween(2.2, 5.8);
+        const velocity = randomBetween(1.8, 4.6);
         return {
           x,
           y,
           vx: Math.cos(angle) * velocity,
           vy: Math.sin(angle) * velocity - randomBetween(0.1, 0.8),
           age: 0,
-          life: randomBetween(140, 260),
-          size: randomBetween(0.9, 2.1),
+          life: randomBetween(120, 220),
+          size: randomBetween(0.8, 1.6),
           drag: randomBetween(0.94, 0.97),
           gravity: randomBetween(0.04, 0.085),
         };
@@ -2326,8 +2326,8 @@
         x,
         y,
         age: 0,
-        life: randomBetween(130, 210),
-        flashRadius: randomBetween(10, 18),
+        life: randomBetween(120, 180),
+        flashRadius: randomBetween(7, 12),
         arcs,
         particles,
       });
@@ -2344,39 +2344,39 @@
       ctx.lineJoin = "round";
 
       ctx.strokeStyle = `rgba(255, 210, 118, ${0.18 + alpha * 0.12})`;
-      ctx.lineWidth = 4.4;
-      ctx.shadowBlur = 9;
+      ctx.lineWidth = 3.2;
+      ctx.shadowBlur = 7;
       ctx.shadowColor = `rgba(255, 209, 110, ${alpha * 0.22})`;
       traceSmoothPath(ctx, arc.points);
       ctx.stroke();
 
       ctx.strokeStyle = `rgba(255, 184, 52, ${alpha * 0.76})`;
-      ctx.lineWidth = 1.9;
+      ctx.lineWidth = 1.45;
       ctx.shadowBlur = 0;
       traceSmoothPath(ctx, arc.points);
       ctx.stroke();
 
       ctx.strokeStyle = `rgba(255, 252, 239, ${alpha * 0.96})`;
-      ctx.lineWidth = 0.82;
+      ctx.lineWidth = 0.68;
       traceSmoothPath(ctx, arc.points);
       ctx.stroke();
 
       if (arc.branch) {
         ctx.strokeStyle = `rgba(255, 232, 150, ${alpha * 0.56})`;
-        ctx.lineWidth = 0.72;
+        ctx.lineWidth = 0.58;
         ctx.beginPath();
         ctx.moveTo(arc.branch[0].x, arc.branch[0].y);
         ctx.lineTo(arc.branch[1].x, arc.branch[1].y);
         ctx.stroke();
       }
 
-      const flash = ctx.createRadialGradient(arc.tip.x, arc.tip.y, 0, arc.tip.x, arc.tip.y, 4.5);
+      const flash = ctx.createRadialGradient(arc.tip.x, arc.tip.y, 0, arc.tip.x, arc.tip.y, 3.4);
       flash.addColorStop(0, `rgba(255, 252, 238, ${alpha * 0.96})`);
       flash.addColorStop(0.55, `rgba(255, 218, 106, ${alpha * 0.26})`);
       flash.addColorStop(1, "rgba(255, 218, 106, 0)");
       ctx.fillStyle = flash;
       ctx.beginPath();
-      ctx.arc(arc.tip.x, arc.tip.y, 4.5, 0, Math.PI * 2);
+      ctx.arc(arc.tip.x, arc.tip.y, 3.4, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.restore();
@@ -2385,7 +2385,7 @@
     const drawGlobalSparkParticle = (ctx, particle) => {
       const life = Math.max(0, 1 - (particle.age / particle.life));
       const alpha = Math.pow(life, 0.75);
-      const tailLength = particle.size * (2.6 + life * 2.4);
+      const tailLength = particle.size * (2.1 + life * 1.8);
       const tailX = particle.x - particle.vx * tailLength;
       const tailY = particle.y - particle.vy * tailLength;
 
@@ -2393,8 +2393,8 @@
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.strokeStyle = `rgba(255, 180, 72, ${alpha * 0.52})`;
-      ctx.lineWidth = particle.size * 1.8;
-      ctx.shadowBlur = 8;
+      ctx.lineWidth = particle.size * 1.45;
+      ctx.shadowBlur = 6;
       ctx.shadowColor = `rgba(255, 174, 72, ${alpha * 0.28})`;
       ctx.beginPath();
       ctx.moveTo(tailX, tailY);
