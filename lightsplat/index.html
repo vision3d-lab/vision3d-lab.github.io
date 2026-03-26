@@ -620,16 +620,37 @@
       color: inherit;
     }
 
-    .paper-results-table td.best-cell {
-      background: linear-gradient(180deg, #fff1f1 0%, #ffe1e1 100%) !important;
-      color: #b42318;
-      font-weight: 700;
+    .paper-results-table td.best-cell,
+    .paper-results-table td.second-cell {
+      background: transparent !important;
+      color: inherit;
+      font-weight: inherit;
     }
 
-    .paper-results-table td.second-cell {
-      background: linear-gradient(180deg, #fff7ec 0%, #ffe6c7 100%) !important;
-      color: #b54708;
+    .score-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3.3rem;
+      padding: 0.22rem 0.48rem;
+      border-radius: 999px;
       font-weight: 700;
+      line-height: 1.15;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+    }
+
+    .score-mark.best {
+      background: rgba(183, 63, 47, 0.10);
+      color: #a73b2a;
+      box-shadow: inset 0 0 0 1px rgba(167, 59, 42, 0.09);
+    }
+
+    .score-mark.second {
+      background: rgba(193, 132, 38, 0.12);
+      color: #9d671d;
+      box-shadow: inset 0 0 0 1px rgba(157, 103, 29, 0.10);
     }
 
     .bibtex-section {
@@ -1269,6 +1290,17 @@
       return uniq;
     };
 
+    const applyScoreMark = (cell, kind) => {
+      const text = cell.textContent.trim();
+      if (!text) return;
+
+      cell.textContent = "";
+      const mark = document.createElement("span");
+      mark.className = `score-mark ${kind}`;
+      mark.textContent = text;
+      cell.appendChild(mark);
+    };
+
     document.querySelectorAll(".paper-results-table").forEach((table) => {
       const lowerCols = new Set(
         (table.dataset.lowerCols || "")
@@ -1303,8 +1335,10 @@
         entries.forEach(({ cell, value }) => {
           if (value === best) {
             cell.classList.add("best-cell");
+            applyScoreMark(cell, "best");
           } else if (second !== null && value === second) {
             cell.classList.add("second-cell");
+            applyScoreMark(cell, "second");
           }
         });
       }
