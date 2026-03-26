@@ -489,18 +489,30 @@
     }
 
     .paper-results-table tbody tr.ours-row td {
-      background: rgba(27, 66, 125, 0.055);
+      background: transparent;
     }
 
     .paper-results-table tbody tr.ours-row td:first-child {
       color: var(--navy-deep);
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .mean-cell,
     .time-cell {
+      font-weight: inherit;
+      color: inherit;
+    }
+
+    .paper-results-table td.best-cell {
+      background: linear-gradient(180deg, #fff1f1 0%, #ffe1e1 100%) !important;
+      color: #b42318;
       font-weight: 700;
-      color: var(--navy-deep);
+    }
+
+    .paper-results-table td.second-cell {
+      background: linear-gradient(180deg, #fff7ec 0%, #ffe6c7 100%) !important;
+      color: #b54708;
+      font-weight: 700;
     }
 
     .bibtex-section {
@@ -819,7 +831,7 @@
         <div class="paper-table-subhead">
           Reproduced from the paper. The table compares object selection quality and feature distillation time across recent methods.
         </div>
-        <table class="results-table paper-results-table">
+        <table class="results-table paper-results-table" data-lower-cols="11">
           <thead>
             <tr>
               <th rowspan="2">Method</th>
@@ -886,7 +898,7 @@
         <div class="paper-table-subhead">
           Reproduced from the paper. The table emphasizes robustness on larger indoor-outdoor scenes with more complex object layouts.
         </div>
-        <table class="results-table paper-results-table">
+        <table class="results-table paper-results-table" data-lower-cols="11">
           <thead>
             <tr>
               <th rowspan="2">Method</th>
@@ -947,7 +959,7 @@
         <div class="paper-table-subhead">
           Reproduced from the paper. Runtime and memory show that LightSplat remains efficient even when the task shifts from object selection to full semantic segmentation.
         </div>
-        <table class="results-table paper-results-table">
+        <table class="results-table paper-results-table" data-lower-cols="7,8,9">
           <thead>
             <tr>
               <th rowspan="2">Method</th>
@@ -1115,6 +1127,73 @@
     </div>
   </div>
 </footer>
+
+<script>
+  (function () {
+    const parseValue = (text) => {
+      const raw = text.trim();
+      if (!raw || raw === "-") return null;
+
+      const minuteMatch = raw.match(/^([0-9]*\.?[0-9]+)\s*min$/i);
+      if (minuteMatch) return parseFloat(minuteMatch[1]) * 60;
+
+      const secondMatch = raw.match(/^([0-9]*\.?[0-9]+)\s*s$/i);
+      if (secondMatch) return parseFloat(secondMatch[1]);
+
+      const numericMatch = raw.match(/^-?[0-9]*\.?[0-9]+$/);
+      if (numericMatch) return parseFloat(raw);
+
+      return null;
+    };
+
+    const uniqueSorted = (values, lowerIsBetter) => {
+      const uniq = [...new Set(values)];
+      uniq.sort((a, b) => lowerIsBetter ? a - b : b - a);
+      return uniq;
+    };
+
+    document.querySelectorAll(".paper-results-table").forEach((table) => {
+      const lowerCols = new Set(
+        (table.dataset.lowerCols || "")
+          .split(",")
+          .map((v) => v.trim())
+          .filter(Boolean)
+          .map((v) => Number(v))
+      );
+
+      const rows = [...table.querySelectorAll("tbody tr")];
+      if (!rows.length) return;
+
+      const colCount = Math.max(...rows.map((row) => row.cells.length));
+
+      for (let col = 1; col < colCount; col += 1) {
+        const entries = rows
+          .map((row) => {
+            const cell = row.cells[col];
+            if (!cell) return null;
+            const value = parseValue(cell.textContent);
+            if (value === null) return null;
+            return { cell, value };
+          })
+          .filter(Boolean);
+
+        if (!entries.length) continue;
+
+        const ordered = uniqueSorted(entries.map((entry) => entry.value), lowerCols.has(col));
+        const best = ordered[0];
+        const second = ordered.length > 1 ? ordered[1] : null;
+
+        entries.forEach(({ cell, value }) => {
+          if (value === best) {
+            cell.classList.add("best-cell");
+          } else if (second !== null && value === second) {
+            cell.classList.add("second-cell");
+          }
+        });
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
