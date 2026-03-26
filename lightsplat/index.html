@@ -626,6 +626,12 @@
       vertical-align: middle;
     }
 
+    .paper-results-table thead th:not(:first-child),
+    .paper-results-table tbody td:not(:first-child) {
+      text-align: center;
+      vertical-align: middle;
+    }
+
     .header-unit {
       display: block;
       margin-top: 0.14rem;
@@ -892,10 +898,10 @@
             <strong>Open-vocabulary 3D scene understanding</strong> enables users to segment novel objects in complex 3D environments through natural language. However, existing approaches remain <strong>slow</strong>, <strong>memory-intensive</strong>, and overly complex due to iterative optimization and dense per-Gaussian feature assignments.
           </p>
           <p>
-            To address this, we propose <strong>LightSplat</strong>, a <strong>fast</strong> and <strong>memory-efficient</strong> <strong>training-free framework</strong> that injects compact <strong>2-byte semantic indices</strong> into 3D representations from multi-view images. By assigning semantic indices only to salient regions and managing them with a <strong>lightweight index-feature mapping</strong>, LightSplat eliminates costly feature optimization and storage overhead.
+            To address this, we propose <strong>LightSplat</strong>, a <strong>fast and memory-efficient training-free framework</strong> that injects compact <strong>2-byte semantic indices</strong> into 3D representations from multi-view images. By assigning semantic indices only to salient regions and managing them with a <strong>lightweight index-feature mapping</strong>, LightSplat eliminates costly feature optimization and storage overhead.
           </p>
           <p>
-            We further ensure <strong>semantic consistency</strong> and <strong>efficient inference</strong> via <strong>single-step clustering</strong> that links geometrically and semantically related masks in 3D. We evaluate our method on LERF-OVS, ScanNet, and <strong>DL3DV-OVS</strong> across complex indoor-outdoor scenes, achieving <strong>state-of-the-art performance</strong> with up to <strong>50-400&times; speedup</strong> and <strong>64&times; lower memory</strong>.
+            We further ensure <strong>semantic consistency and efficient inference</strong> via <strong>single-step clustering</strong> that links geometrically and semantically related masks in 3D. We evaluate our method on LERF-OVS, ScanNet, and <strong>DL3DV-OVS</strong> across complex indoor-outdoor scenes, achieving <strong>state-of-the-art performance</strong> with up to <strong>50-400&times; speedup</strong> and <strong>64&times; lower memory</strong>.
           </p>
         </div>
       </div>
@@ -907,7 +913,7 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">Why Existing Methods Do Not Scale</h2>
     <p class="section-lead">
-      The bottleneck is not just accuracy. Existing open-vocabulary 3D pipelines usually pay for semantics in the most expensive possible way: repeated optimization, dense language features on every Gaussian, and supervision that is still tied too closely to 2D rendering.
+      The bottleneck is not just accuracy. Existing open-vocabulary 3D pipelines usually pay for semantics in the most expensive possible way: repeated optimization, dense language features on every Gaussian, and supervision that remains overly dependent on 2D rendering.
     </p>
     <div class="story-grid">
       <div class="story-card accent-blue">
@@ -948,13 +954,14 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">How LightSplat Works</h2>
     <p class="section-lead">
-      LightSplat directly links 2D semantics to 3D structure through compact mask indices. Instead of optimizing dense features on every Gaussian, it injects lightweight indices, filters unreliable masks, and groups related Gaussians into coherent <strong>3D object clusters</strong>. This design enables efficient open-vocabulary 3D understanding without iterative training.
+      LightSplat directly links 2D semantics to 3D structure through <strong>compact mask indices</strong>. Instead of optimizing dense features on every Gaussian, it <strong>injects lightweight indices, filters unreliable masks</strong>, and groups related Gaussians into coherent <strong>3D object clusters</strong>. This design enables efficient open-vocabulary 3D understanding without iterative training.
     </p>
 
     <div class="figure-panel method-figure">
+      <div class="minor-title">Overall Framework of LightSplat</div>
       <img src="./images/paper_figures/fig2.png" alt="Overall framework of LightSplat">
       <p class="figure-caption">
-        <strong>Figure 2.</strong> From multi-view images, we extract <strong>SAM masks</strong> and their corresponding <strong>CLIP features</strong>, then align them to the 3D scene through indexed feature injection. <strong>3D-aware mask filtering</strong> removes unreliable masks, while <strong>index-feature mapping</strong> and <strong>context-aware 3D clustering</strong> build compact object-level representations for efficient, training-free open-vocabulary 3D scene understanding.
+        <strong>Figure 2. Overall framework of LightSplat.</strong> From multi-view images, we extract <strong>SAM masks</strong> and their corresponding <strong>CLIP features</strong>, then align them to the 3D scene through <strong>indexed feature injection</strong>. <strong>3D-aware mask filtering</strong> removes unreliable masks, while <strong>index-feature mapping</strong> and <strong>context-aware 3D clustering</strong> build compact object-level representations for efficient, training-free open-vocabulary 3D scene understanding.
       </p>
     </div>
 
@@ -994,10 +1001,10 @@
     </div>
 
     <div class="figure-panel method-figure mt-5">
-      <div class="minor-title">Fast Inference by Design</div>
+      <div class="minor-title">Fast Inference via Cluster-Feature Mapping</div>
       <img src="./images/paper_figures/fig3.png" alt="Fast inference via cluster-feature mapping">
       <p class="figure-caption">
-        <strong>Figure 3.</strong> During inference, the text query is compared with a compact set of <strong>cluster features</strong> rather than all Gaussians or pixels. This reduces query-time comparisons to <strong>below 0.1%</strong> of naive Gaussian-level inference, enabling fast retrieval with compact object-level representations.
+        <strong>Figure 3. Fast inference via cluster-feature mapping.</strong> During inference, the text query is compared with a compact set of <strong>cluster features</strong> instead of all Gaussians or pixels, enabling fast retrieval with compact object-level representations.
       </p>
     </div>
   </div>
