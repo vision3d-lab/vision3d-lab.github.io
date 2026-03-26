@@ -94,6 +94,14 @@
       color: var(--navy-deep);
     }
 
+    .publication-authors.is-names {
+      color: #4c5d71;
+    }
+
+    .publication-authors.is-names a {
+      color: #31465f;
+    }
+
     .publication-footnotes {
       display: flex;
       justify-content: center;
@@ -590,6 +598,10 @@
       min-width: 1380px;
     }
 
+    .ablation-results-table {
+      min-width: 640px;
+    }
+
     .paper-results-table th,
     .paper-results-table td {
       font-size: 0.9rem;
@@ -731,7 +743,7 @@
           <div class="eyebrow">Accepted to CVPR 2026</div>
           <h1 class="title is-1 publication-title"><span class="title-line"><img src="./images/paper_figures/lightning.png" class="title-icon" alt="">LightSplat: Fast and Memory-Efficient</span><span class="title-line title-line-bottom">Open-Vocabulary 3D Scene Understanding in Five Seconds</span></h1>
 
-          <div class="is-size-5 publication-authors">
+          <div class="is-size-5 publication-authors is-names">
             <span class="author-block">
               <a href="https://devappendcbangj.github.io" target="_blank" rel="noopener">Jaehun Bang</a><sup>1</sup>,
             </span>
@@ -845,10 +857,10 @@
             <strong>Open-vocabulary 3D scene understanding</strong> enables users to segment novel objects in complex 3D environments through natural language. However, existing approaches remain <strong>slow</strong>, <strong>memory-intensive</strong>, and overly complex due to iterative optimization and dense per-Gaussian feature assignments.
           </p>
           <p>
-            To address this, we propose <strong>LightSplat, a fast and memory-efficient training-free framework</strong> that injects compact <strong>2-byte semantic indices</strong> into 3D representations from multi-view images. By assigning semantic indices only to salient regions and managing them with a <strong>lightweight index-feature mapping</strong>, LightSplat eliminates costly feature optimization and storage overhead.
+            To address this, we propose <strong>LightSplat</strong>, a <strong>fast</strong> and <strong>memory-efficient</strong> <strong>training-free framework</strong> that injects compact <strong>2-byte semantic indices</strong> into 3D representations from multi-view images. By assigning semantic indices only to salient regions and managing them with a <strong>lightweight index-feature mapping</strong>, LightSplat eliminates costly feature optimization and storage overhead.
           </p>
           <p>
-            We further ensure <strong>semantic consistency and efficient inference via single-step clustering</strong> that links geometrically and semantically related masks in 3D. We evaluate our method on LERF-OVS, ScanNet, and <strong>DL3DV-OVS</strong> across complex indoor-outdoor scenes, achieving <strong>state-of-the-art performance with up to 50-400&times; speedup and 64&times; lower memory</strong>.
+            We further ensure <strong>semantic consistency</strong> and <strong>efficient inference</strong> via <strong>single-step clustering</strong> that links geometrically and semantically related masks in 3D. We evaluate our method on LERF-OVS, ScanNet, and <strong>DL3DV-OVS</strong> across complex indoor-outdoor scenes, achieving <strong>state-of-the-art performance</strong> with up to <strong>50-400&times; speedup</strong> and <strong>64&times; lower memory</strong>.
           </p>
         </div>
       </div>
@@ -863,9 +875,9 @@
       The bottleneck is not just accuracy. Existing open-vocabulary 3D pipelines usually pay for semantics in the most expensive possible way: repeated optimization, dense language features on every Gaussian, and supervision that is still tied too closely to 2D rendering.
     </p>
     <div class="story-grid">
-      <div class="story-card accent-slate">
+      <div class="story-card accent-blue">
         <div class="signal-head">
-          <span class="signal-icon icon-slate"><i class="fas fa-stopwatch"></i></span>
+          <span class="signal-icon icon-blue"><i class="fas fa-stopwatch"></i></span>
           <div class="card-kicker">Problem 1</div>
         </div>
         <div class="card-title">Optimization Bottleneck</div>
@@ -1196,7 +1208,7 @@
     </p>
 
     <div class="table-panel">
-      <table>
+      <table class="results-table paper-results-table ablation-results-table" data-lower-cols="3">
         <thead>
           <tr>
             <th>Variant</th>
@@ -1206,7 +1218,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr class="ours-row">
             <td><strong>Ours Full</strong></td>
             <td>47.58</td>
             <td>68.32</td>
