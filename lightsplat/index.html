@@ -1882,12 +1882,12 @@
     const randomInt = (min, max) => Math.floor(randomBetween(min, max + 1));
     const scheduleNextSparkDelay = (isReducedMotion = prefersReducedMotion.matches) => {
       let delay = isReducedMotion
-        ? randomBetween(2600, 4600)
-        : randomBetween(1400, 3200);
+        ? randomBetween(1800, 3200)
+        : randomBetween(900, 2200);
       if (Math.random() < (isReducedMotion ? 0.58 : 0.42)) {
         delay += isReducedMotion
-          ? randomBetween(1200, 2200)
-          : randomBetween(700, 1500);
+          ? randomBetween(900, 1600)
+          : randomBetween(450, 900);
       }
       return delay;
     };
@@ -2184,8 +2184,8 @@
       state.active = true;
       state.nextBurstAt = performance.now() + (
         prefersReducedMotion.matches
-          ? randomBetween(850, 1600)
-          : randomBetween(420, 980)
+          ? randomBetween(620, 1180)
+          : randomBetween(240, 560)
       );
       element.classList.add("is-sparking");
 
