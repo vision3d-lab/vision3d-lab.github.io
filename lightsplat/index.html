@@ -484,7 +484,7 @@
     .table-panel table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 980px;
+      min-width: 0;
     }
 
     .table-panel th,
@@ -595,7 +595,8 @@
     }
 
     .paper-results-table {
-      min-width: 1380px;
+      min-width: 0;
+      table-layout: fixed;
     }
 
     .ablation-results-table {
@@ -604,8 +605,11 @@
 
     .paper-results-table th,
     .paper-results-table td {
-      font-size: 0.9rem;
-      padding: 0.8rem 0.72rem;
+      font-size: 0.84rem;
+      padding: 0.72rem 0.38rem;
+      text-align: center;
+      vertical-align: middle;
+      font-variant-numeric: tabular-nums;
     }
 
     .paper-results-table thead tr:first-child th {
@@ -615,6 +619,28 @@
     .paper-results-table thead tr:nth-child(2) th {
       background: rgba(27, 66, 125, 0.03);
       font-weight: 600;
+    }
+
+    .paper-results-table thead th {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .paper-results-table th:first-child,
+    .paper-results-table td:first-child {
+      text-align: left;
+      width: 10.5rem;
+      white-space: nowrap;
+    }
+
+    .paper-results-table th:last-child,
+    .paper-results-table td:last-child {
+      width: 5.8rem;
+    }
+
+    .ablation-results-table th:first-child,
+    .ablation-results-table td:first-child {
+      width: 15rem;
     }
 
     .paper-results-table tbody tr.ours-row td {
@@ -643,8 +669,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 3.3rem;
-      padding: 0.22rem 0.48rem;
+      min-width: 2.85rem;
+      padding: 0.18rem 0.38rem;
       border-radius: 999px;
       font-weight: 700;
       line-height: 1.15;
@@ -793,7 +819,7 @@
           </div>
 
           <div class="hero-summary">
-            <strong>LightSplat</strong> is built around a simple story: open-vocabulary 3D understanding should not require slow iterative optimization and heavy per-Gaussian language features. Instead, we inject compact <strong>2-byte semantic indices</strong>, filter noisy masks with 3D support, and aggregate semantics at the <strong>object cluster level</strong>. The result is a training-free pipeline that remains interpretable, memory-efficient, and fast enough to finish feature distillation in roughly five seconds.
+            <strong>LightSplat</strong> removes iterative optimization and dense per-Gaussian language features from open-vocabulary 3D scene understanding. It injects compact <strong>2-byte semantic indices</strong>, filters unreliable masks with 3D support, and consolidates semantics at the <strong>object cluster level</strong>. The result is a <strong>training-free</strong> pipeline that remains <strong>interpretable</strong>, <strong>memory-efficient</strong>, and <strong>fast</strong>, completing feature distillation in roughly five seconds.
           </div>
 
           <div class="hero-metrics">
@@ -841,7 +867,7 @@
     <div class="figure-panel teaser-panel">
       <img src="./images/paper_figures/fig1.png" alt="LightSplat teaser figure comparing speed, accuracy, and memory overhead">
       <p class="figure-caption">
-        <strong>Figure 1.</strong> The main claim of the paper is visible in one figure: <strong>LightSplat is not only faster</strong>, but reaches a better <strong>speed-accuracy-memory tradeoff</strong> than recent open-vocabulary 3D scene understanding methods. By replacing dense per-Gaussian language features with <strong>compact semantic indices</strong> and object-level clustering, the method moves the Pareto frontier in the direction that practical deployment actually needs.
+        <strong>Figure 1.</strong> <strong>Comprehensive comparison of speed, performance, and memory overhead.</strong> We evaluate recent open-vocabulary 3D scene understanding models in terms of <strong>distillation time</strong> (x-axis), <strong>segmentation performance</strong> (y-axis), and <strong>memory overhead</strong> (circle size). <strong>LightSplat</strong> achieves <strong>50&times; faster</strong> feature distillation, higher accuracy, and <strong>64&times; lower memory usage</strong>. <strong>LUDVIG</strong>'s circle is shown at half size because it is too large to display at full scale.
       </p>
     </div>
   </div>
@@ -913,13 +939,13 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">How LightSplat Works</h2>
     <p class="section-lead">
-      LightSplat is designed around a direct response to the three bottlenecks above. Rather than optimizing dense semantic features on every Gaussian, it first injects only the <strong>mask identities that matter</strong>, then consolidates them into coherent <strong>3D object clusters</strong>. This is the mechanism behind the paper's central claim: <strong>efficient 3D understanding without giving up object-level reasoning</strong>.
+      LightSplat directly links 2D semantics to 3D structure through compact mask indices. Instead of optimizing dense features on every Gaussian, it injects lightweight indices, filters unreliable masks, and groups related Gaussians into coherent <strong>3D object clusters</strong>. This design enables efficient open-vocabulary 3D understanding without iterative training.
     </p>
 
     <div class="figure-panel method-figure">
       <img src="./images/paper_figures/fig2.png" alt="Overall framework of LightSplat">
       <p class="figure-caption">
-        <strong>Figure 2.</strong> The pipeline is deliberately compact: extract <strong>SAM masks</strong> and <strong>CLIP features</strong>, inject only lightweight indices into 3D Gaussians, filter unreliable masks with 3D support, and build coherent object-level semantics through <strong>context-aware clustering</strong>.
+        <strong>Figure 2.</strong> From multi-view images, we extract <strong>SAM masks</strong> and their corresponding <strong>CLIP features</strong>, then align them to the 3D scene through indexed feature injection. <strong>3D-aware mask filtering</strong> removes unreliable masks, while <strong>index-feature mapping</strong> and <strong>context-aware 3D clustering</strong> build compact object-level representations for efficient, training-free open-vocabulary 3D scene understanding.
       </p>
     </div>
 
@@ -962,7 +988,7 @@
       <div class="minor-title">Fast Inference by Design</div>
       <img src="./images/paper_figures/fig3.png" alt="Fast inference via cluster-feature mapping">
       <p class="figure-caption">
-        <strong>Figure 3.</strong> Text is matched against <strong>cluster-feature mappings</strong>, not dense Gaussian features. This is the second half of the LightSplat story: the same compact representation that speeds up distillation also reduces query-time comparisons to <strong>below 0.1%</strong> of naive Gaussian-level inference depending on scene complexity.
+        <strong>Figure 3.</strong> During inference, the text query is compared with a compact set of <strong>cluster features</strong> rather than all Gaussians or pixels. This reduces query-time comparisons to <strong>below 0.1%</strong> of naive Gaussian-level inference, enabling fast retrieval with compact object-level representations.
       </p>
     </div>
   </div>
@@ -972,14 +998,14 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">Benchmark Results</h2>
     <p class="section-lead">
-      The empirical claim is straightforward: <strong>compact indexing is not merely efficient, it also preserves strong 3D semantics</strong>. Across <strong>LERF-OVS</strong>, <strong>DL3DV-OVS</strong>, and <strong>ScanNet</strong>, LightSplat consistently combines low cost with competitive or state-of-the-art quality.
+      Across <strong>LERF-OVS</strong>, <strong>DL3DV-OVS</strong>, and <strong>ScanNet</strong>, LightSplat combines strong 3D segmentation quality with low feature distillation cost, fast inference, and low memory overhead.
     </p>
 
     <div class="table-stack">
       <div class="table-panel paper-table-panel">
         <div class="paper-table-title">Table 1. Quantitative Comparison for 3D Object Selection on LERF-OVS</div>
         <div class="paper-table-subhead">
-          Reproduced from the paper. The table compares object selection quality and feature distillation time across recent methods.
+          Best and second-best results in each column are highlighted. <strong>FD Time</strong> denotes feature distillation time; values over 20 minutes are rounded to the ones place.
         </div>
         <table class="results-table paper-results-table" data-lower-cols="11">
           <thead>
@@ -1046,7 +1072,7 @@
       <div class="table-panel paper-table-panel">
         <div class="paper-table-title">Table 2. Quantitative Comparison for 3D Object Selection on DL3DV-OVS</div>
         <div class="paper-table-subhead">
-          Reproduced from the paper. The table emphasizes robustness on larger indoor-outdoor scenes with more complex object layouts.
+          Best and second-best results in each column are highlighted. <strong>FD Time</strong> denotes feature distillation time; values over 20 minutes are rounded to the ones place.
         </div>
         <table class="results-table paper-results-table" data-lower-cols="11">
           <thead>
@@ -1107,7 +1133,7 @@
       <div class="table-panel paper-table-panel">
         <div class="paper-table-title">Table 3. Quantitative Comparison for 3D Semantic Segmentation on ScanNet</div>
         <div class="paper-table-subhead">
-          Reproduced from the paper. Runtime and memory show that LightSplat remains efficient even when the task shifts from object selection to full semantic segmentation.
+          Best and second-best results in each column are highlighted. <strong>FD Time</strong>, <strong>Runtime</strong>, and <strong>Memory</strong> denote feature distillation time, average inference time per text query, and feature size per Gaussian, respectively.
         </div>
         <table class="results-table paper-results-table" data-lower-cols="7,8,9">
           <thead>
@@ -1171,7 +1197,7 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">Qualitative Results</h2>
     <p class="section-lead">
-      The qualitative results complete the story told by the benchmark numbers. Because semantics are organized at the object-cluster level rather than blurred across many Gaussians, LightSplat produces <strong>cleaner boundaries</strong>, <strong>more stable object identity</strong>, and <strong>broader scene coverage</strong>.
+      Qualitative results show that LightSplat preserves <strong>clean object boundaries</strong>, <strong>stable object identity</strong>, and <strong>broad scene coverage</strong> across small objects, repeated instances, and large spatial regions.
     </p>
 
     <div class="qual-stack">
@@ -1179,21 +1205,21 @@
         <div class="minor-title">LERF-OVS: Detailed 3D Object Selection</div>
         <img src="./images/paper_figures/fig4.png" alt="Qualitative comparison on LERF-OVS">
         <p class="figure-caption">
-          <strong>Figure 4.</strong> On LERF-OVS, LightSplat preserves sharper boundaries and more stable object identity across different queries, even when the target object is small or visually entangled with nearby structures.
+          <strong>Figure 4.</strong> Qualitative comparison on <strong>LERF-OVS</strong>. Across different scenes and text queries, LightSplat produces detailed object boundaries while remaining substantially faster than prior methods.
         </p>
       </div>
       <div class="figure-panel">
         <div class="minor-title">DL3DV-OVS: Robustness in Larger Scenes</div>
         <img src="./images/paper_figures/fig5.png" alt="Qualitative comparison on DL3DV-OVS">
         <p class="figure-caption">
-          <strong>Figure 5.</strong> On DL3DV-OVS, the method remains reliable in large indoor-outdoor environments, handling distant objects, repeated instances, and cluttered layouts without collapsing into noisy selections.
+          <strong>Figure 5.</strong> Qualitative comparison on <strong>DL3DV-OVS</strong>. In large and complex indoor-outdoor scenes, LightSplat provides reliable selections and clear object boundaries, even when many similar objects appear in the same scene.
         </p>
       </div>
       <div class="figure-panel">
         <div class="minor-title">ScanNet: Cleaner Semantic Segmentation</div>
         <img src="./images/paper_figures/fig6.png" alt="Qualitative comparison on ScanNet">
         <p class="figure-caption">
-          <strong>Figure 6.</strong> On ScanNet, LightSplat captures both object-level semantics such as doors and cabinets and broader scene-level regions such as floors and walls, with more complete coverage and cleaner boundaries than prior methods.
+          <strong>Figure 6.</strong> Qualitative comparison on <strong>ScanNet</strong>. LightSplat more effectively captures both object-level semantics and large-area regions, showing robust performance across diverse real-world scenes and text queries.
         </p>
       </div>
     </div>
@@ -1204,10 +1230,14 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">Ablation Study</h2>
     <p class="section-lead">
-      The ablation results reinforce the design logic of the method. The speed stays almost unchanged across variants, while the quality drops sharply when <strong>3D-aware mask filtering</strong>, <strong>semantic-aware clustering</strong>, or <strong>geometry-aware clustering</strong> is removed.
+      Each component contributes substantially to overall performance. Removing <strong>3D-aware mask filtering</strong>, <strong>semantic-aware clustering</strong>, or <strong>geometry-aware clustering</strong> causes a large drop in accuracy, while <strong>FD Time</strong> remains nearly unchanged across variants.
     </p>
 
     <div class="table-panel">
+      <div class="paper-table-title">Table 4. Ablation Study on LERF-OVS</div>
+      <div class="paper-table-subhead">
+        Each component improves performance and also contributes to the fast <strong>FD Time</strong> of the full model. <strong>FD Time</strong> denotes feature distillation time.
+      </div>
       <table class="results-table paper-results-table ablation-results-table" data-lower-cols="3">
         <thead>
           <tr>
