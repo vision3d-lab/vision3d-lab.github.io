@@ -740,6 +740,53 @@
       fill: rgba(255, 216, 101, 0.74);
     }
 
+    .spark-target > .click-spark-burst {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 56px;
+      height: 56px;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.38);
+      will-change: transform, opacity;
+      animation: clickSparkBurst 0.56s cubic-bezier(0.16, 0.84, 0.32, 1) forwards;
+    }
+
+    .spark-target > .click-spark-burst svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      animation: clickSparkFlicker 0.22s steps(2, end) 2;
+    }
+
+    .spark-target > .click-spark-burst .burst-glow {
+      fill: none;
+      stroke: rgba(255, 218, 115, 0.34);
+      stroke-width: 7;
+      stroke-linecap: round;
+      filter: blur(1px);
+    }
+
+    .spark-target > .click-spark-burst .burst-ray {
+      fill: none;
+      stroke: rgba(255, 198, 58, 0.96);
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 5px rgba(255, 203, 73, 0.3));
+    }
+
+    .spark-target > .click-spark-burst .burst-core {
+      fill: rgba(255, 251, 233, 0.98);
+      filter: drop-shadow(0 0 6px rgba(255, 219, 120, 0.32));
+    }
+
+    .spark-target > .click-spark-burst .burst-dot {
+      fill: rgba(255, 220, 118, 0.88);
+    }
+
     .eyebrow:hover,
     .eyebrow:focus-visible {
       transform: translateY(-1px);
@@ -961,6 +1008,37 @@
       }
       72% {
         opacity: 0.66;
+      }
+    }
+
+    @keyframes clickSparkBurst {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.36);
+      }
+      16% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      42% {
+        opacity: 0.96;
+        transform: translate(-50%, -50%) scale(1.08);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.45);
+      }
+    }
+
+    @keyframes clickSparkFlicker {
+      0%, 100% {
+        opacity: 0.82;
+      }
+      45% {
+        opacity: 1;
+      }
+      70% {
+        opacity: 0.56;
       }
     }
 
@@ -1284,11 +1362,17 @@
       .title-accent::before,
       .title-accent::after,
       .spark-target > .border-spark,
-      .spark-target > .border-spark svg {
+      .spark-target > .border-spark svg,
+      .spark-target > .click-spark-burst,
+      .spark-target > .click-spark-burst svg {
         animation: none !important;
       }
 
       .spark-target > .border-spark {
+        opacity: 0 !important;
+      }
+
+      .spark-target > .click-spark-burst {
         opacity: 0 !important;
       }
 
@@ -1951,6 +2035,17 @@
         <circle class="spark-trace" cx="22.1" cy="8.2" r="0.72" />
       </svg>
     `;
+    const clickSparkMarkup = `
+      <svg viewBox="0 0 56 56" aria-hidden="true" focusable="false">
+        <path class="burst-glow" d="M28 8 L31 18 L42 14 L35 24 L47 28 L35 32 L41 42 L31 38 L28 48 L25 38 L15 42 L21 32 L9 28 L21 24 L14 14 L25 18 Z" />
+        <path class="burst-ray" d="M28 8 L31 18 L42 14 L35 24 L47 28 L35 32 L41 42 L31 38 L28 48 L25 38 L15 42 L21 32 L9 28 L21 24 L14 14 L25 18 Z" />
+        <path class="burst-ray" d="M28 14 L30.3 22 L38 19.6 L33 26 L40.5 28 L33 30.2 L37.6 36.8 L30.4 34.4 L28 42 L25.6 34.4 L18.4 36.8 L23 30.2 L15.5 28 L23 26 L18 19.6 L25.7 22 Z" />
+        <circle class="burst-core" cx="28" cy="28" r="4.1" />
+        <circle class="burst-dot" cx="11.5" cy="22.5" r="1.2" />
+        <circle class="burst-dot" cx="44.5" cy="18.5" r="1.1" />
+        <circle class="burst-dot" cx="40.5" cy="42.5" r="1.35" />
+      </svg>
+    `;
 
     const getSparkState = (element) => {
       if (!sparkStates.has(element)) {
@@ -2039,6 +2134,24 @@
       }
     };
 
+    const spawnClickSpark = (element, event) => {
+      if (prefersReducedMotion.matches) return;
+      if (typeof event.button === "number" && event.button !== 0) return;
+
+      const rect = element.getBoundingClientRect();
+      const burst = document.createElement("span");
+      burst.className = "click-spark-burst";
+      burst.setAttribute("aria-hidden", "true");
+      burst.style.left = `${event.clientX - rect.left}px`;
+      burst.style.top = `${event.clientY - rect.top}px`;
+      burst.innerHTML = clickSparkMarkup;
+      element.appendChild(burst);
+
+      burst.addEventListener("animationend", () => {
+        burst.remove();
+      }, { once: true });
+    };
+
     sparkTargets.forEach((element) => {
       element.classList.add("spark-target");
 
@@ -2058,6 +2171,9 @@
       element.addEventListener("focusin", () => activateSpark(element));
       element.addEventListener("focusout", () => {
         requestAnimationFrame(() => deactivateSpark(element));
+      });
+      element.addEventListener("pointerdown", (event) => {
+        spawnClickSpark(element, event);
       });
     });
 
