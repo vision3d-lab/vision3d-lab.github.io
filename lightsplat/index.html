@@ -78,12 +78,12 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.56rem 1.1rem;
+      padding: 0.54rem 0.94rem;
       border-radius: 999px;
       background: rgba(198, 40, 40, 0.10);
       border: 1px solid rgba(198, 40, 40, 0.18);
       color: var(--accent-red);
-      font-size: 1.06rem;
+      font-size: 1.12rem;
       font-weight: 800;
       margin-bottom: 1.1rem;
     }
@@ -104,11 +104,20 @@
     }
 
     .publication-authors.is-names {
-      color: #4c5d71;
+      color: #617488;
     }
 
-    .publication-authors.is-names a {
-      color: #31465f;
+    .publication-authors.is-names a,
+    .publication-authors.is-names a:visited {
+      color: #49627d;
+    }
+
+    .affiliation-unist {
+      color: #001A53;
+    }
+
+    .affiliation-postech {
+      color: #C8005F;
     }
 
     .publication-footnotes {
@@ -828,8 +837,8 @@
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>AIGS, UNIST,</span>
-            <span class="author-block"><sup>2</sup>GSAI, POSTECH</span>
+            <span class="author-block affiliation-unist"><sup>1</sup>AIGS, UNIST,</span>
+            <span class="author-block affiliation-postech"><sup>2</sup>GSAI, POSTECH</span>
           </div>
 
           <div class="publication-footnotes">
