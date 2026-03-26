@@ -123,14 +123,6 @@
       letter-spacing: -0.055em;
       line-height: 0.92;
       color: #d7a119;
-      background: linear-gradient(180deg, #fffde7 0%, #ffe68c 22%, #ffcf47 48%, #f0ab22 72%, #b16b08 100%);
-      background-size: 100% 185%;
-      background-position: 50% 0%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 1.2px rgba(176, 106, 9, 0.92);
-      paint-order: stroke fill;
       text-shadow:
         0 0 1px rgba(255, 252, 232, 0.86),
         0 0 6px rgba(242, 180, 30, 0.28),
@@ -138,6 +130,24 @@
       transform: skewX(-9deg) translateY(0.02em);
       animation: titleSurge 2.9s ease-in-out infinite;
       will-change: background-position, text-shadow, filter;
+    }
+
+    @supports ((-webkit-background-clip: text) and (-webkit-text-fill-color: transparent)) {
+      .title-accent {
+        background: linear-gradient(180deg, #fffde7 0%, #ffe68c 22%, #ffcf47 48%, #f0ab22 72%, #b16b08 100%);
+        background-size: 100% 185%;
+        background-position: 50% 0%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    @supports (-webkit-text-stroke: 1px rgba(176, 106, 9, 0.92)) {
+      .title-accent {
+        -webkit-text-stroke: 1.2px rgba(176, 106, 9, 0.92);
+        paint-order: stroke fill;
+      }
     }
 
     .title-accent::before,
@@ -204,12 +214,12 @@
     }
 
     .publication-authors.is-names {
-      color: #6d84a1;
+      color: #7c92ad;
     }
 
     .publication-authors.is-names a,
     .publication-authors.is-names a:visited {
-      color: #5a7ea7;
+      color: #6d8fb6;
       position: relative;
       display: inline-block;
       text-decoration: none;
@@ -224,7 +234,7 @@
       width: 100%;
       height: 2px;
       border-radius: 999px;
-      background: rgba(73, 98, 125, 0.28);
+      background: rgba(100, 132, 169, 0.26);
       transform: scaleX(0.32);
       transform-origin: left center;
       opacity: 0;
@@ -233,7 +243,7 @@
 
     .publication-authors.is-names a:hover,
     .publication-authors.is-names a:focus-visible {
-      color: #3c74af;
+      color: #4f84bd;
       transform: translateY(-1px);
     }
 
@@ -241,7 +251,7 @@
     .publication-authors.is-names a:focus-visible::after {
       opacity: 1;
       transform: scaleX(1);
-      background: rgba(39, 79, 123, 0.42);
+      background: rgba(74, 118, 173, 0.40);
     }
 
     .affiliation-unist {
@@ -554,7 +564,7 @@
     }
 
     .signal-head .card-kicker {
-      margin-top: 0.14rem;
+      margin-top: 0.22rem;
     }
 
     .card-title,
@@ -1208,16 +1218,15 @@
     @media (prefers-reduced-motion: reduce) {
       .hero::before,
       .hero::after,
-      .title-icon,
-      .title-accent,
       .title-accent::before,
-      .title-accent::after,
-      .spark-target > .spark-canvas {
+      .title-accent::after {
         animation: none !important;
       }
 
-      .spark-target > .spark-canvas {
-        opacity: 0 !important;
+      .title-icon,
+      .title-accent {
+        animation-duration: 7.5s !important;
+        animation-timing-function: ease-in-out !important;
       }
 
       .eyebrow,
@@ -1871,10 +1880,14 @@
 
     const randomBetween = (min, max) => min + Math.random() * (max - min);
     const randomInt = (min, max) => Math.floor(randomBetween(min, max + 1));
-    const scheduleNextSparkDelay = () => {
-      let delay = randomBetween(1400, 3200);
-      if (Math.random() < 0.42) {
-        delay += randomBetween(700, 1500);
+    const scheduleNextSparkDelay = (isReducedMotion = prefersReducedMotion.matches) => {
+      let delay = isReducedMotion
+        ? randomBetween(2600, 4600)
+        : randomBetween(1400, 3200);
+      if (Math.random() < (isReducedMotion ? 0.58 : 0.42)) {
+        delay += isReducedMotion
+          ? randomBetween(1200, 2200)
+          : randomBetween(700, 1500);
       }
       return delay;
     };
@@ -2125,7 +2138,7 @@
 
       if (state.active && now >= state.nextBurstAt && state.arcs.length === 0) {
         spawnSparkBurst(element);
-        state.nextBurstAt = now + scheduleNextSparkDelay();
+        state.nextBurstAt = now + scheduleNextSparkDelay(prefersReducedMotion.matches);
       }
 
       for (let i = state.arcs.length - 1; i >= 0; i -= 1) {
@@ -2163,15 +2176,17 @@
     };
 
     const activateSpark = (element) => {
-      if (prefersReducedMotion.matches) return;
-
       const state = ensureSparkCanvas(element);
       resizeSparkCanvas(element);
 
       if (state.active) return;
 
       state.active = true;
-      state.nextBurstAt = performance.now() + randomBetween(420, 980);
+      state.nextBurstAt = performance.now() + (
+        prefersReducedMotion.matches
+          ? randomBetween(850, 1600)
+          : randomBetween(420, 980)
+      );
       element.classList.add("is-sparking");
 
       if (!state.rafId) {
