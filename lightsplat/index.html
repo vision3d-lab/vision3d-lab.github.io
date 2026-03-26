@@ -2,54 +2,414 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="LightSplat: Fast and Memory-Efficient Open-Vocabulary 3D Scene Understanding in Five Seconds">
+  <meta name="description" content="LightSplat: Fast and Memory-Efficient Open-Vocabulary 3D Scene Understanding in Five Seconds">
   <meta name="keywords" content="Open-Vocabulary, 3D Scene Understanding, 3D Segmentation, 3D Gaussian Splatting, Vision-Language Model">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LightSplat: Fast and Memory-Efficient Open-Vocabulary 3D Scene Understanding in Five Seconds</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
   <style>
-    body { font-family: 'Noto Sans', sans-serif; }
-    .title.is-1 { font-family: 'Google Sans', sans-serif; font-weight: 700; }
-    .section-title { font-family: 'Google Sans', sans-serif; font-weight: 600; font-size: 2rem; margin-bottom: 1.5rem; text-align: left; border-bottom: 2px solid #dbdbdb; padding-bottom: 5px;}
-    .publication-venue { font-size: 1.2rem; font-weight: bold; color: #1B427D; margin-top: 10px; }
-    
-    /* Highlight Colors */
-    .highlight-text { color: #d63031; font-weight: bold; } /* Red for Salient */
-    .surround-text { color: #0984e3; font-weight: bold; } /* Blue for Surround */
-    
-    /* Clean Image Style (No Shadows, No Borders) */
-    .img-fluid { 
-      max-width: 100%; 
-      height: auto; 
-      display: block; 
-      margin: 0 auto;
-    }
-    
-    /* Caption Style - 양쪽 정렬(Justify) 적용 */
-    .caption { 
-      font-size: 1.2rem; 
-      color: #4a4a4a; 
-      text-align: justify; /* Center에서 Justify로 변경 */
-      margin-top: 15px; 
-      margin-bottom: 30px;
-      font-weight: 500;
+    :root {
+      --navy: #1B427D;
+      --navy-deep: #112846;
+      --accent-red: #C62828;
+      --ink: #172536;
+      --muted: #5B6878;
+      --line: #DCE4EF;
+      --panel: #FFFFFF;
+      --panel-soft: #F5F8FC;
+      --bg: #EEF3F9;
     }
 
-    /* 본문 양쪽 정렬 적용 */
-    .content p { 
-        font-size: 1.1rem; 
-        line-height: 1.6; 
-        text-align: justify; /* 양쪽 정렬 추가 */
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
     }
-    .box-gray { background-color: #f9f9f9; border-radius: 0px; padding: 30px; margin-bottom: 30px; }
-    .bibtex-section { background-color: #f5f5f5; padding: 20px; font-family: Courier New; font-size: 0.95rem; line-height: 1.5; overflow-x: auto; border-radius: 5px;}
+
+    .hero {
+      background:
+        radial-gradient(circle at top left, rgba(27, 66, 125, 0.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(198, 40, 40, 0.08), transparent 24%),
+        linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+      border-bottom: 1px solid rgba(27, 66, 125, 0.10);
+    }
+
+    .publication-title,
+    .title.is-1 {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+      color: var(--navy-deep);
+      font-size: clamp(2.3rem, 3.6vw, 2.85rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 920px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.62rem 1.2rem;
+      border-radius: 999px;
+      background: rgba(198, 40, 40, 0.10);
+      border: 1px solid rgba(198, 40, 40, 0.18);
+      color: var(--accent-red);
+      font-size: 1.18rem;
+      font-weight: 800;
+      margin-bottom: 1.1rem;
+    }
+
+    .publication-venue {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--accent-red);
+      margin-top: 0.75rem;
+    }
+
+    .publication-authors {
+      color: #243447;
+    }
+
+    .publication-authors a {
+      color: var(--navy-deep);
+    }
+
+    .publication-footnotes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.9rem 1.25rem;
+      margin-top: 0.45rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .publication-links {
+      margin-top: 1.35rem;
+    }
+
+    .hero-summary {
+      max-width: 880px;
+      margin: 1.6rem auto 0;
+      padding: 1.4rem 1.6rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(27, 66, 125, 0.10);
+      box-shadow: 0 18px 50px rgba(17, 40, 70, 0.08);
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: #26384d;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .metric-card,
+    .story-card,
+    .step-card,
+    .result-card,
+    .figure-panel,
+    .table-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 14px 40px rgba(17, 40, 70, 0.06);
+    }
+
+    .metric-card {
+      padding: 1rem 1.1rem;
+      text-align: left;
+    }
+
+    .metric-label {
+      font-size: 0.86rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .metric-value {
+      margin-top: 0.35rem;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      line-height: 1.15;
+    }
+
+    .metric-note {
+      margin-top: 0.35rem;
+      font-size: 0.94rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .section {
+      padding: 4rem 1.5rem;
+    }
+
+    .section-soft {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(245, 248, 252, 0.95) 100%);
+      border-top: 1px solid rgba(27, 66, 125, 0.06);
+      border-bottom: 1px solid rgba(27, 66, 125, 0.06);
+    }
+
+    .section-title {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--navy-deep);
+      text-align: left;
+      border-bottom: 2px solid rgba(27, 66, 125, 0.12);
+      padding-bottom: 0.55rem;
+    }
+
+    .section-lead {
+      max-width: 860px;
+      margin-bottom: 1.6rem;
+      font-size: 1.07rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .content p {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      text-align: justify;
+      color: #26384d;
+    }
+
+    .story-grid,
+    .result-grid,
+    .qual-grid {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .story-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .result-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .qual-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .story-card,
+    .step-card,
+    .result-card {
+      padding: 1.35rem;
+    }
+
+    .card-kicker {
+      display: inline-block;
+      margin-bottom: 0.55rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .card-title,
+    .minor-title {
+      font-family: 'Google Sans', sans-serif;
+      color: var(--navy-deep);
+      font-weight: 700;
+    }
+
+    .card-title {
+      font-size: 1.16rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .minor-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .story-card p,
+    .step-card p,
+    .result-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 2rem;
+      height: 2rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(27, 66, 125, 0.10);
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+    }
+
+    .figure-panel {
+      padding: 1.15rem;
+    }
+
+    .figure-panel img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .figure-caption {
+      margin-top: 0.95rem;
+      margin-bottom: 0.15rem;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    .result-dataset {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .result-number {
+      margin-top: 0.55rem;
+      margin-bottom: 0.4rem;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      line-height: 1.1;
+    }
+
+    .result-number span {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .result-sub {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .table-panel {
+      padding: 0.5rem;
+      overflow-x: auto;
+    }
+
+    .table-panel table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 520px;
+    }
+
+    .table-panel th,
+    .table-panel td {
+      padding: 0.95rem 1rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.98rem;
+    }
+
+    .table-panel th {
+      color: var(--navy-deep);
+      font-weight: 700;
+      background: rgba(27, 66, 125, 0.04);
+    }
+
+    .table-panel tr:last-child td {
+      border-bottom: none;
+    }
+
+    .bibtex-section {
+      background: #F5F7FA;
+      padding: 20px;
+      font-family: "Courier New", monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+
+    .footer {
+      background: transparent;
+      padding-top: 2rem;
+      padding-bottom: 2.75rem;
+    }
+
+    .footer .content p {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media screen and (max-width: 1023px) {
+      .hero-metrics,
+      .story-grid,
+      .result-grid,
+      .qual-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero-summary {
+        padding: 1.15rem;
+      }
+
+      .hero-metrics,
+      .story-grid,
+      .result-grid,
+      .qual-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 3rem 1.15rem;
+      }
+
+      .section-title {
+        font-size: 1.7rem;
+      }
+
+      .publication-title,
+      .title.is-1 {
+        font-size: 2rem;
+      }
+
+      .metric-value,
+      .result-number {
+        font-size: 1.6rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -59,48 +419,82 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
+          <div class="eyebrow">Accepted to CVPR 2026</div>
           <h1 class="title is-1 publication-title">LightSplat: Fast and Memory-Efficient <br> Open-Vocabulary 3D Scene Understanding in Five Seconds</h1>
-          <div class="publication-venue">CVPR 2026</div>
-          
+
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="devappendcbangj.github.io">Jaehun Bang</a><sup>1</sup>,</span>
+              <a href="https://devappendcbangj.github.io" target="_blank" rel="noopener">Jaehun Bang</a><sup>1</sup>,
+            </span>
             <span class="author-block">
-              <a href="mailto:jh4011@postech.ac.kr">Jinhyeok Kim</a><sup>2</sup>,</span>
+              <a href="mailto:jh4011@postech.ac.kr">Jinhyeok Kim</a><sup>2*</sup>,
+            </span>
             <span class="author-block">
-              <a href="mailto:mzkim@unist.ac.kr">Minji Kim</a><sup>1*</sup>,</span>
+              <a href="mailto:mzkim@unist.ac.kr">Minji Kim</a><sup>1</sup>,
+            </span>
             <span class="author-block">
-              <a href="mailto:sypsss@unist.ac.kr">Seungheon Jeong</a><sup>1*</sup>,</span>
+              <a href="mailto:sypsss@unist.ac.kr">Seungheon Jeong</a><sup>1</sup>,
+            </span>
             <span class="author-block">
-              <a href="mailto:kyungdon@unist.ac.kr">Kyungdon Joo</a><sup>1*</sup>
+              <a href="mailto:kyungdon@unist.ac.kr">Kyungdon Joo</a><sup>1&dagger;</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>UNIST,</span>
-            <span class="author-block"><sup>2</sup>POSTECH</span>
+            <span class="author-block"><sup>1</sup>AIGS, UNIST,</span>
+            <span class="author-block"><sup>2</sup>GSAI, POSTECH</span>
           </div>
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2603.24146" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="ai ai-arxiv"></i></span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Code</span>
-                </a>
-              </span>
+          <div class="publication-footnotes">
+            <span><sup>*</sup> Work done while at UNIST.</span>
+            <span><sup>&dagger;</sup> Corresponding author.</span>
+          </div>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="./paper.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/2603.24146" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>arXiv</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#BibTeX" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-quote-right"></i></span>
+                <span>Citation</span>
+              </a>
+            </span>
+          </div>
+
+          <div class="hero-summary">
+            <strong>LightSplat</strong> is built around a simple story: open-vocabulary 3D understanding should not require slow iterative optimization and heavy per-Gaussian language features. Instead, we inject compact <strong>2-byte semantic indices</strong>, filter noisy masks with 3D support, and aggregate semantics at the <strong>object cluster level</strong>. The result is a training-free pipeline that remains interpretable, memory-efficient, and fast enough to finish feature distillation in roughly five seconds.
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <div class="metric-label">Feature Distillation</div>
+              <div class="metric-value">~5 Seconds</div>
+              <div class="metric-note">Single-step semantic injection without iterative feature training.</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Speedup</div>
+              <div class="metric-value">50-400&times;</div>
+              <div class="metric-note">Compared with recent open-vocabulary 3D scene understanding baselines.</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Memory Reduction</div>
+              <div class="metric-value">64&times; Lower</div>
+              <div class="metric-note">Cluster-level semantics replace heavy Gaussian-level language features.</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Storage Per Gaussian</div>
+              <div class="metric-value">2 Bytes</div>
+              <div class="metric-note">Compact semantic indexing keeps the representation lightweight and scalable.</div>
             </div>
           </div>
         </div>
@@ -111,33 +505,29 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="has-text-centered">
-        <img src="./images/f1_teaser.png" alt="Teaser Comparison" class="img-fluid" style="width: 75%;">
-        <h2 class="subtitle has-text-centered" style="margin-top: 20px;">
-          Existing datasets focus mainly on <b>Salient</b> events.<br> 
-          Our <b>SS Datasets</b> capture fine-grained <span class="highlight-text"><b>Salient</b></span> and <span class="surround-text"><b>Surrounding</b></span> contexts<br>over semantically meaningful temporal segments.
-        </h2>
+    <div class="figure-panel">
+      <img src="./images/paper_figures/fig1.png" alt="LightSplat teaser figure comparing speed, accuracy, and memory overhead">
+      <p class="figure-caption">
+        <strong>Figure 1.</strong> LightSplat sits in the part of the tradeoff curve that matters most for deployment: <strong>faster distillation</strong>, <strong>lower memory overhead</strong>, and <strong>stronger 3D understanding performance</strong>. Instead of paying the usual cost of dense feature storage and long optimization loops, the method directly connects 2D mask semantics to 3D structure through compact indices.
+      </p>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section section-soft">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="section-title">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Open-vocabulary 3D scene understanding enables users to segment novel objects in complex 3D environments through natural language. However, existing approaches remain slow, memory-intensive, and overly complex due to iterative optimization and dense per-Gaussian feature assignments.
+            <strong>Open-vocabulary 3D scene understanding</strong> enables users to segment novel objects in complex 3D environments through natural language. However, existing approaches remain <strong>slow</strong>, <strong>memory-intensive</strong>, and overly complex due to iterative optimization and dense per-Gaussian feature assignments.
           </p>
           <p>
-            To address this, we propose <code>LightSplat</code>, a fast and memory-efficient training-free framework that injects compact 2-byte semantic indices into 3D representations from multi-view images. By assigning semantic indices only to salient regions and managing them with a lightweight index-feature mapping, <code>LightSplat</code> eliminates costly feature optimization and storage overhead.
+            To address this, we propose <strong>LightSplat</strong>, a fast and memory-efficient <strong>training-free</strong> framework that injects compact <strong>2-byte semantic indices</strong> into 3D representations from multi-view images. By assigning semantic indices only to salient regions and managing them with a lightweight index-feature mapping, LightSplat eliminates costly feature optimization and storage overhead.
           </p>
           <p>
-            We further ensure semantic consistency and efficient inference via single-step clustering that links geometrically and semantically related masks in 3D. We evaluate our method on LERF-OVS, ScanNet, and DL3DV-OVS across complex indoor-outdoor scenes.
-          </p>
-          <p>
-            As a result, <code>LightSplat</code> achieves state-of-the-art performance with up to 50-400&times; speedup and 64&times; lower memory, enabling scalable language-driven 3D understanding. For more details, visit our project page <a href="https://vision3d-lab.github.io/lightsplat/">https://vision3d-lab.github.io/lightsplat/</a>.
+            We further ensure <strong>semantic consistency</strong> and efficient inference via <strong>single-step clustering</strong> that links geometrically and semantically related masks in 3D. We evaluate our method on <strong>LERF-OVS</strong>, <strong>ScanNet</strong>, and <strong>DL3DV-OVS</strong> across complex indoor-outdoor scenes, achieving <strong>state-of-the-art performance</strong> with up to <strong>50-400&times; speedup</strong> and <strong>64&times; lower memory</strong>.
           </p>
         </div>
       </div>
@@ -145,133 +535,226 @@
   </div>
 </section>
 
-<hr>
-
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="section-title">The Challenge: Overcoming Salient Bias</h2>
-    
-    <div class="content has-text-justified mb-5">
-      <p>
-        Current video retrieval models exhibit a strong bias towards prominent foreground objects. 
-        While they excel at identifying main actions, they often overlook <b>surrounding contexts</b> such as background details, weather, or subtle temporal cues.
-      </p>
-    </div>
-
-    <div class="columns is-centered">
-      <div class="column is-10 has-text-centered">
-        <p class="caption">
-          For instance, when a user queries for a background detail like a cushion, 
-          standard zero-shot models focus entirely on the main subject, such as the dog, and fail to retrieve the correct clip.
+    <h2 class="section-title">Why Existing Methods Do Not Scale</h2>
+    <p class="section-lead">
+      The bottleneck is not just accuracy. Existing open-vocabulary 3D pipelines usually pay for semantics in the most expensive possible way: repeated optimization, dense language features on every Gaussian, and supervision that is still tied too closely to 2D rendering.
+    </p>
+    <div class="story-grid">
+      <div class="story-card">
+        <div class="card-kicker">Problem 1</div>
+        <div class="card-title">Iterative feature optimization is too slow</div>
+        <p>
+          Prior methods repeatedly render views and align them with CLIP embeddings. That loop becomes the dominant cost of feature distillation and makes practical deployment unnecessarily slow.
         </p>
-        <img src="./images/f2_motivation.png" alt="Motivation Failure Case" class="img-fluid" style="width: 80%;">
+      </div>
+      <div class="story-card">
+        <div class="card-kicker">Problem 2</div>
+        <div class="card-title">Per-Gaussian language features waste memory</div>
+        <p>
+          Storing high-dimensional semantic features for every Gaussian creates heavy memory overhead and forces inference to compare text queries against a very large number of primitives.
+        </p>
+      </div>
+      <div class="story-card">
+        <div class="card-kicker">Problem 3</div>
+        <div class="card-title">2D supervision degrades 3D semantics</div>
+        <p>
+          When semantics are learned indirectly through rendered 2D feature maps, overlapping Gaussians blur boundaries and weaken the geometric consistency that real 3D reasoning needs.
+        </p>
       </div>
     </div>
-
-    <div class="columns is-centered mt-5">
-      <div class="column is-10 has-text-centered">
-        <p class="caption">
-          This observation is supported by quantitative evidence. In zero-shot settings, performance drops drastically on surrounding queries compared to salient or original queries.
-        </p>
-        <img src="./images/t5_zero_shot_quantitative.png" alt="Zero-shot Performance Gap" class="img-fluid" style="width: 100%;">
-      </div>
-    </div>
-
   </div>
 </section>
 
-<section class="section" style="background-color: #fcfcfc;">
+<section class="section section-soft">
   <div class="container is-max-desktop">
-    <h2 class="section-title">SS Datasets: Scale & Diversity</h2>
-    
-    <div class="content has-text-centered mb-5">
-      <p>
-        To address this limitation, we <b>extend MSRVTT, LSMDC, and DiDeMo</b> with dense, fine-grained captions that explicitly distinguish salient and surrounding contexts.
-      </p>
-    </div>
+    <h2 class="section-title">How LightSplat Works</h2>
+    <p class="section-lead">
+      LightSplat removes the heavy parts of the conventional pipeline and keeps only the operations that directly improve 2D-to-3D semantic transfer. The key design choice is to store <strong>indices</strong> instead of full language features, then reason over <strong>clusters</strong> rather than individual Gaussians.
+    </p>
 
-    <div class="columns is-centered">
-        <div class="column is-12 has-text-centered">
-            <img src="./images/t1_data_stat.png" alt="Dataset Statistics" class="img-fluid" style="width: 98%;">
-            <p class="caption">
-              Compared with original benchmarks, the SS Datasets include substantially more captions aligned with semantically meaningful temporal segments, enabling <b>richer contextual coverage</b>.
+    <div class="columns is-variable is-6 is-vcentered">
+      <div class="column is-7">
+        <div class="figure-panel">
+          <img src="./images/paper_figures/fig2.png" alt="Overall framework of LightSplat">
+          <p class="figure-caption">
+            <strong>Figure 2.</strong> The full pipeline connects <strong>SAM masks</strong> and <strong>CLIP features</strong> to 3D Gaussians through indexed feature injection, removes unstable masks with <strong>3D-aware filtering</strong>, and builds object-level semantics through <strong>context-aware clustering</strong>.
+          </p>
+        </div>
+      </div>
+      <div class="column is-5">
+        <div class="step-list">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="card-title">Extract mask semantics from multi-view images</div>
+            <p>
+              For each image, LightSplat collects SAM masks and their corresponding CLIP features, creating a clean 2D semantic inventory before any 3D reasoning begins.
             </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="card-title">Inject compact 2-byte indices into 3D</div>
+            <p>
+              Instead of attaching full language vectors to every Gaussian, the method assigns only the most influential mask index to each relevant Gaussian.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="card-title">Filter noise using geometric support</div>
+            <p>
+              Masks with weak 3D support are removed, which suppresses view-dependent artifacts and stabilizes the semantics that survive into 3D.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="card-title">Cluster semantically related masks in one step</div>
+            <p>
+              Geometric overlap and semantic similarity are combined to build object-level clusters, giving the model a compact and interpretable 3D representation.
+            </p>
+          </div>
         </div>
-    </div>
-
-    <br>
-
-    <div class="columns is-centered">
-      <div class="column is-10 has-text-centered">
-        <img src="./images/t3_data_diversity.png" alt="Caption Diversity" class="img-fluid" style="width: 100%;">
-        <p class="caption">
-          Our captions exhibit <b>higher variance and distance</b> from the mean compared to original captions, indicating <b>richer linguistic diversity</b>.
-        </p>
       </div>
     </div>
 
-    <div class="columns is-centered mt-4">
-      <div class="column is-12 has-text-centered">
-        <img src="./images/ts2_data_diversity.png" alt="Semantic Distance" class="img-fluid" style="width: 98%;">
-        <p class="caption">
-          <b>Semantic analysis</b> shows that surrounding captions are clearly distinct from salient ones, indicating that our dataset <b>captures complementary information</b> instead of redundant descriptions.
-        </p>
+    <div class="columns is-variable is-6 is-vcentered mt-5">
+      <div class="column is-5">
+        <h3 class="minor-title">Fast Inference by Design</h3>
+        <div class="content">
+          <p>
+            Once cluster-level features are formed, inference becomes much simpler. The text query is compared with a <strong>compact set of cluster features</strong> instead of every Gaussian or every rendered pixel.
+          </p>
+          <p>
+            This is the core reason LightSplat is not just faster at distillation, but also faster at retrieval time. The paper reports that the number of similarity comparisons can drop to <strong>below 0.1%</strong> of naive Gaussian-level inference depending on scene complexity.
+          </p>
+        </div>
+      </div>
+      <div class="column is-7">
+        <div class="figure-panel">
+          <img src="./images/paper_figures/fig3.png" alt="Fast inference via cluster-feature mapping">
+          <p class="figure-caption">
+            <strong>Figure 3.</strong> Text is matched against <strong>cluster-feature mappings</strong>, not dense Gaussian features, which keeps the inference path short and scalable.
+          </p>
+        </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="section-title">In-depth Analysis</h2>
-    
-    <div class="content has-text-justified mb-5">
-      <p style="font-size: 1.2rem;">
-        Beyond standard retrieval evaluation, we analyze <b>how video properties</b>, such as temporal complexity, <b>affect model performance</b>.
-      </p>
-    </div>
+    <h2 class="section-title">Benchmark Results</h2>
+    <p class="section-lead">
+      We evaluate LightSplat on three complementary benchmarks: <strong>LERF-OVS</strong> for 3D object selection, <strong>DL3DV-OVS</strong> for large indoor-outdoor scenes, and <strong>ScanNet</strong> for semantic segmentation. Across all of them, the method stays both efficient and competitive.
+    </p>
 
-    <div class="columns is-centered">
-      <div class="column is-8 has-text-centered">
-         <img src="./images/f3_property_analysis.png" alt="Performance Analysis" class="img-fluid" style="width: 90%;">
-         <p class="caption">
-           We found that <strong>more clips</strong> (higher temporal complexity) generally lead to <b>lower performance</b>, while <strong>longer clip duration</strong> helps models understand the context <b>better</b>.
-         </p>
+    <div class="result-grid">
+      <div class="result-card">
+        <div class="result-dataset">LERF-OVS</div>
+        <div class="card-title">3D Object Selection</div>
+        <div class="result-number">47.58 <span>mIoU</span></div>
+        <p class="result-sub">
+          68.32 mAcc@0.25 with <strong>4.2 s</strong> feature distillation. LightSplat reaches the best overall balance of speed and object-level quality on the benchmark.
+        </p>
       </div>
-    </div>
-
-    <div class="columns is-centered mt-5">
-      <div class="column is-14 has-text-centered">
-        <img src="./images/fs2_correlation_matrix.png" alt="Correlation Matrix" class="img-fluid" style="width: 100%;">
-        <p class="caption">
-          A detailed <b>correlation matrix</b> further reveals the relationship between <b>video properties</b> (like clip count and duration) and <b>retrieval recall</b>.
+      <div class="result-card">
+        <div class="result-dataset">DL3DV-OVS</div>
+        <div class="card-title">Large Indoor-Outdoor Scenes</div>
+        <div class="result-number">44.98 <span>mIoU</span></div>
+        <p class="result-sub">
+          60.82 mAcc@0.25 with <strong>4.8 s</strong> feature distillation, showing strong robustness in scenes with multiple distant or repeated objects.
+        </p>
+      </div>
+      <div class="result-card">
+        <div class="result-dataset">ScanNet</div>
+        <div class="card-title">3D Semantic Segmentation</div>
+        <div class="result-number">37.11 <span>mIoU / 58.66 mAcc</span></div>
+        <p class="result-sub">
+          On 19 classes, LightSplat distills features in <strong>4.1 s</strong>, runs in <strong>2 ms</strong> per query on average, and stores semantics with only <strong>2 bytes</strong> per Gaussian.
         </p>
       </div>
     </div>
-
   </div>
 </section>
 
-<hr>
-
-<section class="section">
+<section class="section section-soft">
   <div class="container is-max-desktop">
     <h2 class="section-title">Qualitative Results</h2>
-    
-    <div class="content has-text-justified mb-5">
-      <p class="is-size-5" style="text-align: center;">
-        Our simple baseline captures information that is often <b>underrepresented in existing approaches</b>.
-      </p>
-    </div>
+    <p class="section-lead">
+      The qualitative results mirror the numerical story. LightSplat forms cleaner object-level structure in 3D, which helps both with precise object selection and with broader semantic segmentation over large regions.
+    </p>
 
-    <div class="columns is-centered">
-      <div class="column is-8 has-text-centered">
-        <img src="./images/f4_qualitative.png" alt="Qualitative Results" class="img-fluid" style="width: 100%;">
-        <p class="caption">
-          While the zero-shot model does not capture the <b>specific background detail</b> of a white object with red, the baseline retrieves the correct clip containing the cushion.
+    <div class="qual-grid">
+      <div class="figure-panel">
+        <div class="minor-title">LERF-OVS: Detailed 3D Object Selection</div>
+        <img src="./images/paper_figures/fig4.png" alt="Qualitative comparison on LERF-OVS">
+        <p class="figure-caption">
+          <strong>Figure 4.</strong> On LERF-OVS, LightSplat preserves sharper boundaries and more stable object identity across different queries, even when the target object is small or visually entangled with nearby structures.
         </p>
       </div>
+      <div class="figure-panel">
+        <div class="minor-title">DL3DV-OVS: Robustness in Larger Scenes</div>
+        <img src="./images/paper_figures/fig5.png" alt="Qualitative comparison on DL3DV-OVS">
+        <p class="figure-caption">
+          <strong>Figure 5.</strong> On DL3DV-OVS, the method remains reliable in large indoor-outdoor environments, handling distant objects, repeated instances, and cluttered layouts without collapsing into noisy selections.
+        </p>
+      </div>
+    </div>
+
+    <div class="figure-panel mt-5">
+      <div class="minor-title">ScanNet: Cleaner Semantic Segmentation</div>
+      <img src="./images/paper_figures/fig6.png" alt="Qualitative comparison on ScanNet">
+      <p class="figure-caption">
+        <strong>Figure 6.</strong> On ScanNet, LightSplat captures both object-level semantics such as doors and cabinets and broader scene-level regions such as floors and walls, with more complete coverage and cleaner boundaries than prior methods.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="section-title">Ablation Study</h2>
+    <p class="section-lead">
+      The ablation results reinforce the design logic of the method. The speed stays almost unchanged across variants, while the quality drops sharply when <strong>3D-aware mask filtering</strong>, <strong>semantic-aware clustering</strong>, or <strong>geometry-aware clustering</strong> is removed.
+    </p>
+
+    <div class="table-panel">
+      <table>
+        <thead>
+          <tr>
+            <th>Variant</th>
+            <th>mIoU</th>
+            <th>Acc@0.25</th>
+            <th>FD Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ours Full</strong></td>
+            <td>47.58</td>
+            <td>68.32</td>
+            <td>4.55 s</td>
+          </tr>
+          <tr>
+            <td>w/o 3D Mask Filtering</td>
+            <td>29.31</td>
+            <td>25.96</td>
+            <td>4.54 s</td>
+          </tr>
+          <tr>
+            <td>w/o Semantic-Aware</td>
+            <td>19.56</td>
+            <td>18.97</td>
+            <td>4.42 s</td>
+          </tr>
+          <tr>
+            <td>w/o Geometry-Aware</td>
+            <td>2.01</td>
+            <td>2.27</td>
+            <td>4.44 s</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -279,22 +762,20 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="section-title">BibTeX</h2>
-    <pre class="bibtex-section"><code>@article{bang2026lightsplat,
+    <pre class="bibtex-section"><code>@misc{bang2026lightsplatfastmemoryefficientopenvocabulary,
   title={LightSplat: Fast and Memory-Efficient Open-Vocabulary 3D Scene Understanding in Five Seconds},
   author={Jaehun Bang and Jinhyeok Kim and Minji Kim and Seungheon Jeong and Kyungdon Joo},
-  journal={arXiv preprint arXiv:2603.24146},
-  year={2026}
+  year={2026},
+  eprint={2603.24146},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2603.24146}
 }</code></pre>
   </div>
 </section>
 
 <footer class="footer">
   <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="#" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
