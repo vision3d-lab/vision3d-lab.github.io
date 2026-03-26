@@ -115,11 +115,6 @@
       display: inline-block;
       isolation: isolate;
       color: #1a1f27;
-      text-shadow:
-        0 0 1px rgba(226, 186, 68, 0.22),
-        0 0 7px rgba(226, 186, 68, 0.28),
-        0 0 14px rgba(226, 186, 68, 0.18);
-      animation: titleCharge 4.1s ease-in-out infinite;
     }
 
     .title-accent::before,
@@ -127,28 +122,26 @@
       content: "";
       position: absolute;
       pointer-events: none;
-      z-index: -1;
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 248, 224, 0.00) 8%, rgba(255, 248, 224, 0.96) 18%, rgba(226, 186, 68, 0.96) 38%, rgba(255, 255, 255, 0.90) 50%, rgba(226, 186, 68, 0.96) 64%, transparent 100%);
-      filter: blur(0.45px) drop-shadow(0 0 6px rgba(226, 186, 68, 0.22));
+      background: linear-gradient(90deg, transparent 0%, rgba(214, 166, 46, 0.90) 10%, rgba(255, 247, 210, 0.98) 50%, rgba(214, 166, 46, 0.92) 90%, transparent 100%);
+      filter: drop-shadow(0 0 3px rgba(214, 166, 46, 0.20));
     }
 
     .title-accent::before {
-      top: -0.16em;
-      left: -0.04em;
-      width: calc(100% + 0.14em);
-      height: 0.42em;
-      clip-path: polygon(0 84%, 10% 56%, 18% 82%, 30% 20%, 43% 60%, 57% 28%, 70% 78%, 82% 44%, 100% 62%, 100% 100%, 0 100%);
-      animation: electricCrackleTop 3.1s steps(1, end) infinite;
+      top: -0.12em;
+      left: -0.02em;
+      width: calc(100% + 0.10em);
+      height: 0.18em;
+      clip-path: polygon(0 100%, 10% 54%, 18% 100%, 32% 18%, 45% 90%, 58% 34%, 71% 100%, 84% 44%, 100% 78%, 100% 100%);
+      animation: titleCrackleTop 3.2s steps(1, end) infinite;
     }
 
     .title-accent::after {
-      bottom: -0.13em;
-      left: 16%;
-      width: 72%;
-      height: 0.34em;
-      clip-path: polygon(0 88%, 14% 48%, 25% 84%, 39% 26%, 52% 68%, 64% 18%, 80% 74%, 100% 46%, 100% 100%, 0 100%);
-      opacity: 0.42;
-      animation: electricCrackleBottom 2.8s steps(1, end) infinite;
+      bottom: -0.10em;
+      left: 14%;
+      width: 74%;
+      height: 0.15em;
+      clip-path: polygon(0 100%, 12% 42%, 25% 100%, 40% 20%, 56% 86%, 70% 34%, 84% 100%, 100% 52%, 100% 100%);
+      animation: titleCrackleBottom 2.8s steps(1, end) infinite;
     }
 
     .eyebrow {
@@ -186,12 +179,12 @@
     }
 
     .publication-authors.is-names {
-      color: #5b7391;
+      color: #6d84a1;
     }
 
     .publication-authors.is-names a,
     .publication-authors.is-names a:visited {
-      color: #3f648e;
+      color: #5a7ea7;
       position: relative;
       display: inline-block;
       text-decoration: none;
@@ -215,7 +208,7 @@
 
     .publication-authors.is-names a:hover,
     .publication-authors.is-names a:focus-visible {
-      color: #245b96;
+      color: #3c74af;
       transform: translateY(-1px);
     }
 
@@ -441,8 +434,8 @@
 
     .metric-label {
       font-size: 0.86rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      text-transform: none;
       color: var(--muted);
       font-weight: 700;
     }
@@ -524,8 +517,8 @@
       margin-bottom: 0.55rem;
       font-size: 0.82rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      text-transform: none;
       color: var(--navy);
     }
 
@@ -653,14 +646,17 @@
     .eyebrow::after {
       content: "";
       position: absolute;
-      top: -28%;
-      left: -18%;
-      width: 34%;
-      height: 160%;
-      background: linear-gradient(112deg, transparent 0%, rgba(255, 255, 255, 0.00) 30%, rgba(255, 255, 255, 0.70) 48%, rgba(226, 186, 68, 0.20) 62%, transparent 100%);
-      transform: translateX(-180%) skewX(-20deg);
+      top: -16%;
+      left: -12%;
+      width: 18%;
+      height: 148%;
+      background: linear-gradient(180deg, transparent 0%, rgba(214, 166, 46, 0.00) 6%, rgba(255, 247, 210, 0.92) 18%, rgba(214, 166, 46, 0.96) 38%, rgba(255, 255, 255, 0.96) 52%, rgba(214, 166, 46, 0.94) 68%, transparent 100%);
+      clip-path: polygon(48% 0, 61% 8%, 52% 20%, 72% 28%, 56% 40%, 68% 52%, 42% 66%, 54% 76%, 26% 90%, 38% 100%, 18% 100%, 0 90%, 20% 76%, 10% 64%, 34% 50%, 22% 40%, 42% 28%, 32% 18%, 46% 8%);
+      transform: translateX(-220%) skewX(-18deg) scaleY(0.96);
       opacity: 0;
       pointer-events: none;
+      filter: blur(0.35px) drop-shadow(0 0 4px rgba(214, 166, 46, 0.24));
+      mix-blend-mode: screen;
     }
 
     .eyebrow:hover,
@@ -726,7 +722,7 @@
     .eyebrow:hover::after,
     .eyebrow:focus-visible::after {
       opacity: 1;
-      animation: streakFlash 0.82s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      animation: electricFlow 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
     }
 
     @keyframes heroStreak {
@@ -766,100 +762,85 @@
       }
     }
 
-    @keyframes titleCharge {
+    @keyframes titleCrackleTop {
       0%, 100% {
-        text-shadow:
-          0 0 1px rgba(226, 186, 68, 0.20),
-          0 0 7px rgba(226, 186, 68, 0.24),
-          0 0 14px rgba(226, 186, 68, 0.14);
-      }
-      8%,
-      24%,
-      52%,
-      76% {
-        text-shadow:
-          0 0 1px rgba(226, 186, 68, 0.26),
-          0 0 9px rgba(226, 186, 68, 0.36),
-          0 0 18px rgba(226, 186, 68, 0.22);
-      }
-      12%,
-      28%,
-      56%,
-      80% {
-        text-shadow:
-          0 0 1px rgba(226, 186, 68, 0.18),
-          0 0 6px rgba(226, 186, 68, 0.22),
-          0 0 12px rgba(226, 186, 68, 0.12);
-      }
-    }
-
-    @keyframes electricCrackleTop {
-      0%, 100% {
-        opacity: 0.20;
-        transform: translateX(0) scaleX(0.985);
-      }
-      9% {
-        opacity: 0.78;
-        transform: translateX(1px) scaleX(1.02);
-      }
-      14% {
         opacity: 0.24;
-      }
-      26% {
-        opacity: 0.88;
-        transform: translateX(-1px) scaleX(1.01);
-      }
-      31% {
-        opacity: 0.18;
-      }
-      54% {
-        opacity: 0.72;
-      }
-      60% {
-        opacity: 0.22;
-      }
-    }
-
-    @keyframes electricCrackleBottom {
-      0%, 100% {
-        opacity: 0.14;
         transform: translateX(0) scaleX(0.99);
       }
+      8% {
+        opacity: 0.86;
+        transform: translateX(1px) scaleX(1.01);
+      }
+      13% {
+        opacity: 0.28;
+      }
+      29% {
+        opacity: 0.74;
+        transform: translateX(-1px) scaleX(1.005);
+      }
+      34% {
+        opacity: 0.20;
+      }
+      61% {
+        opacity: 0.80;
+      }
+      66% {
+        opacity: 0.26;
+      }
+    }
+
+    @keyframes titleCrackleBottom {
+      0%, 100% {
+        opacity: 0.14;
+        transform: translateX(0) scaleX(0.985);
+      }
       6% {
-        opacity: 0.62;
-        transform: translateX(-1px) scaleX(1.02);
+        opacity: 0.56;
+        transform: translateX(-1px) scaleX(1.01);
       }
       11% {
         opacity: 0.16;
       }
       38% {
-        opacity: 0.54;
+        opacity: 0.48;
       }
       43% {
         opacity: 0.12;
       }
-      68% {
-        opacity: 0.64;
-        transform: translateX(1px) scaleX(1.01);
+      72% {
+        opacity: 0.62;
+        transform: translateX(1px) scaleX(1.005);
       }
-      73% {
+      77% {
         opacity: 0.18;
       }
     }
 
-    @keyframes streakFlash {
+    @keyframes electricFlow {
       0% {
-        transform: translateX(-185%) skewX(-20deg);
+        transform: translateX(-220%) skewX(-18deg) scaleY(0.94);
         opacity: 0;
       }
-      18% {
-        opacity: 0.12;
+      12% {
+        opacity: 0.18;
       }
-      46% {
-        opacity: 0.52;
+      22% {
+        opacity: 0.86;
+      }
+      28% {
+        opacity: 0.34;
+      }
+      36% {
+        opacity: 0.92;
+      }
+      44% {
+        opacity: 0.42;
+      }
+      58% {
+        opacity: 0.74;
       }
       100% {
-        transform: translateX(330%) skewX(-20deg);
+        transform: translateX(360%) skewX(-18deg) scaleY(1.03);
         opacity: 0;
       }
     }
@@ -1269,7 +1250,7 @@
             <div class="metric-card accent-amber">
               <div class="metric-head">
                 <span class="metric-icon icon-amber"><i class="fas fa-bolt"></i></span>
-                <div class="metric-label">End-to-End Speedup</div>
+                <div class="metric-label">SpeedUp</div>
               </div>
               <div class="metric-value">50-400&times;</div>
               <div class="metric-note">Versus recent open-vocabulary 3D scene understanding baselines.</div>
@@ -1339,6 +1320,7 @@
       <div class="story-card accent-blue">
         <div class="signal-head">
           <span class="signal-icon icon-blue"><i class="fas fa-stopwatch"></i></span>
+          <div class="card-kicker">Problem 1</div>
         </div>
         <div class="card-title">Optimization Bottleneck</div>
         <p>
@@ -1348,6 +1330,7 @@
       <div class="story-card accent-emerald">
         <div class="signal-head">
           <span class="signal-icon icon-emerald"><i class="fas fa-memory"></i></span>
+          <div class="card-kicker">Problem 2</div>
         </div>
         <div class="card-title">Feature Memory Load</div>
         <p>
@@ -1357,6 +1340,7 @@
       <div class="story-card accent-rose">
         <div class="signal-head">
           <span class="signal-icon icon-rose"><i class="fas fa-image"></i></span>
+          <div class="card-kicker">Problem 3</div>
         </div>
         <div class="card-title">2D-to-3D Drift</div>
         <p>
