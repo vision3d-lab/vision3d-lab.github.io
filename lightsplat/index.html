@@ -1892,12 +1892,12 @@
     const randomInt = (min, max) => Math.floor(randomBetween(min, max + 1));
     const scheduleNextSparkDelay = (isReducedMotion = prefersReducedMotion.matches) => {
       let delay = isReducedMotion
-        ? randomBetween(1800, 3200)
-        : randomBetween(900, 2200);
+        ? randomBetween(1500, 2600)
+        : randomBetween(650, 1600);
       if (Math.random() < (isReducedMotion ? 0.58 : 0.42)) {
         delay += isReducedMotion
-          ? randomBetween(900, 1600)
-          : randomBetween(450, 900);
+          ? randomBetween(650, 1200)
+          : randomBetween(300, 650);
       }
       return delay;
     };
@@ -1986,14 +1986,14 @@
       let normalY = 1;
       let startX = 0;
       let startY = 0;
-      let length = 24;
+      let length = 26;
 
       if (edge === 0) {
         tangentX = 1;
         tangentY = 0;
         normalX = 0;
         normalY = 1;
-        length = Math.min(randomBetween(22, 42), Math.max(18, width - 16));
+        length = Math.min(randomBetween(28, 54), Math.max(22, width - 16));
         startX = randomBetween(8, Math.max(8, width - length - 8));
         startY = inset;
       } else if (edge === 1) {
@@ -2001,7 +2001,7 @@
         tangentY = 1;
         normalX = -1;
         normalY = 0;
-        length = Math.min(randomBetween(22, 42), Math.max(18, height - 16));
+        length = Math.min(randomBetween(28, 54), Math.max(22, height - 16));
         startX = width - inset;
         startY = randomBetween(8, Math.max(8, height - length - 8));
       } else if (edge === 2) {
@@ -2009,7 +2009,7 @@
         tangentY = 0;
         normalX = 0;
         normalY = -1;
-        length = Math.min(randomBetween(22, 42), Math.max(18, width - 16));
+        length = Math.min(randomBetween(28, 54), Math.max(22, width - 16));
         startX = randomBetween(8, Math.max(8, width - length - 8));
         startY = height - inset;
       } else {
@@ -2017,19 +2017,19 @@
         tangentY = 1;
         normalX = 1;
         normalY = 0;
-        length = Math.min(randomBetween(22, 42), Math.max(18, height - 16));
+        length = Math.min(randomBetween(28, 54), Math.max(22, height - 16));
         startX = inset;
         startY = randomBetween(8, Math.max(8, height - length - 8));
       }
 
-      const segments = randomInt(5, 7);
+      const segments = randomInt(6, 8);
       const step = length / (segments - 1);
       const points = [];
 
       for (let i = 0; i < segments; i += 1) {
         const edgeWeight = i === 0 || i === segments - 1 ? 0.22 : 1;
         const along = step * i + randomBetween(-1.1, 1.1);
-        const inward = randomBetween(0.6, 4.8) * edgeWeight + (i > 0 && i < segments - 1 ? randomBetween(0.4, 1.6) : 0);
+        const inward = randomBetween(0.8, 5.8) * edgeWeight + (i > 0 && i < segments - 1 ? randomBetween(0.6, 2.1) : 0);
 
         points.push({
           x: startX + tangentX * along + normalX * inward,
@@ -2042,20 +2042,20 @@
       const branch = [
         branchStart,
         {
-          x: branchStart.x + normalX * randomBetween(3.2, 6.6) + tangentX * randomBetween(-4.2, 4.2),
-          y: branchStart.y + normalY * randomBetween(3.2, 6.6) + tangentY * randomBetween(-4.2, 4.2),
+          x: branchStart.x + normalX * randomBetween(4.4, 8.4) + tangentX * randomBetween(-5.6, 5.6),
+          y: branchStart.y + normalY * randomBetween(4.4, 8.4) + tangentY * randomBetween(-5.6, 5.6),
         },
       ];
 
       const tip = points[points.length - 1];
-      const particles = Array.from({ length: randomInt(2, 4) }, () => ({
+      const particles = Array.from({ length: randomInt(3, 5) }, () => ({
         x: tip.x,
         y: tip.y,
-        vx: tangentX * randomBetween(0.4, 1.2) + normalX * randomBetween(0.8, 2.4) + randomBetween(-0.6, 0.6),
-        vy: tangentY * randomBetween(0.4, 1.2) + normalY * randomBetween(0.8, 2.4) + randomBetween(-0.6, 0.6),
+        vx: tangentX * randomBetween(0.5, 1.4) + normalX * randomBetween(1.0, 2.9) + randomBetween(-0.7, 0.7),
+        vy: tangentY * randomBetween(0.5, 1.4) + normalY * randomBetween(1.0, 2.9) + randomBetween(-0.7, 0.7),
         age: 0,
-        life: randomBetween(90, 180),
-        size: randomBetween(0.9, 1.9),
+        life: randomBetween(100, 210),
+        size: randomBetween(1.0, 2.2),
       }));
 
       return {
@@ -2063,8 +2063,8 @@
         branch,
         tip,
         age: 0,
-        life: randomBetween(80, 140),
-        flash: randomBetween(2.4, 4.2),
+        life: randomBetween(90, 160),
+        flash: randomBetween(3.1, 5.4),
         particles,
       };
     };
@@ -2087,25 +2087,25 @@
       ctx.lineJoin = "round";
 
       ctx.strokeStyle = `rgba(255, 207, 94, ${0.14 + 0.12 * alpha})`;
-      ctx.lineWidth = 8;
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = `rgba(255, 205, 95, ${0.22 * alpha})`;
+      ctx.lineWidth = 9.5;
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = `rgba(255, 205, 95, ${0.26 * alpha})`;
       traceSmoothPath(ctx, spark.points);
       ctx.stroke();
 
       ctx.strokeStyle = `rgba(255, 192, 63, ${0.54 * alpha})`;
-      ctx.lineWidth = 3.1;
+      ctx.lineWidth = 3.5;
       ctx.shadowBlur = 0;
       traceSmoothPath(ctx, spark.points);
       ctx.stroke();
 
       ctx.strokeStyle = `rgba(255, 252, 238, ${0.94 * alpha})`;
-      ctx.lineWidth = 1.18;
+      ctx.lineWidth = 1.28;
       traceSmoothPath(ctx, spark.points);
       ctx.stroke();
 
       ctx.strokeStyle = `rgba(255, 233, 154, ${0.6 * alpha})`;
-      ctx.lineWidth = 0.9;
+      ctx.lineWidth = 1.0;
       ctx.beginPath();
       ctx.moveTo(spark.branch[0].x, spark.branch[0].y);
       ctx.lineTo(spark.branch[1].x, spark.branch[1].y);
@@ -2130,8 +2130,8 @@
 
       ctx.save();
       ctx.fillStyle = `rgba(255, 227, 142, ${0.72 * alpha})`;
-      ctx.shadowBlur = 6;
-      ctx.shadowColor = `rgba(255, 210, 104, ${0.24 * alpha})`;
+      ctx.shadowBlur = 7;
+      ctx.shadowColor = `rgba(255, 210, 104, ${0.28 * alpha})`;
       ctx.beginPath();
       ctx.arc(particle.x, particle.y, particle.size * (0.75 + life * 0.35), 0, Math.PI * 2);
       ctx.fill();
@@ -2194,8 +2194,8 @@
       state.active = true;
       state.nextBurstAt = performance.now() + (
         prefersReducedMotion.matches
-          ? randomBetween(620, 1180)
-          : randomBetween(240, 560)
+          ? randomBetween(480, 920)
+          : randomBetween(180, 420)
       );
       element.classList.add("is-sparking");
 
