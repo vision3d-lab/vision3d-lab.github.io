@@ -57,6 +57,14 @@
       margin-right: 0.14em;
     }
 
+    .title-line {
+      display: block;
+    }
+
+    .title-line-bottom {
+      white-space: nowrap;
+    }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -133,8 +141,30 @@
     }
 
     .metric-card {
-      padding: 1rem 1.1rem;
+      padding: 1rem 1.05rem;
       text-align: left;
+    }
+
+    .metric-head,
+    .signal-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .metric-icon,
+    .signal-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.45rem;
+      height: 2.45rem;
+      border-radius: 14px;
+      background: rgba(27, 66, 125, 0.08);
+      color: var(--navy);
+      font-size: 1rem;
+      flex: 0 0 auto;
     }
 
     .metric-label {
@@ -146,18 +176,18 @@
     }
 
     .metric-value {
-      margin-top: 0.35rem;
-      font-size: 1.7rem;
+      margin-top: 0.1rem;
+      font-size: 1.45rem;
       font-weight: 700;
       color: var(--navy-deep);
       line-height: 1.15;
     }
 
     .metric-note {
-      margin-top: 0.35rem;
-      font-size: 0.94rem;
+      margin-top: 0.3rem;
+      font-size: 0.9rem;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
     .section {
@@ -214,7 +244,7 @@
     .story-card,
     .step-card,
     .result-card {
-      padding: 1.35rem;
+      padding: 1.15rem;
     }
 
     .card-kicker {
@@ -249,25 +279,41 @@
     .result-card p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.55;
     }
 
     .step-list {
       display: grid;
-      gap: 0.9rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
     }
 
     .step-number {
       display: inline-flex;
-      width: 2rem;
-      height: 2rem;
+      width: 2.15rem;
+      height: 2.15rem;
       align-items: center;
       justify-content: center;
       border-radius: 999px;
       background: rgba(27, 66, 125, 0.10);
       color: var(--navy);
       font-weight: 700;
-      margin-bottom: 0.65rem;
+      margin-bottom: 0;
+      flex: 0 0 auto;
+    }
+
+    .step-card .card-title,
+    .story-card .card-title {
+      margin-bottom: 0.45rem;
+    }
+
+    .step-card .card-title strong,
+    .story-card .card-title strong {
+      color: var(--navy-deep);
+    }
+
+    .method-figure {
+      max-width: 100%;
     }
 
     .figure-panel {
@@ -399,6 +445,64 @@
       line-height: 1.65;
     }
 
+    .table-stack {
+      display: grid;
+      gap: 1.15rem;
+    }
+
+    .paper-table-panel {
+      padding: 1rem 1rem 0.8rem;
+    }
+
+    .paper-table-title {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      margin-bottom: 0.2rem;
+    }
+
+    .paper-table-subhead {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0.85rem;
+    }
+
+    .paper-results-table {
+      min-width: 1380px;
+    }
+
+    .paper-results-table th,
+    .paper-results-table td {
+      font-size: 0.9rem;
+      padding: 0.8rem 0.72rem;
+    }
+
+    .paper-results-table thead tr:first-child th {
+      background: rgba(27, 66, 125, 0.06);
+    }
+
+    .paper-results-table thead tr:nth-child(2) th {
+      background: rgba(27, 66, 125, 0.03);
+      font-weight: 600;
+    }
+
+    .paper-results-table tbody tr.ours-row td {
+      background: rgba(27, 66, 125, 0.055);
+    }
+
+    .paper-results-table tbody tr.ours-row td:first-child {
+      color: var(--navy-deep);
+      font-weight: 700;
+    }
+
+    .mean-cell,
+    .time-cell {
+      font-weight: 700;
+      color: var(--navy-deep);
+    }
+
     .bibtex-section {
       background: #F5F7FA;
       padding: 20px;
@@ -425,7 +529,8 @@
     @media screen and (max-width: 1023px) {
       .hero-metrics,
       .story-grid,
-      .qual-grid {
+      .qual-grid,
+      .step-list {
         grid-template-columns: 1fr 1fr;
       }
     }
@@ -437,7 +542,8 @@
 
       .hero-metrics,
       .story-grid,
-      .qual-grid {
+      .qual-grid,
+      .step-list {
         grid-template-columns: 1fr;
       }
 
@@ -452,6 +558,10 @@
       .publication-title,
       .title.is-1 {
         font-size: 2rem;
+      }
+
+      .title-line-bottom {
+        white-space: normal;
       }
 
       .metric-value,
@@ -469,7 +579,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <div class="eyebrow">Accepted to CVPR 2026</div>
-          <h1 class="title is-1 publication-title"><img src="./images/paper_figures/lightning.png" class="title-icon" alt="">LightSplat: Fast and Memory-Efficient <br> Open-Vocabulary 3D Scene Understanding in Five Seconds</h1>
+          <h1 class="title is-1 publication-title"><span class="title-line"><img src="./images/paper_figures/lightning.png" class="title-icon" alt="">LightSplat: Fast and Memory-Efficient</span><span class="title-line title-line-bottom">Open-Vocabulary 3D Scene Understanding in Five Seconds</span></h1>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -526,24 +636,36 @@
 
           <div class="hero-metrics">
             <div class="metric-card">
-              <div class="metric-label">Feature Distillation</div>
+              <div class="metric-head">
+                <span class="metric-icon"><i class="fas fa-stopwatch"></i></span>
+                <div class="metric-label">Feature Distillation</div>
+              </div>
               <div class="metric-value">~5 Seconds</div>
-              <div class="metric-note">Single-step semantic injection without iterative feature training.</div>
+              <div class="metric-note">Single-step, training-free semantic injection.</div>
             </div>
             <div class="metric-card">
-              <div class="metric-label">Speedup</div>
+              <div class="metric-head">
+                <span class="metric-icon"><i class="fas fa-bolt"></i></span>
+                <div class="metric-label">Speedup</div>
+              </div>
               <div class="metric-value">50-400&times;</div>
-              <div class="metric-note">Compared with recent open-vocabulary 3D scene understanding baselines.</div>
+              <div class="metric-note">Versus recent open-vocabulary 3D scene understanding baselines.</div>
             </div>
             <div class="metric-card">
-              <div class="metric-label">Memory Reduction</div>
+              <div class="metric-head">
+                <span class="metric-icon"><i class="fas fa-memory"></i></span>
+                <div class="metric-label">Memory Reduction</div>
+              </div>
               <div class="metric-value">64&times; Lower</div>
-              <div class="metric-note">Cluster-level semantics replace heavy Gaussian-level language features.</div>
+              <div class="metric-note">Cluster-level semantics replace heavy Gaussian-level features.</div>
             </div>
             <div class="metric-card">
-              <div class="metric-label">Storage Per Gaussian</div>
+              <div class="metric-head">
+                <span class="metric-icon"><i class="fas fa-database"></i></span>
+                <div class="metric-label">Storage Per Gaussian</div>
+              </div>
               <div class="metric-value">2 Bytes</div>
-              <div class="metric-note">Compact semantic indexing keeps the representation lightweight and scalable.</div>
+              <div class="metric-note">Compact indexing keeps the representation lightweight and scalable.</div>
             </div>
           </div>
         </div>
@@ -573,10 +695,10 @@
             <strong>Open-vocabulary 3D scene understanding</strong> enables users to segment novel objects in complex 3D environments through natural language. However, existing approaches remain <strong>slow</strong>, <strong>memory-intensive</strong>, and overly complex due to iterative optimization and dense per-Gaussian feature assignments.
           </p>
           <p>
-            To address this, we propose <strong>LightSplat</strong>, a fast and memory-efficient <strong>training-free</strong> framework that injects compact <strong>2-byte semantic indices</strong> into 3D representations from multi-view images. By assigning semantic indices only to salient regions and managing them with a lightweight index-feature mapping, LightSplat eliminates costly feature optimization and storage overhead.
+            To address this, we propose <strong>LightSplat, a fast and memory-efficient training-free framework</strong> that injects compact <strong>2-byte semantic indices</strong> into 3D representations from multi-view images. By assigning semantic indices only to salient regions and managing them with a <strong>lightweight index-feature mapping</strong>, LightSplat eliminates costly feature optimization and storage overhead.
           </p>
           <p>
-            We further ensure <strong>semantic consistency</strong> and efficient inference via <strong>single-step clustering</strong> that links geometrically and semantically related masks in 3D. We evaluate our method on <strong>LERF-OVS</strong>, <strong>ScanNet</strong>, and <strong>DL3DV-OVS</strong> across complex indoor-outdoor scenes, achieving <strong>state-of-the-art performance</strong> with up to <strong>50-400&times; speedup</strong> and <strong>64&times; lower memory</strong>.
+            We further ensure <strong>semantic consistency and efficient inference via single-step clustering</strong> that links geometrically and semantically related masks in 3D. We evaluate our method on LERF-OVS, ScanNet, and <strong>DL3DV-OVS</strong> across complex indoor-outdoor scenes, achieving <strong>state-of-the-art performance with up to 50-400&times; speedup and 64&times; lower memory</strong>.
           </p>
         </div>
       </div>
@@ -592,24 +714,33 @@
     </p>
     <div class="story-grid">
       <div class="story-card">
-        <div class="card-kicker">Problem 1</div>
-        <div class="card-title">Iterative feature optimization is too slow</div>
+        <div class="signal-head">
+          <span class="signal-icon"><i class="fas fa-stopwatch"></i></span>
+          <div class="card-kicker">Problem 1</div>
+        </div>
+        <div class="card-title"><strong>Iterative Optimization</strong> slows distillation.</div>
         <p>
-          Prior methods repeatedly render views and align them with CLIP embeddings. That loop becomes the dominant cost of feature distillation and makes practical deployment unnecessarily slow.
+          Repeated rendering and CLIP alignment turn feature distillation into the bottleneck.
         </p>
       </div>
       <div class="story-card">
-        <div class="card-kicker">Problem 2</div>
-        <div class="card-title">Per-Gaussian language features waste memory</div>
+        <div class="signal-head">
+          <span class="signal-icon"><i class="fas fa-memory"></i></span>
+          <div class="card-kicker">Problem 2</div>
+        </div>
+        <div class="card-title"><strong>Per-Gaussian Features</strong> waste memory.</div>
         <p>
-          Storing high-dimensional semantic features for every Gaussian creates heavy memory overhead and forces inference to compare text queries against a very large number of primitives.
+          Dense language features inflate storage and force expensive query-time comparisons.
         </p>
       </div>
       <div class="story-card">
-        <div class="card-kicker">Problem 3</div>
-        <div class="card-title">2D supervision degrades 3D semantics</div>
+        <div class="signal-head">
+          <span class="signal-icon"><i class="fas fa-image"></i></span>
+          <div class="card-kicker">Problem 3</div>
+        </div>
+        <div class="card-title"><strong>2D Supervision</strong> degrades 3D semantics.</div>
         <p>
-          When semantics are learned indirectly through rendered 2D feature maps, overlapping Gaussians blur boundaries and weaken the geometric consistency that real 3D reasoning needs.
+          Blurry rendered features weaken geometry-consistent semantics in 3D.
         </p>
       </div>
     </div>
@@ -623,69 +754,54 @@
       LightSplat is designed around a direct response to the three bottlenecks above. Rather than optimizing dense semantic features on every Gaussian, it first injects only the <strong>mask identities that matter</strong>, then consolidates them into coherent <strong>3D object clusters</strong>. This is the mechanism behind the paper's central claim: <strong>efficient 3D understanding without giving up object-level reasoning</strong>.
     </p>
 
-    <div class="columns is-variable is-6 method-columns">
-      <div class="column is-7">
-        <div class="figure-panel">
-          <img src="./images/paper_figures/fig2.png" alt="Overall framework of LightSplat">
-          <p class="figure-caption">
-            <strong>Figure 2.</strong> The pipeline is deliberately compact: extract <strong>SAM masks</strong> and <strong>CLIP features</strong>, inject only lightweight indices into 3D Gaussians, filter unreliable masks with 3D support, and build coherent object-level semantics through <strong>context-aware clustering</strong>.
-          </p>
+    <div class="figure-panel method-figure">
+      <img src="./images/paper_figures/fig2.png" alt="Overall framework of LightSplat">
+      <p class="figure-caption">
+        <strong>Figure 2.</strong> The pipeline is deliberately compact: extract <strong>SAM masks</strong> and <strong>CLIP features</strong>, inject only lightweight indices into 3D Gaussians, filter unreliable masks with 3D support, and build coherent object-level semantics through <strong>context-aware clustering</strong>.
+      </p>
+    </div>
+
+    <div class="step-list mt-5">
+      <div class="step-card">
+        <div class="signal-head">
+          <span class="signal-icon"><i class="fas fa-images"></i></span>
+          <div class="card-kicker">Step 1</div>
         </div>
+        <div class="card-title"><strong>Extract Mask Semantics</strong> from multi-view images.</div>
+        <p>Collect SAM masks and CLIP features to build a clean 2D semantic inventory.</p>
       </div>
-      <div class="column is-5">
-        <div class="step-list">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="card-title">Extract mask semantics from multi-view images</div>
-            <p>
-              For each image, LightSplat collects SAM masks and their corresponding CLIP features, creating a clean 2D semantic inventory before any 3D reasoning begins.
-            </p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="card-title">Inject compact 2-byte indices into 3D</div>
-            <p>
-              Instead of attaching full language vectors to every Gaussian, the method assigns only the most influential mask index to each relevant Gaussian.
-            </p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="card-title">Filter noise using geometric support</div>
-            <p>
-              Masks with weak 3D support are removed, which suppresses view-dependent artifacts and stabilizes the semantics that survive into 3D.
-            </p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">4</div>
-            <div class="card-title">Cluster semantically related masks in one step</div>
-            <p>
-              Geometric overlap and semantic similarity are combined to build object-level clusters, giving the model a compact and interpretable 3D representation.
-            </p>
-          </div>
+      <div class="step-card">
+        <div class="signal-head">
+          <span class="signal-icon"><i class="fas fa-tag"></i></span>
+          <div class="card-kicker">Step 2</div>
         </div>
+        <div class="card-title"><strong>Inject 2-Byte Indices</strong> into 3D.</div>
+        <p>Assign only the most influential mask index instead of full language features.</p>
+      </div>
+      <div class="step-card">
+        <div class="signal-head">
+          <span class="signal-icon"><i class="fas fa-filter"></i></span>
+          <div class="card-kicker">Step 3</div>
+        </div>
+        <div class="card-title"><strong>Filter Noise</strong> using geometric support.</div>
+        <p>Remove weak masks to suppress view-dependent artifacts and stabilize 3D semantics.</p>
+      </div>
+      <div class="step-card">
+        <div class="signal-head">
+          <span class="signal-icon"><i class="fas fa-share-nodes"></i></span>
+          <div class="card-kicker">Step 4</div>
+        </div>
+        <div class="card-title"><strong>Cluster Masks</strong> in one step.</div>
+        <p>Combine geometric overlap and semantic similarity to form interpretable object-level clusters.</p>
       </div>
     </div>
 
-    <div class="columns is-variable is-6 method-columns mt-5">
-      <div class="column is-5">
-        <h3 class="minor-title">Fast Inference by Design</h3>
-        <div class="content">
-          <p>
-            Once cluster-level features are formed, inference becomes much simpler. The text query is compared with a <strong>compact set of cluster features</strong> instead of every Gaussian or every rendered pixel.
-          </p>
-          <p>
-            This is why LightSplat is not just faster at distillation, but also faster at query time. The expensive part of reasoning is moved away from Gaussian-level comparisons and into a much smaller object-level representation, reducing similarity computations to <strong>below 0.1%</strong> of naive Gaussian-level inference depending on scene complexity.
-          </p>
-        </div>
-      </div>
-      <div class="column is-7">
-        <div class="figure-panel">
-          <img src="./images/paper_figures/fig3.png" alt="Fast inference via cluster-feature mapping">
-          <p class="figure-caption">
-            <strong>Figure 3.</strong> Text is matched against <strong>cluster-feature mappings</strong>, not dense Gaussian features, which keeps the inference path short and scalable.
-          </p>
-        </div>
-      </div>
+    <div class="figure-panel method-figure mt-5">
+      <div class="minor-title">Fast Inference by Design</div>
+      <img src="./images/paper_figures/fig3.png" alt="Fast inference via cluster-feature mapping">
+      <p class="figure-caption">
+        <strong>Figure 3.</strong> Text is matched against <strong>cluster-feature mappings</strong>, not dense Gaussian features. This is the second half of the LightSplat story: the same compact representation that speeds up distillation also reduces query-time comparisons to <strong>below 0.1%</strong> of naive Gaussian-level inference depending on scene complexity.
+      </p>
     </div>
   </div>
 </section>
@@ -697,86 +813,194 @@
       The empirical claim is straightforward: <strong>compact indexing is not merely efficient, it also preserves strong 3D semantics</strong>. Across <strong>LERF-OVS</strong>, <strong>DL3DV-OVS</strong>, and <strong>ScanNet</strong>, LightSplat consistently combines low cost with competitive or state-of-the-art quality.
     </p>
 
-    <div class="table-panel">
-      <table class="results-table">
-        <thead>
-          <tr>
-            <th>Dataset</th>
-            <th>Task</th>
-            <th>Primary Result</th>
-            <th>Secondary Result</th>
-            <th>Feature Distillation</th>
-            <th>Runtime</th>
-            <th>Memory</th>
-            <th>What It Shows</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="dataset-badge">LERF-OVS</span></td>
-            <td>3D Object Selection</td>
-            <td>
-              <div class="metric-stack">
-                <div class="metric-main">47.58 <span class="metric-inline">mIoU</span></div>
-                <div class="metric-sub">Best overall balance of speed and object-level quality.</div>
-              </div>
-            </td>
-            <td>
-              <div class="metric-stack">
-                <div class="metric-main">68.32 <span class="metric-inline">mAcc@0.25</span></div>
-                <div class="speed-pill">4.2 s distillation</div>
-              </div>
-            </td>
-            <td>4.2 s</td>
-            <td>-</td>
-            <td>-</td>
-            <td>Precise 3D object selection with strong boundary quality on fine-grained tabletop scenes.</td>
-          </tr>
-          <tr>
-            <td><span class="dataset-badge">DL3DV-OVS</span></td>
-            <td>Large Indoor-Outdoor Scene Understanding</td>
-            <td>
-              <div class="metric-stack">
-                <div class="metric-main">44.98 <span class="metric-inline">mIoU</span></div>
-                <div class="metric-sub">Remains stable on larger scenes with repeated or distant objects.</div>
-              </div>
-            </td>
-            <td>
-              <div class="metric-stack">
-                <div class="metric-main">60.82 <span class="metric-inline">mAcc@0.25</span></div>
-                <div class="speed-pill">4.8 s distillation</div>
-              </div>
-            </td>
-            <td>4.8 s</td>
-            <td>-</td>
-            <td>-</td>
-            <td>Strong robustness when scene scale, object count, and background complexity increase.</td>
-          </tr>
-          <tr>
-            <td><span class="dataset-badge">ScanNet</span></td>
-            <td>3D Semantic Segmentation</td>
-            <td>
-              <div class="metric-stack">
-                <div class="metric-main">37.11 <span class="metric-inline">mIoU</span></div>
-                <div class="metric-sub">19-class setting; also reaches 39.78 / 47.78 mIoU on 15 / 10 classes.</div>
-              </div>
-            </td>
-            <td>
-              <div class="metric-stack">
-                <div class="metric-main">58.66 <span class="metric-inline">mAcc</span></div>
-                <div class="metric-sub">19-class setting; 60.91 / 68.21 mAcc on 15 / 10 classes.</div>
-              </div>
-            </td>
-            <td>4.1 s</td>
-            <td>0.002 s/query</td>
-            <td>2 bytes/Gaussian</td>
-            <td>Shows that compact indexing scales to dense scene segmentation without giving up semantic coverage.</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="table-note">
-        The table reflects the paper's main point more directly than isolated score cards: <strong>LightSplat is efficient across all benchmarks</strong>, but the efficiency does not come from simplifying the task. It keeps competitive or state-of-the-art 3D semantics while cutting distillation time and memory cost to a level that makes deployment realistic.
-      </p>
+    <div class="table-stack">
+      <div class="table-panel paper-table-panel">
+        <div class="paper-table-title">Table 1. Quantitative Comparison for 3D Object Selection on LERF-OVS</div>
+        <div class="paper-table-subhead">
+          Reproduced from the paper. The table compares object selection quality and feature distillation time across recent methods.
+        </div>
+        <table class="results-table paper-results-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Method</th>
+              <th colspan="5">mIoU</th>
+              <th colspan="5">mAcc @ 0.25</th>
+              <th rowspan="2">FD Time</th>
+            </tr>
+            <tr>
+              <th>Waldo</th>
+              <th>Ramen</th>
+              <th>Figurines</th>
+              <th>Teatime</th>
+              <th>Mean</th>
+              <th>Waldo</th>
+              <th>Ramen</th>
+              <th>Figurines</th>
+              <th>Teatime</th>
+              <th>Mean</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LangSplat</td>
+              <td>9.61</td><td>3.49</td><td>9.64</td><td>7.91</td><td class="mean-cell">7.66</td>
+              <td>9.09</td><td>5.63</td><td>14.29</td><td>8.47</td><td class="mean-cell">9.37</td>
+              <td class="time-cell">100 min</td>
+            </tr>
+            <tr>
+              <td>LEGaussians</td>
+              <td>17.21</td><td>14.15</td><td>16.40</td><td>21.93</td><td class="mean-cell">17.42</td>
+              <td>27.27</td><td>28.17</td><td>25.00</td><td>33.90</td><td class="mean-cell">28.56</td>
+              <td class="time-cell">40 min</td>
+            </tr>
+            <tr>
+              <td>OpenGaussian</td>
+              <td>30.96</td><td>24.02</td><td>55.38</td><td>58.24</td><td class="mean-cell">42.15</td>
+              <td>45.45</td><td>28.17</td><td>75.00</td><td>76.27</td><td class="mean-cell">56.22</td>
+              <td class="time-cell">50 min</td>
+            </tr>
+            <tr>
+              <td>LUDVIG</td>
+              <td>28.08</td><td>29.33</td><td>47.43</td><td>52.28</td><td class="mean-cell">39.28</td>
+              <td>51.33</td><td>50.36</td><td>67.02</td><td>85.72</td><td class="mean-cell">63.61</td>
+              <td class="time-cell">10 min</td>
+            </tr>
+            <tr>
+              <td>Dr.Splat</td>
+              <td>39.07</td><td>24.70</td><td>53.36</td><td>57.20</td><td class="mean-cell">43.58</td>
+              <td>63.64</td><td>35.21</td><td>80.36</td><td>76.27</td><td class="mean-cell">63.87</td>
+              <td class="time-cell">4 min</td>
+            </tr>
+            <tr class="ours-row">
+              <td>Ours</td>
+              <td>34.95</td><td>45.07</td><td>50.63</td><td>59.65</td><td class="mean-cell">47.58</td>
+              <td>59.09</td><td>57.75</td><td>76.79</td><td>79.66</td><td class="mean-cell">68.32</td>
+              <td class="time-cell">4.2 s</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-panel paper-table-panel">
+        <div class="paper-table-title">Table 2. Quantitative Comparison for 3D Object Selection on DL3DV-OVS</div>
+        <div class="paper-table-subhead">
+          Reproduced from the paper. The table emphasizes robustness on larger indoor-outdoor scenes with more complex object layouts.
+        </div>
+        <table class="results-table paper-results-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Method</th>
+              <th colspan="5">mIoU</th>
+              <th colspan="5">mAcc @ 0.25</th>
+              <th rowspan="2">FD Time</th>
+            </tr>
+            <tr>
+              <th>Park</th>
+              <th>Shop</th>
+              <th>Road</th>
+              <th>Office</th>
+              <th>Mean</th>
+              <th>Park</th>
+              <th>Shop</th>
+              <th>Road</th>
+              <th>Office</th>
+              <th>Mean</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LangSplat</td>
+              <td>8.79</td><td>9.28</td><td>7.90</td><td>15.80</td><td class="mean-cell">10.44</td>
+              <td>0.00</td><td>17.65</td><td>16.67</td><td>27.27</td><td class="mean-cell">15.40</td>
+              <td class="time-cell">220 min</td>
+            </tr>
+            <tr>
+              <td>LEGaussians</td>
+              <td>21.95</td><td>9.70</td><td>3.51</td><td>8.17</td><td class="mean-cell">10.83</td>
+              <td>33.33</td><td>11.76</td><td>0.00</td><td>0.00</td><td class="mean-cell">11.27</td>
+              <td class="time-cell">40 min</td>
+            </tr>
+            <tr>
+              <td>OpenGaussian</td>
+              <td>29.65</td><td>19.51</td><td>41.59</td><td>6.78</td><td class="mean-cell">24.38</td>
+              <td>41.67</td><td>35.29</td><td>66.67</td><td>0.00</td><td class="mean-cell">35.91</td>
+              <td class="time-cell">60 min</td>
+            </tr>
+            <tr>
+              <td>LUDVIG</td>
+              <td>37.03</td><td>33.56</td><td>27.68</td><td>18.58</td><td class="mean-cell">29.21</td>
+              <td>70.00</td><td>56.75</td><td>53.57</td><td>47.22</td><td class="mean-cell">56.89</td>
+              <td class="time-cell">12 min</td>
+            </tr>
+            <tr class="ours-row">
+              <td>Ours</td>
+              <td>69.78</td><td>35.59</td><td>31.43</td><td>43.13</td><td class="mean-cell">44.98</td>
+              <td>91.67</td><td>47.06</td><td>50.00</td><td>54.55</td><td class="mean-cell">60.82</td>
+              <td class="time-cell">4.8 s</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-panel paper-table-panel">
+        <div class="paper-table-title">Table 3. Quantitative Comparison for 3D Semantic Segmentation on ScanNet</div>
+        <div class="paper-table-subhead">
+          Reproduced from the paper. Runtime and memory show that LightSplat remains efficient even when the task shifts from object selection to full semantic segmentation.
+        </div>
+        <table class="results-table paper-results-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Method</th>
+              <th colspan="2">19 Classes</th>
+              <th colspan="2">15 Classes</th>
+              <th colspan="2">10 Classes</th>
+              <th rowspan="2">FD Time</th>
+              <th rowspan="2">Runtime</th>
+              <th rowspan="2">Memory</th>
+            </tr>
+            <tr>
+              <th>mIoU</th>
+              <th>mAcc</th>
+              <th>mIoU</th>
+              <th>mAcc</th>
+              <th>mIoU</th>
+              <th>mAcc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LangSplat</td>
+              <td>2.61</td><td>10.11</td><td>4.08</td><td>13.22</td><td>6.30</td><td>20.48</td>
+              <td class="time-cell">40 min</td><td>2.1</td><td>36</td>
+            </tr>
+            <tr>
+              <td>LEGaussians</td>
+              <td>1.62</td><td>7.26</td><td>5.72</td><td>14.23</td><td>9.84</td><td>19.13</td>
+              <td class="time-cell">50 min</td><td>1.7</td><td>32</td>
+            </tr>
+            <tr>
+              <td>OpenGaussian</td>
+              <td>29.43</td><td>43.62</td><td>32.61</td><td>48.26</td><td>41.29</td><td>56.42</td>
+              <td class="time-cell">30 min</td><td>0.003</td><td>24</td>
+            </tr>
+            <tr>
+              <td>LUDVIG</td>
+              <td>28.47</td><td>44.17</td><td>31.47</td><td>48.54</td><td>40.47</td><td>58.15</td>
+              <td class="time-cell">4 min</td><td>0.006</td><td>2048</td>
+            </tr>
+            <tr>
+              <td>Dr.Splat</td>
+              <td>28.00</td><td>44.60</td><td>38.20</td><td>60.40</td><td>47.20</td><td>68.90</td>
+              <td class="time-cell">3 min</td><td>-</td><td>128</td>
+            </tr>
+            <tr class="ours-row">
+              <td>Ours</td>
+              <td>37.11</td><td>58.66</td><td>39.78</td><td>60.91</td><td>47.78</td><td>68.21</td>
+              <td class="time-cell">4.1 s</td><td>0.002</td><td>2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
