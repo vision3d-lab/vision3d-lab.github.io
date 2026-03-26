@@ -111,12 +111,44 @@
     }
 
     .title-accent {
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
       color: #1a1f27;
       text-shadow:
         0 0 1px rgba(226, 186, 68, 0.22),
         0 0 7px rgba(226, 186, 68, 0.28),
         0 0 14px rgba(226, 186, 68, 0.18);
       animation: titleCharge 4.1s ease-in-out infinite;
+    }
+
+    .title-accent::before,
+    .title-accent::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 248, 224, 0.00) 8%, rgba(255, 248, 224, 0.96) 18%, rgba(226, 186, 68, 0.96) 38%, rgba(255, 255, 255, 0.90) 50%, rgba(226, 186, 68, 0.96) 64%, transparent 100%);
+      filter: blur(0.45px) drop-shadow(0 0 6px rgba(226, 186, 68, 0.22));
+    }
+
+    .title-accent::before {
+      top: -0.16em;
+      left: -0.04em;
+      width: calc(100% + 0.14em);
+      height: 0.42em;
+      clip-path: polygon(0 84%, 10% 56%, 18% 82%, 30% 20%, 43% 60%, 57% 28%, 70% 78%, 82% 44%, 100% 62%, 100% 100%, 0 100%);
+      animation: electricCrackleTop 3.1s steps(1, end) infinite;
+    }
+
+    .title-accent::after {
+      bottom: -0.13em;
+      left: 16%;
+      width: 72%;
+      height: 0.34em;
+      clip-path: polygon(0 88%, 14% 48%, 25% 84%, 39% 26%, 52% 68%, 64% 18%, 80% 74%, 100% 46%, 100% 100%, 0 100%);
+      opacity: 0.42;
+      animation: electricCrackleBottom 2.8s steps(1, end) infinite;
     }
 
     .eyebrow {
@@ -154,12 +186,12 @@
     }
 
     .publication-authors.is-names {
-      color: #617488;
+      color: #5b7391;
     }
 
     .publication-authors.is-names a,
     .publication-authors.is-names a:visited {
-      color: #49627d;
+      color: #3f648e;
       position: relative;
       display: inline-block;
       text-decoration: none;
@@ -183,7 +215,7 @@
 
     .publication-authors.is-names a:hover,
     .publication-authors.is-names a:focus-visible {
-      color: #274f7b;
+      color: #245b96;
       transform: translateY(-1px);
     }
 
@@ -287,6 +319,7 @@
       color: var(--navy);
       font-size: 1rem;
       flex: 0 0 auto;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
     }
 
     .metric-card,
@@ -666,6 +699,16 @@
       border-color: rgba(27, 66, 125, 0.16);
     }
 
+    .metric-card:hover .metric-icon,
+    .metric-card:focus-within .metric-icon,
+    .story-card:hover .signal-icon,
+    .story-card:focus-within .signal-icon,
+    .step-card:hover .signal-icon,
+    .step-card:focus-within .signal-icon {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 22px rgba(17, 40, 70, 0.12);
+    }
+
     .hero-summary:hover::after,
     .hero-summary:focus-within::after,
     .metric-card:hover::after,
@@ -730,11 +773,77 @@
           0 0 7px rgba(226, 186, 68, 0.24),
           0 0 14px rgba(226, 186, 68, 0.14);
       }
-      50% {
+      8%,
+      24%,
+      52%,
+      76% {
         text-shadow:
           0 0 1px rgba(226, 186, 68, 0.26),
-          0 0 9px rgba(226, 186, 68, 0.34),
-          0 0 18px rgba(226, 186, 68, 0.20);
+          0 0 9px rgba(226, 186, 68, 0.36),
+          0 0 18px rgba(226, 186, 68, 0.22);
+      }
+      12%,
+      28%,
+      56%,
+      80% {
+        text-shadow:
+          0 0 1px rgba(226, 186, 68, 0.18),
+          0 0 6px rgba(226, 186, 68, 0.22),
+          0 0 12px rgba(226, 186, 68, 0.12);
+      }
+    }
+
+    @keyframes electricCrackleTop {
+      0%, 100% {
+        opacity: 0.20;
+        transform: translateX(0) scaleX(0.985);
+      }
+      9% {
+        opacity: 0.78;
+        transform: translateX(1px) scaleX(1.02);
+      }
+      14% {
+        opacity: 0.24;
+      }
+      26% {
+        opacity: 0.88;
+        transform: translateX(-1px) scaleX(1.01);
+      }
+      31% {
+        opacity: 0.18;
+      }
+      54% {
+        opacity: 0.72;
+      }
+      60% {
+        opacity: 0.22;
+      }
+    }
+
+    @keyframes electricCrackleBottom {
+      0%, 100% {
+        opacity: 0.14;
+        transform: translateX(0) scaleX(0.99);
+      }
+      6% {
+        opacity: 0.62;
+        transform: translateX(-1px) scaleX(1.02);
+      }
+      11% {
+        opacity: 0.16;
+      }
+      38% {
+        opacity: 0.54;
+      }
+      43% {
+        opacity: 0.12;
+      }
+      68% {
+        opacity: 0.64;
+        transform: translateX(1px) scaleX(1.01);
+      }
+      73% {
+        opacity: 0.18;
       }
     }
 
@@ -1057,6 +1166,8 @@
       .hero::after,
       .title-icon,
       .title-accent,
+      .title-accent::before,
+      .title-accent::after,
       .hero-summary::after,
       .metric-card::after,
       .story-card::after,
@@ -1228,7 +1339,6 @@
       <div class="story-card accent-blue">
         <div class="signal-head">
           <span class="signal-icon icon-blue"><i class="fas fa-stopwatch"></i></span>
-          <div class="card-kicker">Problem 1</div>
         </div>
         <div class="card-title">Optimization Bottleneck</div>
         <p>
@@ -1238,7 +1348,6 @@
       <div class="story-card accent-emerald">
         <div class="signal-head">
           <span class="signal-icon icon-emerald"><i class="fas fa-memory"></i></span>
-          <div class="card-kicker">Problem 2</div>
         </div>
         <div class="card-title">Feature Memory Load</div>
         <p>
@@ -1248,7 +1357,6 @@
       <div class="story-card accent-rose">
         <div class="signal-head">
           <span class="signal-icon icon-rose"><i class="fas fa-image"></i></span>
-          <div class="card-kicker">Problem 3</div>
         </div>
         <div class="card-title">2D-to-3D Drift</div>
         <p>
