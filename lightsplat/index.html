@@ -675,62 +675,20 @@
       isolation: isolate;
     }
 
-    .spark-target > .spark-overlay {
-      display: none !important;
+    .spark-target > .spark-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 4;
+      border-radius: inherit;
+      transition: opacity 0.12s ease;
     }
 
-    .spark-target.is-sparking > .spark-overlay {
-      display: none !important;
-    }
-
-    .spark-target > .spark-overlay .spark-arc {
-      animation: electricArcLife 0.22s cubic-bezier(0.18, 0.84, 0.34, 1) forwards;
-      transform-origin: center center;
-      will-change: opacity;
-    }
-
-    .spark-target > .spark-overlay .spark-arc-glow {
-      fill: none;
-      stroke: rgba(255, 220, 126, 0.24);
-      stroke-width: 5.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: blur(0.75px);
-    }
-
-    .spark-target > .spark-overlay .spark-arc-mid {
-      fill: none;
-      stroke: rgba(255, 200, 69, 0.84);
-      stroke-width: 2.3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: drop-shadow(0 0 4px rgba(255, 204, 82, 0.18));
-    }
-
-    .spark-target > .spark-overlay .spark-arc-core {
-      fill: none;
-      stroke: rgba(255, 251, 229, 0.98);
-      stroke-width: 1.1;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .spark-target > .spark-overlay .spark-arc-branch {
-      fill: none;
-      stroke: rgba(255, 231, 156, 0.78);
-      stroke-width: 0.9;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: 0.82;
-    }
-
-    .spark-target > .spark-overlay .spark-arc-tip {
-      fill: rgba(255, 252, 236, 0.98);
-      filter: drop-shadow(0 0 4px rgba(255, 223, 124, 0.24));
-    }
-
-    .spark-target > .spark-overlay .spark-arc-trace {
-      fill: rgba(255, 216, 101, 0.58);
+    .spark-target.is-sparking > .spark-canvas {
+      opacity: 1;
     }
 
     .eyebrow:hover,
@@ -932,21 +890,6 @@
       }
       77% {
         opacity: 0.16;
-      }
-    }
-
-    @keyframes electricArcLife {
-      0% {
-        opacity: 0;
-      }
-      12% {
-        opacity: 1;
-      }
-      36% {
-        opacity: 0.88;
-      }
-      100% {
-        opacity: 0;
       }
     }
 
@@ -1269,12 +1212,11 @@
       .title-accent,
       .title-accent::before,
       .title-accent::after,
-      .spark-target > .spark-overlay,
-      .spark-target > .spark-overlay .spark-arc {
+      .spark-target > .spark-canvas {
         animation: none !important;
       }
 
-      .spark-target > .spark-overlay {
+      .spark-target > .spark-canvas {
         opacity: 0 !important;
       }
 
@@ -1922,177 +1864,336 @@
     });
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sparkTargets = [];
+    const sparkTargets = [
+      ...document.querySelectorAll(".hero-summary, .metric-card, .story-card, .step-card, .result-card, .figure-panel, .publication-links .button, .eyebrow")
+    ];
     const sparkStates = new WeakMap();
-    const svgNs = "http://www.w3.org/2000/svg";
+
+    const randomBetween = (min, max) => min + Math.random() * (max - min);
+    const randomInt = (min, max) => Math.floor(randomBetween(min, max + 1));
 
     const getSparkState = (element) => {
       if (!sparkStates.has(element)) {
         sparkStates.set(element, {
           active: false,
-          timeoutId: 0,
-          overlay: null,
+          rafId: 0,
+          lastTime: 0,
+          nextBurstAt: 0,
+          canvas: null,
+          ctx: null,
+          width: 0,
+          height: 0,
+          dpr: 1,
+          arcs: [],
+          particles: [],
         });
       }
 
       return sparkStates.get(element);
     };
 
-    const randomBetween = (min, max) => min + Math.random() * (max - min);
+    const ensureSparkCanvas = (element) => {
+      const state = getSparkState(element);
+      if (state.canvas && state.ctx) return state;
 
-    const createSvgNode = (tag, attrs) => {
-      const node = document.createElementNS(svgNs, tag);
-      Object.entries(attrs).forEach(([key, value]) => {
-        node.setAttribute(key, value);
-      });
-      return node;
+      const canvas = document.createElement("canvas");
+      canvas.className = "spark-canvas";
+      canvas.setAttribute("aria-hidden", "true");
+      element.appendChild(canvas);
+
+      state.canvas = canvas;
+      state.ctx = canvas.getContext("2d");
+      return state;
     };
 
-    const syncOverlaySize = (element, overlay) => {
-      overlay.setAttribute("viewBox", `0 0 ${element.clientWidth} ${element.clientHeight}`);
+    const resizeSparkCanvas = (element) => {
+      const state = ensureSparkCanvas(element);
+      if (!state.ctx) return;
+
+      const width = Math.max(1, Math.round(element.clientWidth));
+      const height = Math.max(1, Math.round(element.clientHeight));
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      state.width = width;
+      state.height = height;
+      state.dpr = dpr;
+
+      state.canvas.width = Math.max(1, Math.round(width * dpr));
+      state.canvas.height = Math.max(1, Math.round(height * dpr));
+      state.canvas.style.width = `${width}px`;
+      state.canvas.style.height = `${height}px`;
+      state.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      state.ctx.clearRect(0, 0, width, height);
     };
 
-    const buildArcGeometry = (width, height) => {
-      const edge = Math.floor(Math.random() * 4);
-      const inset = 2.4;
-      const horizontalLength = Math.max(18, Math.min(38, width * 0.14));
-      const verticalLength = Math.max(18, Math.min(38, height * 0.14));
-      const points = [];
-      const branchPoints = [];
+    const traceSmoothPath = (ctx, points) => {
+      if (!points.length) return;
 
-      if (edge === 0 || edge === 2) {
-        const length = Math.min(horizontalLength, Math.max(18, width - 16));
-        const startX = randomBetween(8, Math.max(8, width - length - 8));
-        const y = edge === 0 ? inset : height - inset;
-        const inward = edge === 0 ? 1 : -1;
-        points.push([startX, y]);
-        points.push([startX + length * 0.2, y + inward * randomBetween(2.4, 5.8)]);
-        points.push([startX + length * 0.38, y + inward * randomBetween(0.8, 3.2)]);
-        points.push([startX + length * 0.58, y + inward * randomBetween(3.2, 7.0)]);
-        points.push([startX + length * 0.78, y + inward * randomBetween(1.4, 4.8)]);
-        points.push([startX + length, y]);
-        branchPoints.push(points[3], [points[3][0] - randomBetween(3, 6), points[3][1] + inward * randomBetween(3, 6)]);
-      } else {
-        const length = Math.min(verticalLength, Math.max(18, height - 16));
-        const startY = randomBetween(8, Math.max(8, height - length - 8));
-        const x = edge === 1 ? width - inset : inset;
-        const inward = edge === 1 ? -1 : 1;
-        points.push([x, startY]);
-        points.push([x + inward * randomBetween(2.4, 5.8), startY + length * 0.2]);
-        points.push([x + inward * randomBetween(0.8, 3.2), startY + length * 0.38]);
-        points.push([x + inward * randomBetween(3.2, 7.0), startY + length * 0.58]);
-        points.push([x + inward * randomBetween(1.4, 4.8), startY + length * 0.78]);
-        points.push([x, startY + length]);
-        branchPoints.push(points[2], [points[2][0] + inward * randomBetween(3, 6), points[2][1] - randomBetween(3, 6)]);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      if (points.length === 2) {
+        ctx.lineTo(points[1].x, points[1].y);
+        return;
       }
 
-      const toPath = (pts) => pts.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0].toFixed(2)} ${point[1].toFixed(2)}`).join(" ");
+      for (let i = 1; i < points.length - 1; i += 1) {
+        const midX = (points[i].x + points[i + 1].x) / 2;
+        const midY = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
+      }
+
+      const last = points[points.length - 1];
+      ctx.lineTo(last.x, last.y);
+    };
+
+    const buildEdgeSpark = (width, height) => {
+      const edge = randomInt(0, 3);
+      const inset = 2.2;
+      let tangentX = 1;
+      let tangentY = 0;
+      let normalX = 0;
+      let normalY = 1;
+      let startX = 0;
+      let startY = 0;
+      let length = 24;
+
+      if (edge === 0) {
+        tangentX = 1;
+        tangentY = 0;
+        normalX = 0;
+        normalY = 1;
+        length = Math.min(randomBetween(22, 42), Math.max(18, width - 16));
+        startX = randomBetween(8, Math.max(8, width - length - 8));
+        startY = inset;
+      } else if (edge === 1) {
+        tangentX = 0;
+        tangentY = 1;
+        normalX = -1;
+        normalY = 0;
+        length = Math.min(randomBetween(22, 42), Math.max(18, height - 16));
+        startX = width - inset;
+        startY = randomBetween(8, Math.max(8, height - length - 8));
+      } else if (edge === 2) {
+        tangentX = 1;
+        tangentY = 0;
+        normalX = 0;
+        normalY = -1;
+        length = Math.min(randomBetween(22, 42), Math.max(18, width - 16));
+        startX = randomBetween(8, Math.max(8, width - length - 8));
+        startY = height - inset;
+      } else {
+        tangentX = 0;
+        tangentY = 1;
+        normalX = 1;
+        normalY = 0;
+        length = Math.min(randomBetween(22, 42), Math.max(18, height - 16));
+        startX = inset;
+        startY = randomBetween(8, Math.max(8, height - length - 8));
+      }
+
+      const segments = randomInt(5, 7);
+      const step = length / (segments - 1);
+      const points = [];
+
+      for (let i = 0; i < segments; i += 1) {
+        const edgeWeight = i === 0 || i === segments - 1 ? 0.22 : 1;
+        const along = step * i + randomBetween(-1.1, 1.1);
+        const inward = randomBetween(0.6, 4.8) * edgeWeight + (i > 0 && i < segments - 1 ? randomBetween(0.4, 1.6) : 0);
+
+        points.push({
+          x: startX + tangentX * along + normalX * inward,
+          y: startY + tangentY * along + normalY * inward,
+        });
+      }
+
+      const branchIndex = randomInt(2, segments - 2);
+      const branchStart = points[branchIndex];
+      const branch = [
+        branchStart,
+        {
+          x: branchStart.x + normalX * randomBetween(3.2, 6.6) + tangentX * randomBetween(-4.2, 4.2),
+          y: branchStart.y + normalY * randomBetween(3.2, 6.6) + tangentY * randomBetween(-4.2, 4.2),
+        },
+      ];
+
+      const tip = points[points.length - 1];
+      const particles = Array.from({ length: randomInt(2, 4) }, () => ({
+        x: tip.x,
+        y: tip.y,
+        vx: tangentX * randomBetween(0.4, 1.2) + normalX * randomBetween(0.8, 2.4) + randomBetween(-0.6, 0.6),
+        vy: tangentY * randomBetween(0.4, 1.2) + normalY * randomBetween(0.8, 2.4) + randomBetween(-0.6, 0.6),
+        age: 0,
+        life: randomBetween(90, 180),
+        size: randomBetween(0.9, 1.9),
+      }));
 
       return {
-        mainPath: toPath(points),
-        branchPath: toPath(branchPoints),
-        tip: points[points.length - 1],
-        trace: points[Math.max(1, points.length - 2)],
+        points,
+        branch,
+        tip,
+        age: 0,
+        life: randomBetween(80, 140),
+        flash: randomBetween(2.4, 4.2),
+        particles,
       };
     };
 
-    const spawnArc = (element) => {
+    const spawnSparkBurst = (element) => {
       const state = getSparkState(element);
-      if (!state.active || !state.overlay) return;
+      if (!state.active || !state.ctx || state.width <= 0 || state.height <= 0) return;
 
-      const width = element.clientWidth;
-      const height = element.clientHeight;
-      if (width <= 0 || height <= 0) return;
-
-      syncOverlaySize(element, state.overlay);
-
-      const { mainPath, branchPath, tip, trace } = buildArcGeometry(width, height);
-      const arc = createSvgNode("g", { class: "spark-arc" });
-      const duration = randomBetween(180, 260);
-      arc.style.animationDuration = `${duration}ms`;
-
-      arc.appendChild(createSvgNode("path", { class: "spark-arc-glow", d: mainPath }));
-      arc.appendChild(createSvgNode("path", { class: "spark-arc-mid", d: mainPath }));
-      arc.appendChild(createSvgNode("path", { class: "spark-arc-core", d: mainPath }));
-      arc.appendChild(createSvgNode("path", { class: "spark-arc-branch", d: branchPath }));
-      arc.appendChild(createSvgNode("circle", { class: "spark-arc-tip", cx: tip[0].toFixed(2), cy: tip[1].toFixed(2), r: "1.1" }));
-      arc.appendChild(createSvgNode("circle", { class: "spark-arc-trace", cx: trace[0].toFixed(2), cy: trace[1].toFixed(2), r: "0.72" }));
-
-      state.overlay.appendChild(arc);
-      arc.addEventListener("animationend", () => arc.remove(), { once: true });
+      const spark = buildEdgeSpark(state.width, state.height);
+      state.arcs.push(spark);
+      state.particles.push(...spark.particles);
     };
 
-    const scheduleSpark = (element) => {
-      const state = getSparkState(element);
-      if (!state.active) return;
+    const drawSpark = (ctx, spark) => {
+      const life = Math.max(0, 1 - (spark.age / spark.life));
+      const alpha = spark.age < 18 ? (spark.age / 18) : Math.pow(life, 0.58);
 
-      const delay = randomBetween(70, 180) + (Math.random() < 0.32 ? randomBetween(80, 160) : 0);
-      state.timeoutId = window.setTimeout(() => {
-        if (!state.active) return;
-        spawnArc(element);
-        scheduleSpark(element);
-      }, delay);
+      ctx.save();
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+
+      ctx.strokeStyle = `rgba(255, 207, 94, ${0.14 + 0.12 * alpha})`;
+      ctx.lineWidth = 8;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = `rgba(255, 205, 95, ${0.22 * alpha})`;
+      traceSmoothPath(ctx, spark.points);
+      ctx.stroke();
+
+      ctx.strokeStyle = `rgba(255, 192, 63, ${0.54 * alpha})`;
+      ctx.lineWidth = 3.1;
+      ctx.shadowBlur = 0;
+      traceSmoothPath(ctx, spark.points);
+      ctx.stroke();
+
+      ctx.strokeStyle = `rgba(255, 252, 238, ${0.94 * alpha})`;
+      ctx.lineWidth = 1.18;
+      traceSmoothPath(ctx, spark.points);
+      ctx.stroke();
+
+      ctx.strokeStyle = `rgba(255, 233, 154, ${0.6 * alpha})`;
+      ctx.lineWidth = 0.9;
+      ctx.beginPath();
+      ctx.moveTo(spark.branch[0].x, spark.branch[0].y);
+      ctx.lineTo(spark.branch[1].x, spark.branch[1].y);
+      ctx.stroke();
+
+      const flashRadius = spark.flash * (0.8 + (1 - life) * 0.35);
+      const flash = ctx.createRadialGradient(spark.tip.x, spark.tip.y, 0, spark.tip.x, spark.tip.y, flashRadius);
+      flash.addColorStop(0, `rgba(255, 252, 236, ${0.92 * alpha})`);
+      flash.addColorStop(0.5, `rgba(255, 218, 109, ${0.32 * alpha})`);
+      flash.addColorStop(1, "rgba(255, 218, 109, 0)");
+      ctx.fillStyle = flash;
+      ctx.beginPath();
+      ctx.arc(spark.tip.x, spark.tip.y, flashRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    };
+
+    const drawParticle = (ctx, particle) => {
+      const life = Math.max(0, 1 - (particle.age / particle.life));
+      const alpha = Math.pow(life, 0.7);
+
+      ctx.save();
+      ctx.fillStyle = `rgba(255, 227, 142, ${0.72 * alpha})`;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = `rgba(255, 210, 104, ${0.24 * alpha})`;
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size * (0.75 + life * 0.35), 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    };
+
+    const renderSparkFrame = (element, now) => {
+      const state = getSparkState(element);
+      if (!state.ctx || !state.canvas) return;
+
+      if (!state.lastTime) state.lastTime = now;
+      const dt = Math.min(32, now - state.lastTime || 16);
+      state.lastTime = now;
+
+      if (state.active && now >= state.nextBurstAt) {
+        spawnSparkBurst(element);
+        if (Math.random() < 0.24) {
+          spawnSparkBurst(element);
+        }
+        state.nextBurstAt = now + randomBetween(85, 210) + (Math.random() < 0.3 ? randomBetween(80, 180) : 0);
+      }
+
+      for (let i = state.arcs.length - 1; i >= 0; i -= 1) {
+        state.arcs[i].age += dt;
+        if (state.arcs[i].age >= state.arcs[i].life) {
+          state.arcs.splice(i, 1);
+        }
+      }
+
+      for (let i = state.particles.length - 1; i >= 0; i -= 1) {
+        const particle = state.particles[i];
+        particle.age += dt;
+        if (particle.age >= particle.life) {
+          state.particles.splice(i, 1);
+          continue;
+        }
+        particle.x += particle.vx * (dt / 16);
+        particle.y += particle.vy * (dt / 16);
+        particle.vx *= 0.965;
+        particle.vy *= 0.965;
+      }
+
+      state.ctx.clearRect(0, 0, state.width, state.height);
+
+      state.arcs.forEach((spark) => drawSpark(state.ctx, spark));
+      state.particles.forEach((particle) => drawParticle(state.ctx, particle));
+
+      if (state.active || state.arcs.length || state.particles.length) {
+        state.rafId = requestAnimationFrame((timestamp) => renderSparkFrame(element, timestamp));
+      } else {
+        state.rafId = 0;
+        state.ctx.clearRect(0, 0, state.width, state.height);
+        element.classList.remove("is-sparking");
+      }
     };
 
     const activateSpark = (element) => {
       if (prefersReducedMotion.matches) return;
 
-      const state = getSparkState(element);
+      const state = ensureSparkCanvas(element);
+      resizeSparkCanvas(element);
+
       if (state.active) return;
 
       state.active = true;
+      state.nextBurstAt = performance.now() + randomBetween(18, 64);
       element.classList.add("is-sparking");
-      if (state.overlay) {
-        syncOverlaySize(element, state.overlay);
-      }
 
-      spawnArc(element);
-      if (Math.random() < 0.55) {
-        window.setTimeout(() => {
-          if (state.active) spawnArc(element);
-        }, randomBetween(24, 58));
+      if (!state.rafId) {
+        state.lastTime = 0;
+        state.rafId = requestAnimationFrame((timestamp) => renderSparkFrame(element, timestamp));
       }
-      scheduleSpark(element);
     };
 
     const deactivateSpark = (element) => {
       if (element.matches(":hover") || element.contains(document.activeElement)) return;
-
       const state = getSparkState(element);
       state.active = false;
-      element.classList.remove("is-sparking");
-
-      if (state.timeoutId) {
-        clearTimeout(state.timeoutId);
-        state.timeoutId = 0;
-      }
     };
 
     const resizeObserver = typeof ResizeObserver === "function"
       ? new ResizeObserver((entries) => {
           entries.forEach(({ target }) => {
-            const state = getSparkState(target);
-            if (state.overlay) {
-              syncOverlaySize(target, state.overlay);
-            }
+            resizeSparkCanvas(target);
           });
         })
       : null;
 
     sparkTargets.forEach((element) => {
       element.classList.add("spark-target");
-
-      const overlay = createSvgNode("svg", {
-        class: "spark-overlay",
-        "aria-hidden": "true",
-        focusable: "false",
-        preserveAspectRatio: "none",
-      });
-      element.appendChild(overlay);
-
-      const state = getSparkState(element);
-      state.overlay = overlay;
-      syncOverlaySize(element, overlay);
+      ensureSparkCanvas(element);
+      resizeSparkCanvas(element);
 
       if (resizeObserver) {
         resizeObserver.observe(element);
@@ -2108,21 +2209,26 @@
       });
     });
 
+    window.addEventListener("resize", () => {
+      sparkTargets.forEach((element) => resizeSparkCanvas(element));
+    });
+
     const handleMotionChange = (event) => {
       if (!event.matches) return;
-
       sparkTargets.forEach((element) => {
         const state = getSparkState(element);
         state.active = false;
         element.classList.remove("is-sparking");
 
-        if (state.timeoutId) {
-          clearTimeout(state.timeoutId);
-          state.timeoutId = 0;
+        if (state.rafId) {
+          cancelAnimationFrame(state.rafId);
+          state.rafId = 0;
         }
 
-        if (state.overlay) {
-          state.overlay.replaceChildren();
+        state.arcs = [];
+        state.particles = [];
+        if (state.ctx) {
+          state.ctx.clearRect(0, 0, state.width, state.height);
         }
       });
     };
