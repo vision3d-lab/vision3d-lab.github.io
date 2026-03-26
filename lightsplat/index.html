@@ -1871,6 +1871,13 @@
 
     const randomBetween = (min, max) => min + Math.random() * (max - min);
     const randomInt = (min, max) => Math.floor(randomBetween(min, max + 1));
+    const scheduleNextSparkDelay = () => {
+      let delay = randomBetween(1400, 3200);
+      if (Math.random() < 0.42) {
+        delay += randomBetween(700, 1500);
+      }
+      return delay;
+    };
 
     const getSparkState = (element) => {
       if (!sparkStates.has(element)) {
@@ -2116,12 +2123,9 @@
       const dt = Math.min(32, now - state.lastTime || 16);
       state.lastTime = now;
 
-      if (state.active && now >= state.nextBurstAt) {
+      if (state.active && now >= state.nextBurstAt && state.arcs.length === 0) {
         spawnSparkBurst(element);
-        if (Math.random() < 0.24) {
-          spawnSparkBurst(element);
-        }
-        state.nextBurstAt = now + randomBetween(85, 210) + (Math.random() < 0.3 ? randomBetween(80, 180) : 0);
+        state.nextBurstAt = now + scheduleNextSparkDelay();
       }
 
       for (let i = state.arcs.length - 1; i >= 0; i -= 1) {
@@ -2167,7 +2171,7 @@
       if (state.active) return;
 
       state.active = true;
-      state.nextBurstAt = performance.now() + randomBetween(18, 64);
+      state.nextBurstAt = performance.now() + randomBetween(420, 980);
       element.classList.add("is-sparking");
 
       if (!state.rafId) {
