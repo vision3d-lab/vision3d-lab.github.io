@@ -678,40 +678,66 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: var(--spark-size, 20px);
-      height: var(--spark-size, 20px);
+      width: 34px;
+      height: 18px;
       opacity: 0;
       pointer-events: none;
       z-index: 4;
+      transform-origin: center center;
+      transition: opacity 0.14s ease;
       will-change: transform, opacity;
     }
 
-    .spark-target > .border-spark::before,
-    .spark-target > .border-spark::after {
-      content: "";
-      position: absolute;
-      pointer-events: none;
+    .spark-target > .border-spark svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      animation: sparkFlicker 0.42s steps(2, end) infinite;
     }
 
-    .spark-target > .border-spark::before {
-      top: 12%;
-      left: 4%;
-      right: 4%;
-      height: 26%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 249, 219, 0.98) 16%, rgba(255, 210, 77, 0.98) 48%, rgba(214, 140, 25, 0.94) 84%, transparent 100%);
-      clip-path: polygon(0 70%, 10% 46%, 22% 62%, 36% 26%, 48% 58%, 62% 34%, 78% 68%, 90% 44%, 100% 56%, 100% 74%, 88% 86%, 76% 58%, 62% 80%, 48% 48%, 36% 72%, 22% 42%, 10% 80%, 0 92%);
-      filter: drop-shadow(0 0 5px rgba(255, 214, 90, 0.44)) drop-shadow(0 0 12px rgba(214, 140, 25, 0.22));
+    .spark-target > .border-spark .spark-glow {
+      fill: none;
+      stroke: rgba(255, 216, 101, 0.38);
+      stroke-width: 5.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: blur(0.4px);
     }
 
-    .spark-target > .border-spark::after {
-      width: 28%;
-      height: 28%;
-      top: 7%;
-      right: 8%;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(255, 250, 228, 1) 0%, rgba(255, 214, 90, 0.9) 45%, rgba(255, 214, 90, 0) 100%);
-      filter: blur(0.25px) drop-shadow(0 0 6px rgba(255, 214, 90, 0.36));
+    .spark-target > .border-spark .spark-mid {
+      fill: none;
+      stroke: rgba(255, 197, 58, 0.92);
+      stroke-width: 2.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 4px rgba(255, 202, 70, 0.32));
+    }
+
+    .spark-target > .border-spark .spark-core {
+      fill: none;
+      stroke: rgba(255, 251, 229, 0.98);
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .spark-target > .border-spark .spark-branch {
+      fill: none;
+      stroke: rgba(255, 235, 159, 0.86);
+      stroke-width: 1.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.9;
+    }
+
+    .spark-target > .border-spark .spark-tip {
+      fill: rgba(255, 252, 236, 0.98);
+      filter: drop-shadow(0 0 4px rgba(255, 225, 118, 0.38));
+    }
+
+    .spark-target > .border-spark .spark-trace {
+      fill: rgba(255, 216, 101, 0.74);
     }
 
     .eyebrow:hover,
@@ -774,7 +800,6 @@
 
     .spark-target.is-sparking > .border-spark {
       opacity: 1;
-      animation: borderSparkOrbit 1.02s linear infinite;
     }
 
     @keyframes heroStreak {
@@ -921,67 +946,21 @@
       }
     }
 
-    @keyframes borderSparkOrbit {
-      0% {
-        transform: translate(var(--spark-top-x-start), var(--spark-top-y)) rotate(0deg) scale(0.82);
-        opacity: 0;
+    @keyframes sparkFlicker {
+      0%, 100% {
+        opacity: 0.74;
       }
-      8% {
-        opacity: 0.22;
+      16% {
+        opacity: 1;
       }
-      18% {
-        transform: translate(var(--spark-top-x-end), var(--spark-top-y)) rotate(0deg) scale(1);
-        opacity: 0.92;
+      34% {
+        opacity: 0.58;
       }
-      23% {
-        transform: translate(var(--spark-right-x), var(--spark-right-y-start)) rotate(90deg) scale(0.86);
-        opacity: 0.30;
+      48% {
+        opacity: 0.94;
       }
-      36% {
-        transform: translate(var(--spark-right-x), var(--spark-right-y-end)) rotate(90deg) scale(1.02);
-        opacity: 0.88;
-      }
-      41% {
-        transform: translate(var(--spark-bottom-x-start), var(--spark-bottom-y)) rotate(180deg) scale(0.88);
-        opacity: 0.34;
-      }
-      56% {
-        transform: translate(var(--spark-bottom-x-end), var(--spark-bottom-y)) rotate(180deg) scale(1);
-        opacity: 0.84;
-      }
-      62% {
-        transform: translate(var(--spark-left-x), var(--spark-left-y-end)) rotate(270deg) scale(0.86);
-        opacity: 0.28;
-      }
-      77% {
-        transform: translate(var(--spark-left-x), var(--spark-left-y-start)) rotate(270deg) scale(0.98);
-        opacity: 0.82;
-      }
-      100% {
-        transform: translate(var(--spark-top-x-start), var(--spark-top-y)) rotate(360deg) scale(0.8);
-        opacity: 0;
-      }
-    }
-        transform: rotate(180deg) scale(1.01);
-        opacity: 0.78;
-      }
-      62% {
-        top: calc(100% - 3.5rem);
-        left: 0.35rem;
-        transform: rotate(270deg) scale(0.94);
-        opacity: 0.28;
-      }
-      76% {
-        top: 0.95rem;
-        left: 0.35rem;
-        transform: rotate(270deg) scale(1);
-        opacity: 0.7;
-      }
-      100% {
-        top: 0.55rem;
-        left: 0.65rem;
-        transform: translateX(-120%) rotate(360deg) scale(0.9);
-        opacity: 0;
+      72% {
+        opacity: 0.66;
       }
     }
 
@@ -1304,7 +1283,8 @@
       .title-accent,
       .title-accent::before,
       .title-accent::after,
-      .spark-target > .border-spark {
+      .spark-target > .border-spark,
+      .spark-target > .border-spark svg {
         animation: none !important;
       }
 
@@ -1959,51 +1939,105 @@
     const sparkTargets = [
       ...document.querySelectorAll(".hero-summary, .metric-card, .story-card, .step-card, .result-card, .figure-panel, .publication-links .button, .eyebrow")
     ];
+    const sparkStates = new WeakMap();
+    const sparkMarkup = `
+      <svg viewBox="0 0 34 18" aria-hidden="true" focusable="false">
+        <path class="spark-glow" d="M1.5 12.5 L7 6.2 L11.1 9.1 L16.8 3.1 L22.1 8.2 L27.4 4.7 L32.4 8.4" />
+        <path class="spark-mid" d="M1.5 12.5 L7 6.2 L11.1 9.1 L16.8 3.1 L22.1 8.2 L27.4 4.7 L32.4 8.4" />
+        <path class="spark-core" d="M1.5 12.5 L7 6.2 L11.1 9.1 L16.8 3.1 L22.1 8.2 L27.4 4.7 L32.4 8.4" />
+        <path class="spark-branch" d="M16.8 3.1 L14.7 8.1 L18.6 9.1" />
+        <circle class="spark-tip" cx="32.1" cy="8.2" r="1.35" />
+        <circle class="spark-trace" cx="27.1" cy="4.8" r="0.85" />
+        <circle class="spark-trace" cx="22.1" cy="8.2" r="0.72" />
+      </svg>
+    `;
 
-    const syncSparkTrack = (element) => {
+    const getSparkState = (element) => {
+      if (!sparkStates.has(element)) {
+        sparkStates.set(element, {
+          active: false,
+          rafId: 0,
+          seed: Math.random() * 5000,
+          spark: null,
+        });
+      }
+
+      return sparkStates.get(element);
+    };
+
+    const renderSparkFrame = (element, state, now) => {
+      if (!state.active || !state.spark) return;
+
       const width = element.clientWidth;
       const height = element.clientHeight;
-      const minSide = Math.max(16, Math.min(width, height));
-      const sparkSize = Math.max(16, Math.min(22, Math.round(minSide * 0.12)));
-      const inset = Math.max(1, Math.min(3, Math.round(minSide * 0.02)));
-      const xStart = inset;
-      const xEnd = Math.max(inset, width - sparkSize - inset);
-      const yStart = inset;
-      const yEnd = Math.max(inset, height - sparkSize - inset);
+      const sparkWidth = 34;
+      const edgeInset = 1.5;
+      const trackTop = Math.max(4, width - sparkWidth - edgeInset * 2);
+      const trackSide = Math.max(4, height - sparkWidth - edgeInset * 2);
+      const perimeter = (trackTop + trackSide) * 2;
+      const speed = 0.22;
+      const travel = ((now * speed) + state.seed) % perimeter;
 
-      element.style.setProperty("--spark-size", `${sparkSize}px`);
-      element.style.setProperty("--spark-top-x-start", `${xStart}px`);
-      element.style.setProperty("--spark-top-x-end", `${xEnd}px`);
-      element.style.setProperty("--spark-top-y", `${yStart}px`);
-      element.style.setProperty("--spark-right-x", `${xEnd}px`);
-      element.style.setProperty("--spark-right-y-start", `${yStart}px`);
-      element.style.setProperty("--spark-right-y-end", `${yEnd}px`);
-      element.style.setProperty("--spark-bottom-x-start", `${xEnd}px`);
-      element.style.setProperty("--spark-bottom-x-end", `${xStart}px`);
-      element.style.setProperty("--spark-bottom-y", `${yEnd}px`);
-      element.style.setProperty("--spark-left-x", `${xStart}px`);
-      element.style.setProperty("--spark-left-y-start", `${yStart}px`);
-      element.style.setProperty("--spark-left-y-end", `${yEnd}px`);
+      let x = edgeInset + sparkWidth / 2;
+      let y = edgeInset + 1.5;
+      let angle = 0;
+
+      if (travel < trackTop) {
+        x = edgeInset + sparkWidth / 2 + travel;
+        y = edgeInset + 1.5;
+        angle = 0;
+      } else if (travel < trackTop + trackSide) {
+        const local = travel - trackTop;
+        x = width - edgeInset - 1.5;
+        y = edgeInset + sparkWidth / 2 + local;
+        angle = 90;
+      } else if (travel < trackTop * 2 + trackSide) {
+        const local = travel - trackTop - trackSide;
+        x = width - edgeInset - sparkWidth / 2 - local;
+        y = height - edgeInset - 1.5;
+        angle = 180;
+      } else {
+        const local = travel - trackTop * 2 - trackSide;
+        x = edgeInset + 1.5;
+        y = height - edgeInset - sparkWidth / 2 - local;
+        angle = 270;
+      }
+
+      const flicker = 0.72 + ((Math.sin((now + state.seed) * 0.045) + 1) * 0.14);
+      const scale = 0.94 + ((Math.sin((now + state.seed) * 0.018) + 1) * 0.04);
+
+      state.spark.style.opacity = flicker.toFixed(3);
+      state.spark.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${angle}deg) scale(${scale.toFixed(3)})`;
+      state.rafId = requestAnimationFrame((timestamp) => renderSparkFrame(element, state, timestamp));
     };
 
     const activateSpark = (element) => {
       if (prefersReducedMotion.matches) return;
-      syncSparkTrack(element);
+
+      const state = getSparkState(element);
+      if (state.active) return;
+
+      state.active = true;
       element.classList.add("is-sparking");
+      state.rafId = requestAnimationFrame((timestamp) => renderSparkFrame(element, state, timestamp));
     };
 
     const deactivateSpark = (element) => {
       if (element.matches(":hover") || element.contains(document.activeElement)) return;
-      element.classList.remove("is-sparking");
-    };
 
-    const resizeObserver = typeof ResizeObserver === "function"
-      ? new ResizeObserver((entries) => {
-          entries.forEach(({ target }) => {
-            syncSparkTrack(target);
-          });
-        })
-      : null;
+      const state = getSparkState(element);
+      state.active = false;
+      element.classList.remove("is-sparking");
+
+      if (state.rafId) {
+        cancelAnimationFrame(state.rafId);
+        state.rafId = 0;
+      }
+
+      if (state.spark) {
+        state.spark.style.opacity = "0";
+      }
+    };
 
     sparkTargets.forEach((element) => {
       element.classList.add("spark-target");
@@ -2011,13 +2045,11 @@
       const spark = document.createElement("span");
       spark.className = "border-spark";
       spark.setAttribute("aria-hidden", "true");
+      spark.innerHTML = sparkMarkup;
       element.appendChild(spark);
 
-      syncSparkTrack(element);
-
-      if (resizeObserver) {
-        resizeObserver.observe(element);
-      }
+      const state = getSparkState(element);
+      state.spark = spark;
 
       element.addEventListener("mouseenter", () => activateSpark(element));
       element.addEventListener("mouseleave", () => {
@@ -2029,13 +2061,23 @@
       });
     });
 
-    window.addEventListener("resize", () => {
-      sparkTargets.forEach((element) => syncSparkTrack(element));
-    });
-
     const handleMotionChange = (event) => {
       if (!event.matches) return;
-      sparkTargets.forEach((element) => element.classList.remove("is-sparking"));
+
+      sparkTargets.forEach((element) => {
+        const state = getSparkState(element);
+        state.active = false;
+        element.classList.remove("is-sparking");
+
+        if (state.rafId) {
+          cancelAnimationFrame(state.rafId);
+          state.rafId = 0;
+        }
+
+        if (state.spark) {
+          state.spark.style.opacity = "0";
+        }
+      });
     };
 
     if (typeof prefersReducedMotion.addEventListener === "function") {
