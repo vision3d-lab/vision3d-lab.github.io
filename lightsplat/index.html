@@ -65,6 +65,10 @@
       white-space: nowrap;
     }
 
+    .title-accent {
+      color: #c79a24;
+    }
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -782,7 +786,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <div class="eyebrow">Accepted to CVPR 2026</div>
-          <h1 class="title is-1 publication-title"><span class="title-line"><img src="./images/paper_figures/lightning.png" class="title-icon" alt="">LightSplat: Fast and Memory-Efficient</span><span class="title-line title-line-bottom">Open-Vocabulary 3D Scene Understanding in Five Seconds</span></h1>
+          <h1 class="title is-1 publication-title"><span class="title-line"><img src="./images/paper_figures/lightning.png" class="title-icon" alt=""><span class="title-accent">LightSplat</span>: Fast and Memory-Efficient</span><span class="title-line title-line-bottom">Open-Vocabulary 3D Scene Understanding in Five Seconds</span></h1>
 
           <div class="is-size-5 publication-authors is-names">
             <span class="author-block">
@@ -1246,13 +1250,13 @@
   <div class="container is-max-desktop">
     <h2 class="section-title">Ablation Study</h2>
     <p class="section-lead">
-      Each component contributes substantially to overall performance. Removing <strong>3D-aware mask filtering</strong>, <strong>semantic-aware clustering</strong>, or <strong>geometry-aware clustering</strong> causes a large drop in accuracy, while <strong>FD Time</strong> remains nearly unchanged across variants.
+      Each component contributes substantially to overall performance. Removing <strong>3D-aware mask filtering</strong>, <strong>semantic-aware clustering</strong>, or <strong>geometry-aware clustering</strong> causes a large drop in accuracy, while FD Time remains nearly unchanged across variants.
     </p>
 
     <div class="table-panel">
       <div class="paper-table-title">Table 4. Ablation Study on LERF-OVS</div>
       <div class="paper-table-subhead">
-        Each component improves performance and also contributes to the fast <strong>FD Time</strong> of the full model. <strong>FD Time</strong> denotes feature distillation time.
+        Each component improves performance and also contributes to the fast <strong>FD Time</strong> of the full model. FD Time denotes feature distillation time.
       </div>
       <table class="results-table paper-results-table ablation-results-table" data-lower-cols="3">
         <thead>
