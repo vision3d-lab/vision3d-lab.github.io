@@ -799,10 +799,6 @@
       box-shadow: 0 8px 18px rgba(17, 40, 70, 0.10);
     }
 
-    .spark-target.is-sparking > .border-spark {
-      opacity: 1;
-    }
-
     @keyframes heroStreak {
       0%, 100% {
         transform: translate3d(-8%, 0, 0) skewX(-18deg);
@@ -1938,86 +1934,114 @@
       ...document.querySelectorAll(".hero-summary, .metric-card, .story-card, .step-card, .result-card, .figure-panel, .publication-links .button, .eyebrow")
     ];
     const sparkStates = new WeakMap();
-    const sparkMarkup = `
-      <svg viewBox="0 0 34 18" aria-hidden="true" focusable="false">
-        <path class="spark-glow" d="M1.5 12.5 L7 6.2 L11.1 9.1 L16.8 3.1 L22.1 8.2 L27.4 4.7 L32.4 8.4" />
-        <path class="spark-mid" d="M1.5 12.5 L7 6.2 L11.1 9.1 L16.8 3.1 L22.1 8.2 L27.4 4.7 L32.4 8.4" />
-        <path class="spark-core" d="M1.5 12.5 L7 6.2 L11.1 9.1 L16.8 3.1 L22.1 8.2 L27.4 4.7 L32.4 8.4" />
-        <path class="spark-branch" d="M16.8 3.1 L14.7 8.1 L18.6 9.1" />
-        <circle class="spark-tip" cx="32.1" cy="8.2" r="1.35" />
-        <circle class="spark-trace" cx="27.1" cy="4.8" r="0.85" />
-        <circle class="spark-trace" cx="22.1" cy="8.2" r="0.72" />
-      </svg>
-    `;
-    const clickSparkMarkup = `
-      <svg viewBox="0 0 56 56" aria-hidden="true" focusable="false">
-        <path class="burst-glow" d="M28 8 L31 18 L42 14 L35 24 L47 28 L35 32 L41 42 L31 38 L28 48 L25 38 L15 42 L21 32 L9 28 L21 24 L14 14 L25 18 Z" />
-        <path class="burst-ray" d="M28 8 L31 18 L42 14 L35 24 L47 28 L35 32 L41 42 L31 38 L28 48 L25 38 L15 42 L21 32 L9 28 L21 24 L14 14 L25 18 Z" />
-        <path class="burst-ray" d="M28 14 L30.3 22 L38 19.6 L33 26 L40.5 28 L33 30.2 L37.6 36.8 L30.4 34.4 L28 42 L25.6 34.4 L18.4 36.8 L23 30.2 L15.5 28 L23 26 L18 19.6 L25.7 22 Z" />
-        <circle class="burst-core" cx="28" cy="28" r="4.1" />
-        <circle class="burst-dot" cx="11.5" cy="22.5" r="1.2" />
-        <circle class="burst-dot" cx="44.5" cy="18.5" r="1.1" />
-        <circle class="burst-dot" cx="40.5" cy="42.5" r="1.35" />
-      </svg>
-    `;
+    const svgNs = "http://www.w3.org/2000/svg";
 
     const getSparkState = (element) => {
       if (!sparkStates.has(element)) {
         sparkStates.set(element, {
           active: false,
-          rafId: 0,
-          seed: Math.random() * 5000,
-          spark: null,
+          timeoutId: 0,
+          overlay: null,
         });
       }
 
       return sparkStates.get(element);
     };
 
-    const renderSparkFrame = (element, state, now) => {
-      if (!state.active || !state.spark) return;
+    const randomBetween = (min, max) => min + Math.random() * (max - min);
+
+    const createSvgNode = (tag, attrs) => {
+      const node = document.createElementNS(svgNs, tag);
+      Object.entries(attrs).forEach(([key, value]) => {
+        node.setAttribute(key, value);
+      });
+      return node;
+    };
+
+    const syncOverlaySize = (element, overlay) => {
+      overlay.setAttribute("viewBox", `0 0 ${element.clientWidth} ${element.clientHeight}`);
+    };
+
+    const buildArcGeometry = (width, height) => {
+      const edge = Math.floor(Math.random() * 4);
+      const inset = 2.4;
+      const horizontalLength = Math.max(18, Math.min(38, width * 0.14));
+      const verticalLength = Math.max(18, Math.min(38, height * 0.14));
+      const points = [];
+      const branchPoints = [];
+
+      if (edge === 0 || edge === 2) {
+        const length = Math.min(horizontalLength, Math.max(18, width - 16));
+        const startX = randomBetween(8, Math.max(8, width - length - 8));
+        const y = edge === 0 ? inset : height - inset;
+        const inward = edge === 0 ? 1 : -1;
+        points.push([startX, y]);
+        points.push([startX + length * 0.2, y + inward * randomBetween(2.4, 5.8)]);
+        points.push([startX + length * 0.38, y + inward * randomBetween(0.8, 3.2)]);
+        points.push([startX + length * 0.58, y + inward * randomBetween(3.2, 7.0)]);
+        points.push([startX + length * 0.78, y + inward * randomBetween(1.4, 4.8)]);
+        points.push([startX + length, y]);
+        branchPoints.push(points[3], [points[3][0] - randomBetween(3, 6), points[3][1] + inward * randomBetween(3, 6)]);
+      } else {
+        const length = Math.min(verticalLength, Math.max(18, height - 16));
+        const startY = randomBetween(8, Math.max(8, height - length - 8));
+        const x = edge === 1 ? width - inset : inset;
+        const inward = edge === 1 ? -1 : 1;
+        points.push([x, startY]);
+        points.push([x + inward * randomBetween(2.4, 5.8), startY + length * 0.2]);
+        points.push([x + inward * randomBetween(0.8, 3.2), startY + length * 0.38]);
+        points.push([x + inward * randomBetween(3.2, 7.0), startY + length * 0.58]);
+        points.push([x + inward * randomBetween(1.4, 4.8), startY + length * 0.78]);
+        points.push([x, startY + length]);
+        branchPoints.push(points[2], [points[2][0] + inward * randomBetween(3, 6), points[2][1] - randomBetween(3, 6)]);
+      }
+
+      const toPath = (pts) => pts.map((point, index) => `${index === 0 ? "M" : "L"} ${point[0].toFixed(2)} ${point[1].toFixed(2)}`).join(" ");
+
+      return {
+        mainPath: toPath(points),
+        branchPath: toPath(branchPoints),
+        tip: points[points.length - 1],
+        trace: points[Math.max(1, points.length - 2)],
+      };
+    };
+
+    const spawnArc = (element) => {
+      const state = getSparkState(element);
+      if (!state.active || !state.overlay) return;
 
       const width = element.clientWidth;
       const height = element.clientHeight;
-      const sparkWidth = 34;
-      const edgeInset = 1.5;
-      const trackTop = Math.max(4, width - sparkWidth - edgeInset * 2);
-      const trackSide = Math.max(4, height - sparkWidth - edgeInset * 2);
-      const perimeter = (trackTop + trackSide) * 2;
-      const speed = 0.22;
-      const travel = ((now * speed) + state.seed) % perimeter;
+      if (width <= 0 || height <= 0) return;
 
-      let x = edgeInset + sparkWidth / 2;
-      let y = edgeInset + 1.5;
-      let angle = 0;
+      syncOverlaySize(element, state.overlay);
 
-      if (travel < trackTop) {
-        x = edgeInset + sparkWidth / 2 + travel;
-        y = edgeInset + 1.5;
-        angle = 0;
-      } else if (travel < trackTop + trackSide) {
-        const local = travel - trackTop;
-        x = width - edgeInset - 1.5;
-        y = edgeInset + sparkWidth / 2 + local;
-        angle = 90;
-      } else if (travel < trackTop * 2 + trackSide) {
-        const local = travel - trackTop - trackSide;
-        x = width - edgeInset - sparkWidth / 2 - local;
-        y = height - edgeInset - 1.5;
-        angle = 180;
-      } else {
-        const local = travel - trackTop * 2 - trackSide;
-        x = edgeInset + 1.5;
-        y = height - edgeInset - sparkWidth / 2 - local;
-        angle = 270;
-      }
+      const { mainPath, branchPath, tip, trace } = buildArcGeometry(width, height);
+      const arc = createSvgNode("g", { class: "spark-arc" });
+      const duration = randomBetween(180, 260);
+      arc.style.animationDuration = `${duration}ms`;
 
-      const flicker = 0.72 + ((Math.sin((now + state.seed) * 0.045) + 1) * 0.14);
-      const scale = 0.94 + ((Math.sin((now + state.seed) * 0.018) + 1) * 0.04);
+      arc.appendChild(createSvgNode("path", { class: "spark-arc-glow", d: mainPath }));
+      arc.appendChild(createSvgNode("path", { class: "spark-arc-mid", d: mainPath }));
+      arc.appendChild(createSvgNode("path", { class: "spark-arc-core", d: mainPath }));
+      arc.appendChild(createSvgNode("path", { class: "spark-arc-branch", d: branchPath }));
+      arc.appendChild(createSvgNode("circle", { class: "spark-arc-tip", cx: tip[0].toFixed(2), cy: tip[1].toFixed(2), r: "1.1" }));
+      arc.appendChild(createSvgNode("circle", { class: "spark-arc-trace", cx: trace[0].toFixed(2), cy: trace[1].toFixed(2), r: "0.72" }));
 
-      state.spark.style.opacity = flicker.toFixed(3);
-      state.spark.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${angle}deg) scale(${scale.toFixed(3)})`;
-      state.rafId = requestAnimationFrame((timestamp) => renderSparkFrame(element, state, timestamp));
+      state.overlay.appendChild(arc);
+      arc.addEventListener("animationend", () => arc.remove(), { once: true });
+    };
+
+    const scheduleSpark = (element) => {
+      const state = getSparkState(element);
+      if (!state.active) return;
+
+      const delay = randomBetween(70, 180) + (Math.random() < 0.32 ? randomBetween(80, 160) : 0);
+      state.timeoutId = window.setTimeout(() => {
+        if (!state.active) return;
+        spawnArc(element);
+        scheduleSpark(element);
+      }, delay);
     };
 
     const activateSpark = (element) => {
@@ -2028,7 +2052,17 @@
 
       state.active = true;
       element.classList.add("is-sparking");
-      state.rafId = requestAnimationFrame((timestamp) => renderSparkFrame(element, state, timestamp));
+      if (state.overlay) {
+        syncOverlaySize(element, state.overlay);
+      }
+
+      spawnArc(element);
+      if (Math.random() < 0.55) {
+        window.setTimeout(() => {
+          if (state.active) spawnArc(element);
+        }, randomBetween(24, 58));
+      }
+      scheduleSpark(element);
     };
 
     const deactivateSpark = (element) => {
@@ -2038,45 +2072,41 @@
       state.active = false;
       element.classList.remove("is-sparking");
 
-      if (state.rafId) {
-        cancelAnimationFrame(state.rafId);
-        state.rafId = 0;
-      }
-
-      if (state.spark) {
-        state.spark.style.opacity = "0";
+      if (state.timeoutId) {
+        clearTimeout(state.timeoutId);
+        state.timeoutId = 0;
       }
     };
 
-    const spawnClickSpark = (element, event) => {
-      if (prefersReducedMotion.matches) return;
-      if (typeof event.button === "number" && event.button !== 0) return;
-
-      const rect = element.getBoundingClientRect();
-      const burst = document.createElement("span");
-      burst.className = "click-spark-burst";
-      burst.setAttribute("aria-hidden", "true");
-      burst.style.left = `${event.clientX - rect.left}px`;
-      burst.style.top = `${event.clientY - rect.top}px`;
-      burst.innerHTML = clickSparkMarkup;
-      element.appendChild(burst);
-
-      burst.addEventListener("animationend", () => {
-        burst.remove();
-      }, { once: true });
-    };
+    const resizeObserver = typeof ResizeObserver === "function"
+      ? new ResizeObserver((entries) => {
+          entries.forEach(({ target }) => {
+            const state = getSparkState(target);
+            if (state.overlay) {
+              syncOverlaySize(target, state.overlay);
+            }
+          });
+        })
+      : null;
 
     sparkTargets.forEach((element) => {
       element.classList.add("spark-target");
 
-      const spark = document.createElement("span");
-      spark.className = "border-spark";
-      spark.setAttribute("aria-hidden", "true");
-      spark.innerHTML = sparkMarkup;
-      element.appendChild(spark);
+      const overlay = createSvgNode("svg", {
+        class: "spark-overlay",
+        "aria-hidden": "true",
+        focusable: "false",
+        preserveAspectRatio: "none",
+      });
+      element.appendChild(overlay);
 
       const state = getSparkState(element);
-      state.spark = spark;
+      state.overlay = overlay;
+      syncOverlaySize(element, overlay);
+
+      if (resizeObserver) {
+        resizeObserver.observe(element);
+      }
 
       element.addEventListener("mouseenter", () => activateSpark(element));
       element.addEventListener("mouseleave", () => {
@@ -2085,9 +2115,6 @@
       element.addEventListener("focusin", () => activateSpark(element));
       element.addEventListener("focusout", () => {
         requestAnimationFrame(() => deactivateSpark(element));
-      });
-      element.addEventListener("pointerdown", (event) => {
-        spawnClickSpark(element, event);
       });
     });
 
@@ -2099,13 +2126,13 @@
         state.active = false;
         element.classList.remove("is-sparking");
 
-        if (state.rafId) {
-          cancelAnimationFrame(state.rafId);
-          state.rafId = 0;
+        if (state.timeoutId) {
+          clearTimeout(state.timeoutId);
+          state.timeoutId = 0;
         }
 
-        if (state.spark) {
-          state.spark.style.opacity = "0";
+        if (state.overlay) {
+          state.overlay.replaceChildren();
         }
       });
     };
