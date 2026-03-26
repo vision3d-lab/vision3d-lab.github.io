@@ -133,7 +133,7 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 1.35rem;
     }
 
     .metric-card,
@@ -624,6 +624,15 @@
     .paper-results-table thead th {
       text-align: center;
       vertical-align: middle;
+    }
+
+    .header-unit {
+      display: block;
+      margin-top: 0.14rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0;
     }
 
     .paper-results-table th:first-child,
@@ -1143,8 +1152,8 @@
               <th colspan="2">15 Classes</th>
               <th colspan="2">10 Classes</th>
               <th rowspan="2">FD Time</th>
-              <th rowspan="2">Runtime</th>
-              <th rowspan="2">Memory</th>
+              <th rowspan="2">Runtime<span class="header-unit">(second)</span></th>
+              <th rowspan="2">Memory<span class="header-unit">(byte)</span></th>
             </tr>
             <tr>
               <th>mIoU</th>
