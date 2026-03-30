@@ -109,6 +109,8 @@
 
     .research-dropdown {
       position: relative;
+      display: inline-flex;
+      align-items: center;
     }
 
     .research-dropdown[open] {
@@ -116,9 +118,15 @@
     }
 
     .research-toggle {
+      display: inline-flex;
+      align-items: center;
       list-style: none;
       justify-content: center;
       min-width: 0;
+      margin: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      vertical-align: top;
       cursor: pointer;
     }
 
@@ -1516,7 +1524,7 @@
       <details class="research-dropdown">
         <summary class="research-toggle">
           <span class="research-toggle-copy">
-            <span>Research</span>
+            <span>More</span>
           </span>
           <span class="research-toggle-icon"><i class="fas fa-chevron-down"></i></span>
         </summary>
