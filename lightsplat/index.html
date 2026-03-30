@@ -32,6 +32,216 @@
       background: #FFFFFF;
     }
 
+    .research-hub {
+      position: relative;
+      z-index: 20;
+      padding: 0.95rem 1.5rem 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.9) 100%);
+    }
+
+    .research-hub-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .research-home,
+    .research-toggle {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      min-height: 3rem;
+      padding: 0.78rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid rgba(27, 66, 125, 0.12);
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 14px 34px rgba(17, 40, 70, 0.07);
+      color: var(--navy-deep);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+      backdrop-filter: blur(16px);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .research-home:hover,
+    .research-home:focus-visible,
+    .research-toggle:hover,
+    .research-toggle:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(17, 40, 70, 0.1);
+      border-color: rgba(27, 66, 125, 0.18);
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--navy-deep);
+    }
+
+    .research-home-icon,
+    .research-toggle-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.95rem;
+      height: 1.95rem;
+      border-radius: 999px;
+      background: rgba(27, 66, 125, 0.08);
+      color: var(--navy);
+      flex: 0 0 auto;
+      transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .research-home:hover .research-home-icon,
+    .research-home:focus-visible .research-home-icon,
+    .research-toggle:hover .research-toggle-icon,
+    .research-toggle:focus-visible .research-toggle-icon {
+      transform: translateY(-1px);
+      background: rgba(27, 66, 125, 0.12);
+      color: var(--navy-deep);
+    }
+
+    .research-dropdown {
+      position: relative;
+    }
+
+    .research-dropdown[open] {
+      z-index: 24;
+    }
+
+    .research-toggle {
+      list-style: none;
+      justify-content: space-between;
+      min-width: 17rem;
+      cursor: pointer;
+    }
+
+    .research-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    .research-toggle::marker {
+      content: "";
+    }
+
+    .research-toggle-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .research-toggle-note {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .research-dropdown[open] .research-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .research-menu {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 50%;
+      width: min(92vw, 540px);
+      padding: 0.9rem;
+      display: grid;
+      gap: 0.78rem;
+      border-radius: 24px;
+      border: 1px solid rgba(27, 66, 125, 0.12);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 30px 72px rgba(17, 40, 70, 0.14);
+      backdrop-filter: blur(18px);
+      transform: translateX(-50%) translateY(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .research-dropdown[open] .research-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .research-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.95rem 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(27, 66, 125, 0.1);
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .research-card:hover,
+    .research-card:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(17, 40, 70, 0.09);
+      border-color: rgba(27, 66, 125, 0.16);
+    }
+
+    .research-card-blue {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(255, 255, 255, 0.98) 72%);
+    }
+
+    .research-card-amber {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.08) 0%, rgba(255, 255, 255, 0.98) 72%);
+    }
+
+    .research-card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 16px;
+      background: rgba(27, 66, 125, 0.08);
+      color: var(--navy);
+      font-size: 1rem;
+      flex: 0 0 auto;
+    }
+
+    .research-card-copy {
+      display: grid;
+      gap: 0.18rem;
+      min-width: 0;
+      text-align: left;
+    }
+
+    .research-card-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+    }
+
+    .research-card-title {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy-deep);
+    }
+
+    .research-card-desc {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .research-card-arrow {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
     .hero {
       position: relative;
       overflow: hidden;
@@ -1187,6 +1397,48 @@
     }
 
     @media screen and (max-width: 768px) {
+      .research-hub {
+        padding: 0.85rem 1rem 0;
+      }
+
+      .research-hub-inner,
+      .research-dropdown {
+        width: 100%;
+      }
+
+      .research-home,
+      .research-toggle {
+        width: 100%;
+      }
+
+      .research-menu {
+        position: static;
+        width: 100%;
+        margin-top: 0.75rem;
+        transform: none !important;
+      }
+
+      .research-dropdown:not([open]) .research-menu {
+        display: none;
+      }
+
+      .research-dropdown[open] .research-menu {
+        display: grid;
+      }
+
+      .research-card {
+        grid-template-columns: auto 1fr;
+      }
+
+      .research-card-arrow {
+        display: none;
+      }
+
+      .research-toggle-copy {
+        flex-direction: column;
+        gap: 0.18rem;
+      }
+
       .hero-summary {
         padding: 1.15rem;
       }
@@ -1240,6 +1492,9 @@
       }
 
       .eyebrow,
+      .research-home,
+      .research-toggle,
+      .research-card,
       .publication-links .button,
       .hero-summary,
       .metric-card,
@@ -1255,6 +1510,46 @@
   </style>
 </head>
 <body>
+
+<nav class="research-hub" aria-label="Research navigation">
+  <div class="container is-max-desktop">
+    <div class="research-hub-inner">
+      <a href="https://devappendcbangj.github.io/" class="research-home" target="_blank" rel="noopener">
+        <span class="research-home-icon"><i class="fas fa-house"></i></span>
+        <span>Portfolio</span>
+      </a>
+      <details class="research-dropdown">
+        <summary class="research-toggle">
+          <span class="research-toggle-copy">
+            <span>More Research</span>
+            <span class="research-toggle-note">Related project pages</span>
+          </span>
+          <span class="research-toggle-icon"><i class="fas fa-chevron-down"></i></span>
+        </summary>
+        <div class="research-menu">
+          <a href="https://vision3d-lab.github.io/ssdataset/" class="research-card research-card-blue" target="_blank" rel="noopener">
+            <span class="research-card-icon"><i class="fas fa-photo-film"></i></span>
+            <span class="research-card-copy">
+              <span class="research-card-kicker">WACV 2026</span>
+              <span class="research-card-title">Beyond the Highlights</span>
+              <span class="research-card-desc">Video Retrieval with Salient and Surrounding Contexts</span>
+            </span>
+            <span class="research-card-arrow"><i class="fas fa-arrow-up-right-from-square"></i></span>
+          </a>
+          <a href="https://vision3d-lab.github.io/deformsplat/" class="research-card research-card-amber" target="_blank" rel="noopener">
+            <span class="research-card-icon"><i class="fas fa-cubes"></i></span>
+            <span class="research-card-copy">
+              <span class="research-card-kicker">Related Project</span>
+              <span class="research-card-title">DeformSplat</span>
+              <span class="research-card-desc">Interactive project page and resources</span>
+            </span>
+            <span class="research-card-arrow"><i class="fas fa-arrow-up-right-from-square"></i></span>
+          </a>
+        </div>
+      </details>
+    </div>
+  </div>
+</nav>
 
 <section class="hero">
   <div class="hero-body">
@@ -1890,8 +2185,9 @@
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sparkTargets = [
-      ...document.querySelectorAll(".hero-summary, .metric-card, .story-card, .step-card, .result-card, .figure-panel, .table-panel, .publication-links .button, .eyebrow")
+      ...document.querySelectorAll(".research-home, .research-toggle, .research-card, .hero-summary, .metric-card, .story-card, .step-card, .result-card, .figure-panel, .table-panel, .publication-links .button, .eyebrow")
     ];
+    const researchDropdowns = [...document.querySelectorAll(".research-dropdown")];
     const sparkStates = new WeakMap();
 
     const randomBetween = (min, max) => min + Math.random() * (max - min);
@@ -2501,6 +2797,21 @@
 
     ensureGlobalSparkCanvas();
     resizeGlobalSparkCanvas();
+
+    document.addEventListener("click", (event) => {
+      researchDropdowns.forEach((dropdown) => {
+        if (!dropdown.contains(event.target)) {
+          dropdown.removeAttribute("open");
+        }
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      researchDropdowns.forEach((dropdown) => {
+        dropdown.removeAttribute("open");
+      });
+    });
 
     document.addEventListener("pointerdown", (event) => {
       if (event.pointerType === "mouse" && event.button !== 0) return;
