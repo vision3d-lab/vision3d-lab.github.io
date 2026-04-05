@@ -1,1 +1,1 @@
-## VPOcc: Expoliting Vanishing Point for 3D Semantic Occupancy Prediction
+## SoundAct: Learning Spatial Sound Awareness for Egocentric Robot Manipulation with Stereo Audio
