@@ -25,7 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>VPOcc: Exploiting Vanishing Point for 3D Semantic Occupancy Prediction</title>
+  <title>SoundAct: Learning Spatial Sound Awareness for Egocentric Robot Manipulation with Stereo Audio</title>
   <link rel="icon" type="image/x-icon" href="static/images/vpocc_favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -58,102 +58,12 @@
               <br>
           VPOcc: Exploiting Vanishing Point for <br> 3D Semantic Occupancy Prediction
         </h1>
-          <h2 class="subtitle is-3" style="color: #01717B;">
-            <b>IROS 2025</b>
-          </h2>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="http://joonsu0109gh.github.io/" target="_blank">Junsu Kim</a><sup>1</sup>,</span>
-                <span class="author-block">
-                  <a href="https://github.com/junhee98" target="_blank">Junhee Lee</a><sup>1</sup>,</span>
-                  <span class="author-block">
-                    <a href="https://ukcheolshin.github.io/" target="_blank">Ukcheol Shin</a><sup>2</sup>,</span>
-                      <span class="author-block">
-                        <a href="https://www.cs.cmu.edu/~jeanoh/" target="_blank">Jean Oh</a><sup>2</sup>,</span>
-                          <span class="author-block">
-                            <a href="https://unist.info/?page_id=194" target="_blank">Kyungdon Joo</a><sup>1✝</sup>
-                  </span>
-                  </div>
-                        
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block"><sup>1</sup>UNIST, <sup>2</sup>Carnegie Mellon University
-                    <span class="eql-cntrb"><small><br><sup>✝</sup>Corresponding Author</small></span>
-                  </div>
-
-                    <div class="column has-text-centered">
-                      <div class="publication-links">
-                        
-                        <span class="link-block">
-                          <a href="https://ieeexplore.ieee.org/document/11246960" target="_blank"
-                          class="external-link button is-normal is-rounded is-dark">
-                          <span class="icon">
-                            <i class="fas fa-file-pdf"></i>
-                          </span>
-                          <span>Paper</span>
-                        </a>
-                      </span>
-
-                        
-                           <!-- Arxiv PDF link -->
-                        <span class="link-block">
-                          <a href="https://arxiv.org/abs/2408.03551" target="_blank"
-                          class="external-link button is-normal is-rounded is-dark">
-                          <span class="icon">
-                            <i class="ai ai-arxiv"></i>
-                          </span>
-                          <span>arXiv</span>
-                        </a>
-                      </span>
-  
-                    <!-- Github link -->
-                    <span class="link-block">
-                      <a href="https://github.com/vision3d-lab/VPOcc" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fab fa-github"></i>
-                      </span>
-                      <span>Code</span>
-                    </a>
-                  </span>
-
-                <!-- BibTeX link -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark"
-                   onclick="toggleBibtex(); return false;">
-                  <span class="icon"><i class="fas fa-quote-right"></i></span>
-                  <span>BibTeX</span>
-                </a>
-              </span>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BibTeX Section -->
-<section class="section" id="bibtex-section" style="display: none;">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">BibTeX</h2>
-    <pre><code>@inproceedings{kim2025vpocc,
-  title={VPOcc: Exploiting Vanishing Point for 3D Semantic Occupancy Prediction},
-  author={Kim, Junsu and Lee, Junhee and Shin, Ukcheol and Oh, Jean and Joo, Kyungdon},
-  booktitle={2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
-  pages={4307--4314},
-  year={2025},
-  organization={IEEE}
-}</code></pre>
-  </div>
-</section>
-
-<script>
-function toggleBibtex() {
-  const sec = document.getElementById("bibtex-section");
-  sec.style.display = (sec.style.display === "none") ? "block" : "none";
-}
-</script>
   
 <!-- Teaser video-->
 <section class="section hero is-light">
@@ -171,129 +81,6 @@ function toggleBibtex() {
   </div>
 </section>
 <!-- End teaser video -->
-
-<!-- Paper overview -->
-<!-- <section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Understanding 3D scenes semantically and spatially is crucial for the safe navigation of robots and autonomous vehicles, aiding obstacle avoidance and trajectory planning. Camera-based 3D semantic occupancy prediction, which infers dense voxel grids from 2D images, is gaining importance in robot vision for its resource efficiency over 3D sensors. However, this task inherently suffers from a 2D-3D discrepancy problem, meaning that even for the same-sized objects in 3D space, an object closer to the camera looks larger than the other in a 2D image due to the camera perspective geometry. To tackle this issue, we propose a novel framework called VPOcc that leverages vanishing point (VP) to mitigate the 2D-3D discrepancy from pixel-level and feature-level perspectives. As a pixel-level solution, we introduce a VPZoomer module, which warps images by counteracting the perspective effect through a VP-based homography transform. In addition, as a feature-level solution, we propose a VP-guided cross-attention (VPCA) module that performs perspective-aware feature aggregation, utilizing 2D image features that are more suitable for 3D space. Lastly, we integrate two feature volumes extracted from original and warped images to compensate for each other through a spatial volume fusion (SVF) module. By effectively incorporating VP into the network, our framework achieves improved performance in both IoU and mIoU metrics on SemanticKITTI and SSCBench-KITTI360.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- End paper abstract -->
-
-<!-- Paper architecture -->
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Overview</h2>
-        <div class="content has-text-justified">
-          <img src="static/images/1_overview.png" alt="MY ALT TEXT"/>
-          <p></p>
-          
-        <p>Problem (left): (a) 3D objects of similar size (e.g., green and red boxes) appear differently in
-          (b) 2D images depending on their distance from the camera, due to perspective projection. Solution (right): We propose a framework that
-          leverages Vanishing Points (VP) to incorporate this into the network and thereby utilize 2D image features in a 3D-aware manner. (c) Given
-          an input image and VP, we perform (d) VP-based image synthesis with zoom-in and (e) VP-guided point sampling for perspective-aware
-          feature aggregation. These strategies address the imbalance caused by perspective projection, operating on both the pixel and feature levels
-          to accurately estimate (f) the complete 3D semantic voxels of the scene.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper architecture -->
-      
-<!-- Paper architecture -->
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Overall Architecture</h2>
-        <div class="content has-text-justified">
-          <img src="static/images/2_architecture.png" alt="MY ALT TEXT"/>
-          <p></p>
-          
-        <p>In the feature extraction step, a zoomed-in image is generated using VPZoomer, and multi-scale feature maps 
-        \( \mathcal{F}^{2D}_o \) and \( \mathcal{F}^{2D}_z \) are extracted from \( I_o \) and \( I_z \). During the feature lifting, the depth proposed voxel query \( \mathcal{Q}_p \) is employed with VP-guided cross-attention (VPCA) 
-        on \( \mathcal{F}^{2D}_o \) and deformable cross-attention on \( \mathcal{F}^{2D}_z \) to construct the voxel feature volumes 
-        \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \), respectively. In the feature volume fusion stage, both \( \mathcal{F}^{3D}_o \) and \( \mathcal{F}^{3D}_z \) are fused using a spatial volume 
-        fusion (SVF) module and refined via the 3D UNet-based decoder. Finally, the prediction head estimates the 3D semantic voxel map of the entire scene.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper architecture -->
-
-<!-- Paper VPZoomer -->
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">VPZoomer: VP-guided Image Zoom-in</h2>
-        <div class="content has-text-justified">
-          <img src="static/images/3_vpzoomer.png" alt="MY ALT TEXT"  width="500" style="display: block; margin-left: auto; margin-right: auto;"/>
-          <p></p>
-          <p><em>Left:</em> The original image \( I_o \) with source areas (\( \mathcal{S}_L \), \( \mathcal{S}_R \)) outlined in blue trapezoids.
-        <em>Right:</em> The zoomed-in image \( I_z \) with target areas (\( \mathcal{T}_L \), \( \mathcal{T}_R \)) outlined in red rectangles.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper VPZoomer -->
-
-<!-- Paper VPCA -->
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">VP-guided Cross-Attention (VPCA)</h2>
-        <div class="content has-text-justified">
-          <img src="static/images/4_vp_sampling.png" alt="MY ALT TEXT" width="500" style="display: block; margin-left: auto; margin-right: auto;"/>
-            <p></p>
-            <p>Following the sampling order, centered on the reference point \( \mathbf{r} \), we first generate the initial grid 
-            \( \mathcal{O} \) with the offset \( d \) and rotate it by an angle \( \theta \) to obtain \( \tilde{\mathcal{O}} \). 
-            Next, we identify the intersection grid \( \hat{\mathcal{O}} \) at the cross-point of lines from \( \tilde{\mathcal{O}} \) 
-            and VP \( \mathbf{v} \). As a result, a set of sampling points \( \mathcal{P} \) is composed of 
-            \( \{ \tilde{\mathcal{O}}, \hat{\mathcal{O}}, \mathbf{r} \} \).</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper VPCA -->
-
-<!-- Paper Qualitative -->
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Qualitative Results on SemanticKITTI Dataset</h2>
-        <div class="content has-text-justified">
-          <img src="static/images/5_qualitative_results.png" alt="MY ALT TEXT"/>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper VPCA -->
-
-      
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
     <!-- End of Statcounter Code -->
 <!-- MathJax script -->
