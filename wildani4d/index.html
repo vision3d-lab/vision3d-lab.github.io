@@ -11,136 +11,128 @@
   <meta property="og:url" content="https://vision3d-lab.github.io/wildani4d/" />
   <meta property="og:image" content="https://vision3d-lab.github.io/wildani4d/assets/teaser.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #080d1a;
-      --bg-2: #0c1224;
-      --card: rgba(255,255,255,.045);
-      --card-strong: rgba(255,255,255,.075);
-      --text: #f2f5ff;
-      --muted: #b7c0dc;
-      --soft: #dbe4ff;
-      --line: rgba(255,255,255,.11);
-      --accent: #7aa2ff;
-      --accent-2: #9ce7d7;
-      --accent-3: #c6a8ff;
+      --bg: #ffffff;
+      --ink: #171717;
+      --muted: #5f6368;
+      --faint: #8a8f98;
+      --line: #e8e8e8;
+      --soft: #f7f8fa;
+      --soft-2: #fbfbfc;
+      --blue: #0068d6;
+      --blue-bg: #edf6ff;
+      --green: #008a63;
+      --green-bg: #eafaf4;
+      --pink: #b11676;
+      --pink-bg: #fff0f8;
       --maxw: 1120px;
-      --radius: 22px;
-      --shadow: 0 24px 80px rgba(0,0,0,.36);
+      --radius: 18px;
+      --shadow-border: 0 0 0 1px rgba(0,0,0,.08), 0 2px 2px rgba(0,0,0,.04), 0 12px 28px -18px rgba(0,0,0,.45);
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
+      font-family: Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(circle at 8% 0%, rgba(122,162,255,.20), transparent 30%),
-        radial-gradient(circle at 85% 6%, rgba(156,231,215,.14), transparent 28%),
-        radial-gradient(circle at 60% 34%, rgba(198,168,255,.10), transparent 30%),
-        linear-gradient(180deg, #070b16, var(--bg-2) 42%, var(--bg) 100%);
-      line-height: 1.65;
+        radial-gradient(circle at 18% 0%, rgba(0,104,214,.08), transparent 28%),
+        radial-gradient(circle at 78% 7%, rgba(0,138,99,.08), transparent 24%),
+        linear-gradient(180deg, #fff, #fbfbfc 46%, #fff 100%);
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "liga" 1;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    .container { width: min(calc(100% - 34px), var(--maxw)); margin: 0 auto; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+    img, video { max-width: 100%; display: block; }
+    .container { width: min(calc(100% - 36px), var(--maxw)); margin: 0 auto; }
+    .mono { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
 
     .nav {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(7, 11, 22, .72);
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 1px 0 rgba(0,0,0,.08);
     }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 0; }
-    .brand { font-weight: 800; letter-spacing: -.02em; }
-    .nav-links { display: flex; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
-    .nav-links a:hover { color: var(--text); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:22px; padding:14px 0; }
+    .brand { font-weight:700; letter-spacing:-.04em; }
+    .nav-links { display:flex; gap:18px; flex-wrap:wrap; color:#4d4d4d; font-size:14px; font-weight:500; }
+    .nav-links a:hover { color:#000; }
 
-    .hero { padding: 72px 0 36px; }
-    .hero-card {
-      border: 1px solid var(--line);
-      border-radius: 32px;
-      background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .hero-content { padding: 36px; }
+    .hero { padding: 72px 0 38px; }
+    .hero-grid { display:grid; grid-template-columns: 1fr; gap: 24px; text-align:center; }
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      color: var(--accent-2);
-      background: rgba(156,231,215,.08);
-      border: 1px solid rgba(156,231,215,.18);
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: 13px;
-      margin-bottom: 18px;
+      display:inline-flex; align-items:center; gap:8px; margin:0 auto 18px;
+      border-radius:999px; padding:7px 12px;
+      background:var(--blue-bg); color:var(--blue);
+      font-size:13px; font-weight:600; box-shadow:0 0 0 1px rgba(0,104,214,.12);
     }
-    h1 { margin: 0 0 16px; font-size: clamp(2.2rem, 5.8vw, 5rem); line-height: 1.02; letter-spacing: -.055em; }
-    .subtitle { margin: 0; max-width: 900px; color: var(--soft); font-size: clamp(1.02rem, 1.7vw, 1.25rem); }
-    .authors { margin-top: 24px; color: var(--muted); font-size: 1rem; }
-    .authors .name { color: #fff; font-weight: 700; }
-    .affils { margin-top: 8px; color: var(--muted); font-size: .96rem; }
-    .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    h1 { margin:0 auto 18px; max-width:980px; font-size:clamp(2.45rem, 6.8vw, 5.4rem); line-height:.98; letter-spacing:-.07em; font-weight:700; }
+    .subtitle { margin:0 auto; max-width:850px; color:#444; font-size:clamp(1.05rem, 1.55vw, 1.28rem); line-height:1.75; }
+    .authors { margin-top:24px; color:#4d4d4d; font-size:1rem; }
+    .authors .name { color:#111; font-weight:650; }
+    .affils { color:var(--muted); font-size:.95rem; margin-top:7px; }
+    .links { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:26px; }
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.045);
-      color: var(--text);
-      font-weight: 700;
-      font-size: 14px;
-      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      min-height:40px; padding:0 16px; border-radius:9px;
+      font-size:14px; font-weight:600; transition:.16s ease;
+      box-shadow:0 0 0 1px rgba(0,0,0,.1); background:#fff;
     }
-    .btn.primary { background: linear-gradient(135deg, rgba(122,162,255,.34), rgba(156,231,215,.18)); border-color: rgba(122,162,255,.42); }
-    .btn.disabled { color: rgba(242,245,255,.52); cursor: not-allowed; }
-    .btn:not(.disabled):hover { transform: translateY(-1px); border-color: rgba(122,162,255,.6); background: rgba(122,162,255,.14); }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-    .pill { color: var(--muted); border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.035); border-radius: 999px; padding: 7px 11px; font-size: 13px; }
-    .hero-figure { border-top: 1px solid var(--line); background: rgba(255,255,255,.02); padding: 14px; }
-    .hero-figure img { width: 100%; border-radius: 20px; background: #fff; }
+    .btn.primary { background:#171717; color:#fff; box-shadow:none; }
+    .btn.disabled { color:#9a9a9a; cursor:not-allowed; background:#fafafa; }
+    .btn:not(.disabled):hover { transform:translateY(-1px); box-shadow:0 0 0 1px rgba(0,0,0,.12), 0 8px 22px -16px rgba(0,0,0,.6); }
+    .pill-row { display:flex; justify-content:center; flex-wrap:wrap; gap:9px; margin-top:26px; }
+    .pill { border-radius:999px; padding:6px 10px; background:#f2f2f2; color:#555; font-size:12px; font-weight:600; }
+    .hero-card { margin-top:34px; padding:12px; background:#fff; border-radius:24px; box-shadow:var(--shadow-border); }
+    .hero-card img { width:100%; border-radius:16px; background:#fff; }
 
-    section.section { padding: 38px 0; }
-    .section-head { margin-bottom: 18px; }
-    h2 { margin: 0 0 10px; font-size: clamp(1.55rem, 3vw, 2.35rem); letter-spacing: -.035em; }
-    h3 { margin: 0 0 8px; font-size: 1.08rem; letter-spacing: -.015em; }
-    .section-desc { color: var(--muted); max-width: 880px; margin: 0; }
+    section.section { padding: 46px 0; }
+    .section-head { margin-bottom:18px; }
+    .section-kicker { color:var(--blue); text-transform:uppercase; letter-spacing:.12em; font-size:12px; font-weight:700; margin-bottom:8px; }
+    h2 { margin:0 0 10px; font-size:clamp(1.85rem, 4vw, 3.2rem); line-height:1.06; letter-spacing:-.055em; font-weight:700; }
+    h3 { margin:0 0 8px; letter-spacing:-.03em; font-size:1.12rem; }
+    .section-desc { margin:0; color:var(--muted); max-width:820px; font-size:1.02rem; }
 
-    .card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--card);
-      box-shadow: 0 10px 36px rgba(0,0,0,.20);
-      overflow: hidden;
-    }
-    .pad { padding: 24px; }
-    .abstract { color: #e8edff; font-size: 1.02rem; }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
-    .stat { padding: 16px; border: 1px solid rgba(255,255,255,.09); border-radius: 18px; background: rgba(255,255,255,.035); }
-    .stat b { display:block; color: #fff; margin-bottom: 4px; }
-    .stat span { color: var(--muted); font-size: 14px; }
-    .figure-card img { width: 100%; background: #fff; }
-    .caption { color: var(--muted); font-size: 14px; margin: 12px 2px 0; }
-    .feature { border-left: 3px solid var(--accent); }
-    .feature:nth-child(2) { border-left-color: var(--accent-2); }
-    .feature:nth-child(3) { border-left-color: var(--accent-3); }
-    .feature p { margin: 0; color: var(--muted); font-size: 15px; }
-    pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; color: #e9edff; font-size: 14px; line-height: 1.6; }
-    .footer { color: var(--muted); border-top: 1px solid rgba(255,255,255,.08); padding: 30px 0 44px; margin-top: 24px; }
+    .card { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow-border); overflow:hidden; }
+    .pad { padding:24px; }
+    .abstract { color:#343434; font-size:1.03rem; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .feature { min-height:190px; }
+    .feature p { color:var(--muted); margin:0; font-size:15px; }
+    .feature .tag { display:inline-flex; margin-bottom:14px; border-radius:999px; padding:5px 9px; font-size:12px; font-weight:700; }
+    .tag.blue { color:var(--blue); background:var(--blue-bg); }
+    .tag.green { color:var(--green); background:var(--green-bg); }
+    .tag.pink { color:var(--pink); background:var(--pink-bg); }
+    .figure-card img { width:100%; background:#fff; }
+    .caption { color:var(--muted); font-size:14px; margin:12px 0 0; }
+    .video-shell { padding:12px; }
+    .video-shell video { width:100%; border-radius:14px; background:#000; box-shadow:0 0 0 1px rgba(0,0,0,.08); }
+    .comparison-labels { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; }
+    .comparison-labels div { border-radius:12px; padding:12px; background:var(--soft); color:#3d3d3d; font-size:14px; font-weight:600; text-align:center; }
+    .comparison-labels b { display:block; color:#111; font-size:13px; margin-bottom:2px; }
+    .stat-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:18px; }
+    .stat { border-radius:14px; background:#fff; padding:16px; box-shadow:0 0 0 1px rgba(0,0,0,.08); }
+    .stat b { display:block; margin-bottom:5px; }
+    .stat span { color:var(--muted); font-size:14px; }
+    pre { margin:0; white-space:pre-wrap; overflow-wrap:anywhere; font-size:13px; line-height:1.65; color:#222; }
+    .footer { border-top:1px solid var(--line); color:var(--muted); padding:32px 0 46px; margin-top:34px; font-size:14px; }
 
     @media (max-width: 860px) {
-      .hero { padding-top: 42px; }
-      .hero-content { padding: 24px; }
-      .grid-2, .grid-3, .stat-grid { grid-template-columns: 1fr; }
-      .nav-inner { align-items: flex-start; flex-direction: column; }
-      .nav-links { gap: 12px; }
+      .hero { padding-top:46px; }
+      .nav-inner { align-items:flex-start; flex-direction:column; }
+      .grid-2, .grid-3, .stat-grid { grid-template-columns:1fr; }
+      .comparison-labels { grid-template-columns:1fr; }
+      .pad { padding:18px; }
     }
   </style>
 </head>
@@ -150,7 +142,7 @@
       <div class="brand">WildAni4D</div>
       <div class="nav-links">
         <a href="#abstract">Abstract</a>
-        <a href="#contributions">Contributions</a>
+        <a href="#demo">Demo</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
         <a href="#applications">Applications</a>
@@ -160,42 +152,34 @@
   </nav>
 
   <header class="hero">
-    <div class="container">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">CVPR 2026 Findings · 4D Animal Motion Recovery</div>
+        <h1>WildAni4D: Towards 4D Animal Mesh Reconstruction</h1>
+        <p class="subtitle">A video-native framework for recovering temporally coherent animal meshes, articulated motion, and world-space trajectories from monocular in-the-wild videos.</p>
+        <div class="authors">
+          <span class="name">Gyeongsu Cho</span><sup>1</sup>,
+          <span class="name">Hezhen Hu</span><sup>2</sup>,
+          <span class="name">Donghyeon Soon</span><sup>3</sup>,
+          <span class="name">Changwoo Kang</span><sup>1</sup>,
+          <span class="name">Kyungdon Joo</span><sup>1</sup>
+        </div>
+        <div class="affils"><sup>1</sup>UNIST · <sup>2</sup>The University of Texas at Austin · <sup>3</sup>DGIST</div>
+        <div class="links">
+          <a class="btn primary" href="assets/wildani4d_paper.pdf">Paper PDF</a>
+          <a class="btn" href="#demo">Comparative Demo</a>
+          <a class="btn" href="#method">Method</a>
+          <a class="btn disabled" aria-disabled="true">Code Coming Soon</a>
+        </div>
+        <div class="pill-row">
+          <span class="pill">Synthetic animal video generation</span>
+          <span class="pill">Animal Video Transformer</span>
+          <span class="pill">DROID-SLAM camera trajectory</span>
+          <span class="pill">Sequence-level shape consistency</span>
+        </div>
+      </div>
       <div class="hero-card">
-        <div class="hero-content">
-          <div class="eyebrow">CVPR 2026 Findings · 4D Animal Motion Recovery</div>
-          <h1>WildAni4D: Towards 4D Animal Mesh Reconstruction</h1>
-          <p class="subtitle">
-            WildAni4D recovers temporally coherent 3D animal geometry, articulated motion, and global trajectories from monocular in-the-wild videos by combining a scalable synthetic animal video pipeline with a video-native reconstruction model.
-          </p>
-
-          <div class="authors">
-            <span class="name">Gyeongsu Cho</span><sup>1</sup>,
-            <span class="name">Hezhen Hu</span><sup>2</sup>,
-            <span class="name">Donghyeon Soon</span><sup>3</sup>,
-            <span class="name">Changwoo Kang</span><sup>1</sup>,
-            <span class="name">Kyungdon Joo</span><sup>1</sup>
-          </div>
-          <div class="affils"><sup>1</sup>UNIST · <sup>2</sup>The University of Texas at Austin · <sup>3</sup>DGIST</div>
-
-          <div class="links">
-            <a class="btn primary" href="assets/wildani4d_paper.pdf">Paper PDF</a>
-            <a class="btn" href="#method">Method</a>
-            <a class="btn" href="#results">Results</a>
-            <a class="btn disabled" aria-disabled="true">Code Coming Soon</a>
-            <a class="btn disabled" aria-disabled="true">Video Coming Soon</a>
-          </div>
-
-          <div class="pill-row">
-            <span class="pill">Synthetic animal video generation</span>
-            <span class="pill">Animal Video Transformer</span>
-            <span class="pill">Sequence-level shape consistency</span>
-            <span class="pill">World-grounded trajectory recovery</span>
-          </div>
-        </div>
-        <div class="hero-figure">
-          <img src="assets/teaser.jpg" alt="WildAni4D teaser showing synthetic animal videos and recovered world-frame animal motion from an input video" />
-        </div>
+        <img src="assets/teaser.jpg" alt="WildAni4D teaser: synthetic video generation and recovered world-frame 4D animal mesh motion" />
       </div>
     </div>
   </header>
@@ -203,11 +187,40 @@
   <section class="section" id="abstract">
     <div class="container">
       <div class="section-head">
-        <h2>Abstract</h2>
-        <p class="section-desc">Recovering animal geometry and motion over time from ordinary monocular videos.</p>
+        <div class="section-kicker">Abstract</div>
+        <h2>Recovering animal motion in 4D.</h2>
+        <p class="section-desc">WildAni4D tackles the data scarcity and temporal instability that make animal video reconstruction difficult.</p>
       </div>
       <div class="card pad abstract">
-        Recovering 4D animal motion, including 3D geometry and global trajectory, is essential for quantitative biomechanics and behavioral analysis. However, progress is hindered by the lack of annotated animal video data and the temporal instability of per-frame reconstruction methods. WildAni4D addresses these challenges with a framework that unites a synthetic video generation pipeline and a new reconstruction model. Our generator creates realistic, appearance-consistent video sequences with ground-truth animal geometry and camera trajectories. Our Animal Video Transformer estimates temporally coherent motion using a single sequence-level shape and per-frame pose predictions. The resulting system drastically reduces temporal pose flicker and shape drift, enabling large-scale 4D animal reconstruction and downstream applications including motion annotation, animatable animal reconstruction, and text-to-motion generation.
+        Recovering 4D animal motion, including 3D geometry and global trajectory, is essential for quantitative biomechanics and behavioral analysis. Existing methods lack sufficient annotated video data and suffer from per-frame temporal instability. WildAni4D unites a synthetic animal video generation pipeline with the Animal Video Transformer, a reconstruction model that estimates temporally coherent motion using a single sequence-level shape and per-frame pose predictions. The resulting system reduces temporal pose flicker and shape drift, enabling large-scale 4D animal reconstruction and downstream applications including motion annotation, animatable reconstruction, and text-to-motion generation.
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><b>Input</b><span>Monocular animal video</span></div>
+        <div class="stat"><b>Output</b><span>Mesh, pose, shape, trajectory</span></div>
+        <div class="stat"><b>Training</b><span>Synthetic videos with 3D labels</span></div>
+        <div class="stat"><b>Stability</b><span>One shape per sequence</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Comparative Demo</div>
+        <h2>Ours produces cleaner 4D recovery on Veo3 videos.</h2>
+        <p class="section-desc">Three Veo3-generated animal samples are reconstructed with AniMer + DROID-SLAM, GenZoo + DROID-SLAM, and WildAni4D. The demo highlights temporal stability, shape consistency, and world-grounded motion recovery.</p>
+      </div>
+      <div class="card video-shell">
+        <video controls playsinline preload="metadata" poster="assets/demo1_poster.jpg">
+          <source src="assets/demo1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div class="comparison-labels">
+          <div><b>Baseline 1</b>AniMer + DROID-SLAM</div>
+          <div><b>Baseline 2</b>GenZoo + DROID-SLAM</div>
+          <div><b>Ours</b>WildAni4D</div>
+        </div>
+        <p class="caption">Demo video generated from <span class="mono">demo1.mov</span>. It contains three samples comparing the two baselines against our method.</p>
       </div>
     </div>
   </section>
@@ -215,28 +228,13 @@
   <section class="section" id="contributions">
     <div class="container">
       <div class="section-head">
-        <h2>Key Contributions</h2>
-        <p class="section-desc">A complete data-and-model pipeline for video-native animal reconstruction.</p>
+        <div class="section-kicker">Contributions</div>
+        <h2>A complete data-and-model pipeline.</h2>
       </div>
       <div class="grid-3">
-        <div class="card pad feature">
-          <h3>WildAni4D-Gen</h3>
-          <p>A scalable synthetic video generation pipeline that combines dynamic textured animals, diverse 3D scenes, and realistic camera motions to produce annotated animal videos.</p>
-        </div>
-        <div class="card pad feature">
-          <h3>Animal Video Transformer</h3>
-          <p>A two-stage reconstruction model that uses camera trajectory estimation and temporal transformer features to recover world-grounded 4D animal motion from monocular video.</p>
-        </div>
-        <div class="card pad feature">
-          <h3>Stable 4D Applications</h3>
-          <p>Sequence-level shape consistency reduces frame-wise drift and supports pseudo-ground-truth annotation, animation, and motion-generation applications.</p>
-        </div>
-      </div>
-      <div class="stat-grid">
-        <div class="stat"><b>Input</b><span>Monocular in-the-wild animal video</span></div>
-        <div class="stat"><b>Output</b><span>3D mesh sequence, pose, shape, trajectory</span></div>
-        <div class="stat"><b>Training</b><span>Synthetic videos with full 3D annotation</span></div>
-        <div class="stat"><b>Core Design</b><span>Single shape per sequence + per-frame pose</span></div>
+        <div class="card pad feature"><span class="tag blue">Data</span><h3>WildAni4D-Gen</h3><p>Scalable synthetic video generation combining dynamic textured SMAL animals, diverse 3D scenes, and realistic camera motion.</p></div>
+        <div class="card pad feature"><span class="tag green">Model</span><h3>Animal Video Transformer</h3><p>A video reconstruction model that uses temporal features and camera trajectory estimation to recover world-grounded animal motion.</p></div>
+        <div class="card pad feature"><span class="tag pink">Stability</span><h3>Sequence-level shape</h3><p>Predicting one shape for the full sequence suppresses frame-wise drift while preserving per-frame articulated motion.</p></div>
       </div>
     </div>
   </section>
@@ -244,27 +242,18 @@
   <section class="section" id="method">
     <div class="container">
       <div class="section-head">
-        <h2>Method Overview</h2>
-        <p class="section-desc">WildAni4D first builds synthetic animal videos with full supervision, then learns temporally coherent reconstruction from video sequences.</p>
+        <div class="section-kicker">Method</div>
+        <h2>Synthetic videos meet video-native reconstruction.</h2>
+        <p class="section-desc">WildAni4D first creates fully annotated animal videos, then trains a temporal reconstruction model for stable 4D mesh recovery.</p>
       </div>
       <div class="card figure-card">
         <img src="assets/overview.jpg" alt="WildAni4D synthetic animal video generation pipeline" />
-        <div class="pad">
-          <p class="caption"><strong>WildAni4D-Gen.</strong> The generation pipeline synthesizes realistic animal videos by combining SMAL-based shape and motion, text-guided texture generation, diverse 3D scenes, and simulated camera trajectories. The rendered videos provide ground-truth SMAL parameters, 3D keypoints, masks, camera trajectories, and depth maps.</p>
-        </div>
+        <div class="pad"><p class="caption"><strong>WildAni4D-Gen.</strong> Dynamic animals, textured SMAL shapes, diverse 3D scenes, and camera trajectories are rendered into annotated training videos.</p></div>
       </div>
-
-      <div style="height:16px"></div>
-
+      <div style="height:18px"></div>
       <div class="grid-2">
-        <div class="card figure-card">
-          <img src="assets/architecture.jpg" alt="Animal Video Transformer architecture" />
-          <div class="pad"><p class="caption"><strong>Animal Video Transformer.</strong> Temporal modeling is applied after the ViT backbone. The decoder predicts per-frame SMAL poses and translations while enforcing a single sequence-level shape parameter.</p></div>
-        </div>
-        <div class="card pad">
-          <h3>Why video-native?</h3>
-          <p class="caption" style="font-size:15px; margin-top:0">Single-image animal reconstruction methods can produce plausible meshes per frame, but often flicker over time and drift in shape. WildAni4D explicitly separates identity from motion by predicting one shape for the full video sequence and per-frame articulated motion, which better matches the physical constraints of an animal moving through the world.</p>
-        </div>
+        <div class="card figure-card"><img src="assets/architecture.jpg" alt="Animal Video Transformer architecture" /><div class="pad"><p class="caption"><strong>Animal Video Transformer.</strong> Temporal modeling after the ViT backbone predicts per-frame pose and translation together with a sequence-level shape parameter.</p></div></div>
+        <div class="card pad"><h3>Why it matters</h3><p class="caption" style="font-size:15px;margin-top:0">Frame-wise methods often produce plausible single frames but flicker across time. WildAni4D makes the reconstruction video-native: the animal identity is consistent across the sequence while pose and global motion evolve frame by frame.</p></div>
       </div>
     </div>
   </section>
@@ -272,18 +261,12 @@
   <section class="section" id="results">
     <div class="container">
       <div class="section-head">
-        <h2>Qualitative Results</h2>
-        <p class="section-desc">Recovered animal meshes are more temporally stable and better grounded in the scene than frame-wise reconstructions.</p>
+        <div class="section-kicker">Results</div>
+        <h2>Stable reconstruction across challenging sequences.</h2>
       </div>
       <div class="grid-2">
-        <div class="card figure-card">
-          <img src="assets/qualitative_results.jpg" alt="WildAni4D qualitative comparison results" />
-          <div class="pad"><p class="caption">Qualitative reconstruction results on challenging animal sequences.</p></div>
-        </div>
-        <div class="card figure-card">
-          <img src="assets/gart_results.jpg" alt="Comparison with GART-style animal reconstruction results" />
-          <div class="pad"><p class="caption">Additional comparison visualizations showing temporal and reconstruction behavior across frames.</p></div>
-        </div>
+        <div class="card figure-card"><img src="assets/qualitative_results.jpg" alt="WildAni4D qualitative comparison results" /><div class="pad"><p class="caption">Qualitative reconstruction results on challenging animal videos.</p></div></div>
+        <div class="card figure-card"><img src="assets/gart_results.jpg" alt="Additional animal reconstruction comparison results" /><div class="pad"><p class="caption">Additional comparison visualizations across frames.</p></div></div>
       </div>
     </div>
   </section>
@@ -291,36 +274,23 @@
   <section class="section" id="applications">
     <div class="container">
       <div class="section-head">
-        <h2>Downstream Applications</h2>
-        <p class="section-desc">Stable 4D animal motion opens a path toward annotation, animation, and generation pipelines.</p>
+        <div class="section-kicker">Applications</div>
+        <h2>From reconstruction to reusable animal motion.</h2>
+        <p class="section-desc">Temporally coherent 4D outputs can support annotation, animation, and generation pipelines.</p>
       </div>
-      <div class="card figure-card">
-        <img src="assets/applications.jpg" alt="WildAni4D downstream applications including annotation, animatable reconstruction, and text-to-motion generation" />
-        <div class="pad"><p class="caption"><strong>Applications.</strong> WildAni4D can support animal motion data annotation, animatable animal reconstruction, and text-to-motion generation by producing temporally consistent 4D motion signals.</p></div>
-      </div>
+      <div class="card figure-card"><img src="assets/applications.jpg" alt="WildAni4D downstream applications" /><div class="pad"><p class="caption">Downstream applications include animal motion data annotation, animatable animal reconstruction, and text-to-motion generation.</p></div></div>
     </div>
   </section>
 
   <section class="section" id="additional">
     <div class="container">
       <div class="section-head">
-        <h2>Additional Results and Limitations</h2>
-        <p class="section-desc">More 4D reconstruction visualizations and representative failure cases.</p>
+        <div class="section-kicker">More Results</div>
+        <h2>Additional visualizations and failure cases.</h2>
       </div>
       <div class="grid-2">
-        <div class="card figure-card">
-          <img src="assets/additional_4d.jpg" alt="Additional 4D reconstruction visualizations" />
-          <div class="pad"><p class="caption">Additional 4D reconstruction examples.</p></div>
-        </div>
-        <div class="card figure-card">
-          <img src="assets/failure_cases.jpg" alt="Failure cases for synthetic generation and reconstruction" />
-          <div class="pad"><p class="caption">Representative challenging cases for generation and reconstruction.</p></div>
-        </div>
-      </div>
-      <div style="height:16px"></div>
-      <div class="card figure-card">
-        <img src="assets/additional_results.jpg" alt="Additional supplementary results" />
-        <div class="pad"><p class="caption">Supplementary qualitative results.</p></div>
+        <div class="card figure-card"><img src="assets/additional_4d.jpg" alt="Additional 4D reconstruction results" /><div class="pad"><p class="caption">Additional 4D reconstruction examples.</p></div></div>
+        <div class="card figure-card"><img src="assets/failure_cases.jpg" alt="WildAni4D failure cases" /><div class="pad"><p class="caption">Representative challenging cases and limitations.</p></div></div>
       </div>
     </div>
   </section>
@@ -328,24 +298,20 @@
   <section class="section" id="citation">
     <div class="container">
       <div class="section-head">
-        <h2>Citation</h2>
-        <p class="section-desc">Please cite WildAni4D if you find this work useful.</p>
+        <div class="section-kicker">Citation</div>
+        <h2>Cite WildAni4D.</h2>
       </div>
-      <div class="card pad">
-<pre>@inproceedings{cho2026wildani4d,
+      <div class="card pad"><pre>@inproceedings{cho2026wildani4d,
   title     = {WildAni4D: Towards 4D Animal Mesh Reconstruction},
   author    = {Cho, Gyeongsu and Hu, Hezhen and Soon, Donghyeon and Kang, Changwoo and Joo, Kyungdon},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Findings},
   year      = {2026}
-}</pre>
-      </div>
+}</pre></div>
     </div>
   </section>
 
   <footer class="footer">
-    <div class="container">
-      WildAni4D project page · Vision3D Lab · <a href="https://vision3d-lab.github.io/wildani4d/">vision3d-lab.github.io/wildani4d</a>
-    </div>
+    <div class="container">WildAni4D project page · Vision3D Lab · <a href="https://vision3d-lab.github.io/wildani4d/">vision3d-lab.github.io/wildani4d</a></div>
   </footer>
 </body>
 </html>
