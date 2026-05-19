@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AniGauss: Animatable Animal Reconstruction via Topology-Aware Gaussians</title>
+  <meta name="description" content="AniGauss reconstructs animatable animal avatars from a single in-the-wild image by generating canonical four-view observations and decoding a SMAL-topology-aware Gaussian representation." />
+  <link rel="canonical" href="https://vision3d-lab.github.io/anigauss/" />
+  <meta property="og:title" content="AniGauss: Animatable Animal Reconstruction via Topology-Aware Gaussians" />
+  <meta property="og:description" content="Single-image, topology-aware Gaussian animal avatars from canonical four-view generation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vision3d-lab.github.io/anigauss/" />
+  <meta property="og:image" content="https://vision3d-lab.github.io/anigauss/assets/overview.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #171717;
+      --muted: #5f6368;
+      --faint: #8a8f98;
+      --line: #e8e8e8;
+      --soft: #f7f8fa;
+      --soft-2: #fbfbfc;
+      --blue: #0068d6;
+      --blue-bg: #edf6ff;
+      --green: #008a63;
+      --green-bg: #eafaf4;
+      --pink: #b11676;
+      --pink-bg: #fff0f8;
+      --violet: #6d3fd1;
+      --violet-bg: #f4efff;
+      --maxw: 1120px;
+      --radius: 18px;
+      --shadow-border: 0 0 0 1px rgba(0,0,0,.08), 0 2px 2px rgba(0,0,0,.04), 0 12px 28px -18px rgba(0,0,0,.45);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Geist, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(0,104,214,.08), transparent 28%),
+        radial-gradient(circle at 78% 7%, rgba(109,63,209,.08), transparent 24%),
+        linear-gradient(180deg, #fff, #fbfbfc 46%, #fff 100%);
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "liga" 1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(calc(100% - 36px), var(--maxw)); margin: 0 auto; }
+    .mono { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 1px 0 rgba(0,0,0,.08);
+    }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:22px; padding:14px 0; }
+    .brand { font-weight:700; letter-spacing:-.04em; }
+    .nav-links { display:flex; gap:18px; flex-wrap:wrap; color:#4d4d4d; font-size:14px; font-weight:500; }
+    .nav-links a:hover { color:#000; }
+
+    .hero { padding: 72px 0 38px; }
+    .hero-grid { display:grid; grid-template-columns: 1fr; gap: 24px; text-align:center; }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:8px; margin:0 auto 18px;
+      border-radius:999px; padding:7px 12px;
+      background:var(--blue-bg); color:var(--blue);
+      font-size:13px; font-weight:600; box-shadow:0 0 0 1px rgba(0,104,214,.12);
+    }
+    h1 { margin:0 auto 18px; max-width:1040px; font-size:clamp(2.35rem, 6.4vw, 5.05rem); line-height:.98; letter-spacing:-.07em; font-weight:700; }
+    .subtitle { margin:0 auto; max-width:850px; color:#444; font-size:clamp(1.05rem, 1.55vw, 1.28rem); line-height:1.75; }
+    .authors { margin-top:24px; color:#4d4d4d; font-size:1rem; }
+    .authors .name { color:#111; font-weight:650; }
+    .affils { color:var(--muted); font-size:.95rem; margin-top:7px; }
+    .links { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:26px; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      min-height:40px; padding:0 16px; border-radius:9px;
+      font-size:14px; font-weight:600; transition:.16s ease;
+      box-shadow:0 0 0 1px rgba(0,0,0,.1); background:#fff;
+    }
+    .btn.primary { background:#171717; color:#fff; box-shadow:none; }
+    .btn.disabled { color:#9a9a9a; cursor:not-allowed; background:#fafafa; }
+    .btn:not(.disabled):hover { transform:translateY(-1px); box-shadow:0 0 0 1px rgba(0,0,0,.12), 0 8px 22px -16px rgba(0,0,0,.6); }
+    .pill-row { display:flex; justify-content:center; flex-wrap:wrap; gap:9px; margin-top:26px; }
+    .pill { border-radius:999px; padding:6px 10px; background:#f2f2f2; color:#555; font-size:12px; font-weight:600; }
+    .hero-card { margin-top:34px; padding:12px; background:#fff; border-radius:24px; box-shadow:var(--shadow-border); }
+    .hero-card img { width:100%; border-radius:16px; background:#fff; }
+
+    section.section { padding: 46px 0; }
+    .section-head { margin-bottom:18px; }
+    .section-kicker { color:var(--blue); text-transform:uppercase; letter-spacing:.12em; font-size:12px; font-weight:700; margin-bottom:8px; }
+    h2 { margin:0 0 10px; font-size:clamp(1.85rem, 4vw, 3.2rem); line-height:1.06; letter-spacing:-.055em; font-weight:700; }
+    h3 { margin:0 0 8px; letter-spacing:-.03em; font-size:1.12rem; }
+    .section-desc { margin:0; color:var(--muted); max-width:820px; font-size:1.02rem; }
+
+    .card { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow-border); overflow:hidden; }
+    .pad { padding:24px; }
+    .abstract { color:#343434; font-size:1.03rem; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .feature { min-height:190px; }
+    .feature p { color:var(--muted); margin:0; font-size:15px; }
+    .feature .tag { display:inline-flex; margin-bottom:14px; border-radius:999px; padding:5px 9px; font-size:12px; font-weight:700; }
+    .tag.blue { color:var(--blue); background:var(--blue-bg); }
+    .tag.green { color:var(--green); background:var(--green-bg); }
+    .tag.pink { color:var(--pink); background:var(--pink-bg); }
+    .tag.violet { color:var(--violet); background:var(--violet-bg); }
+    .figure-card img { width:100%; background:#fff; }
+    .caption { color:var(--muted); font-size:14px; margin:12px 0 0; }
+    .stat-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:18px; }
+    .stat { border-radius:14px; background:#fff; padding:16px; box-shadow:0 0 0 1px rgba(0,0,0,.08); }
+    .stat b { display:block; margin-bottom:5px; }
+    .stat span { color:var(--muted); font-size:14px; }
+    pre { margin:0; white-space:pre-wrap; overflow-wrap:anywhere; font-size:13px; line-height:1.65; color:#222; }
+    .footer { border-top:1px solid var(--line); color:var(--muted); padding:32px 0 46px; margin-top:34px; font-size:14px; }
+
+    @media (max-width: 860px) {
+      .hero { padding-top:46px; }
+      .nav-inner { align-items:flex-start; flex-direction:column; }
+      .grid-2, .grid-3, .stat-grid { grid-template-columns:1fr; }
+      .pad { padding:18px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">AniGauss</div>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#citation">Citation</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">CVPRW 2026 · Single-Image Animatable Animal Reconstruction</div>
+        <h1>AniGauss: Toward Animatable Animal Reconstruction from Single In-the-Wild Images via Topology-Aware Gaussians</h1>
+        <p class="subtitle">A feed-forward framework that turns one casually captured animal image into a controllable, SMAL-aligned Gaussian avatar by first hallucinating canonical semantic views and then reconstructing topology-aware articulated Gaussians.</p>
+        <div class="authors">
+          <span class="name">Vision3D Lab</span>
+        </div>
+        <div class="affils">UNIST · Authors and camera-ready links to be updated</div>
+        <div class="links">
+          <a class="btn primary" href="#method">Method Overview</a>
+          <a class="btn" href="#results">Qualitative Results</a>
+          <span class="btn disabled" aria-disabled="true">Paper Coming Soon</span>
+          <span class="btn disabled" aria-disabled="true">Code Coming Soon</span>
+        </div>
+        <div class="pill-row">
+          <span class="pill">Single in-the-wild image</span>
+          <span class="pill">Canonical four-view generation</span>
+          <span class="pill">SMAL topology prior</span>
+          <span class="pill">Animatable Gaussians</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="assets/overview.jpg" alt="AniGauss overview: canonical four-view generation followed by topology-aware animatable Gaussian reconstruction" />
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="abstract">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Abstract</div>
+        <h2>From one animal photo to an animatable avatar.</h2>
+        <p class="section-desc">AniGauss addresses the under-constrained setting where the input is a single in-the-wild image but the output must remain both visually faithful and controllable.</p>
+      </div>
+      <div class="card pad abstract">
+        AniGauss decomposes single-image animatable animal reconstruction into two stages. First, a canonical four-view generation module predicts front, left, right, and back views of the same animal, exposing appearance cues missing from the original monocular observation. Second, a topology-aware reconstruction module fuses these ordered views in a UV-aligned canonical space and decodes a SMAL-aligned animatable Gaussian representation. By anchoring Gaussian primitives to an articulated animal topology, AniGauss preserves structural coherence while enabling pose-conditioned animation from a single in-the-wild image.
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><b>Input</b><span>Single in-the-wild image</span></div>
+        <div class="stat"><b>Canonicalization</b><span>Front, left, right, back views</span></div>
+        <div class="stat"><b>Representation</b><span>SMAL-topology-aware Gaussians</span></div>
+        <div class="stat"><b>Output</b><span>Re-posable animal avatar</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contributions">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Contributions</div>
+        <h2>A two-stage route to controllable animal reconstruction.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card pad feature"><span class="tag blue">Problem</span><h3>Single-image animatable animals</h3><p>Formulates feed-forward animatable animal reconstruction in the wild as a harder setting than video-based capture or static image-to-3D recovery.</p></div>
+        <div class="card pad feature"><span class="tag green">Representation</span><h3>Topology-aware Gaussians</h3><p>Anchors Gaussian primitives to the SMAL animal body prior so the reconstructed avatar remains structurally coherent and explicitly re-posable.</p></div>
+        <div class="card pad feature"><span class="tag violet">Supervision</span><h3>AniGA10k-style synthetic data</h3><p>Uses textured parametric animal assets with exact canonical-view and articulated 3D supervision to train the canonicalization and reconstruction pipeline.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="method">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Method</div>
+        <h2>Canonical views first, topology-aware reconstruction second.</h2>
+        <p class="section-desc">The first stage reduces monocular viewpoint ambiguity. The second stage converts ordered multi-view appearance into an articulated Gaussian avatar.</p>
+      </div>
+      <div class="card figure-card">
+        <img src="assets/overview.jpg" alt="AniGauss two-stage framework diagram" />
+        <div class="pad"><p class="caption"><strong>Pipeline overview.</strong> Given a single in-the-wild image, AniGauss predicts canonical semantic views and reconstructs an animatable animal avatar through multi-view encoding, UV canonical fusion, and SMAL-topology-anchored Gaussian decoding.</p></div>
+      </div>
+      <div style="height:18px"></div>
+      <div class="grid-2">
+        <div class="card pad"><h3>Canonical four-view generation</h3><p class="caption" style="font-size:15px;margin-top:0">Instead of asking the reconstruction network to infer every unseen side from one observation, AniGauss first completes a semantically ordered set of canonical views: front, left, right, and back.</p></div>
+        <div class="card pad"><h3>SMAL-topology-aware Gaussian decoding</h3><p class="caption" style="font-size:15px;margin-top:0">The decoder predicts Gaussian attributes in a canonical animal space and articulates them through the underlying SMAL topology, enabling controllable pose-conditioned rendering.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Qualitative Results</div>
+        <h2>More animal-specific structure than generic image-to-3D baselines.</h2>
+        <p class="section-desc">AniGauss is evaluated on challenging quadruped images with articulation variation, occlusion, and complex appearance patterns.</p>
+      </div>
+      <div class="card figure-card">
+        <img src="assets/qualitative.jpg" alt="Qualitative comparison of AniGauss with LGM, SAM3D, TRELLIS, and Animal-IDOL on animal image-to-3D reconstruction" />
+        <div class="pad"><p class="caption"><strong>Comparison.</strong> Against generic image-to-3D baselines and an animal-adapted animatable baseline, AniGauss aims to preserve animal-specific structural consistency, multi-view appearance, and plausible full-body shape under challenging in-the-wild inputs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="citation">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Citation</div>
+        <h2>BibTeX will be updated with camera-ready metadata.</h2>
+      </div>
+      <div class="card pad">
+<pre>@inproceedings{anigauss2026,
+  title     = {AniGauss: Toward Animatable Animal Reconstruction from Single In-the-Wild Images via Topology-Aware Gaussians},
+  author    = {To be updated},
+  booktitle = {To be updated},
+  year      = {2026}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">AniGauss · Vision3D Lab · Project page draft. Paper, code, and final author metadata will be updated after camera-ready release.</div>
+  </footer>
+</body>
+</html>
