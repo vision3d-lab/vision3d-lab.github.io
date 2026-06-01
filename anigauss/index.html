@@ -118,6 +118,9 @@
     .tag.pink { color:var(--pink); background:var(--pink-bg); }
     .tag.violet { color:var(--violet); background:var(--violet-bg); }
     .figure-card img { width:100%; background:#fff; }
+    .media-frame { width:100%; border:0; display:block; background:#fff; border-radius:12px; }
+    .poster-preview { height:min(72vh, 760px); }
+    .video-preview { width:100%; border-radius:14px; background:#000; box-shadow:0 0 0 1px rgba(0,0,0,.08); }
     .caption { color:var(--muted); font-size:14px; margin:12px 0 0; }
     .stat-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:18px; }
     .stat { border-radius:14px; background:#fff; padding:16px; box-shadow:0 0 0 1px rgba(0,0,0,.08); }
@@ -142,6 +145,7 @@
         <a href="#abstract">Abstract</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
+        <a href="#demo">Demo</a>
         <a href="#poster">Poster</a>
         <a href="#future-work">Future Work</a>
         <a href="#citation">Citation</a>
@@ -162,6 +166,7 @@
         <div class="links">
           <a class="btn primary" href="#method">Method Overview</a>
           <a class="btn" href="#results">Qualitative Results</a>
+          <a class="btn" href="#demo">Demo Video</a>
           <a class="btn" href="assets/CVPRW2026_AniGauss_Poster.pdf">Poster</a>
           <span class="btn disabled" aria-disabled="true">Paper Coming Soon</span>
           <span class="btn disabled" aria-disabled="true">Code Coming Soon</span>
@@ -244,6 +249,24 @@
     </div>
   </section>
 
+  <section class="section" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Demo</div>
+        <h2>Feed-forward animatable reconstruction in the wild.</h2>
+        <p class="section-desc">The demo shows that AniGauss can take an arbitrary in-the-wild animal image and reconstruct an animatable avatar in a feed-forward manner.</p>
+      </div>
+      <div class="card pad">
+        <video class="video-preview" controls playsinline preload="metadata">
+          <source src="assets/demo1_anigauss.mp4" type="video/mp4" />
+          <source src="assets/demo1_anigauss.mov" type="video/quicktime" />
+          Your browser does not support the embedded video. <a href="assets/demo1_anigauss.mov">Download the demo video</a>.
+        </video>
+        <p class="caption">Original MOV: <a href="assets/demo1_anigauss.mov">demo1_anigauss.mov</a></p>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="poster">
     <div class="container">
       <div class="section-head">
@@ -251,8 +274,9 @@
         <h2>CVPRW poster.</h2>
         <p class="section-desc">The project poster summarizes the AniGauss pipeline, topology-aware Gaussian representation, and qualitative comparisons.</p>
       </div>
-      <div class="card pad">
-        <a class="btn primary" href="assets/CVPRW2026_AniGauss_Poster.pdf">Download Poster PDF</a>
+      <div class="card">
+        <iframe class="media-frame poster-preview" src="assets/CVPRW2026_AniGauss_Poster.pdf" title="AniGauss CVPRW 2026 poster PDF preview"></iframe>
+        <div class="pad"><a class="btn primary" href="assets/CVPRW2026_AniGauss_Poster.pdf">Open Poster PDF</a></div>
       </div>
     </div>
   </section>
