@@ -121,6 +121,12 @@
     .media-frame { width:100%; border:0; display:block; background:#fff; border-radius:12px; }
     .poster-preview { height:min(72vh, 760px); }
     .video-preview { width:100%; border-radius:14px; background:#000; box-shadow:0 0 0 1px rgba(0,0,0,.08); }
+    .gallery-shell { display:grid; gap:14px; }
+    .gallery-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .gallery-controls { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .gallery-counter { color:var(--muted); font-size:14px; font-weight:600; }
+    .gallery-slide { width:100%; border-radius:14px; background:#fff; box-shadow:0 0 0 1px rgba(0,0,0,.08); }
+    .gallery-range { width:100%; accent-color:#171717; }
     .caption { color:var(--muted); font-size:14px; margin:12px 0 0; }
     .stat-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:18px; }
     .stat { border-radius:14px; background:#fff; padding:16px; box-shadow:0 0 0 1px rgba(0,0,0,.08); }
@@ -134,6 +140,7 @@
       .nav-inner { align-items:flex-start; flex-direction:column; }
       .grid-2, .grid-3, .stat-grid { grid-template-columns:1fr; }
       .pad { padding:18px; }
+      .gallery-toolbar { align-items:flex-start; flex-direction:column; }
     }
   </style>
 </head>
@@ -229,8 +236,22 @@
         <h2>Using a Qwen-Image-Edit View Prior for in-the-wild inputs.</h2>
         <p class="section-desc">We LoRA-tune a large image-editing prior into a view-aware generator. Given one unconstrained animal photo, the generator completes a semantically ordered set of canonical observations — front, left, back, and right — which provides stronger appearance and geometry cues for feed-forward animatable reconstruction.</p>
       </div>
-      <div class="card figure-card">
-        <img src="assets/canonical_view_generator_examples.jpg" alt="Canonical View Generator examples: in-the-wild animal inputs and generated front, left, back, and right views" />
+      <div class="card pad gallery-shell">
+        <div class="gallery-toolbar">
+          <div>
+            <h3>Interactive gallery of all 201 examples</h3>
+            <p class="caption">Use the arrows, slider, or keyboard left/right keys to browse every in-the-wild input and its generated front, left, back, and right canonical views.</p>
+          </div>
+          <div class="gallery-controls">
+            <button class="btn" id="cvg-prev" type="button">← Previous</button>
+            <span class="gallery-counter mono" id="cvg-counter">1 / 201</span>
+            <button class="btn" id="cvg-next" type="button">Next →</button>
+            <button class="btn" id="cvg-random" type="button">Random</button>
+          </div>
+        </div>
+        <img class="gallery-slide" id="cvg-slide" src="assets/canonical_view_generator_gallery/demo0000.jpg" alt="Canonical View Generator example: input image and generated front, left, back, and right views" />
+        <input class="gallery-range" id="cvg-range" type="range" min="0" max="200" value="0" aria-label="Browse Canonical View Generator examples" />
+        <noscript><img src="assets/canonical_view_generator_examples.jpg" alt="Canonical View Generator examples: in-the-wild animal inputs and generated front, left, back, and right views" /></noscript>
       </div>
     </div>
   </section>
@@ -329,5 +350,6 @@
   <footer class="footer">
     <div class="container">AniGauss · Vision3D Lab · Project page draft. Paper, code, and final author metadata will be updated after camera-ready release.</div>
   </footer>
+  <script src="assets/canonical_view_gallery.js"></script>
 </body>
 </html>
