@@ -143,6 +143,7 @@
       <div class="brand">AniGauss</div>
       <div class="nav-links">
         <a href="#abstract">Abstract</a>
+        <a href="#canonical-view-generator">View Generator</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
         <a href="#demo">Demo</a>
@@ -214,9 +215,22 @@
         <h2>A two-stage route to controllable animal reconstruction.</h2>
       </div>
       <div class="grid-3">
-        <div class="card pad feature"><span class="tag blue">Problem</span><h3>Single-image animatable animals</h3><p>Formulates feed-forward animatable animal reconstruction in the wild as a harder setting than video-based capture or static image-to-3D recovery.</p></div>
+        <div class="card pad feature"><span class="tag blue">View Prior</span><h3>Canonical View Generator</h3><p>LoRA-tunes a large Qwen-Image-Edit prior into a canonical view generator that handles in-the-wild animal images and predicts front, left, back, and right views.</p></div>
         <div class="card pad feature"><span class="tag green">Representation</span><h3>Topology-aware Gaussians</h3><p>Anchors Gaussian primitives to the SMAL animal body prior so the reconstructed avatar remains structurally coherent and explicitly re-posable.</p></div>
         <div class="card pad feature"><span class="tag violet">Supervision</span><h3>AniGA10k-style synthetic data</h3><p>Uses textured parametric animal assets with exact canonical-view and articulated 3D supervision to train the canonicalization and reconstruction pipeline.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="canonical-view-generator">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Canonical View Generator</div>
+        <h2>Using a Qwen-Image-Edit View Prior for in-the-wild inputs.</h2>
+        <p class="section-desc">We LoRA-tune a large image-editing prior into a view-aware generator. Given one unconstrained animal photo, the generator completes a semantically ordered set of canonical observations — front, left, back, and right — which provides stronger appearance and geometry cues for feed-forward animatable reconstruction.</p>
+      </div>
+      <div class="card figure-card">
+        <img src="assets/canonical_view_generator_examples.jpg" alt="Canonical View Generator examples: in-the-wild animal inputs and generated front, left, back, and right views" />
       </div>
     </div>
   </section>
