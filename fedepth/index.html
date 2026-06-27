@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FeDepth is a descriptor-based clustered federated learning framework for monocular depth estimation under robot heterogeneity.">
+  <meta name="keywords" content="FeDepth, federated learning, depth estimation, robot perception, soft clustering, heterogeneous robots">
+  <meta name="author" content="Ganghyeon Lee, Inha Lee, Junhee Lee, Jeongeon Lee, Sungwhan Yoon, Kyungdon Joo">
+  <meta property="og:title" content="FeDepth: Federated Learning for Depth Estimation under Robot Heterogeneity">
+  <meta property="og:description" content="Descriptor-based soft clustered federated learning for monocular depth estimation across heterogeneous robot platforms, environments, and depth ranges.">
+  <meta property="og:url" content="https://vision3d-lab.github.io/fedepth/">
+  <meta property="og:image" content="https://vision3d-lab.github.io/fedepth/static/images/teaser.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FeDepth">
+  <meta name="twitter:description" content="Federated learning for depth estimation under robot heterogeneity.">
+  <meta name="twitter:image" content="https://vision3d-lab.github.io/fedepth/static/images/teaser.png">
+
+  <title>FeDepth: Federated Learning for Depth Estimation under Robot Heterogeneity</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
+<body>
+  <section class="hero is-fedepth">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <p class="subtitle is-5 venue-tag">ECCV 2026</p>
+            <h1 class="title is-1 publication-title">
+              FeDepth: Federated Learning for Depth Estimation under Robot Heterogeneity
+            </h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Ganghyeon Lee<sup>1,*</sup>,</span>
+              <span class="author-block">Inha Lee<sup>1,*</sup>,</span>
+              <span class="author-block">Junhee Lee<sup>1</sup>,</span>
+              <span class="author-block">Jeongeon Lee<sup>1</sup>,</span>
+              <span class="author-block">Sungwhan Yoon<sup>1</sup>,</span>
+              <span class="author-block">Kyungdon Joo<sup>1,&#8224;</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Ulsan National Institute of Science and Technology, Ulsan, Korea</span>
+              <span class="author-block"><small><br><sup>*</sup>Equal contribution. <sup>&#8224;</sup>Corresponding author.</small></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <span class="external-link button is-normal is-rounded is-dark is-static" aria-disabled="true">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                    <span class="tag is-light">Coming soon</span>
+                  </span>
+                </span>
+                <span class="link-block">
+                  <span class="external-link button is-normal is-rounded is-dark is-static" aria-disabled="true">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                    <span class="tag is-light">Coming soon</span>
+                  </span>
+                </span>
+                <span class="link-block">
+                  <a href="#citation" class="external-link button is-normal is-rounded is-dark" onclick="showPendingCitation();">
+                    <span class="icon"><i class="fas fa-quote-right"></i></span>
+                    <span>BibTeX</span>
+                    <span class="tag is-light">Pending</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section teaser-section">
+    <div class="container is-max-widescreen">
+      <figure>
+        <img class="teaser-image" src="static/images/teaser.png" alt="FeDepth soft clustering illustration for federated depth estimation">
+        <figcaption class="figure-caption has-text-centered">
+          FeDepth models complex inter-client relationships with soft cluster assignments, allowing related robot clients to contribute to multiple cluster models.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section is-soft" id="abstract">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Abstract</h2>
+      <div class="content lead-copy">
+        <p>
+          Federated learning enables distributed training without transferring raw robot perception data, but depth estimation under real robotic deployments faces severe domain shifts across clients. In practice, client distributions often overlap across platforms, environments, and sensing conditions, which breaks the clearly separated client-domain assumption used by conventional clustered federated learning.
+        </p>
+        <p>
+          FeDepth is a descriptor-based clustered federated learning framework for monocular depth estimation. It models client relationships through soft clustering, allowing clients to participate in multiple clusters and capture continuous, ambiguous domain transitions observed in heterogeneous robotic environments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="motivation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Motivation</h2>
+      <div class="content lead-copy">
+        <p>
+          Centralized learning requires collecting high-bandwidth sensory data at a server, creating communication, scalability, and privacy challenges for real-world robot fleets. Standard federated learning avoids raw-data transfer, but a single global model struggles when clients differ by robot platform, viewpoint, motion dynamics, environment, camera parameters, and depth range.
+        </p>
+      </div>
+      <div class="columns is-centered metric-row">
+        <div class="column">
+          <div class="metric-panel">
+            <div class="metric">41</div>
+            <div class="label">Training clients in the HPE scenario.</div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="metric-panel">
+            <div class="metric">11</div>
+            <div class="label">Unseen HPE test sequences.</div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="metric-panel">
+            <div class="metric">32</div>
+            <div class="label">BMR clients: 15 NYUv2 and 17 KITTI.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section is-soft" id="scenarios">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-3 has-text-centered">Robot Heterogeneity Scenarios</h2>
+      <figure>
+        <img class="paper-figure" src="static/images/scenarios.png" alt="HPE and BMR robot heterogeneity scenario overview">
+        <figcaption class="figure-caption has-text-centered">
+          HPE introduces shifts across robot platforms and environments using M3ED. BMR reflects bi-modal depth distributions between indoor NYUv2 and outdoor KITTI clients.
+        </figcaption>
+      </figure>
+      <figure class="figure-spaced">
+        <img class="paper-figure" src="static/images/data_characteristics.png" alt="Depth distribution and UMAP visualization for FeDepth scenarios">
+        <figcaption class="figure-caption has-text-centered">
+          The proposed scenarios expose both overlapping client relationships and strongly separated depth-range distributions.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="framework">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-3 has-text-centered">FeDepth Overview</h2>
+      <figure>
+        <img class="paper-figure" src="static/images/framework.png" alt="Overall framework of FeDepth">
+        <figcaption class="figure-caption has-text-centered">
+          FeDepth first extracts client descriptors and builds a soft cluster map, then performs cluster-wise model updates and assigns unseen sequences to relevant cluster models at inference.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section is-soft" id="descriptor">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-3 has-text-centered">Descriptor-Based Soft Clustering</h2>
+      <figure>
+        <img class="paper-figure compact-figure" src="static/images/descriptor_extractor.png" alt="FeDepth descriptor extractor">
+        <figcaption class="figure-caption has-text-centered">
+          Keyframes are encoded by a frozen backbone and aggregated with GeM pooling. The descriptor mean and variance summarize each client's local data distribution.
+        </figcaption>
+      </figure>
+      <div class="columns is-centered metric-row">
+        <div class="column is-one-third">
+          <div class="metric-panel">
+            <div class="metric">0.264</div>
+            <div class="label">Hard clustering Abs Rel on HPE with NeWCRFs.</div>
+          </div>
+        </div>
+        <div class="column is-one-third">
+          <div class="metric-panel accent-panel">
+            <div class="metric">0.249</div>
+            <div class="label">Soft clustering Abs Rel under the same setup.</div>
+          </div>
+        </div>
+        <div class="column is-one-third">
+          <div class="metric-panel">
+            <div class="metric">20%</div>
+            <div class="label">Best reported overlap ratio in the HPE ablation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="quantitative-results">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+      <div class="table-container">
+        <table class="table is-fullwidth result-table">
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Model</th>
+              <th>FedAvg</th>
+              <th>PACFL&#8224;</th>
+              <th>FeDepth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>HPE</td>
+              <td>NeWCRFs</td>
+              <td>0.366</td>
+              <td>0.318</td>
+              <td class="best">0.249</td>
+            </tr>
+            <tr>
+              <td>HPE</td>
+              <td>DCDepth</td>
+              <td>0.351</td>
+              <td>0.321</td>
+              <td class="best">0.293</td>
+            </tr>
+            <tr>
+              <td>BMR</td>
+              <td>DCDepth</td>
+              <td>0.158</td>
+              <td class="best">0.082</td>
+              <td class="best">0.082</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">
+        Values report Abs Rel, where lower is better. PACFL&#8224; denotes the descriptor-based PACFL variant used in the paper.
+      </p>
+    </div>
+  </section>
+
+  <section class="section is-soft" id="qualitative-results">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+      <figure>
+        <img class="paper-figure" src="static/images/qualitative_hpe.png" alt="Qualitative depth prediction results on the HPE scenario">
+        <figcaption class="figure-caption has-text-centered">
+          Qualitative DCDepth results on the HPE scenario compare input, ground truth, predicted depth maps, and RMSE error maps for FeDepth and FL/CFL baselines.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="cluster-convergence">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-3 has-text-centered">Cluster Map and Convergence</h2>
+      <figure>
+        <img class="paper-figure" src="static/images/cluster_convergence.png" alt="Cluster map and convergence graph for FeDepth">
+        <figcaption class="figure-caption has-text-centered">
+          Cluster maps visualize client assignments in HPE and BMR, and convergence curves report RMSE log over communication rounds for NeWCRFs.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section is-soft" id="citation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Citation</h2>
+      <pre id="citation-placeholder" class="citation-box">Publication pending. BibTeX will be added after the paper is public.</pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        This page follows the academic project page style used by Vision3D Lab.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
