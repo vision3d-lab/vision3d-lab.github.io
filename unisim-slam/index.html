@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UniSim-SLAM is a feed-forward SLAM system that combines two-view tracking and multi-view submap refinement in a unified Sim(3) factor graph.">
+  <meta name="keywords" content="UniSim-SLAM, visual SLAM, feed-forward SLAM, Sim(3), factor graph, RGB-D, 7-Scenes, TUM RGB-D">
+  <meta name="author" content="Inha Lee, Dongjae Jeong, Junhee Lee, Kyungdon Joo">
+  <meta property="og:title" content="UniSim-SLAM: Feed-Forward SLAM with Unified Sim(3) Optimization">
+  <meta property="og:description" content="A feed-forward SLAM system that unifies lightweight two-view tracking and multi-view submap refinement through Sim(3) optimization.">
+  <meta property="og:url" content="https://vision3d-lab.github.io/unisim-slam/">
+  <meta property="og:image" content="https://vision3d-lab.github.io/unisim-slam/static/images/teaser.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UniSim-SLAM">
+  <meta name="twitter:description" content="Feed-forward SLAM with unified Sim(3) optimization.">
+  <meta name="twitter:image" content="https://vision3d-lab.github.io/unisim-slam/static/images/teaser.png">
+
+  <title>UniSim-SLAM: Feed-Forward SLAM with Unified Sim(3) Optimization</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
+<body>
+  <section class="hero is-unisim">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              UniSim-SLAM: Feed-Forward SLAM with Unified Sim(3) Optimization
+            </h1>
+            <p class="subtitle is-4 venue-tag">ECCV 2026</p>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Inha Lee<sup>1</sup>,</span>
+              <span class="author-block">Dongjae Jeong<sup>1</sup>,</span>
+              <span class="author-block">Junhee Lee<sup>1</sup>,</span>
+              <span class="author-block">Kyungdon Joo<sup>1,&#8224;</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Ulsan National Institute of Science and Technology, Ulsan, Korea</span>
+              <span class="author-block"><small><br><sup>&#8224;</sup>Corresponding author</small></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <span class="external-link button is-normal is-rounded is-dark is-static" aria-disabled="true">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                    <span class="tag is-light">Coming soon</span>
+                  </span>
+                </span>
+                <span class="link-block">
+                  <span class="external-link button is-normal is-rounded is-dark is-static" aria-disabled="true">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                    <span class="tag is-light">Coming soon</span>
+                  </span>
+                </span>
+                <span class="link-block">
+                  <a href="#citation" class="external-link button is-normal is-rounded is-dark" onclick="showPendingCitation();">
+                    <span class="icon"><i class="fas fa-quote-right"></i></span>
+                    <span>BibTeX</span>
+                    <span class="tag is-light">Pending</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <figure>
+        <img class="teaser-image" src="static/images/teaser.png" alt="Comparison of two-view, multi-view, and UniSim-SLAM feed-forward SLAM regimes">
+        <figcaption class="figure-caption has-text-centered">
+          UniSim-SLAM combines a low-latency two-view frontend with a constraint-rich multi-view submap backend, then jointly optimizes both in a unified Sim(3) factor graph.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section is-soft" id="abstract">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Abstract</h2>
+      <div class="content lead-copy">
+        <p>
+          Recent geometric foundation models enable feed-forward inference for SLAM, but their predictions are strongly dependent on the input view set, which leads to geometric inconsistencies and trajectory drift when results are chained over long sequences. Online deployment further exposes a trade-off between the low latency of two-view tracking and the constraint richness of multi-view inference.
+        </p>
+        <p>
+          UniSim-SLAM runs lightweight two-view keyframe tracking in the frontend and performs periodic multi-view submap refinement in the backend. To combine predictions defined in heterogeneous local coordinates with inconsistent scales, it formulates a unified multi-level factor graph on Sim(3) that jointly optimizes global keyframe poses and submap poses.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="overview">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Overview</h2>
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="metric-panel">
+            <div class="metric">0.032</div>
+            <div class="label">Average uncalibrated ATE RMSE on TUM RGB-D.</div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="metric-panel">
+            <div class="metric">0.020</div>
+            <div class="label">Average uncalibrated ATE RMSE on 7-Scenes.</div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="metric-panel">
+            <div class="metric">Sim(3)</div>
+            <div class="label">Unified optimization over global keyframe poses and submap poses.</div>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <div class="metric-panel">
+            <div class="metric">38.5%</div>
+            <div class="label">Trajectory error reduction on TUM RGB-D compared with the prior best uncalibrated result.</div>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="metric-panel">
+            <div class="metric">45.9%</div>
+            <div class="label">Trajectory error reduction on 7-Scenes compared with the prior best uncalibrated result.</div>
+          </div>
+        </div>
+      </div>
+      <div class="content lead-copy">
+        <p>
+          The key idea is to treat two-view and multi-view feed-forward predictions as complementary constraints rather than isolated outputs. Temporal two-view edges preserve immediate tracking connectivity, while multi-view submaps provide richer geometric anchors for long-term consistency.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section is-soft" id="framework">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-3 has-text-centered">Overall Framework</h2>
+      <figure>
+        <img class="paper-figure" src="static/images/framework.png" alt="Overall UniSim-SLAM framework">
+        <figcaption class="figure-caption has-text-centered">
+          A feed-forward model produces two-view pose and depth for tracking and multi-view submap predictions for local geometry. UniSim-SLAM integrates these predictions into a unified Sim(3) factor graph.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="factor-graph">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-3 has-text-centered">Multi-level Sim(3) Factor Graph</h2>
+      <figure>
+        <img class="paper-figure" src="static/images/factor_graph.png" alt="Multi-level Sim(3) factor graph representation">
+        <figcaption class="figure-caption has-text-centered">
+          The graph connects frame-level and submap-level variables through view-to-view, submap-to-view, and submap-to-submap constraints, enabling scale-consistent optimization across heterogeneous local reconstructions.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section is-soft" id="video">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Demonstration Video</h2>
+      <div class="video-wrap">
+        <video controls preload="metadata" playsinline>
+          <source src="static/videos/demonstration_video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="trajectory">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-3 has-text-centered">Qualitative Trajectory Results</h2>
+      <figure>
+        <img class="paper-figure" src="static/images/trajectory_results.png" alt="Qualitative trajectory comparison on 7-Scenes">
+        <figcaption class="figure-caption has-text-centered">
+          Qualitative trajectory comparisons on 7-Scenes show reduced drift and lower error under the unified optimization framework.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section is-soft" id="reconstruction">
+    <div class="container is-max-widescreen">
+      <h2 class="title is-3 has-text-centered">Reconstruction Results</h2>
+      <figure>
+        <img class="paper-figure" src="static/images/reconstruction_results.png" alt="Reconstruction comparison on 7-Scenes and TUM RGB-D">
+        <figcaption class="figure-caption has-text-centered">
+          Reconstruction results on 7-Scenes and TUM RGB-D highlight the geometric consistency obtained by jointly optimizing two-view and submap constraints.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="citation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Citation</h2>
+      <pre id="citation-placeholder" class="citation-box">Publication pending. BibTeX will be added after the paper is public.</pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        This page follows the academic project page style used by Vision3D Lab.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

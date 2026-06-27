@@ -1,0 +1,135 @@
+body {
+  font-family: 'Noto Sans', 'Google Sans', Arial, sans-serif;
+  color: #20242c;
+}
+
+a {
+  color: #1967d2;
+}
+
+.publication-title {
+  font-family: 'Google Sans', 'Noto Sans', Arial, sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.publication-authors,
+.publication-links {
+  font-family: 'Google Sans', 'Noto Sans', Arial, sans-serif;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.venue-tag {
+  color: #155e75;
+  font-weight: 700;
+  margin-top: 0.75rem;
+}
+
+.button.is-static {
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.button .tag {
+  margin-left: 0.45rem;
+}
+
+.hero.is-unisim {
+  background:
+    radial-gradient(circle at top left, rgba(31, 111, 235, 0.13), transparent 36rem),
+    linear-gradient(180deg, #f7fbff 0%, #ffffff 86%);
+}
+
+.teaser-image,
+.paper-figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #e6e9ef;
+  background: #fff;
+  box-shadow: 0 18px 45px rgba(18, 38, 63, 0.09);
+}
+
+.figure-caption {
+  color: #5d6675;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  margin-top: 0.85rem;
+}
+
+.lead-copy {
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.metric-panel {
+  border: 1px solid #e5e9f0;
+  border-radius: 12px;
+  padding: 1.3rem;
+  height: 100%;
+  background: #ffffff;
+}
+
+.metric-panel .metric {
+  color: #0f3f8a;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.metric-panel .label {
+  color: #3e4b5e;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin-top: 0.45rem;
+  text-transform: none;
+}
+
+.section.is-soft {
+  background: #f7f9fc;
+}
+
+.video-wrap {
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #dce2ea;
+  box-shadow: 0 18px 45px rgba(18, 38, 63, 0.11);
+}
+
+.video-wrap video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.citation-box {
+  background: #f7f9fc;
+  border: 1px solid #e1e6ee;
+  border-radius: 10px;
+  color: #4c5667;
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  padding: 1.1rem 1.25rem;
+  white-space: pre-wrap;
+}
+
+.footer {
+  padding: 2.5rem 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .publication-title {
+    font-size: 2.05rem !important;
+  }
+
+  .hero-body {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
