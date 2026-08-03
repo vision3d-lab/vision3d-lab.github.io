@@ -84,10 +84,14 @@
 
   <section class="section">
     <div class="container is-max-widescreen">
-      <figure>
-        <img class="teaser-image" src="static/images/teaser.png" alt="Comparison of two-view, multi-view, and UniSim-SLAM feed-forward SLAM regimes">
+      <figure class="mobile-demo">
+        <div class="video-wrap">
+          <video autoplay muted loop controls preload="metadata" playsinline aria-label="UniSim-SLAM mobile phone demonstration">
+            <source src="static/videos/demo_video.mp4" type="video/mp4">
+          </video>
+        </div>
         <figcaption class="figure-caption has-text-centered">
-          UniSim-SLAM combines a low-latency two-view frontend with a constraint-rich multi-view submap backend, then jointly optimizes both in a unified Sim(3) factor graph.
+          UniSim-SLAM applied to an image sequence captured with a mobile phone.
         </figcaption>
       </figure>
     </div>
@@ -108,46 +112,20 @@
   </section>
 
   <section class="section" id="overview">
-    <div class="container is-max-desktop">
+    <div class="container is-max-widescreen">
       <h2 class="title is-3 has-text-centered">Overview</h2>
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="metric-panel">
-            <div class="metric">0.032</div>
-            <div class="label">Average uncalibrated ATE RMSE on TUM RGB-D.</div>
-          </div>
+      <figure>
+        <img class="teaser-image" src="static/images/teaser.png" alt="Comparison of two-view, multi-view, and UniSim-SLAM feed-forward SLAM regimes">
+        <figcaption class="figure-caption has-text-centered">
+          UniSim-SLAM combines a low-latency two-view frontend with a constraint-rich multi-view submap backend, then jointly optimizes both in a unified Sim(3) factor graph.
+        </figcaption>
+      </figure>
+      <div class="container is-max-desktop overview-copy">
+        <div class="content lead-copy">
+          <p>
+            The key idea is to treat two-view and multi-view feed-forward predictions as complementary constraints rather than isolated outputs. Temporal two-view edges preserve immediate tracking connectivity, while multi-view submaps provide richer geometric anchors for long-term consistency.
+          </p>
         </div>
-        <div class="column">
-          <div class="metric-panel">
-            <div class="metric">0.020</div>
-            <div class="label">Average uncalibrated ATE RMSE on 7-Scenes.</div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="metric-panel">
-            <div class="metric">Sim(3)</div>
-            <div class="label">Unified optimization over global keyframe poses and submap poses.</div>
-          </div>
-        </div>
-      </div>
-      <div class="columns is-centered">
-        <div class="column is-half">
-          <div class="metric-panel">
-            <div class="metric">38.5%</div>
-            <div class="label">Trajectory error reduction on TUM RGB-D compared with the prior best uncalibrated result.</div>
-          </div>
-        </div>
-        <div class="column is-half">
-          <div class="metric-panel">
-            <div class="metric">45.9%</div>
-            <div class="label">Trajectory error reduction on 7-Scenes compared with the prior best uncalibrated result.</div>
-          </div>
-        </div>
-      </div>
-      <div class="content lead-copy">
-        <p>
-          The key idea is to treat two-view and multi-view feed-forward predictions as complementary constraints rather than isolated outputs. Temporal two-view edges preserve immediate tracking connectivity, while multi-view submaps provide richer geometric anchors for long-term consistency.
-        </p>
       </div>
     </div>
   </section>
@@ -173,17 +151,6 @@
           The graph connects frame-level and submap-level variables through view-to-view, submap-to-view, and submap-to-submap constraints, enabling scale-consistent optimization across heterogeneous local reconstructions.
         </figcaption>
       </figure>
-    </div>
-  </section>
-
-  <section class="section is-soft" id="video">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Demonstration Video</h2>
-      <div class="video-wrap">
-        <video controls preload="metadata" playsinline>
-          <source src="static/videos/demonstration_video.mp4" type="video/mp4">
-        </video>
-      </div>
     </div>
   </section>
 

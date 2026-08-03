@@ -61,32 +61,18 @@ a {
   margin-top: 0.85rem;
 }
 
+.mobile-demo {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.overview-copy {
+  margin-top: 1.75rem;
+}
+
 .lead-copy {
   font-size: 1.08rem;
   line-height: 1.8;
-}
-
-.metric-panel {
-  border: 1px solid #e5e9f0;
-  border-radius: 12px;
-  padding: 1.3rem;
-  height: 100%;
-  background: #ffffff;
-}
-
-.metric-panel .metric {
-  color: #0f3f8a;
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1.1;
-}
-
-.metric-panel .label {
-  color: #3e4b5e;
-  font-size: 0.95rem;
-  line-height: 1.45;
-  margin-top: 0.45rem;
-  text-transform: none;
 }
 
 .section.is-soft {
