@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MATE is a mask-guided adaptive object template estimation framework with tactile-confirmed execution for human-to-robot handover.">
+  <meta name="keywords" content="human-to-robot handover, robot manipulation, tactile sensing, RGB-D perception, object template estimation, mask-guided scale refinement">
+  <meta name="author" content="Seungheon Jeong, Sebin Lee, Minji Kim, Junsu Kim, Kyungdon Joo">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MATE: Mask-Guided Adaptive Object Template Estimation and Tactile-Confirmed Execution for Human-to-Robot Handover">
+  <meta property="og:description" content="Mask-guided object template adaptation and tactile-confirmed execution for reliable human-to-robot handover under transparency and occlusion.">
+  <meta property="og:url" content="https://vision3d-lab.github.io/mate/">
+  <title>MATE: Mask-Guided Adaptive Object Template Estimation and Tactile-Confirmed Execution for Human-to-Robot Handover</title>
+  <link rel="stylesheet" href="static/css/index.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top" aria-label="MATE home">
+        <img src="static/images/logo.png" alt="MATE">
+        MATE
+      </a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#key-idea">Key Idea</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#conclusion">Conclusion</a>
+        <a href="#video">Video</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="page-width hero-content">
+      <h1>
+        <span class="title-line">
+          <span class="project-name">MATE:</span>
+          Mask-Guided Adaptive
+        </span>
+        <span class="title-line">
+          Object Template Estimation and
+        </span>
+        <span class="title-line title-tail">
+          Tactile-Confirmed Execution for
+        </span>
+        <span class="title-line title-tail">
+          Human-to-Robot Handover
+        </span>
+      </h1>
+      <p class="authors" aria-label="Authors">
+        <span><a href="https://scholar.google.com/citations?user=geS0M_QAAAAJ&hl=ko" target="_blank">Seungheon Jeong*</a></span>
+        <span><a href="https://sebinyday.github.io/" target="_blank">Sebin Lee*</a></span>
+        <span>Minji Kim</span>
+        <span><a href="https://joonsu0109gh.github.io/" target="_blank">Junsu Kim</a></span>
+        <span>Kyungdon Joo†</span>
+      </p>
+      <p class="affiliation">Graduate School of Artificial Intelligence, UNIST<br>Ulsan, Republic of Korea</p>
+      <p class="author-note">* Equal contribution <span aria-hidden="true">&nbsp;&nbsp;</span> † Corresponding author</p>
+
+      <div class="publication-links" aria-label="Publication links">
+        <a class="publication-button" href="https://vision3d-lab.github.io/mate/" target="_blank" rel="noopener noreferrer">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 2.75h8.3L19 7.45v13.8H6zM14 3v5h5M9 12h7M9 16h7"/></svg>
+          <span>Paper</span><small>PDF</small>
+        </a>
+        <!-- TODO: Replace # with the code repository URL when available. -->
+        <a class="publication-button is-disabled" href="#" aria-disabled="true" title="Code link coming soon">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 7-5 5 5 5M15 7l5 5-5 5M13.5 4l-3 16"/></svg>
+          <span>Code</span><small>Coming Soon</small>
+        </a>
+        <a class="publication-button" href="#demo">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4.5 19 12 7 19.5z"/></svg>
+          <span>Video</span>
+        </a>
+      </div>
+
+      <div class="tldr">
+        <span>TL;DR</span>
+        <p>MATE adapts an instance-specific object template to incomplete dual-view RGB-D observations and uses tactile sensing to confirm contact during grasping and placement.</p>
+      </div>
+
+      <!-- TODO: Add static/videos/mate_demo.mp4 or static/images/mate_teaser.png. -->
+      <div class="media-slot hero-media" data-video-src="static/videos/mate_demo.mp4" data-image-src="static/images/mate_teaser.png" data-alt="Real-world MATE handover demo">
+        <div class="media-placeholder">
+          <span class="placeholder-kicker">Hero media</span>
+          <strong>Real-world MATE handover demo</strong>
+          <span>Add <code>static/videos/mate_demo.mp4</code></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section" id="abstract">
+      <div class="text-width">
+        <p class="section-label">Abstract</p>
+        <h2>Geometry from masks, execution confirmed by touch.</h2>
+        <div class="abstract-copy">
+          <p>Human-to-robot handover is challenging when transparent surfaces and hand occlusion produce incomplete or unreliable RGB-D geometry, while vision alone cannot confirm contact during execution. We present MATE, a Mask-guided Adaptive object template estimation framework with Tactile-confirmed Execution.</p>
+          <p>To recover reliable object geometry under transparency and occlusion, MATE fits an instance-specific object template to dual-view partial point clouds and refines its scale using cross-view mask agreement. A magnet-based tactile fingertip regulates gripper closure and release. Experiments on CORSMAL containers and household objects achieve average success rates of 89.8% and 91.7%, respectively, demonstrating the complementary benefits of geometric adaptation and tactile sensing.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="key-idea">
+      <div class="page-width">
+        <p class="section-label">Key Idea</p>
+        <h2>Adapt the shape. <span class="contact-text">Confirm the contact.</span></h2>
+        <p class="section-intro">Reliable handover requires both robust geometric perception and contact-aware execution.</p>
+
+        <div class="uncertainty-grid">
+          <article class="uncertainty perception-block">
+            <p class="phase">Before Contact</p>
+            <h3>Geometric Uncertainty</h3>
+            <ul>
+              <li>Human-hand occlusion</li>
+              <li>Missing or distorted depth</li>
+              <li>Transparent surfaces</li>
+              <li>Incomplete object extent</li>
+              <li>Grasp-target uncertainty</li>
+            </ul>
+          </article>
+          <article class="uncertainty contact-block">
+            <p class="phase">After Contact</p>
+            <h3>Contact Uncertainty</h3>
+            <ul>
+              <li>Fingertip–object contact</li>
+              <li>Secure gripper closure</li>
+              <li>Stable support contact</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="handover-flow">
+          <img src="static/images/whole.png" alt="MATE process: perception, grasp, contact, and placement">
+        </div>
+
+        <div class="feature-list">
+          <article>
+            <span class="feature-number">01</span>
+            <div><h3>Mask-Guided Template Adaptation</h3><p>An instance-specific template is fitted to partial point clouds and scale-refined by cross-view mask agreement to recover geometry under transparency and occlusion.</p></div>
+          </article>
+          <article>
+            <span class="feature-number">02</span>
+            <div><h3>Hand-Aware Target Planning</h3><p>The refined template and estimated hand state define a grasp target with hand clearance that is continuously updated as the object moves.</p></div>
+          </article>
+          <article>
+            <span class="feature-number is-contact">03</span>
+            <div><h3>Tactile-Confirmed Execution</h3><p>A magnet-based tactile fingertip regulates closure at object contact and releases only after detecting support contact during placement.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="page-width">
+        <p class="section-label">Method</p>
+        <h2>From partial RGB-D observations to contact-aware execution.</h2>
+
+        <figure>
+          <!-- TODO: Add the paper pipeline figure at static/images/mate_pipeline.png. -->
+          <div class="media-slot pipeline-media" data-image-src="static/images/perception_pipeline.png" data-alt="Perception pipeline of MATE">
+            <div class="media-placeholder">
+              <span class="placeholder-kicker">Method figure</span>
+              <strong>Perception pipeline of MATE</strong>
+              <span>Expected asset: <code>static/images/perception_pipeline.png</code></span>
+            </div>
+          </div>
+          <figcaption>Dual-view masks and depth form a merged partial point cloud. A SAM3D-generated template is fitted and scale-refined by multi-view mask IoU, then fused with the estimated hand state for grasp-target planning.</figcaption>
+        </figure>
+
+        <div class="method-stages">
+          <article>
+            <span>01</span>
+            <h3>Dual-View Segmentation and 3D Lifting</h3>
+            <p>A hand-object detector localizes the object in each RGB view, FastSAM extracts its mask, and valid masked depth pixels are lifted to 3D, filtered, and merged across both views.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Instance-Specific Template Fitting</h3>
+            <p>For each new object, SAM3D generates a template from a masked RGB observation. Its initial scale is obtained by matching oriented bounding-box extents, followed by ICP registration to the merged point cloud.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Mask-Guided Scale Refinement</h3>
+            <p>Candidate scales sampled around the initial estimate are projected into both camera views. The scale with the highest combined IoU between rendered silhouettes and observed masks defines the refined template.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Hand-Aware Grasp-Target Planning</h3>
+            <p>MediaPipe estimates landmarks and handedness in both views, and the less-occluded hand observation is lifted to 3D. A target on the refined template is chosen for hand clearance and proximity to the object center, then updated online. During temporary detection failure, it is inferred from the tracked hand and the previous hand-to-target offset.</p>
+          </article>
+        </div>
+
+        <div class="subsection tactile-subsection">
+          <div class="subsection-heading">
+            <p class="section-label is-contact">Tactile Execution</p>
+            <h2>Tactile-confirmed grasping and placement.</h2>
+            <p>The magnet-based fingertip monitors the norm <em>n</em><sub>t</sub> of its baseline-subtracted magnetic response. At the grasp target, the gripper closes until <em>n</em><sub>t</sub> exceeds the grasp threshold τ<sub>g</sub>, records the contact position, and adds a small closing motion to secure the object. During descent for placement, MATE monitors Δ<em>n</em><sub>t</sub> = |<em>n</em><sub>t</sub> − <em>n</em><sub>r</sub>| and stops to release when it exceeds the placement-contact threshold τ<sub>p</sub>.</p>
+          </div>
+          <div class="paired-media">
+            <figure>
+              <!-- TODO: Add static/images/tactile_fingertip.png. -->
+              <div class="media-slot tactile-media" data-image-src="static/images/tactile_fingertip.png" data-alt="Magnet-based tactile fingertip">
+                <div class="media-placeholder">
+                  <span class="placeholder-kicker">Hardware image</span>
+                  <strong>Tactile fingertip</strong>
+                  <span><code>static/images/tactile_fingertip.png</code></span>
+                </div>
+              </div>
+              <figcaption>Magnet-based tactile fingertip.</figcaption>
+            </figure>
+            <figure>
+              <!-- TODO: Add static/images/tactile_signal.png. -->
+              <div class="media-slot tactile-media" data-image-src="static/images/tactile_signal.png" data-alt="Tactile response and contact visualization">
+                <div class="media-placeholder">
+                  <span class="placeholder-kicker">Contact visualization</span>
+                  <strong>Tactile response</strong>
+                  <span><code>static/images/tactile_signal.png</code></span>
+                </div>
+              </div>
+              <figcaption>Tactile response for grasp and support contact.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="subsection hardware-subsection">
+          <div>
+            <p class="section-label">System / Hardware</p>
+            <h2>Dual-view perception with close-range touch.</h2>
+            <ul class="hardware-list">
+              <li><span>01</span> UR5 robotic arm</li>
+              <li><span>02</span> Robotiq 2F-85 gripper</li>
+              <li><span>03</span> Custom 3D-printed TPU tactile fingertip</li>
+              <li><span>04</span> 2× Intel RealSense D435i RGB-D cameras</li>
+            </ul>
+          </div>
+          <figure>
+            <!-- TODO: Add static/images/hardware_setup.png. -->
+            <div class="media-slot hardware-media" data-image-src="static/images/hardware_setup.png" data-alt="Real-world MATE handover setup">
+              <div class="media-placeholder">
+                <span class="placeholder-kicker">System image</span>
+                <strong>Real-world handover setup</strong>
+                <span>Expected asset: <code>static/images/hardware_setup.png</code></span>
+              </div>
+            </div>
+            <figcaption>The dual RGB-D cameras provide complementary views that reduce giver-hand occlusion. The TPU fingertip uses an eFlesh-style internal microstructure with micro-magnets above a magnetometer array to measure contact-induced magnetic-field changes.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="results">
+      <div class="page-width">
+        <p class="section-label">Results</p>
+        <h2>89.8% on CORSMAL containers and 91.7% on household objects.</h2>
+        <p class="section-intro">Success requires stable upright placement, with bean spillage counted as a failure. Each CORSMAL condition includes 18 trials (2 participants × 3 grasp types × 3 locations); each household object includes 6 trials (2 participants × 3 locations).</p>
+
+        <div class="evaluation-overview">
+          <div class="object-groups">
+            <div>
+              <h3>CORSMAL Containers</h3>
+              <p>C1 red cup <span>·</span> C2 small cup <span>·</span> C3 beer cup <span>·</span> C4 wine glass</p>
+              <small>C3 and C4 were evaluated both filled and as empty transparent containers.</small>
+            </div>
+            <div>
+              <h3>Household Objects</h3>
+              <p>O1 soap <span>·</span> O2 beaker <span>·</span> O3 candy-filled plastic bag <span>·</span> O4 food container</p>
+            </div>
+          </div>
+          <figure>
+            <!-- TODO: Add static/images/evaluation_objects.png. -->
+            <div class="media-slot evaluation-media" data-image-src="static/images/objects_for_handovers.png" data-alt="Objects used to evaluate MATE">
+              <div class="media-placeholder">
+                <span class="placeholder-kicker">Evaluation figure</span>
+                <strong>Evaluation objects</strong>
+                <span>Expected asset: <code>static/images/objects_for_handovers.png</code></span>
+              </div>
+            </div>
+          </figure>
+        </div>
+
+        <div class="table-shell" tabindex="0" role="region" aria-label="Handover success rates; scroll horizontally to view all columns">
+          <table>
+            <caption>Human-to-robot handover success rate (%)</caption>
+            <thead>
+              <tr class="column-groups">
+                <th scope="col" rowspan="2">Method</th>
+                <th scope="colgroup" colspan="7">CORSMAL Containers</th>
+                <th scope="colgroup" colspan="5">Household Objects</th>
+              </tr>
+              <tr>
+                <th scope="col">C1</th><th scope="col">C2</th><th scope="col">C3</th><th scope="col">C4</th><th scope="col">C3 Empty</th><th scope="col">C4 Empty</th><th scope="col">CORSMAL Avg.</th>
+                <th scope="col">O1</th><th scope="col">O2</th><th scope="col">O3</th><th scope="col">O4</th><th scope="col">Household Avg.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">w/o Tactile</th><td>66.7</td><td>88.9</td><td>88.9</td><td>61.1</td><td>55.6</td><td>72.2</td><td>72.2</td><td>100.0</td><td>66.7</td><td>100.0</td><td>33.3</td><td>75.0</td></tr>
+              <tr><th scope="row">w/o Shape Fit.</th><td>94.4</td><td>66.7</td><td>100.0</td><td>72.2</td><td>50.0</td><td>55.6</td><td>73.2</td><td>50.0</td><td>33.3</td><td>66.7</td><td>0.0</td><td>37.5</td></tr>
+              <tr><th scope="row">w/o Scale Ref.</th><td>83.3</td><td>94.4</td><td>94.4</td><td>83.3</td><td>77.8</td><td>77.8</td><td>85.2</td><td>100.0</td><td>100.0</td><td>100.0</td><td>66.7</td><td>91.7</td></tr>
+              <tr class="ours"><th scope="row">MATE (Ours)</th><td>88.9</td><td>94.4</td><td>100.0</td><td>83.3</td><td>83.3</td><td>88.9</td><td>89.8</td><td>100.0</td><td>83.3</td><td>100.0</td><td>83.3</td><td>91.7</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="takeaways">
+          <article class="is-contact"><h3>Without tactile feedback</h3><p>The gripper could keep closing after object contact or release before stable table contact, causing excessive closure or object drops.</p></article>
+          <article><h3>Without shape fitting</h3><p>Missing depth on transparent objects left the raw merged cloud incomplete, sometimes eliminating valid grasp targets and reducing the household-object average to 37.5%.</p></article>
+          <article><h3>Without scale refinement</h3><p>Over-scaled templates placed targets outside the physical object boundary. The full system maintained at least 83.3% success in every condition, the strongest worst-case performance.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="conclusion">
+      <div class="text-width">
+        <p class="section-label">Conclusion</p>
+        <h2>Complementary geometry and contact sensing for robust handover.</h2>
+        <div class="abstract-copy">
+          <p>MATE addresses geometric uncertainty and contact-state uncertainty during human-to-robot handover. Across diverse object types and depth conditions, the complete system achieved at least 83.3% success, demonstrating robust grasping and placement under incomplete RGB-D observations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="page-width">
+        <p class="section-label">Real-Robot Demos</p>
+        <h2>Handover across geometry, transparency, and deformability.</h2>
+        <p class="section-intro">Real-robot demonstrations on the CORSMAL containers and household-object categories used in the experiments.</p>
+
+        <div class="demo-grid">
+          <article class="demo-item">
+            <!-- TODO: Add static/videos/filled_container.mp4. -->
+            <div class="media-slot demo-media" data-video-src="static/videos/food_container.mp4" data-alt="Filled container handover demo">
+              <div class="media-placeholder"><span class="placeholder-kicker">Demo video</span><strong>Food container</strong><span><code>static/videos/food_container.mp4</code></span></div>
+            </div>
+            <h3>Food container</h3>
+          </article>
+          <article class="demo-item">
+            <!-- TODO: Add static/videos/transparent_container.mp4. -->
+            <div class="media-slot demo-media" data-video-src="static/videos/beaker.mp4" data-alt="Transparent container handover demo">
+              <div class="media-placeholder"><span class="placeholder-kicker">Demo video</span><strong>Beaker</strong><span><code>static/videos/beaker.mp4</code></span></div>
+            </div>
+            <h3>Beaker</h3>
+          </article>
+          <article class="demo-item">
+            <!-- TODO: Add static/videos/deformable_object.mp4. -->
+            <div class="media-slot demo-media" data-video-src="static/videos/candy-filled_plastic_bag.mp4" data-alt="Deformable object handover demo">
+              <div class="media-placeholder"><span class="placeholder-kicker">Demo video</span><strong>Candy-filled plastic bag</strong><span><code>static/videos/candy-filled_plastic_bag.mp4</code></span></div>
+            </div>
+            <h3>Candy-filled plastic bag</h3>
+          </article>
+          <article class="demo-item">
+            <!-- TODO: Add static/videos/household_object.mp4. -->
+            <div class="media-slot demo-media" data-video-src="static/videos/soap.mp4" data-alt="Household object handover demo">
+              <div class="media-placeholder"><span class="placeholder-kicker">Demo video</span><strong>Soap</strong><span><code>static/videos/soap.mp4</code></span></div>
+            </div>
+            <h3>Soap</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="section video-section" id="video">
+      <div class="page-width">
+        <p class="section-label">Supplementary Video</p>
+        <h2>See MATE in action.</h2>
+        <div class="video-placeholder" role="img" aria-label="Supplementary video coming soon">
+          <svg aria-hidden="true" viewBox="0 0 48 48"><path d="M17 11.5 36 24 17 36.5z"/></svg>
+          <strong>Supplementary video coming soon</strong>
+          <span>Add the official YouTube embed here.</span>
+        </div>
+      </div>
+    </section> -->
+  </main>
+
+  <footer>
+    <div class="page-width">
+      <strong>MATE</strong>
+      <p>Graduate School of Artificial Intelligence, UNIST</p>
+      <p class="template-credit">Page design adapted from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a>. Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.</p>
+    </div>
+  </footer>
+
+  <script src="static/js/index.js"></script>
+</body>
+</html>
