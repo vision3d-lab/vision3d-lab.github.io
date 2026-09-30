@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SF-VO: Self-Supervised Few-Shot Adaptation for Visual Odometry</title>
+    <meta
+      name="description"
+      content="Project page for SF-VO, a self-supervised few-shot adaptation framework for visual odometry."
+    >
+    <meta
+      name="keywords"
+      content="SF-VO, visual odometry, few-shot adaptation, self-supervised learning, parameter-efficient fine-tuning"
+    >
+    <meta name="author" content="Junhee Lee, Inha Lee, Jean Oh, Ukcheol Shin, Kyungdon Joo">
+
+    <link rel="canonical" href="https://vision3d-lab.github.io/sfvo/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SF-VO: Self-Supervised Few-Shot Adaptation for Visual Odometry">
+    <meta
+      property="og:description"
+      content="A self-supervised collect-then-adapt framework for efficient target-domain specialization of visual odometry models."
+    >
+    <meta property="og:url" content="https://vision3d-lab.github.io/sfvo/">
+    <meta name="twitter:card" content="summary">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312756f'/%3E%3Cpath d='M17 22h30M17 32h23M17 42h30' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E"
+    >
+
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #16202a;
+        --muted: #62707d;
+        --line: #dfe6eb;
+        --paper: #ffffff;
+        --wash: #f4f7f8;
+        --accent: #12756f;
+        --accent-dark: #0b504c;
+        --accent-soft: #ddf1ee;
+        --shadow: 0 24px 70px rgba(21, 48, 56, 0.09);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 50% 0, rgba(18, 117, 111, 0.1), transparent 32rem),
+          var(--wash);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.65;
+      }
+
+      a {
+        color: var(--accent-dark);
+        text-underline-offset: 0.2em;
+      }
+
+      .shell {
+        width: min(940px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        padding: clamp(72px, 12vw, 136px) 0 64px;
+        text-align: center;
+      }
+
+      .venue {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 24px;
+        padding: 7px 14px;
+        border: 1px solid rgba(18, 117, 111, 0.2);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.75);
+        color: var(--accent-dark);
+        font-size: 0.84rem;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .venue::before {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        content: "";
+      }
+
+      h1 {
+        max-width: 880px;
+        margin: 0 auto;
+        font-size: clamp(2.4rem, 7vw, 4.9rem);
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 1.04;
+      }
+
+      h1 .accent {
+        color: var(--accent);
+      }
+
+      .subtitle {
+        max-width: 770px;
+        margin: 21px auto 0;
+        color: #35434e;
+        font-size: clamp(1.25rem, 3vw, 1.9rem);
+        font-weight: 500;
+        line-height: 1.35;
+      }
+
+      .authors {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px 18px;
+        margin: 32px auto 0;
+        font-size: 1.04rem;
+        font-weight: 650;
+      }
+
+      .affiliations {
+        margin: 10px auto 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 32px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 136px;
+        min-height: 46px;
+        padding: 10px 20px;
+        border: 1px solid #28343e;
+        border-radius: 999px;
+        background: #1e2932;
+        color: #fff;
+        font-size: 0.93rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .button[aria-disabled="true"] {
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.72);
+        color: #74808a;
+        cursor: default;
+      }
+
+      .card {
+        overflow: hidden;
+        margin-bottom: 72px;
+        border: 1px solid rgba(202, 215, 220, 0.9);
+        border-radius: 26px;
+        background: var(--paper);
+        box-shadow: var(--shadow);
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-bottom: 1px solid var(--line);
+        background: linear-gradient(135deg, #0e4f4b, #12756f);
+        color: #fff;
+      }
+
+      .flow-step {
+        position: relative;
+        min-height: 150px;
+        padding: 28px;
+        text-align: center;
+      }
+
+      .flow-step + .flow-step {
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .flow-step + .flow-step::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 28px;
+        height: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        border-radius: 50%;
+        background: var(--accent-dark);
+        content: "→";
+        line-height: 26px;
+        transform: translate(-50%, -50%);
+      }
+
+      .flow-label {
+        display: block;
+        margin-bottom: 7px;
+        color: #bfe8e4;
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .flow-title {
+        display: block;
+        font-size: 1.35rem;
+        font-weight: 800;
+      }
+
+      .flow-copy {
+        display: block;
+        margin-top: 5px;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.87rem;
+      }
+
+      .content {
+        padding: clamp(28px, 6vw, 58px);
+      }
+
+      h2 {
+        margin: 0 0 17px;
+        font-size: clamp(1.6rem, 4vw, 2.25rem);
+        letter-spacing: -0.035em;
+      }
+
+      .abstract {
+        margin: 0;
+        color: #35434e;
+        font-size: 1.02rem;
+        text-align: justify;
+      }
+
+      .notice {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        margin-top: 28px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        background: var(--accent-soft);
+        color: var(--accent-dark);
+        font-size: 0.93rem;
+      }
+
+      .notice-mark {
+        flex: 0 0 auto;
+        width: 23px;
+        height: 23px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: white;
+        font-size: 0.78rem;
+        font-weight: 800;
+        line-height: 23px;
+        text-align: center;
+      }
+
+      footer {
+        padding: 0 0 36px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        text-align: center;
+      }
+
+      @media (max-width: 680px) {
+        .hero {
+          padding-top: 62px;
+        }
+
+        .flow {
+          grid-template-columns: 1fr;
+        }
+
+        .flow-step {
+          min-height: auto;
+          padding: 22px 26px;
+        }
+
+        .flow-step + .flow-step {
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
+          border-left: 0;
+        }
+
+        .flow-step + .flow-step::before {
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        .abstract {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="hero shell">
+      <p class="venue">ACCV 2026</p>
+      <h1><span class="accent">SF-VO</span></h1>
+      <p class="subtitle">Self-Supervised Few-Shot Adaptation for Visual Odometry</p>
+
+      <div class="authors" aria-label="Authors">
+        <a href="https://github.com/junhee98">Junhee Lee</a>
+        <a href="https://github.com/Epsilon8854">Inha Lee</a>
+        <a href="https://www.cs.cmu.edu/~jeanoh/">Jean Oh</a>
+        <a href="https://ukcheolshin.github.io/">Ukcheol Shin</a>
+        <a href="https://unist.info/">Kyungdon Joo</a>
+      </div>
+      <p class="affiliations">UNIST &nbsp;·&nbsp; Carnegie Mellon University</p>
+
+      <div class="actions" aria-label="Project resources">
+        <span class="button" aria-disabled="true">Paper · Soon</span>
+        <span class="button" aria-disabled="true">Code · Soon</span>
+      </div>
+    </header>
+
+    <main class="shell">
+      <article class="card">
+        <div class="flow" aria-label="SF-VO overview">
+          <div class="flow-step">
+            <span class="flow-label">01</span>
+            <span class="flow-title">Collect</span>
+            <span class="flow-copy">Build a target-domain episodic memory bank.</span>
+          </div>
+          <div class="flow-step">
+            <span class="flow-label">02</span>
+            <span class="flow-title">Curate</span>
+            <span class="flow-copy">Select reliable episodes using pose and motion cues.</span>
+          </div>
+          <div class="flow-step">
+            <span class="flow-label">03</span>
+            <span class="flow-title">Adapt</span>
+            <span class="flow-copy">Train compact adapters with self-supervision.</span>
+          </div>
+        </div>
+
+        <section class="content">
+          <h2>Abstract</h2>
+          <p class="abstract">
+            Recent data-driven visual odometry models achieve strong zero-shot
+            generalization using large-scale synthetic training data, but they can still
+            struggle in novel domains and often require costly customization. SF-VO is a
+            self-supervised collect-then-adapt framework that specializes an off-the-shelf
+            visual odometry model to a target domain using only a few selected episodes
+            and a minimal set of learnable parameters. It builds and curates an episodic
+            memory bank using pose consistency and motion statistics, then optimizes compact
+            adapters with a self-supervised multi-interval pose-consistency objective.
+          </p>
+
+          <div class="notice">
+            <span class="notice-mark" aria-hidden="true">i</span>
+            <span>Paper, code, and additional project materials will be released soon.</span>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="shell">
+      SF-VO · ACCV 2026
+    </footer>
+  </body>
+</html>
