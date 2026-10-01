@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="AniGauss++ reconstructs an animatable 3D animal from a single photograph, taking the geometry from the SMAL template and the appearance from the photograph.">
+  <meta name="keywords" content="AniGauss++, animal reconstruction, animatable avatar, 3D Gaussian splatting, SMAL, single image">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AniGauss++: Identity-Preserving Animatable Animals from a Single Image</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <style>
+    .figure-img { width: 100%; border-radius: 4px; }
+    .caption { font-size: 0.95rem; color: #4a4a4a; margin-top: 0.6rem; }
+    .result-block { margin-bottom: 2.5rem; }
+    pre.bibtex { background: #f5f5f5; padding: 1rem; font-size: 0.85rem; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1">AniGauss++: Identity-Preserving Animatable Animals from a Single Image</h1>
+          <div class="is-size-5">
+            <span class="author-block"><a href="https://threedv.github.io/">Gyeongsu Cho</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://github.com/Kang-ChangWoo">Changwoo Kang</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://kr.linkedin.com/in/donghyeon-soon">Donghyeon Soon</a><sup>1</sup>,</span>
+            <span class="author-block">Hezhen Hu<sup>2</sup>,</span>
+            <span class="author-block"><a href="https://unist.info/">Kyungdon Joo</a><sup>1</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>UNIST,</span>
+            <span class="author-block"><sup>2</sup>The University of Texas at Austin</span>
+          </div>
+          <div class="is-size-5">Submitted to IJCV</div>
+
+          <!-- Replace each href="#" with the final link. -->
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-play-circle"></i></span><span>Demo</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-database"></i></span><span>Data (AniGe10K)</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fab fa-youtube"></i></span><span>Video</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img class="figure-img" src="./img/teaser.png" alt="Teaser: from one photograph to canonical views, an animatable 3D avatar, and re-posed renders."/>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">AniGauss++</span> turns one photograph into an animatable 3D animal that keeps the animal's coat.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We reconstruct an animatable 3D animal from a single photograph.
+            A natural route generates canonical views of the animal that follow a parametric template and reconstructs a template-anchored avatar from them.
+            The standard way to make the views follow the template is a pixel-aligned control learned from synthetic renders.
+            We find that this control repaints real animals: its adapter learns the appearance of the synthetic targets along with their geometry, and a synthetic benchmark cannot detect the loss.
+            Our key idea is to take the geometry from the template and the appearance from the photograph.
+            To this end, we present AniGauss++, which supervises the view generator only on the background and a band around the template silhouette, so that the frozen image editor fills the body from the photograph.
+            It then decodes the four canonical views into template-anchored 3D Gaussians that linear blend skinning re-poses.
+            On held-out photographs, this supervision keeps more of the photographed animal than both a full-pixel loss and the standard control adapter.
+            Across training seeds, it also follows the template more reliably than a full-pixel loss.
+            The full pipeline keeps the most identity among animatable methods on real videos.
+            We also release AniGe10K, ten thousand textured SMAL+ identities, and AniGeBench, which scores re-posing against the same animal and measures identity on real photographs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Method Overview</h2>
+        <img class="figure-img" src="./img/overview.png" alt="Method overview"/>
+        <div class="content has-text-justified caption">
+          A frozen image-editing transformer with our adapter turns the photograph and a normal render of the SMAL template into four canonical views.
+          The adapter is supervised only on the background and a band around the template silhouette, so the body is filled from the photograph.
+          A decoder then places 3D Gaussians on the template surface, which linear blend skinning re-poses with no further network evaluation.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">AniGe10K Dataset</h2>
+        <img class="figure-img" src="./img/datapipe.png" alt="AniGe10K dataset"/>
+        <div class="content has-text-justified caption">
+          AniGe10K provides ten thousand textured SMAL+ identities across 1,676 species and breed prompts.
+          Each identity comes with a wild-style reference image, four canonical views with normal and depth controls, a 24-view rest-pose orbit, and poses from real animal motion, all rendered in one rig with stored cameras.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+
+    <div class="result-block has-text-centered">
+      <h3 class="title is-4">Canonical views that keep the coat</h3>
+      <img class="figure-img" src="./img/stage1_qual.png" alt="Canonical views under different supervision"/>
+      <p class="caption has-text-justified">Without a control the body leaves the template; the full control and the full-pixel loss follow the template but repaint the coat. Our silhouette-band supervision keeps both.</p>
+    </div>
+
+    <div class="columns result-block">
+      <div class="column has-text-centered">
+        <h3 class="title is-4">Re-posed renders on real video</h3>
+        <img class="figure-img" src="./img/cop3d_qual_C.png" alt="Re-posed renders at held-out COP3D frames"/>
+        <p class="caption has-text-justified">Re-posed to held-out frames of the same dog (COP3D); numbers give DINOv2 identity to the frame.</p>
+      </div>
+      <div class="column has-text-centered">
+        <h3 class="title is-4">Wild photographs</h3>
+        <img class="figure-img" src="./img/wild_qual_crop.png" alt="Wild photographs"/>
+        <p class="caption has-text-justified">Novel views and re-posed renders from single wild photographs, compared with animatable baselines.</p>
+      </div>
+    </div>
+
+    <div class="result-block has-text-centered">
+      <h3 class="title is-4">Animatable avatars beyond dogs</h3>
+      <video autoplay muted loop playsinline controls width="100%">
+        <source src="./static/videos/avatars_motion.mp4" type="video/mp4">
+      </video>
+      <p class="caption has-text-justified">Fifteen non-canine avatars re-posed with real animal motion, including failure cases.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre class="bibtex"><code>@article{cho2026anigaussplus,
+  title   = {AniGauss++: Identity-Preserving Animatable Animals from a Single Image},
+  author  = {Cho, Gyeongsu and Kang, Changwoo and Soon, Donghyeon and Hu, Hezhen and Joo, Kyungdon},
+  journal = {International Journal of Computer Vision (submitted)},
+  year    = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>This page is built on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> template, licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
