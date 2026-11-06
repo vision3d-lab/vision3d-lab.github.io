@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "kind": "inline-method-extensions",
+  "items": [
+    {
+      "id": "apriltag_detection",
+      "src": "static/media/method-apriltag-panel-flow.webp",
+      "poster": "static/media/method-apriltag-panel-flow-poster.png",
+      "kind": "webp",
+      "mime": "image/webp",
+      "width": 1920,
+      "height": 760,
+      "fps": 25,
+      "duration": 22,
+      "frames": 386,
+      "bytes": 5163462,
+      "sha256": "1b216cf6b93b77b70e3000c040ccc9842b4a256cc000c0c95cfcd252f58259e6",
+      "gifFallback": {
+        "id": "apriltag_detection",
+        "src": "static/media/method-apriltag-panel-flow.gif",
+        "poster": "static/media/method-apriltag-panel-flow-poster.png",
+        "kind": "gif",
+        "mime": "image/gif",
+        "width": 1920,
+        "height": 760,
+        "fps": 25,
+        "duration": 22,
+        "frames": 550,
+        "bytes": 7237426,
+        "sha256": "1b0a4eee37e80a1bf66c8b4b88ff7b638d33beea12fe9ded90c43de5ec1cc215"
+      }
+    },
+    {
+      "id": "stereo_combined",
+      "src": "static/media/method-stereo_combined.gif",
+      "poster": "static/media/method-stereo_combined-hq-poster.png",
+      "kind": "gif",
+      "mime": "image/gif",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "duration": 16,
+      "frames": 480,
+      "bytes": 16677696,
+      "sha256": "7e8e9f35a44a22b58e2d5aa092f6f49430393f882db28245a290a898dee40c83"
+    }
+  ],
+  "playback": {
+    "prefetchDistancePx": 300,
+    "visibleFractionToStart": 0.25,
+    "offscreen": "restore poster",
+    "reentry": "restart from first frame",
+    "reducedMotion": "manual play only"
+  },
+  "provenance": {
+    "stereo": "Existing approved stereo_combined renderer, content and timing retained; actual GIF primary",
+    "apriltag": "GENERAL-style retained three-panel flow: arrows between image centers, continuous quad normalization, polarity contrast and grid binarization, decoded ID0. Original Fig.10 endpoints with approved explanatory interpolation."
+  }
+}

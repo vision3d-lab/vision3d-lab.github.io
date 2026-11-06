@@ -1,0 +1,445 @@
+{
+  "date": "2026-11-05",
+  "version": 1,
+  "paper": {
+    "filename": "261105_corner2tag++_main_submission.pdf",
+    "sha256": "22534f4816d4412cec6f4d306408925be9fe960563d2ccc2b2e8f36b782afc22",
+    "webPath": "static/downloads/corner2tag-plus-plus.pdf",
+    "status": "First submission to TPAMI; review pending"
+  },
+  "sourceHashes": {
+    "animation_project\\data\\general\\native_arrays.npz": "b426e4551ab8954e16c0730177863524762d9f2f20593dd8489720c666a87a45",
+    "animation_project\\data\\general\\retained_events.npz": "e3061b71f52a94f01ed296c88e84f533678269c2f85f9ccb746358e7ab5134d0",
+    "animation_project\\data\\general\\candidate_manifest.json": "347a5b0f373a1a7fcfb7fb56b400f8071fa67c98bc2e17413211b4ab51051034",
+    "animation_project\\data\\parallel\\parallel_trace.npz": "377a75c9c18660dfedac3b1ea4cbdccd8b8038bc922cd7fd9c6ae2b78a907810",
+    "animation_project\\data\\parallel\\parallel_trace.json": "44de0f1f295101cad101267e12de901fb342907ac6015302f3a8858c0cd285c9",
+    "animation_project\\data\\stereo\\stereo_trace.npz": "a01cdd3dd3e23b1eddd0edffb55d3be7181ec5c19ea8cc8bc2d6e08e4a1ece97",
+    "animation_project\\data\\stereo\\stereo_trace.json": "7b9284cc4691e0dc9219b201afcf28fc73448ba04218d9e8d53b0ec0d6febfd3",
+    "animation_project\\data\\stereo\\source_stereo_calibration.yaml": "f7e2a74882a6ff068dcebfe745a1ed4481b695d37626e1bd6617c12d9f900fa1",
+    "references\\paper_assets\\additional_exports\\apriltag\\real_detections.json": "bd348ac8215dfef167785eaf22004be45df325713ce9414ceee1ebbc43bd658a",
+    "references\\paper_assets\\additional_exports\\apriltag\\real_detections.npz": "10e7adf70946be5ec7c6aa49c4daf2d6d69e5c9f0b0b5d7c4127034ee4768298",
+    "references\\paper_assets\\additional_exports\\apriltag\\real_w005_clean_iwe.png": "160794397d5798dc2164fbe70474a89ded8b38ad15d69ecd3f277661646eaf83",
+    "references\\paper_assets\\additional_exports\\apriltag\\real_w017_clean_iwe.png": "fd3a7b46d14a6024b6e5cf019f43cf890178933616cdc440aa14d0327ea2e548"
+  },
+  "scientificCoordinates": "Native image pixel centers: top-left center(0,0), x right,y down. ROI ends exclusive; cell boundaries origin-0.5.",
+  "unchangedScientificInputs": true,
+  "newEstimatorRun": false,
+  "displayOnlyTransformations": [
+    "linearIWEgrayscale",
+    "symmetricredbluepolaritymap",
+    "rawcountopacity",
+    "posterdownsampling"
+  ],
+  "density": {
+    "window": 632,
+    "patch": 25,
+    "displayCrop": [
+      114,
+      169,
+      147,
+      202
+    ],
+    "computationalROI": [
+      119,
+      176,
+      141,
+      197
+    ],
+    "rawFloatValues": true,
+    "height": "IWE, not optimization substitute",
+    "minNotSubtracted": true
+  },
+  "polarity": {
+    "window": 221,
+    "patch": 13,
+    "positive": "blue",
+    "negative": "red",
+    "sameFullArrayNormalization": true,
+    "verifiedCandidateCostMaxAbsError": 0.0
+  },
+  "stereo": {
+    "window": 52,
+    "recordedEndpointsPixelExact": true
+  },
+  "hero": {
+    "window": 632,
+    "all61648EventsUsed": true,
+    "cornerCount": 20
+  },
+  "socialPreview": {
+    "path": "static/media/social-preview.png",
+    "dimensions": [
+      1200,
+      630
+    ],
+    "sourceImage": "static/media/hero-iwe.png",
+    "sourceWindow": 632,
+    "overlay": "Original20 ordered refined corner positions; no geometric or event synthesis.",
+    "transformations": "Native346x260 IWE enlarged1.5x by nearest neighbor; Arial labels on pure white outer background."
+  },
+  "apriltag": {
+    "windows": [
+      5,
+      17
+    ],
+    "sourceFrontend": "LEGACY_NORMAL",
+    "historicalWindowMs": 100,
+    "quadsAndIdsExact": true
+  },
+  "videos": {
+    "count": 8,
+    "bytes": 41959695,
+    "source": "Current approved slide_ready assets; copied byte-identically"
+  },
+  "caveats": [
+    "The supplied submission and older example exports have distinct dates; examples retain their source provenance.",
+    "W632 14 accepted refinement states are recorded; interactions inspect these data, not arbitrary full detector execution.",
+    "A single stereo example disparity is not the aggregate paper benchmark.",
+    "The correspondence M-window stack in the source video repeats W632; it is illustrative."
+  ],
+  "activePageRevision": {
+    "layout": "Centered publication header; full-width Abstract heading and divider; interaction | abstract text below",
+    "date": "2026-11-06",
+    "motionData": "static/data/motion-story.json",
+    "methodMedia": "static/data/method-animations.json",
+    "excludedSections": [
+      "Results",
+      "standalone alignment"
+    ],
+    "resourceAvailability": [
+      "Paper disabled",
+      "Code active with icon",
+      "Video disabled",
+      "CVPR version active with icon"
+    ],
+    "note": "Actual observation transitions with20finalcorners in both GENERAL and PARALLEL. AprilTag and stereo restored at the owner request; no public deployment.",
+    "typography": {
+      "body": "Noto Sans 18px",
+      "titleAuthors": "Google Sans",
+      "section": "38px desktop / 34px <=540",
+      "subsection": "30px desktop / 26px <=540",
+      "animationControl": "16px desktop / 15px narrow mobile",
+      "title": "56px desktop / 50px <=1150 / 38px <=540",
+      "authors": "26px desktop / 24px <=1150 / 21px <=540",
+      "affiliation": "22px desktop / 21px <=1150 / 19px <=540",
+      "venue": "26px desktop / 24px <=540"
+    },
+    "motionControls": "All61648 GENERAL W632 /54722 PARALLEL stereo-left-figure W256 paired DAVIS346 events, native pIWE, all20sourcecorners each; source-order row-snake",
+    "quality": {
+      "format": "lossless animated WebP",
+      "width": 1920,
+      "fps": 30,
+      "sourceRgbFramesVerified": 3540,
+      "bytes": 21932096,
+      "contentAndDurationUnchanged": true,
+      "gifFallbackRetained": true
+    },
+    "contentWidth": "shared1280pxmax and48/32/18pxgutters",
+    "abstract": {
+      "sourcePage": 1,
+      "sourceSHA256": "22534f4816d4412cec6f4d306408925be9fe960563d2ccc2b2e8f36b782afc22",
+      "words": 211,
+      "verbatimWording": true
+    },
+    "sectionTitle": "Method",
+    "userObservationPriority": "All20cornersretained. Newly received pIWE resolvespreviousmissingdata limitation.",
+    "hero": "Single centered publication block; independent of the observation height",
+    "methodLayout": "Fig.2 with six clickable method regions; static Event Representation; inline AprilTag and Stereo animations",
+    "methodSource": "static/data/pipeline.json",
+    "receivedDataPackage": "corner2tag_web_observations_davis346",
+    "mediaLoading": "Six selected popup animations; AprilTag and Stereo visibility-triggered inline playback",
+    "eventRepresentationCoverage": "Static paper figure only; prior animation and comparison files retained but no active page entry point",
+    "optimizationCoverage": "20correspondences, schematicMwindowcollection andobjective; nosolverconvergence",
+    "localPreview": "http://192.168.0.172:8765/corner2tag++/",
+    "publicDeployment": false,
+    "heroColumns": {
+      "desktop": "one centered column",
+      "maxHeadingWidthPx": 1120
+    },
+    "stylesheetRevision": "20261106-author-marker",
+    "alignmentAudit": "Common grid top/bottom, shared page width, centered header/resources, native image aspect ratio; scoped abstract typography does not leak into interaction status. Source/HTTP verified, live browser blocked.",
+    "methodPlayIndicators": "Inline SVG triangles; original question marks were corrupted play characters, not explanatory symbols",
+    "footer": "3DVISION & ROBOTICS LAB · UNIST",
+    "extensions": {
+      "apriltag": {
+        "src": "static/media/apriltag-method.svg",
+        "kind": "static figure",
+        "paperPage": 9,
+        "paperFigure": "Fig.10",
+        "sourcePdfSHA256": "22534f4816d4412cec6f4d306408925be9fe960563d2ccc2b2e8f36b782afc22",
+        "cropPdfPoints": [
+          317,
+          55,
+          558,
+          113
+        ],
+        "nativeFigureUnchanged": true,
+        "attachmentAnnotations": "Top curved arrows/red dot were separate slide annotations and are not in the paper crop"
+      },
+      "stereo": {
+        "catalog": "static/data/extension-animations.json",
+        "item": {
+          "id": "stereo_combined",
+          "src": "static/media/method-stereo_combined.gif",
+          "poster": "static/media/method-stereo_combined-hq-poster.png",
+          "kind": "gif",
+          "mime": "image/gif",
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "duration": 16,
+          "frames": 480,
+          "bytes": 16677696,
+          "sha256": "7e8e9f35a44a22b58e2d5aa092f6f49430393f882db28245a290a898dee40c83"
+        },
+        "source": {
+          "verifiedLosslessWebP": "method-stereo_combined.webp",
+          "sha256": "ffd78df220e291f2a5912e6cfc328706cb1f2cf138e84e1d92e0c8163b00634a",
+          "approvedMp4Sha256": "603b6dc5fdb842c1c9536f30078478fac5668df94a65f6359c23a99028e1ea50",
+          "allSource480RgbFramesPreviouslyVerified": true
+        },
+        "playback": "300px nearby compressed-GIF prefetch;25% visible autoplay;offscreen poster;reentry restart;manual stop;reduced-motion manual only"
+      }
+    },
+    "playbackControls": {
+      "popup": "one Stop animation / Replay button; no separate Replay; restart from cached original beginning",
+      "inlineStereo": "initial Play animation, then Stop animation / Replay; manual Stop persists",
+      "entryRevision": "20261106-single-animation-control",
+      "mediaUnchanged": true
+    },
+    "sectionHierarchy": {
+      "revision": "20261106-method-hierarchy",
+      "sections": [
+        "Abstract",
+        "Method"
+      ],
+      "methodSubsections": [
+        "Checkerboard Calibration for Event Camera",
+        "AprilTag Detection",
+        "Stereo Event Camera Calibration"
+      ],
+      "desktopFontPixels": {
+        "h2": 38,
+        "h3": 30
+      },
+      "mobileMax540FontPixels": {
+        "h2": 34,
+        "h3": 26
+      },
+      "firstSubsectionExtraSeparator": false,
+      "sharedContentWidth": true,
+      "animationContentUnchanged": true
+    },
+    "apriltagAnimation": {
+      "item": {
+        "id": "apriltag_detection",
+        "src": "static/media/method-apriltag-panel-flow.webp",
+        "poster": "static/media/method-apriltag-panel-flow-poster.png",
+        "kind": "webp",
+        "mime": "image/webp",
+        "width": 1920,
+        "height": 760,
+        "fps": 25,
+        "duration": 22,
+        "frames": 386,
+        "bytes": 5163462,
+        "sha256": "1b216cf6b93b77b70e3000c040ccc9842b4a256cc000c0c95cfcd252f58259e6",
+        "gifFallback": {
+          "id": "apriltag_detection",
+          "src": "static/media/method-apriltag-panel-flow.gif",
+          "poster": "static/media/method-apriltag-panel-flow-poster.png",
+          "kind": "gif",
+          "mime": "image/gif",
+          "width": 1920,
+          "height": 760,
+          "fps": 25,
+          "duration": 22,
+          "frames": 550,
+          "bytes": 7237426,
+          "sha256": "1b0a4eee37e80a1bf66c8b4b88ff7b638d33beea12fe9ded90c43de5ec1cc215"
+        }
+      },
+      "mp4": {
+        "path": "apriltag_detection.mp4",
+        "width": 1920,
+        "height": 760,
+        "fps": 25,
+        "duration": 22,
+        "frames": 550,
+        "codec": "H.264 High / yuv420p / faststart",
+        "bytes": 1914670,
+        "sha256": "8a6f33144ab7992480f57572f6c788080940feb9d4aff471fb40a7465bb8997d",
+        "crf": 8,
+        "preset": "slow",
+        "quality": "High quality, H.264420compatible",
+        "verification": "hq-mp4-verification.json"
+      },
+      "layout": {
+        "composition": "three retained panels with arrows between the images",
+        "topNavigationArrows": false,
+        "imageHeight": 416,
+        "preserveNativeAspectRatios": true,
+        "centers": [
+          325,
+          960,
+          1595
+        ],
+        "arrowY": 358.0,
+        "arrowX": [
+          [
+            614.0,
+            739.0
+          ],
+          [
+            1181.0,
+            1305.0
+          ]
+        ],
+        "shaftWidth": 6,
+        "headLength": 21,
+        "imageClearance": 13,
+        "arrowColor": "#182D35"
+      },
+      "semantics": {
+        "redDots": "already-refined corners",
+        "normalization": "continuous display homography from visible source anchors",
+        "contrast": "paper g = gradient H_p dot v* before ternary",
+        "pooling": "explanatory cell gathering, not invented numeric means",
+        "binaryAndId": "archived endpoints preserved",
+        "previousResultsRemainVisible": true,
+        "ownerApprovedIllustration": true
+      },
+      "source": {
+        "figure": "submission Fig.10 page9",
+        "referenceRenderer": "source_reference.py",
+        "referenceRendererSha256": "9b28b6528fb772893fc253fcd9506b9ae4a3b7c9cb4605fb6d08033240d9112d",
+        "assets": {
+          "quad": "589b97e06459666e20a21cfa5daf18518391f547ee3a441822c5562ccb9a810b",
+          "rectified": "37aef728e0a5fd0c25a7917ca0c284894472d36f758075779c84b63fc9a7aa99",
+          "ternary": "50bf32e12c76899184b5bd684fb57a7976a519d2d715b792c3e01acdd7047aaa",
+          "binary": "033d73688ac49eb11107b49772056ab8d4999d006aa681419e09acf0836a9aac",
+          "decoded": "d8fd48ee3b7ed57947e23ebd1f845b3002d981dd6ca963a3976a980c0af68112"
+        }
+      },
+      "verification": {
+        "animationDurationsMs": 22000,
+        "infiniteLoop": true,
+        "notDetectorRerun": true,
+        "all550WebPRgbFrameTimesExact": true,
+        "mp4Full550FrameDecode": true,
+        "loopBoundaryExact": true,
+        "mediaReport": "media-verification.json",
+        "mp4HighQualityRevision": "hq-mp4-verification.json"
+      },
+      "revision": "20261106-apriltag-panel-flow",
+      "webDisplayWidth": "85% centered; stereo unchanged",
+      "webPrimary": "lossless WebP with actual GIF fallback",
+      "localMp4": "C:\\Users\\xogns\\Desktop\\tpami_video\\codex\\results\\apriltag-panel-flow\\apriltag_detection.mp4",
+      "losslessMp4": {
+        "path": "apriltag_detection_lossless.mp4",
+        "width": 1920,
+        "height": 760,
+        "fps": 25,
+        "duration": 22,
+        "frames": 550,
+        "codec": "H.264 RGB / High4:4:4Predictive / faststart",
+        "crf": 0,
+        "preset": "slow",
+        "bytes": 9626739,
+        "sha256": "6fb1125ac02d106bdc896d511052555140dbb13aa258e9d9ba8c2b44264c4771",
+        "losslessAll550RgbFramesExact": true,
+        "intendedUse": "Editing/archive RGB master; compatible MP4 remains the PowerPoint delivery."
+      }
+    },
+    "extensionMediaLayout": {
+      "apriltagWidthPercent": 85,
+      "stereoWidthPercent": 85,
+      "centered": true,
+      "headingAndDescriptionWidthUnchanged": true,
+      "stereoMediaUnchanged": true
+    },
+    "pipelineAffordance": {
+      "revision": "20261106-pipeline-soft-highlight",
+      "kind": "CSS-only decorative highlight",
+      "durationSeconds": 5.2,
+      "synchronized": true,
+      "idleFillOpacity": [
+        0.01,
+        0.03
+      ],
+      "idleBorderOpacity": [
+        0.1,
+        0.3
+      ],
+      "hoverFillOpacity": 0.07,
+      "hoverBorderOpacity": 1,
+      "onDiagramHoverOrFocus": "settle idle cues; retain strong hovered/focused stage",
+      "reducedMotion": "static faint outline via existing prefers-reduced-motion rule",
+      "extraPlaybackControls": false,
+      "scientificFigureAndHotspotGeometryUnchanged": true
+    },
+    "overviewColumns": {
+      "desktop": ".95fr:1.05fr, stretch alignment",
+      "gapPx": 40,
+      "narrowDesktopGapPx": 28,
+      "stackedAtMaxPx": 1000,
+      "heading": "Full-width grid-column:1/-1 above both columns"
+    },
+    "observationVerification": "tpami_video/codex/results/davis346-web-refresh/",
+    "observationLimit": "Representations replay logged rounded velocities; original historical full-precision buffers unavailable. Original final corners are preserved, no new detector run.",
+    "interactionCopy": {
+      "middleLabel": "Warped raw event",
+      "captionRetained": true,
+      "initialProgress": 0,
+      "renderingAndTransitionUnchanged": true,
+      "note": "Label-only change requested by owner; existing pIWE crossfade retained."
+    },
+    "paperSummary": {
+      "location": "Below centered resource links, above Abstract",
+      "content": [
+        "TL;DR",
+        "Key Insight"
+      ],
+      "source": "Submission abstract and page5, Eq.21 and Eq.25 discussion",
+      "theoryQualified": true,
+      "width": "Shared page width",
+      "fontPixels": 18
+    },
+    "venueSpacing": {
+      "marginTopPx": 4,
+      "desktopBeforePx": 20,
+      "mobileBeforePx": 18,
+      "reference": "Original corner2tag places venue immediately after corresponding-author note; use compact spacing at retained larger type size."
+    },
+    "correspondingAuthorMarker": {
+      "fontSize": "0.8em (20.8px at26px author text)",
+      "fontWeight": 600,
+      "offset": "relative top -0.45em",
+      "lineHeight": 0,
+      "marginLeftPx": 3,
+      "existingDaggerPreserved": true
+    },
+    "parallelReplacement": {
+      "previousWindow": 13,
+      "window": 256,
+      "sourcePool": "figureL",
+      "eventCount": 54722,
+      "cornerCount": 20,
+      "generalUnchanged": true,
+      "sameCropAndNormalization": true,
+      "report": "tpami_video/codex/results/parallel-w256-refresh/"
+    },
+    "methodEmphasis": {
+      "source": "Owner-edited pipeline.json",
+      "supportedMarkup": "<em>...</em>",
+      "appliesTo": [
+        "dialog title",
+        "dialog description"
+      ],
+      "altTextPlain": true,
+      "innerHTMLNotUsed": true,
+      "revision": "20261106-method-emphasis",
+      "verification": "tpami_video/codex/results/method-emphasis/pipeline-modal-verification.json"
+    }
+  }
+}
