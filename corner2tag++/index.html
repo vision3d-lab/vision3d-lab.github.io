@@ -1,222 +1,118 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-
-
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <title>From Corners to Fiducial Tags</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-  <!--<h3 style="font-size: 1.5rem; font-weight: bold; color: black; margin-top: 20px;">Methods</h3>-->
-
-  <!-- KaTeX CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  <!-- KaTeX auto-render extension CSS (optional) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.css">
-  
-  <!-- KaTeX JS -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <!-- KaTeX auto-render extension JS -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$', right: '$', display: false}, {left: '$$', right: '$$', display: true}]});"></script>
-
-  
+  <meta name="description" content="Corner2Tag++: motion-aware checkerboard calibration for event cameras. Corner localization from event density and polarity.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="Corner2Tag++">
+  <meta property="og:description" content="Corner localization from event density and polarity. Explore real event alignment and recorded corner localization.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://vision3d-lab.github.io/corner2tag++/static/media/social-preview.png">
+  <meta property="og:url" content="https://vision3d-lab.github.io/corner2tag++/">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Corner2Tag++</title>
+  <link rel="icon" href="static/imgs/corner-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,600%7CNoto+Sans:400,600&amp;display=swap">
+  <link rel="stylesheet" href="static/css/index.css?v=20261106-author-marker">
+  <script type="module" src="static/js/index.js?v=20261106-method-emphasis"></script>
 </head>
-
-<!-- Paper authors -->
 <body>
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title"><br>Revisiting Motion-Aware Checkerboard Calibration for Event Cameras </h1>
-            <div class="is-size-5 publication-authors">
-              
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="https://taehun-ryu.github.io/" target="_blank">Taehun Ryu</a></span>&nbsp;&nbsp;&nbsp;
-                <span class="author-block">
-                  <a href="https://kang-changwoo.github.io/" target="_blank">Changwoo Kang</a></span>&nbsp;&nbsp;&nbsp;
-                  <span class="author-block">
-                            <a href="https://unist.info/" target="_blank">Kyungdon Joo</a><sup>✝</sup>
-                  </span>&nbsp;
-                  </div>
-
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block"></sup>Graduate School of Artificial Intelligence, UNIST</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span class="eql-cntrb"><small><br> <sup>✝</sup>Corresponding Author</small></span>
-                  </div>
-
-              <!-- Conference -->
-              <!-- <strong class="conference-label">CVPR 2026 <span class="neon-highlight">Highlight</span></strong><br> -->
-              <strong class="conference-label">TPAMI submission </strong><br>
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                      <!-- Paper PDF link -->
-                      <!-- TODO: Update the link -->
-                      <!-- <span class="link-block">
-                        <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Ryu_From_Corners_to_Fiducial_Tags_Revisiting_Checkerboard_Calibration_for_Event_CVPR_2026_paper.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span> -->
-
-                  <!-- Github link -->
-                  <span class="link-block">
-                    <a href="https://github.com/taehun-ryu/corner2tag" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- Video link -->
-                 <!-- TODO: Update the link -->
-                <!-- <span class="link-block">
-                  <a href="https://youtu.be/Nc1FxERhoXU" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                    </span>
-                    <span>Video</span>
-                  </a>
-                </span> -->
-            </div>
-              <br>
-              <p style="text-align: justify;">
-              <strong>TL;DR:</strong> First event-camera calibration that directly detects checkerboard corners from events without reconstruction and extends to AprilTag.
-              <br><br>
-              🔍 <strong>Key insight</strong>: Under a first-order local motion model, Event Rate (ER) at checkerboard corners is theoretically zero. We mathematically analyze this phenomenon and utilize it as a reliable cue for event camera calibration.
-              </p>
-              <br>
-              <img src="./static/imgs/insight.png" width="800px" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-              <br>
-              <br>
-              <h2 class="title is-3">Abstract</h2>
-              <hr>
-              <p style="text-align: justify;">
-              The conventional checkerboard-based calibration for standard cameras faces fundamental limitations when applied to bio-inspired event cameras.
-              These limitations arise from three challenges: (i) Events are triggered asynchronously at different timestamps along motion trajectories.
-              If we accumulate them directly on the image plane, it causes temporal misalignment and produces blurred edges.
-              (ii) Checkerboard corners on event cameras show near-zero event occurrence at the corner itself.
-              (iii) Motion parallel to a checkerboard edge suppresses its event response, limiting the observable corner structure.
-              This hinders reliable corner localization and makes calibration difficult.
-              To address these issues, we present a novel calibration framework that directly detects checkerboard corners from event data without learning-based grayscale image reconstruction. We first mathematically analyze event generation at checkerboard corners and edges to guide corner localization. We then distinguish motion cases using gradient orientation statistics and initialize corners from the corresponding edge cues. Under parallel motion, we recover the suppressed edge using polarity information. Using the near-zero event occurrence at checkerboard corners, we gradually refine the estimated corner toward low event-density regions, achieving sub-pixel accuracy. Furthermore, we extend our framework to AprilTag detection under partial visibility and stereo event camera calibration. Experiments on synthetic and real-world data from event cameras with different resolutions demonstrate reliable corner detection and accurate calibration.
-             </p>
-
-             <br>
-             <!--<br><hr>-->
-             <div class="row mt-5">
-             <div class="container is-max-desktop">
-             <div class="has-text-centered">
-             <div class="col">
-                <h2 class="title is-3">Method</h2>
-                <hr>
-                <img src="./static/imgs/method.png" width="1000px" >
-                <br><br>
-                <p style="text-align: justify;">
-                  Overview of the proposed calibration pipeline. The framework converts a raw event stream into both IWE and pIWE, which are representations well-suited for extracting corner points. These representations are then used by the motion distinction module to determine the motion case and by the pattern detection module to detect corners accordingly. The detected corners are then fed into the intrinsic optimization process to estimate camera parameters $\mathbf{K, d}$.
-                </p>
-                <br><br><br>
-
-            <br>
-            <!--<br><hr>-->
-            <!-- <div class="row mt-5">
-            <div class="container is-max-desktop">
-            <div class="has-text-centered">
-            <div class="col">
-                <h2 class="title is-3">Qualitative Results</h2>
-                <hr>
-                <br>
-                <h5 class="title is-4"> Checkerboard corner detection </h5>
-                <img src="./static/imgs/checker_qual.png" width="1000px" >
-                <br><br>
-                <p style="text-align: justify;">
-                  We show that our method can reliably detect checkerboard corners under various grid sizes, board poses, and cluttered backgrounds. The detected corners are refined toward low event-density regions, achieving sub-pixel accuracy.
-                </p>
-                <br><br><br>
-                <h5 class="title is-4"> AprilTag detection </h5>
-                <img src="./static/imgs/april_qual.png" width="800px" >
-                <br><br>
-                <p style="text-align: justify;">
-                  We demonstrate that our method reliably detects AprilTags across various tag sizes, IDs, and poses. Using these results, we can index corners and perform camera calibration even under partial observation, which is not possible with checkerboard.
-                </p>
-                <br><br><br>
-                <h2 class="title is-3">Quantitative Results</h2>
-                <hr>
-                <h5 class="title is-4"> Evaluation on real-world data </h5>
-                <img src="./static/imgs/real_quan.png" width="800px" >
-                <br>
-                <p style="text-align: justify;">
-                  We evaluate our method on self-collected real-world data. Since there are no ground truth camera parameters in real-world scenarios, we evaluate calibration stability by measuring the standard deviation of the estimated camera parameters across multiple trials. Our method demonstrates higher calibration stability than E2Calib, which reconstructs grayscale images using E2VID and detects corners using OpenCV. Notably, our method achieves performance comparable to frame-based calibration, which we use as pseudo ground truth.
-                </p>
-                <br><br><br>
-                <h5 class="title is-4"> Evaluation on synthetic data </h5>
-                <img src="./static/imgs/simul_quan.png" width="800px" >
-                <br><br>
-                <p style="text-align: justify;">
-                  We evaluate our method on synthetic datasets generated using Blender and ESIM. Synthetic data enables a direct comparison with circular pattern-based calibration, which is one of the most widely used calibration approaches for event cameras. Our method achieves significantly higher accuracy than the circular pattern-based calibration method, which suffers from unreliable circle center detection. Furthermore, our method outperforms calibration approaches based on E2VID and HyperE2VID, which reconstruct grayscale images from event streams and subsequently detect corners using OpenCV. The performance gap arises because our method detects corners directly from event data, whereas reconstruction-based methods are inherently affected by reconstruction errors that degrade corner localization accuracy.
-                </p>
-                <br><br><br> -->
-          </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><a class="wordmark" href="#top">Corner2Tag<span>++</span></a><nav aria-label="Main navigation"><a href="#overview">Abstract</a><a href="#method">Method</a></nav></header>
+  <main id="main">
+    <section class="hero shell" id="top">
+      <div class="paper-heading">
+        <h1>Revisiting Motion-Aware Checkerboard Calibration for Event Cameras</h1>
+        <div class="authors"><a href="https://taehun-ryu.github.io/" target="_blank" rel="noopener">Taehun Ryu</a><a href="https://kang-changwoo.github.io/" target="_blank" rel="noopener">Changwoo Kang</a><a href="https://unist.info/" target="_blank" rel="noopener">Kyungdon Joo<sup>†</sup></a></div>
+        <div class="affiliation">Graduate School of Artificial Intelligence, UNIST<small>† Corresponding author</small></div>
+        <p class="venue" id="publication-venue">Submitted to IEEE TPAMI</p>
+        <div class="resource-links" aria-label="Project resources">
+          <button class="resource unavailable" type="button" disabled aria-label="Paper — not available yet" title="Not available yet">Paper</button>
+          <a class="resource available" href="https://github.com/taehun-ryu/corner2tag" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-14-2 16"/></svg>Code</a>
+          <button class="resource unavailable" type="button" disabled aria-label="Video — not available yet" title="Not available yet">Video</button>
+          <a class="resource available" href="../corner2tag/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14M10 4H4v16h16v-6"/></svg>CVPR version</a>
         </div>
       </div>
+      <div class="paper-summary">
+        <p><span aria-hidden="true">⭐</span> <strong>TL;DR:</strong> Motion-aware checkerboard calibration for event cameras, including under parallel motion, without grayscale reconstruction, with extensions to AprilTag detection and stereo event camera calibration.</p>
+        <p><span aria-hidden="true">🔍</span> <strong>Key Insight:</strong> Under the local first-order model, the event rate vanishes at checkerboard corners. We use <span style="color: #B45309;">low event density</span> to refine corners and <span style="color: #B45309;">polarity transitions</span> to recover edges suppressed by parallel motion.</p>
+      </div>
+    </section>
+    <section class="overview shell" id="overview" aria-labelledby="abstract-title">
+      <h2 id="abstract-title">Abstract</h2>
+      <figure class="motion-story" aria-label="Recorded event alignment and corner localization">
+        <div class="story-cases" role="group" aria-label="Motion case"><button type="button" data-story-case="general" aria-pressed="true" disabled><em>GENERAL</em></button><button type="button" data-story-case="parallel" aria-pressed="false" disabled><em>PARALLEL</em></button></div>
+        <div class="story-viewport"><img id="story-fallback" src="static/media/story-davis346-general-w632-raw-poster.png" width="304" height="260" alt="Raw DAVIS346 events before motion compensation"><canvas id="story-canvas" width="304" height="260" role="img" aria-label="Raw events. Drag horizontally to move through alignment and corner detection." hidden></canvas></div>
+        <div class="story-scrubber"><div class="story-stage-labels" aria-hidden="true"><span>Raw events</span><span>Event representation</span><span>Corner&nbsp;detection</span></div><input id="story-progress" type="range" min="0" max="200" step="0.1" value="0" aria-label="Drag through raw events, warped raw events, and corner detection" disabled></div>
+        <figcaption id="story-description" aria-live="polite">Raw events trace the moving checkerboard.</figcaption>
+        <p id="story-status" class="status" role="status"></p>
+      </figure>
+      <div class="abstract-copy">
+        <p>The conventional checkerboard-based calibration for standard cameras faces fundamental limitations when applied to bio-inspired event cameras. These limitations arise from three challenges: (i) Events are triggered asynchronously at different timestamps along motion trajectories. If we accumulate them directly on the image plane, it causes temporal misalignment and produces blurred edges. (ii) Checkerboard corners on event cameras show near-zero event occurrence at the corner itself. (iii) Motion parallel to a checkerboard edge suppresses its event response, limiting the observable corner structure. This hinders reliable corner localization and makes calibration difficult. To address these issues, we present a novel calibration framework that directly detects checkerboard corners from event data without learning-based grayscale image reconstruction. We first mathematically analyze event generation at checkerboard corners and edges to guide corner localization. We then distinguish motion cases using gradient orientation statistics and initialize corners from the corresponding edge cues. Under parallel motion, we recover the suppressed edge using polarity information. Using the near-zero event occurrence at checkerboard corners, we gradually refine the estimated corner toward low event-density regions, achieving sub-pixel accuracy. Furthermore, we extend our framework to AprilTag detection under partial visibility and stereo event camera calibration. Experiments on synthetic and real-world data from event cameras with different resolutions demonstrate reliable corner detection and accurate calibration.</p>
+      </div>
+    </section>
+    <section class="method-section" id="method">
+      <div class="method-shell">
+        <h2 class="method-heading">Method</h2>
+        <article class="checkerboard-method" id="checkerboard" aria-labelledby="checkerboard-title">
+          <header class="extension-heading"><h3 id="checkerboard-title">Checkerboard Calibration for Event Camera</h3></header>
+          <figure class="pipeline-figure">
+            <div class="pipeline-scroll" tabindex="0" role="region" aria-label="Calibration pipeline; scroll horizontally on small screens">
+              <div class="pipeline-map">
+                <img src="static/media/pipeline-overview.svg" width="503" height="168" alt="Calibration pipeline: event representation, motion distinction and patch extraction, case-specific initialization, corner refinement, and camera parameter optimization.">
+              <button class="pipeline-hotspot" type="button" data-pipeline-id="motion_distinction" data-title="Motion Distinction" style="left:29.224652%;top:0.595238%;width:26.043738%;height:44.642857%" aria-label="Play Motion Distinction animation" aria-haspopup="dialog" aria-controls="method-dialog" title="Motion Distinction"><span class="hotspot-play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4v16l13-8z"/></svg></span></button>
+              <button class="pipeline-hotspot" type="button" data-pipeline-id="patch_extraction" data-title="Patch Extraction" style="left:29.224652%;top:55.357143%;width:26.242545%;height:44.047619%" aria-label="Play Patch Extraction animation" aria-haspopup="dialog" aria-controls="method-dialog" title="Patch Extraction"><span class="hotspot-play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4v16l13-8z"/></svg></span></button>
+              <button class="pipeline-hotspot" type="button" data-pipeline-id="general_initialization" data-title="Corner Initialization - GENERAL" style="left:60.337972%;top:7.440476%;width:10.139165%;height:30.952381%" aria-label="Play Corner Initialization - GENERAL animation" aria-haspopup="dialog" aria-controls="method-dialog" title="Corner Initialization - GENERAL"><span class="hotspot-play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4v16l13-8z"/></svg></span></button>
+              <button class="pipeline-hotspot" type="button" data-pipeline-id="parallel_initialization" data-title="Corner Initialization - PARALLEL" style="left:71.272366%;top:7.440476%;width:9.741551%;height:30.952381%" aria-label="Play Corner Initialization - PARALLEL animation" aria-haspopup="dialog" aria-controls="method-dialog" title="Corner Initialization - PARALLEL"><span class="hotspot-play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4v16l13-8z"/></svg></span></button>
+              <button class="pipeline-hotspot" type="button" data-pipeline-id="corner_refinement" data-title="Corner Refinement" style="left:58.846918%;top:55.357143%;width:23.856859%;height:44.047619%" aria-label="Play Corner Refinement animation" aria-haspopup="dialog" aria-controls="method-dialog" title="Corner Refinement"><span class="hotspot-play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4v16l13-8z"/></svg></span></button>
+              <button class="pipeline-hotspot" type="button" data-pipeline-id="optimization" data-title="Optimization" style="left:85.089463%;top:0.595238%;width:14.512922%;height:98.809524%;clip-path:polygon(0.000000% 0.000000%,100.000000% 0.000000%,100.000000% 100.000000%,0.000000% 100.000000%,0.000000% 54.819277%,9.589041% 54.819277%,9.589041% 44.578313%,0.000000% 44.578313%)" aria-label="Play Optimization animation" aria-haspopup="dialog" aria-controls="method-dialog" title="Optimization"><span class="hotspot-play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 4v16l13-8z"/></svg></span></button>
+              </div>
+            </div>
+            <figcaption>Select a highlighted stage to play its animation.</figcaption>
+          </figure>
+          <p class="pipeline-description">The framework converts a raw event stream into both IWE and pIWE, which are representations well-suited for extracting corner points. These representations are then used by the motion distinction module to determine the motion case and by the pattern detection module to detect corners accordingly. The detected corners are then fed into the intrinsic optimization process to estimate camera parameters.</p>
+        </article>
+        <article class="method-extension" id="apriltag" data-animation-id="apriltag_detection" aria-labelledby="apriltag-title">
+          <header class="extension-heading">
+            <h3 id="apriltag-title">AprilTag Detection</h3>
+            <button class="animation-control" type="button" aria-controls="apriltag-animation" aria-label="Play AprilTag Detection animation" aria-pressed="false">Play animation</button>
+          </header>
+          <figure class="animation-frame extension-animation-compact">
+            <img class="method-animation" id="apriltag-animation" src="static/media/method-apriltag-panel-flow-poster.png" width="1920" height="760" loading="lazy" decoding="async" alt="Three connected panels show refined corners and quad fitting, normalized-patch binarization, and the decoded tag ID.">
+          </figure>
+          <p class="animation-status status" role="status"></p>
+          <p>We form AprilTag quadrilateral candidates from refined corners and decode their IDs using polarity contrast in normalized pIWE patches.</p>
+        </article>
+        <article class="method-extension" id="stereo" data-animation-id="stereo_combined" aria-labelledby="stereo-title">
+          <header class="extension-heading">
+            <h3 id="stereo-title">Stereo Event Camera Calibration</h3>
+            <button class="animation-control" type="button" aria-controls="stereo-animation" aria-label="Play Stereo Event Camera Calibration animation" aria-pressed="false">Play animation</button>
+          </header>
+          <figure class="animation-frame extension-animation-compact">
+            <img class="method-animation" id="stereo-animation" src="static/media/method-stereo_combined-hq-poster.png" width="1920" height="1080" loading="lazy" decoding="async" alt="Synchronized left and right event windows, motion compensation, detected corners, and stereo rectification.">
+          </figure>
+          <p class="animation-status status" role="status"></p>
+          <p>Synchronized event streams are warped to a common reference time, followed by checkerboard corner detection and stereo calibration.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <dialog class="method-dialog" id="method-dialog" aria-labelledby="method-dialog-title" aria-describedby="method-dialog-description">
+    <div class="method-dialog-inner">
+      <header class="method-dialog-heading"><h2 id="method-dialog-title">Method animation</h2><button type="button" id="method-close" class="dialog-close" aria-label="Close animation" autofocus><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+      <div id="method-view-switch" class="method-view-switch" role="group" aria-label="Event representation view" hidden><button type="button" data-method-view="animation" aria-pressed="true">Event warping</button><button type="button" data-method-view="comparison" aria-pressed="false">IWE / pIWE</button></div>
+      <div class="method-dialog-media">
+        <img id="method-animation" alt="" width="1920" height="1080">
+        <div id="method-comparison" class="method-comparison" hidden><figure><img data-src="static/media/event-representation-iwe.png" width="780" height="600" alt="Unsigned IWE from recorded events"><figcaption>IWE</figcaption></figure><figure><img data-src="static/media/event-representation-piwe.png" width="780" height="600" alt="Polarity-weighted IWE from the same recorded events"><figcaption>pIWE</figcaption></figure></div>
+      </div>
+      <p id="method-dialog-description"></p>
+      <div class="method-dialog-footer"><p id="method-dialog-status" class="status" role="status"></p><div class="method-dialog-controls"><button type="button" id="method-toggle" aria-controls="method-animation" aria-pressed="false" disabled>Replay</button></div></div>
     </div>
-  </div>
-</section>
-  <!-- <hr style="margin-top: 0px">
-  <pre style="background-color: #e9eeef; padding: 1.5em 1.5em; border-radius: 20px">
-    <code>
-      @InProceedings{ryu2026corner2tag,
-          author    = {Taehun Ryu and Changwoo Kang and Kyungdon Joo},
-          title     = {From Corners to Fiducial Tags: Revisiting Checkerboard Calibration for Event Cameras},
-          booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-          year      = {2026}
-      }
-    </code>
-  </pre>
-  <hr> -->
-
-  </body>
-  </html>
+  </dialog>
+  <footer class="shell footer"><a class="wordmark" href="#top">Corner2Tag<span>++</span></a><p>3D Vision & Robotics Lab @UNIST</p></footer>
+  <noscript><p class="noscript-note">Enable JavaScript to explore the recorded observations and open the method animations.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,819 @@
+{
+  "schema": 2,
+  "cases": [
+    {
+      "id": "general",
+      "label": "GENERAL",
+      "window": 632,
+      "sensor": "DAVIS346",
+      "width": 346,
+      "height": 260,
+      "renderMode": "paired-events",
+      "accumulationKind": "pIWE",
+      "endpointStyle": "polarity",
+      "bounds": [
+        -0.5,
+        -0.5,
+        303.5,
+        259.5
+      ],
+      "sensorBounds": [
+        -0.5,
+        -0.5,
+        345.5,
+        259.5
+      ],
+      "displayCrop": [
+        0,
+        0,
+        304,
+        260
+      ],
+      "eventCount": 61648,
+      "sampleCount": 61648,
+      "durationMs": 100,
+      "eventsBinary": {
+        "url": "static/data/story-davis346-general-w632.bin",
+        "format": "xy-warped-polarity-f32le",
+        "stride": 5,
+        "bytes": 1232960,
+        "sha256": "028870262808530149f127dcc9a56d93b0b7a1a13182dcf84d34b584a2eb240a"
+      },
+      "motion": [
+        335.249,
+        194.681
+      ],
+      "referenceTimeUs": 1763019897913576,
+      "sourceStartUs": "1763019897913576",
+      "sourceEndUs": "1763019898013576",
+      "corners": [
+        [
+          43.0356674,
+          74.0
+        ],
+        [
+          80.0001068,
+          69.0
+        ],
+        [
+          118.995667,
+          63.3802032
+        ],
+        [
+          158.938736,
+          59.0
+        ],
+        [
+          199.337906,
+          54.2334785
+        ],
+        [
+          46.0958748,
+          112.0
+        ],
+        [
+          83.0381012,
+          107.360512
+        ],
+        [
+          122.065559,
+          103.0
+        ],
+        [
+          162.064377,
+          98.7264862
+        ],
+        [
+          204.0,
+          94.4339371
+        ],
+        [
+          49.0,
+          151.052628
+        ],
+        [
+          86.6231537,
+          148.0
+        ],
+        [
+          126.0,
+          144.02623
+        ],
+        [
+          167.4048,
+          140.0
+        ],
+        [
+          207.734268,
+          135.810211
+        ],
+        [
+          53.8900414,
+          190.585495
+        ],
+        [
+          90.3513947,
+          188.0
+        ],
+        [
+          130.808731,
+          185.0
+        ],
+        [
+          171.0,
+          181.235825
+        ],
+        [
+          212.481934,
+          177.0
+        ]
+      ],
+      "cornerCount": 20,
+      "cornerScope": "ordered_full_board",
+      "gridShape": [
+        4,
+        5
+      ],
+      "snakeIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "snakeRows": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        [
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        [
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      ],
+      "rowColors": [
+        "#e53935",
+        "#ef9800",
+        "#c5b300",
+        "#24b55b"
+      ],
+      "snakeSegments": [
+        {
+          "indices": [
+            0,
+            1
+          ],
+          "kind": "row",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            1,
+            2
+          ],
+          "kind": "row",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            2,
+            3
+          ],
+          "kind": "row",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            3,
+            4
+          ],
+          "kind": "row",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            4,
+            5
+          ],
+          "kind": "inter_row_diagonal",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            5,
+            6
+          ],
+          "kind": "row",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            6,
+            7
+          ],
+          "kind": "row",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            7,
+            8
+          ],
+          "kind": "row",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            8,
+            9
+          ],
+          "kind": "row",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            9,
+            10
+          ],
+          "kind": "inter_row_diagonal",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            10,
+            11
+          ],
+          "kind": "row",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            11,
+            12
+          ],
+          "kind": "row",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            12,
+            13
+          ],
+          "kind": "row",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            13,
+            14
+          ],
+          "kind": "row",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            14,
+            15
+          ],
+          "kind": "inter_row_diagonal",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            15,
+            16
+          ],
+          "kind": "row",
+          "color": "#24b55b"
+        },
+        {
+          "indices": [
+            16,
+            17
+          ],
+          "kind": "row",
+          "color": "#24b55b"
+        },
+        {
+          "indices": [
+            17,
+            18
+          ],
+          "kind": "row",
+          "color": "#24b55b"
+        },
+        {
+          "indices": [
+            18,
+            19
+          ],
+          "kind": "row",
+          "color": "#24b55b"
+        }
+      ],
+      "snakeConvention": "Original order: same direction in each row, diagonal to the next row start.",
+      "images": {
+        "piweWhite": "static/media/story-davis346-general-w632-piwe.png",
+        "rawWhite": "static/media/story-davis346-general-w632-raw.png",
+        "warped": "static/media/story-davis346-general-w632-warped_events.png",
+        "iwe": "static/media/story-davis346-general-w632-iwe.png",
+        "poster": "static/media/story-davis346-general-w632-poster.png"
+      },
+      "sampling": {
+        "rule": "All events in original source order",
+        "count": 61648,
+        "noSampling": true
+      },
+      "representationProvenance": {
+        "sourcePackage": "corner2tag_web_observations_davis346",
+        "observation": "general",
+        "sourceNPZ_SHA256": "71b86290b182c267aeb36fab9a7d67f57d5aab2e116a075d84c7fc964f07e0d4",
+        "sourceMetadata_SHA256": "02ea28d1c04b44bd8df8aa5d702ab80092de0c917a482fa78f12b407a21072e5",
+        "rawWarpedEventsPreservedExactly": true,
+        "sourceCornerOrderUnchanged": true,
+        "motionSource": "Recorded six-significant-digit velocity; no reestimation.",
+        "referenceRule": "First retained event of this window; production CmTracker2D::track default reference.",
+        "referenceOffsetUs": 0,
+        "accumulationSource": "Packaged native production Gaussian replay using the saved velocity.",
+        "historicalBuffersRecovered": false,
+        "detectorRerun": false,
+        "piweDisplayAbsLimit": 71.17634948730458,
+        "polarityColors": {
+          "positive": [
+            0,
+            90,
+            255
+          ],
+          "negative": [
+            230,
+            45,
+            45
+          ],
+          "zero_background": [
+            255,
+            255,
+            255
+          ]
+        },
+        "eventRaster": "floor(x+0.5), floor(y+0.5), one native pixel per event, source-order last-event wins.",
+        "display": "Common native crop [0,0,304,260); nearest-neighbor enlargement, no rotation.",
+        "selectionReason": "Strong genuine 100ms smear (0.96 median corner spacings), both edge families remain clear after compensation, large near-frontal full board, simple background, exact saved twenty-corner board."
+      }
+    },
+    {
+      "id": "parallel",
+      "label": "PARALLEL",
+      "window": 256,
+      "sensor": "DAVIS346",
+      "width": 346,
+      "height": 260,
+      "renderMode": "paired-events",
+      "accumulationKind": "pIWE",
+      "endpointStyle": "polarity",
+      "bounds": [
+        -0.5,
+        -0.5,
+        303.5,
+        259.5
+      ],
+      "sensorBounds": [
+        -0.5,
+        -0.5,
+        345.5,
+        259.5
+      ],
+      "displayCrop": [
+        0,
+        0,
+        304,
+        260
+      ],
+      "eventCount": 54722,
+      "sampleCount": 54722,
+      "durationMs": 100,
+      "eventsBinary": {
+        "url": "static/data/story-davis346-parallel-w256.bin",
+        "format": "xy-warped-polarity-f32le",
+        "stride": 5,
+        "bytes": 1094440,
+        "sha256": "5f790214814f0a850440a1eaf210e43f3d7bb0c30afa51f8c74b0b018f0663f9"
+      },
+      "motion": [
+        18.0354,
+        -201.852
+      ],
+      "referenceTimeUs": 1789607662994253,
+      "sourceStartUs": "1789607662994253",
+      "sourceEndUs": "1789607663094253",
+      "corners": [
+        [
+          90.0,
+          86.9343033
+        ],
+        [
+          127.999992,
+          87.5412292
+        ],
+        [
+          166.0,
+          89.5425568
+        ],
+        [
+          204.0,
+          90.3744659
+        ],
+        [
+          239.0,
+          93.5142136
+        ],
+        [
+          88.0,
+          124.496216
+        ],
+        [
+          126.0,
+          125.851082
+        ],
+        [
+          165.070511,
+          126.276405
+        ],
+        [
+          202.993286,
+          128.597382
+        ],
+        [
+          239.949966,
+          129.082275
+        ],
+        [
+          85.9980469,
+          163.933792
+        ],
+        [
+          126.0,
+          165.010712
+        ],
+        [
+          164.206467,
+          165.166931
+        ],
+        [
+          203.0,
+          166.810043
+        ],
+        [
+          239.993958,
+          167.589951
+        ],
+        [
+          86.0,
+          202.43396
+        ],
+        [
+          124.230415,
+          203.494888
+        ],
+        [
+          164.0,
+          204.70311
+        ],
+        [
+          202.093719,
+          204.428848
+        ],
+        [
+          239.0,
+          204.404053
+        ]
+      ],
+      "cornerCount": 20,
+      "cornerScope": "ordered_full_board",
+      "gridShape": [
+        4,
+        5
+      ],
+      "snakeIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "snakeRows": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        [
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        [
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      ],
+      "rowColors": [
+        "#e53935",
+        "#ef9800",
+        "#c5b300",
+        "#24b55b"
+      ],
+      "snakeSegments": [
+        {
+          "indices": [
+            0,
+            1
+          ],
+          "kind": "row",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            1,
+            2
+          ],
+          "kind": "row",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            2,
+            3
+          ],
+          "kind": "row",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            3,
+            4
+          ],
+          "kind": "row",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            4,
+            5
+          ],
+          "kind": "inter_row_diagonal",
+          "color": "#e53935"
+        },
+        {
+          "indices": [
+            5,
+            6
+          ],
+          "kind": "row",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            6,
+            7
+          ],
+          "kind": "row",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            7,
+            8
+          ],
+          "kind": "row",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            8,
+            9
+          ],
+          "kind": "row",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            9,
+            10
+          ],
+          "kind": "inter_row_diagonal",
+          "color": "#ef9800"
+        },
+        {
+          "indices": [
+            10,
+            11
+          ],
+          "kind": "row",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            11,
+            12
+          ],
+          "kind": "row",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            12,
+            13
+          ],
+          "kind": "row",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            13,
+            14
+          ],
+          "kind": "row",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            14,
+            15
+          ],
+          "kind": "inter_row_diagonal",
+          "color": "#c5b300"
+        },
+        {
+          "indices": [
+            15,
+            16
+          ],
+          "kind": "row",
+          "color": "#24b55b"
+        },
+        {
+          "indices": [
+            16,
+            17
+          ],
+          "kind": "row",
+          "color": "#24b55b"
+        },
+        {
+          "indices": [
+            17,
+            18
+          ],
+          "kind": "row",
+          "color": "#24b55b"
+        },
+        {
+          "indices": [
+            18,
+            19
+          ],
+          "kind": "row",
+          "color": "#24b55b"
+        }
+      ],
+      "snakeConvention": "Original order: same direction in each row, diagonal to the next row start.",
+      "images": {
+        "rawWhite": "static/media/story-davis346-parallel-w256-raw.png",
+        "warped": "static/media/story-davis346-parallel-w256-warped_events.png",
+        "iwe": "static/media/story-davis346-parallel-w256-iwe.png",
+        "piweWhite": "static/media/story-davis346-parallel-w256-piwe.png",
+        "poster": "static/media/story-davis346-parallel-w256-poster.png"
+      },
+      "sampling": {
+        "rule": "All events in original source order",
+        "count": 54722,
+        "noSampling": true
+      },
+      "representationProvenance": {
+        "sourcePackage": "corner2tag_web_observations_davis346",
+        "observation": "parallel",
+        "sourceNPZ_SHA256": "b6585459b4b203d7fdd225f760fecc2f134f63091e9771aec17752ee8067425e",
+        "sourceMetadata_SHA256": "a77d6091eeddd4b742452db97be81e33419f68001fa1e702f6d3bce14023a8ae",
+        "rawWarpedEventsPreservedExactly": true,
+        "sourceCornerOrderUnchanged": true,
+        "motionSource": "Recorded six-significant-digit velocity; no reestimation.",
+        "referenceRule": "First retained event of this window; production CmTracker2D::track default reference.",
+        "referenceOffsetUs": 0,
+        "accumulationSource": "Packaged native production Gaussian replay using the saved velocity.",
+        "historicalBuffersRecovered": false,
+        "detectorRerun": false,
+        "piweDisplayAbsLimit": 71.17634948730458,
+        "polarityColors": {
+          "positive": [
+            0,
+            90,
+            255
+          ],
+          "negative": [
+            230,
+            45,
+            45
+          ],
+          "zero_background": [
+            255,
+            255,
+            255
+          ]
+        },
+        "eventRaster": "floor(x+0.5), floor(y+0.5), one native pixel per event, source-order last-event wins.",
+        "display": "Common native crop [0,0,304,260); nearest-neighbor enlargement, no rotation.",
+        "selectionReason": "Replacement for rejected W13. All twenty original corners reviewed at 12x native scale against real signed polarity transitions; more consistent transition placement and sharp horizontal dominant family. No corner coordinates moved. Relative smear 0.53 spacings.",
+        "sourceRecording": "/home/ryu/dev-ecal/results/debug/parallel-detector-paper-figures/stereo_left_figure_method_selection/left.h5",
+        "sourceLog": "/home/ryu/dev-ecal/results/debug/parallel-detector-paper-figures/stereo_left_figure_method_selection/scan.log",
+        "sourcePool": "figureL",
+        "replacedWindow": 13
+      }
+    }
+  ],
+  "fallbackPoster": "static/media/story-davis346-general-w632-poster.png",
+  "provenance": {
+    "sourcePackage": "corner2tag_web_observations_davis346",
+    "sourceManifestSHA256": "f496adcb72a315bd2c2ea677f814fcbcd6377971a98fcd810fc283ab9fabf367",
+    "commonDisplayCrop": [
+      0,
+      0,
+      304,
+      260
+    ],
+    "casesAreDistinctObservations": true,
+    "allEventsIncluded": true,
+    "all40OriginalFinalCorners": true,
+    "noEstimatorRun": true,
+    "sourceInputsUnchanged": true,
+    "parallelReplacement": {
+      "previousWindow": 13,
+      "currentWindow": 256,
+      "sourcePool": "figureL",
+      "generalUnchanged": true
+    }
+  }
+}

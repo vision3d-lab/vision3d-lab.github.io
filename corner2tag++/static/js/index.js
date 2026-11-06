@@ -1,21 +1,8 @@
-window.HELP_IMPROVE_VIDEOJS = false;
+import { initInlineAnimations } from './inline-animations.js?v=20261106-apriltag-panel-flow';
+import { initStory } from './story.js?v=20261106-parallel-w256';
+import { initPipeline } from './pipeline.js?v=20261106-method-emphasis';
 
+initStory();
+initPipeline();
 
-$(document).ready(function() {
-    // Check for click events on the navbar burger icon
-
-    var options = {
-			slidesToScroll: 1,
-			slidesToShow: 1,
-			loop: true,
-			infinite: true,
-			autoplay: true,
-			autoplaySpeed: 5000,
-    }
-
-		// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
-	
-    bulmaSlider.attach();
-
-})
+window.corner2tagInlineAnimations = initInlineAnimations();

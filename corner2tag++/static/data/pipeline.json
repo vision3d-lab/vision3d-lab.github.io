@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "figure": "static/media/pipeline-overview.svg",
+  "source": "Fig. 2, supplied submission, page 3",
+  "rawEventStreamInteractive": false,
+  "regions": [
+    {
+      "id": "motion_distinction",
+      "label": "Motion Distinction",
+      "animationId": "motion_distinction",
+      "description": "Gradient orientation statistics distinguish <em>GENERAL</em> and <em>PARALLEL</em> motion.",
+      "box": [
+        0.2922465208747515,
+        0.005952380952380952,
+        0.26043737574552683,
+        0.44642857142857145
+      ]
+    },
+    {
+      "id": "patch_extraction",
+      "label": "Patch Extraction",
+      "animationId": "patch_extraction",
+      "description": "Polarity-based clustering extracts candidate patch regions for local corner initialization.",
+      "box": [
+        0.2922465208747515,
+        0.5535714285714286,
+        0.2624254473161034,
+        0.44047619047619047
+      ]
+    },
+    {
+      "id": "general_initialization",
+      "label": "Corner Initialization - <em>GENERAL</em>",
+      "animationId": "general_initialization",
+      "description": "Seed pixels propagate along edges. Two fitted lines initialize the corner at their intersection.",
+      "box": [
+        0.6033797216699801,
+        0.0744047619047619,
+        0.10139165009940358,
+        0.30952380952380953
+      ]
+    },
+    {
+      "id": "parallel_initialization",
+      "label": "Corner Initialization - <em>PARALLEL</em>",
+      "animationId": "parallel_combined",
+      "description": "Motion direction and polarity transitions recover the suppressed edge, which intersects the visible edge to initialize the corner.",
+      "box": [
+        0.7127236580516899,
+        0.0744047619047619,
+        0.09741550695825049,
+        0.30952380952380953
+      ]
+    },
+    {
+      "id": "corner_refinement",
+      "label": "Corner Refinement",
+      "animationId": "refinement_combined",
+      "description": "Low event density guides sub-pixel refinement within geometric edge constraints.",
+      "box": [
+        0.588469184890656,
+        0.5535714285714286,
+        0.23856858846918488,
+        0.44047619047619047
+      ]
+    },
+    {
+      "id": "optimization",
+      "label": "Optimization",
+      "animationId": "corner_correspondences",
+      "description": "Refined corners from multiple event windows are used to estimate camera parameters by minimizing reprojection error.",
+      "box": [
+        0.8508946322067594,
+        0.005952380952380952,
+        0.14512922465208747,
+        0.9880952380952381
+      ]
+    }
+  ],
+  "eventRepresentationInteractive": false
+}

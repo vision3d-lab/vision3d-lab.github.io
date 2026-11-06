@@ -1,0 +1,269 @@
+{
+  "schema": 1,
+  "kind": "lossless-rgb-animation",
+  "items": [
+    {
+      "id": "patch_extraction",
+      "src": "static/media/method-patch_extraction.webp",
+      "kind": "webp",
+      "mime": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "duration": 22,
+      "fps": 30,
+      "bytes": 5129928,
+      "sha256": "cd00aa4ae751628a6a9d6e78cb2039d3c072c2bc4850d103ecc0d20279e1910b",
+      "approvedMp4Sha256": "425d7d6be5dacfd9a4eb327d53fddc908f534ae0706556ed6278957db3b73e62",
+      "lossless": true,
+      "sourceQuality": {
+        "kind": "FFV1 lossless RGB master",
+        "path": "corner2tag_animation_workspace/animation_project/masters/patch_extraction.mkv",
+        "sourceSha256": "fcdaaf83114135ec73914fd567e694445e4eca5404bd2570206a00353bda34d0",
+        "nativeWidth": 3840,
+        "nativeHeight": 3072
+      },
+      "poster": "static/media/method-patch_extraction-hq-poster.png",
+      "gifFallback": {
+        "src": "static/media/method-patch_extraction.gif",
+        "poster": "static/media/patch_extraction-poster.png",
+        "width": 960,
+        "height": 540,
+        "bytes": 7641073,
+        "sha256": "ba77064412806c0cfb58d49d7240f7b495dd3eac1f423fa831ab2a7e10374ad8",
+        "fps": 12
+      }
+    },
+    {
+      "id": "motion_distinction",
+      "src": "static/media/method-motion_distinction.webp",
+      "kind": "webp",
+      "mime": "image/webp",
+      "width": 1920,
+      "height": 960,
+      "duration": 20.0,
+      "fps": 30,
+      "bytes": 6379384,
+      "sha256": "6814b2955cb28e26e4687d0eb8a9e6e963b66165606910ecc20d3d577bb62ac6",
+      "approvedMp4Sha256": "4268e80d91ba768e98a9b9cda1d0d8fd4ed205929ac8b95664ee4473d9f74c93",
+      "lossless": true,
+      "sourceQuality": {
+        "kind": "Exact frozen RGB renderer and scientific inputs",
+        "project": "codex\\results\\motion-distinction-v3-polish\\project",
+        "module": "ppt_motion_v3_polish",
+        "asset": "motion_distinction_combined",
+        "sourceFingerprint": "cbaa5548ad82627cee5d048008543a4037eed44c412ec732d7dbb0e01d443d39",
+        "nativeWidth": 3840,
+        "nativeHeight": 1920,
+        "sourceFilesChecked": 20,
+        "scientificFilesChecked": 41,
+        "exactNativeSamplesChecked": [
+          0,
+          300,
+          599
+        ]
+      },
+      "poster": "static/media/method-motion_distinction-hq-poster.png",
+      "gifFallback": {
+        "src": "static/media/method-motion_distinction.gif",
+        "poster": "static/media/motion_distinction-poster.png",
+        "width": 960,
+        "height": 480,
+        "bytes": 1447916,
+        "sha256": "1ddcf415493de5be5f5fb5530df70e637d7d662fd4ae1841a60860c8889812e6",
+        "fps": 12
+      }
+    },
+    {
+      "id": "general_initialization",
+      "src": "static/media/method-general_initialization.webp",
+      "kind": "webp",
+      "mime": "image/webp",
+      "width": 1920,
+      "height": 720,
+      "duration": 20.0,
+      "fps": 30,
+      "bytes": 204348,
+      "sha256": "d6ade616ed96ac3c9e43861594864eaa3ce173f0b3e0af7b845f5b288cbbc601",
+      "approvedMp4Sha256": "6db9a822b20307036394e9f47e0d209022526e981b533b03733d3287327f2ece",
+      "lossless": true,
+      "sourceQuality": {
+        "kind": "Exact frozen RGB renderer and scientific inputs",
+        "project": "codex\\results\\general-initialization-flow\\project",
+        "module": "ppt_general_flow",
+        "asset": "general_initialization_combined",
+        "sourceFingerprint": "54cf8e6eafcf1772197b08ea9839020a15050a3c69163355c8a8dbc01bfc172a",
+        "nativeWidth": 3840,
+        "nativeHeight": 1440,
+        "sourceFilesChecked": 14,
+        "scientificFilesChecked": 29,
+        "exactNativeSamplesChecked": [
+          0,
+          300,
+          599
+        ]
+      },
+      "poster": "static/media/method-general_initialization-hq-poster.png",
+      "gifFallback": {
+        "src": "static/media/method-general_initialization.gif",
+        "poster": "static/media/general_initialization-poster.png",
+        "width": 960,
+        "height": 360,
+        "bytes": 903110,
+        "sha256": "2448ed4f1f389aebda02f55edc2ac79d27d0b266bfef2df2b7a0e44729e11bd4",
+        "fps": 12
+      }
+    },
+    {
+      "id": "parallel_combined",
+      "src": "static/media/method-parallel_combined.webp",
+      "kind": "webp",
+      "mime": "image/webp",
+      "width": 1920,
+      "height": 750,
+      "duration": 18.0,
+      "fps": 30,
+      "bytes": 332478,
+      "sha256": "2b133fc677c80456a7e74a4eea7b2f3256a641fb6ef1436055db4e89d02e1cd4",
+      "approvedMp4Sha256": "81512a4286738c9142860f752932aeeb35dc18fc2cebdc96b7a59e03eb63f540",
+      "lossless": true,
+      "sourceQuality": {
+        "kind": "Exact frozen RGB renderer and scientific inputs",
+        "project": "codex\\results\\slide-ready-animations\\project",
+        "module": "ppt_slide_groups",
+        "asset": "parallel_combined",
+        "sourceFingerprint": "14ba78714ff4427213cf0df8526879907fffda3efbbe13ccdba13d30c3a35369",
+        "nativeWidth": 3840,
+        "nativeHeight": 1500,
+        "sourceFilesChecked": 13,
+        "scientificFilesChecked": 29,
+        "exactNativeSamplesChecked": [
+          0,
+          270,
+          539
+        ]
+      },
+      "poster": "static/media/method-parallel_combined-hq-poster.png",
+      "gifFallback": {
+        "src": "static/media/method-parallel_combined.gif",
+        "poster": "static/media/parallel_combined-poster.png",
+        "width": 960,
+        "height": 375,
+        "bytes": 1009202,
+        "sha256": "693a0b274832e367e8ae71f00477fd0cdf65298931f576f766a8e0705bced107",
+        "fps": 12
+      }
+    },
+    {
+      "id": "refinement_combined",
+      "src": "static/media/method-refinement_combined.webp",
+      "kind": "webp",
+      "mime": "image/webp",
+      "width": 1920,
+      "height": 800,
+      "duration": 16.0,
+      "fps": 30,
+      "bytes": 3991368,
+      "sha256": "41f5fae83f402a934820eb6a8a716816f519c5840732ec5c00f7c209716664e0",
+      "approvedMp4Sha256": "5f84d5e7b11654d7f5652b51d325851e7dcda00da001caa19f7a3551fd08fd8a",
+      "lossless": true,
+      "sourceQuality": {
+        "kind": "Exact frozen RGB renderer and scientific inputs",
+        "project": "codex\\results\\slide-ready-animations\\project",
+        "module": "ppt_slide_groups",
+        "asset": "refinement_combined",
+        "sourceFingerprint": "e7cc4ea602ba36a99966c8f343848c656b8243200a4136d57ee5c587aa7d8da1",
+        "nativeWidth": 3840,
+        "nativeHeight": 1600,
+        "sourceFilesChecked": 13,
+        "scientificFilesChecked": 29,
+        "exactNativeSamplesChecked": [
+          0,
+          240,
+          479
+        ]
+      },
+      "poster": "static/media/method-refinement_combined-hq-poster.png",
+      "gifFallback": {
+        "src": "static/media/method-refinement_combined.gif",
+        "poster": "static/media/refinement_combined-poster.png",
+        "width": 960,
+        "height": 400,
+        "bytes": 635562,
+        "sha256": "fd341f2e5c9403981b7413c35c4530732dfb08bec377809b6d66113283e03985",
+        "fps": 12
+      }
+    },
+    {
+      "id": "corner_correspondences",
+      "src": "static/media/method-corner_correspondences.webp",
+      "kind": "webp",
+      "mime": "image/webp",
+      "width": 1920,
+      "height": 800,
+      "duration": 22.0,
+      "fps": 30,
+      "bytes": 5894590,
+      "sha256": "d84762420ab8a3e9ba704989d130787c20d89b1b461520c00014850825020c1f",
+      "approvedMp4Sha256": "ceab0c6f42ecba22aa5b08e5d3e2f4d421ba51dcc9875f74f09e40c9130e4de0",
+      "lossless": true,
+      "sourceQuality": {
+        "kind": "Exact frozen RGB renderer and scientific inputs",
+        "project": "codex\\results\\checkerboard-correspondences\\project",
+        "module": "ppt_correspondences",
+        "asset": "corner_correspondences_combined",
+        "sourceFingerprint": "913721fab1c93a790410554e25a74393b310168e69feeb2b3c2a2aaebeea7581",
+        "nativeWidth": 3840,
+        "nativeHeight": 1600,
+        "sourceFilesChecked": 15,
+        "scientificFilesChecked": 29,
+        "exactNativeSamplesChecked": [
+          0,
+          330,
+          659
+        ]
+      },
+      "poster": "static/media/method-corner_correspondences-hq-poster.png",
+      "gifFallback": {
+        "src": "static/media/method-corner_correspondences.gif",
+        "poster": "static/media/corner_correspondences-poster.png",
+        "width": 960,
+        "height": 400,
+        "bytes": 2547019,
+        "sha256": "93da5f203955a314849fdbb869cece020f622458471e027c6f4ee253666fd9a7",
+        "fps": 12
+      }
+    },
+    {
+      "id": "event_alignment",
+      "src": "static/media/method-event_alignment.webp",
+      "kind": "webp",
+      "mime": "image/webp",
+      "width": 1920,
+      "height": 1080,
+      "duration": 15.0,
+      "fps": 30,
+      "bytes": 3277008,
+      "sha256": "968681ef526c85376b939bcd7844842839880cb9359275c23719ed7986779c3f",
+      "approvedMp4Sha256": "9bee074e4de2a4a54ccf3d8b921e94c2f05d8f30652c8da53a3a8568a87e1bc9",
+      "lossless": true,
+      "sourceQuality": {
+        "kind": "Exact frozen RGB renderer and scientific inputs",
+        "project": "codex\\results\\slide-ready-animations\\project",
+        "module": "ppt_slide_groups",
+        "asset": "event_alignment_readable",
+        "sourceFingerprint": "43fff15b218d91c25f9568a54dfa05ec2b6bf4d1bc8d31d79a3e65d85898d013",
+        "nativeWidth": 3840,
+        "nativeHeight": 2894,
+        "sourceFilesChecked": 13,
+        "scientificFilesChecked": 29,
+        "exactNativeSamplesChecked": [
+          0,
+          225,
+          449
+        ]
+      },
+      "coverage": "Chronological raw events, actual paired motion compensation, and frozen unsigned IWE. Existing approved clip does not include pIWE.",
+      "poster": "static/media/method-event_alignment-hq-poster.png"
+    }
+  ]
+}

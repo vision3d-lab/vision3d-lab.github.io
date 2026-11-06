@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "items": [
+    {
+      "id": "patch_extraction",
+      "src": "static/media/method-patch_extraction.gif",
+      "poster": "static/media/patch_extraction-poster.png",
+      "width": 960,
+      "height": 540,
+      "duration": 22.0,
+      "bytes": 7641073,
+      "sha256": "ba77064412806c0cfb58d49d7240f7b495dd3eac1f423fa831ab2a7e10374ad8",
+      "sourceSha256": "425d7d6be5dacfd9a4eb327d53fddc908f534ae0706556ed6278957db3b73e62",
+      "fps": 12
+    },
+    {
+      "id": "motion_distinction",
+      "src": "static/media/method-motion_distinction.gif",
+      "poster": "static/media/motion_distinction-poster.png",
+      "width": 960,
+      "height": 480,
+      "duration": 20.0,
+      "bytes": 1447916,
+      "sha256": "1ddcf415493de5be5f5fb5530df70e637d7d662fd4ae1841a60860c8889812e6",
+      "sourceSha256": "4268e80d91ba768e98a9b9cda1d0d8fd4ed205929ac8b95664ee4473d9f74c93",
+      "fps": 12
+    },
+    {
+      "id": "general_initialization",
+      "src": "static/media/method-general_initialization.gif",
+      "poster": "static/media/general_initialization-poster.png",
+      "width": 960,
+      "height": 360,
+      "duration": 20.0,
+      "bytes": 903110,
+      "sha256": "2448ed4f1f389aebda02f55edc2ac79d27d0b266bfef2df2b7a0e44729e11bd4",
+      "sourceSha256": "6db9a822b20307036394e9f47e0d209022526e981b533b03733d3287327f2ece",
+      "fps": 12
+    },
+    {
+      "id": "parallel_combined",
+      "src": "static/media/method-parallel_combined.gif",
+      "poster": "static/media/parallel_combined-poster.png",
+      "width": 960,
+      "height": 375,
+      "duration": 18.0,
+      "bytes": 1009202,
+      "sha256": "693a0b274832e367e8ae71f00477fd0cdf65298931f576f766a8e0705bced107",
+      "sourceSha256": "81512a4286738c9142860f752932aeeb35dc18fc2cebdc96b7a59e03eb63f540",
+      "fps": 12
+    },
+    {
+      "id": "refinement_combined",
+      "src": "static/media/method-refinement_combined.gif",
+      "poster": "static/media/refinement_combined-poster.png",
+      "width": 960,
+      "height": 400,
+      "duration": 16.0,
+      "bytes": 635562,
+      "sha256": "fd341f2e5c9403981b7413c35c4530732dfb08bec377809b6d66113283e03985",
+      "sourceSha256": "5f84d5e7b11654d7f5652b51d325851e7dcda00da001caa19f7a3551fd08fd8a",
+      "fps": 12
+    },
+    {
+      "id": "corner_correspondences",
+      "src": "static/media/method-corner_correspondences.gif",
+      "poster": "static/media/corner_correspondences-poster.png",
+      "width": 960,
+      "height": 400,
+      "duration": 22.0,
+      "bytes": 2547019,
+      "sha256": "93da5f203955a314849fdbb869cece020f622458471e027c6f4ee253666fd9a7",
+      "sourceSha256": "ceab0c6f42ecba22aa5b08e5d3e2f4d421ba51dcc9875f74f09e40c9130e4de0",
+      "fps": 12
+    }
+  ]
+}
